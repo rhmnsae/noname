@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Black Axe Barbershop — Potongan Premium, Tampil Percaya Diri</title>
+  <meta name="description" content="Barbershop premium dengan barber berpengalaman. Potong rambut, cukur jenggot, dan perawatan rambut profesional. Booking online mudah." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#0a0a0a;--surface:#111;--surface2:#1a1a1a;
+      --border:#222;--border2:#2e2e2e;
+      --gold:#c9a84c;--gold-light:#e2c47a;--gold-pale:#1a1600;
+      --white:#f5f5f0;--muted:#888;--muted2:#555;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}ul{list-style:none}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between}
+    .nl{font-family:'Bebas Neue',serif;font-size:1.6rem;letter-spacing:4px;color:var(--white)}.nl span{color:var(--gold)}
+    .nls{display:flex;gap:32px}.nls a{font-size:.82rem;color:var(--muted);transition:color .2s;letter-spacing:.5px}.nls a:hover{color:var(--white)}
+    .nc{background:var(--gold);color:#000;font-size:.75rem;font-weight:700;padding:10px 24px;border:none;cursor:pointer;letter-spacing:1.5px;text-transform:uppercase;transition:background .2s;font-family:'Space Grotesk',sans-serif}.nc:hover{background:var(--gold-light)}
+    .nh{display:none;flex-direction:column;gap:5px;cursor:pointer}.nh span{display:block;width:24px;height:2px;background:var(--white)}
+
+    /* HERO */
+    .hero{min-height:100vh;padding:100px 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 60% 40%,rgba(201,168,76,0.05) 0%,transparent 65%);pointer-events:none}
+    .h-eyebrow{font-size:.65rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;gap:10px}
+    .h-eyebrow::before{content:'';display:block;width:32px;height:1px;background:var(--gold)}
+    .hero h1{font-family:'Bebas Neue',serif;font-size:clamp(3.5rem,7vw,6rem);font-weight:400;line-height:1;letter-spacing:2px;color:var(--white);margin-bottom:22px}
+    .hero h1 .hl{color:var(--gold)}
+    .hero-desc{font-size:.95rem;color:var(--muted);line-height:1.8;max-width:460px;margin-bottom:36px}
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+    .b-gold{background:var(--gold);color:#000;font-size:.78rem;font-weight:700;padding:14px 32px;letter-spacing:1.5px;text-transform:uppercase;transition:all .2s;display:inline-block}.b-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+    .b-ghost{background:transparent;color:var(--muted);font-size:.78rem;font-weight:500;padding:14px 32px;border:1px solid var(--border2);letter-spacing:1px;text-transform:uppercase;transition:all .2s;display:inline-block}.b-ghost:hover{border-color:var(--muted);color:var(--white)}
+    .hero-right{display:flex;flex-direction:column;gap:12px}
+    .stat-card{background:var(--surface);border:1px solid var(--border);padding:20px 24px}
+    .stat-card-title{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+    .stat-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)}.stat-row:last-child{border-bottom:none}
+    .stat-label{font-size:.82rem;color:var(--muted)}.stat-val{font-family:'Bebas Neue',serif;font-size:1.1rem;color:var(--white);letter-spacing:1px}
+    .badge-strip{display:flex;gap:8px;margin-top:12px}
+    .badge{background:var(--gold-pale);border:1px solid var(--gold);padding:5px 12px;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold)}
+
+    /* SECTION */
+    section{padding:96px 80px}
+    .sec-eye{font-size:.62rem;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+    .sec-eye::before{content:'';display:block;width:24px;height:1px;background:var(--gold)}
+    .sec-title{font-family:'Bebas Neue',serif;font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;letter-spacing:2px;line-height:1.05;margin-bottom:12px}
+    .sec-sub{font-size:.9rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:52px}
+    .divider{height:1px;background:var(--border);margin:0 80px}
+
+    /* SERVICES */
+    #services{background:var(--bg)}
+    .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .svc-card{background:var(--surface);padding:32px 28px;transition:background .2s}.svc-card:hover{background:var(--surface2)}
+    .svc-num{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+    .svc-name{font-family:'Bebas Neue',serif;font-size:1.25rem;letter-spacing:1px;margin-bottom:8px}
+    .svc-desc{font-size:.83rem;color:var(--muted);line-height:1.65;margin-bottom:16px}
+    .svc-price{font-size:.95rem;font-weight:700;color:var(--gold)}
+
+    /* TEAM */
+    #team{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .team-card{background:var(--bg);border:1px solid var(--border);overflow:hidden;transition:border-color .2s}.team-card:hover{border-color:var(--gold)}
+    .team-img{height:180px;background:linear-gradient(135deg,#1a1600,#2a2000);display:flex;align-items:center;justify-content:center}
+    .team-initials{font-family:'Bebas Neue',serif;font-size:3rem;color:var(--gold);opacity:.35}
+    .team-body{padding:20px}
+    .team-role{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+    .team-name{font-family:'Bebas Neue',serif;font-size:1.2rem;letter-spacing:1px;margin-bottom:6px}
+    .team-spec{font-size:.8rem;color:var(--muted)}
+
+    /* GALERI */
+    #galeri{background:var(--bg)}
+    .galeri-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+    .galeri-item{background:var(--surface);aspect-ratio:1;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;cursor:pointer}
+    .galeri-item:first-child{grid-column:span 2;aspect-ratio:auto;min-height:200px}
+    .galeri-bg{width:100%;height:100%;background:linear-gradient(135deg,#111,#1a1a1a);display:flex;align-items:center;justify-content:center;transition:transform .4s}
+    .galeri-item:hover .galeri-bg{transform:scale(1.04)}
+    .galeri-tag{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);opacity:.6}
+
+    /* BOOKING */
+    #booking{background:var(--surface);border-top:1px solid var(--border)}
+    .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+    .form-group{margin-bottom:18px}
+    .form-label{display:block;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+    .form-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--white);padding:12px 16px;font-size:.88rem;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s}
+    .form-input:focus{border-color:var(--gold)}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-submit{background:var(--gold);color:#000;padding:14px;width:100%;font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;font-family:'Inter',sans-serif;transition:background .2s}
+    .form-submit:hover{background:var(--gold-light)}
+    .booking-info{display:flex;flex-direction:column;gap:20px}
+    .info-box{background:var(--bg);border:1px solid var(--border);padding:22px}
+    .info-box-title{font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .info-box p{font-size:.85rem;color:var(--muted);line-height:1.65}
+
+    /* TESTI */
+    #testi{background:var(--bg)}
+    .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .testi-card{background:var(--surface);padding:28px}
+    .testi-stars{font-size:.7rem;letter-spacing:3px;color:var(--gold);margin-bottom:14px}
+    .testi-q{font-size:.88rem;color:var(--white);line-height:1.75;margin-bottom:18px;font-style:italic;opacity:.9}
+    .testi-name{font-size:.85rem;font-weight:600;color:var(--white)}
+    .testi-role{font-size:.72rem;color:var(--muted);margin-top:3px}
+
+    /* CTA */
+    #cta{background:var(--gold);padding:80px}
+    .cta-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;max-width:1100px;margin:0 auto}
+    .cta-inner h2{font-family:'Bebas Neue',serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:400;letter-spacing:2px;color:#000;max-width:500px;line-height:1.1}
+    .b-dark{background:#000;color:var(--gold);font-size:.78rem;font-weight:700;letter-spacing:2px;padding:16px 36px;border:none;cursor:pointer;text-transform:uppercase;transition:all .2s;display:inline-block;white-space:nowrap;font-family:'Inter',sans-serif}
+    .b-dark:hover{background:#111;transform:translateY(-1px)}
+
+    /* FOOTER */
+    footer{background:#050505;border-top:1px solid var(--border);padding:56px 80px 28px}
+    .ft{display:flex;justify-content:space-between;gap:48px;margin-bottom:40px}
+    .fl{font-family:'Bebas Neue',serif;font-size:1.4rem;letter-spacing:3px;color:var(--white);margin-bottom:8px}.fl span{color:var(--gold)}
+    .fd{font-size:.8rem;color:var(--muted);max-width:220px;line-height:1.65}
+    .fc h4{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+    .fc ul{display:flex;flex-direction:column;gap:8px}.fc a{font-size:.8rem;color:var(--muted);transition:color .2s}.fc a:hover{color:var(--white)}
+    .fb{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between}
+    .fc-t{font-size:.73rem;color:var(--muted2)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* RESPONSIVE */
+    @media(max-width:1100px){nav{padding:0 32px}.hero,section{padding:72px 40px}.divider{margin:0 40px}#cta{padding:60px 40px}footer{padding:48px 40px 24px}}
+    @media(max-width:820px){nav{padding:0 20px}.nls{display:none}.nh{display:flex}.hero{grid-template-columns:1fr;padding:88px 24px 60px}.hero-right{display:none}section{padding:56px 24px}.divider{margin:0 24px}.svc-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:1fr}.galeri-grid{grid-template-columns:1fr 1fr}.galeri-item:first-child{grid-column:span 2}.testi-grid{grid-template-columns:1fr}.booking-grid{grid-template-columns:1fr}.cta-inner{flex-direction:column;align-items:flex-start}#cta{padding:48px 24px}footer{padding:40px 24px 20px}.ft{flex-direction:column;gap:28px}.fb{flex-direction:column;gap:10px}}
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nl">BLACK<span>AXE</span></div>
+    <ul class="nls">
+      <li><a href="#services">Layanan</a></li>
+      <li><a href="#team">Barber</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#testi">Ulasan</a></li>
+      <li><a href="#booking">Booking</a></li>
+    </ul>
+    <button class="nc" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Book Now</button>
+    <div class="nh"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="h-eyebrow">[ Premium Barbershop ]</div>
+      <h1>POTONG.<br><span class="hl">RAPI.</span><br>PERCAYA<br>DIRI.</h1>
+      <p class="hero-desc">Barbershop profesional dengan barber berpengalaman dan teknik pemangkasan terkini. Setiap kunjungan adalah pengalaman premium yang layak Anda dapatkan.</p>
+      <div class="hero-btns">
+        <a href="#booking" class="b-gold">Booking Sekarang</a>
+        <a href="#services" class="b-ghost">Lihat Layanan</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card">
+        <div class="stat-card-title">Status Hari Ini</div>
+        <div class="stat-row"><span class="stat-label">Slot Tersedia</span><span class="stat-val" style="color:#4ade80;">8 Slot</span></div>
+        <div class="stat-row"><span class="stat-label">Jam Buka</span><span class="stat-val">09.00 — 21.00</span></div>
+        <div class="stat-row"><span class="stat-label">Estimasi Antri</span><span class="stat-val">~15 Menit</span></div>
+        <div class="badge-strip">
+          <span class="badge">Walk-in OK</span>
+          <span class="badge">Booking Online</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-title">Rekam Jejak</div>
+        <div class="stat-row"><span class="stat-label">Klien per Bulan</span><span class="stat-val">800+</span></div>
+        <div class="stat-row"><span class="stat-label">Rating Google</span><span class="stat-val" style="color:var(--gold);">4.9 / 5</span></div>
+        <div class="stat-row"><span class="stat-label">Berdiri Sejak</span><span class="stat-val">2018</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="sec-eye">[ 01 / Layanan ]</div>
+    <h2 class="sec-title reveal">PILIHAN<br>LAYANAN KAMI</h2>
+    <p class="sec-sub reveal">Setiap layanan dikerjakan dengan detail dan presisi oleh barber bersertifikat.</p>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-num">01</div>
+        <div class="svc-name">Haircut Classic</div>
+        <div class="svc-desc">Potongan rambut klasik menggunakan gunting dan clipper presisi. Sesuai bentuk kepala dan preferensi gaya Anda.</div>
+        <div class="svc-price">Rp 45.000</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">02</div>
+        <div class="svc-name">Fade &amp; Taper</div>
+        <div class="svc-desc">Teknik gradasi rambut modern dengan hasil transisi halus dari panjang ke pendek. Tersedia skin fade, low, mid, dan high fade.</div>
+        <div class="svc-price">Rp 65.000</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">03</div>
+        <div class="svc-name">Cukur Jenggot</div>
+        <div class="svc-desc">Pembentukan dan cukur jenggot menggunakan pisau cukur lurus (straight razor) dengan hot towel untuk hasil mulus sempurna.</div>
+        <div class="svc-price">Rp 35.000</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">04</div>
+        <div class="svc-name">Haircut + Beard Combo</div>
+        <div class="svc-desc">Paket lengkap potong rambut dan cukur jenggot. Tampil serasi dari atas kepala hingga jenggot dengan satu kunjungan.</div>
+        <div class="svc-price">Rp 90.000</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">05</div>
+        <div class="svc-name">Hair Treatment</div>
+        <div class="svc-desc">Perawatan rambut intensif dengan masker protein, creambath, dan pijat kepala untuk rambut lebih sehat dan berkilau.</div>
+        <div class="svc-price">Mulai Rp 80.000</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-num">06</div>
+        <div class="svc-name">Coloring &amp; Highlight</div>
+        <div class="svc-desc">Pewarnaan rambut menggunakan produk premium. Dari warna natural hingga bleaching dan highlight modern sesuai tren terkini.</div>
+        <div class="svc-price">Mulai Rp 150.000</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="sec-eye">[ 02 / Tim Barber ]</div>
+    <h2 class="sec-title reveal">BARBER KAMI</h2>
+    <p class="sec-sub reveal">Dipilih ketat, dilatih profesional — setiap barber kami adalah ahli dengan jam terbang tinggi.</p>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-img">
+          <div class="team-initials">RD</div>
+        </div>
+        <div class="team-body">
+          <div class="team-role">Senior Barber — 8 Tahun</div>
+          <div class="team-name">Ridwan Dermawan</div>
+          <div class="team-spec">Spesialis fade, scissor work, dan desain rambut modern. Pemenang kompetisi barber regional 2022.</div>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-img">
+          <div class="team-initials">AF</div>
+        </div>
+        <div class="team-body">
+          <div class="team-role">Master Barber — 12 Tahun</div>
+          <div class="team-name">Ahmad Fauzan</div>
+          <div class="team-spec">Spesialis teknik cukur klasik, straight razor, dan perawatan jenggot. Ahli untuk tampilan formal dan vintage.</div>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-img">
+          <div class="team-initials">BP</div>
+        </div>
+        <div class="team-body">
+          <div class="team-role">Barber — 5 Tahun</div>
+          <div class="team-name">Bagas Pratama</div>
+          <div class="team-spec">Spesialis gaya kontemporer, taper fade, dan pewarnaan kreatif untuk tampilan urban modern yang stylish.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- GALERI -->
+  <section id="galeri">
+    <div class="sec-eye">[ 03 / Galeri ]</div>
+    <h2 class="sec-title reveal">HASIL KERJA KAMI</h2>
+    <p class="sec-sub reveal">Setiap potongan adalah karya — lihat koleksi hasil terbaik barber kami.</p>
+    <div class="galeri-grid">
+      <div class="galeri-item">
+        <div class="galeri-bg" style="background:linear-gradient(135deg,#1a1a1a,#2e2500);flex-direction:column;gap:6px;">
+          <div style="font-family:'Bebas Neue',serif;font-size:1.4rem;letter-spacing:2px;color:var(--gold);opacity:.6;">SKIN FADE</div>
+          <div style="font-size:.65rem;letter-spacing:1px;color:var(--muted);">FEATURED WORK</div>
+        </div>
+      </div>
+      <div class="galeri-item">
+        <div class="galeri-bg" style="background:linear-gradient(135deg,#111,#1a1800);">
+          <div class="galeri-tag">Taper + Beard</div>
+        </div>
+      </div>
+      <div class="galeri-item">
+        <div class="galeri-bg" style="background:linear-gradient(135deg,#1a1600,#111);">
+          <div class="galeri-tag">Classic Cut</div>
+        </div>
+      </div>
+      <div class="galeri-item">
+        <div class="galeri-bg" style="background:linear-gradient(135deg,#111,#200a00);">
+          <div class="galeri-tag">High Fade</div>
+        </div>
+      </div>
+      <div class="galeri-item">
+        <div class="galeri-bg" style="background:linear-gradient(135deg,#1a1a0a,#111);">
+          <div class="galeri-tag">Coloring</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <div class="booking-grid">
+      <div>
+        <div class="sec-eye">[ 04 / Booking ]</div>
+        <h2 class="sec-title reveal">RESERVASI<br>ONLINE</h2>
+        <p class="sec-sub reveal">Pilih jadwal terbaik Anda dan barber favorit. Konfirmasi via WhatsApp dalam 5 menit.</p>
+        <form onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nama</label>
+              <input class="form-input" type="text" placeholder="Nama lengkap" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">No. WhatsApp</label>
+              <input class="form-input" type="tel" placeholder="08xx-xxxx-xxxx" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Tanggal</label>
+              <input class="form-input" type="date" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Waktu</label>
+              <select class="form-input">
+                <option>09.00 — 10.00</option><option>10.00 — 11.00</option>
+                <option>11.00 — 12.00</option><option>13.00 — 14.00</option>
+                <option>14.00 — 15.00</option><option>15.00 — 16.00</option>
+                <option>16.00 — 17.00</option><option>17.00 — 18.00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Layanan</label>
+            <select class="form-input">
+              <option>Haircut Classic — Rp 45.000</option>
+              <option>Fade &amp; Taper — Rp 65.000</option>
+              <option>Cukur Jenggot — Rp 35.000</option>
+              <option>Haircut + Beard Combo — Rp 90.000</option>
+              <option>Hair Treatment — Mulai Rp 80.000</option>
+              <option>Coloring &amp; Highlight — Mulai Rp 150.000</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pilih Barber</label>
+            <select class="form-input">
+              <option>Ridwan Dermawan — Senior Barber</option>
+              <option>Ahmad Fauzan — Master Barber</option>
+              <option>Bagas Pratama — Barber</option>
+              <option>Siapapun yang Tersedia</option>
+            </select>
+          </div>
+          <button class="form-submit" type="submit">Konfirmasi Booking</button>
+        </form>
+      </div>
+      <div class="booking-info">
+        <div class="info-box reveal">
+          <div class="info-box-title">Lokasi</div>
+          <p>Jl. Sudirman No. 88, Jakarta Selatan<br>Lantai dasar, dekat pintu masuk utama</p>
+        </div>
+        <div class="info-box reveal">
+          <div class="info-box-title">Jam Operasional</div>
+          <p>Senin – Jumat: 09.00 – 21.00<br>Sabtu – Minggu: 08.00 – 22.00<br>Hari Libur Nasional: 10.00 – 18.00</p>
+        </div>
+        <div class="info-box reveal">
+          <div class="info-box-title">Kebijakan Booking</div>
+          <p>Pembatalan gratis hingga 2 jam sebelum jadwal. Keterlambatan lebih dari 15 menit, slot dapat dialihkan ke pelanggan lain.</p>
+        </div>
+        <div class="info-box reveal">
+          <div class="info-box-title">Hubungi Kami</div>
+          <p>WhatsApp: +62 812-3456-7890<br>Instagram: @blackaxe.barbershop<br>Email: hello@blackaxe.id</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTI -->
+  <section id="testi" style="border-top:1px solid var(--border);">
+    <div class="sec-eye">[ 05 / Ulasan ]</div>
+    <h2 class="sec-title reveal">KATA PELANGGAN</h2>
+    <p class="sec-sub reveal">Kepuasan pelanggan adalah standar kami — bukan sekadar target.</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-q">"Sudah 2 tahun rutin ke Black Axe. Ridwan selalu tahu persis gaya yang cocok buat saya. Hasilnya konsisten bagus setiap kali, tidak perlu banyak arahan."</p>
+        <div class="testi-name">Dito Mahendra</div>
+        <div class="testi-role">Pelanggan Setia, Jakarta Selatan</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-q">"Tempat yang bersih, suasana nyaman, dan barber-nya profesional banget. Fade yang dihasilkan Bagas halus dan rapi. Pasti balik lagi."</p>
+        <div class="testi-name">Rafi Anugrah</div>
+        <div class="testi-role">Content Creator</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-q">"Pertama kali coba straight razor shave di sini — pengalaman luar biasa. Ahmad sangat teliti dan hasilnya mulus banget. Worth every penny."</p>
+        <div class="testi-name">Hendra Wijaya</div>
+        <div class="testi-role">Pengusaha</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-inner">
+      <h2>SIAP TAMPIL LEBIH PERCAYA DIRI?</h2>
+      <a href="#booking" class="b-dark">Book Slot Sekarang</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="ft">
+      <div>
+        <div class="fl">BLACK<span>AXE</span></div>
+        <p class="fd">Barbershop premium di Jakarta — menghadirkan pengalaman potong rambut terbaik sejak 2018.</p>
+      </div>
+      <div class="fc"><h4>Layanan</h4><ul>
+        <li><a href="#">Haircut Classic</a></li><li><a href="#">Fade &amp; Taper</a></li>
+        <li><a href="#">Cukur Jenggot</a></li><li><a href="#">Hair Treatment</a></li>
+      </ul></div>
+      <div class="fc"><h4>Info</h4><ul>
+        <li><a href="#">Tentang Kami</a></li><li><a href="#">Tim Barber</a></li>
+        <li><a href="#">Galeri</a></li><li><a href="#">Booking Online</a></li>
+      </ul></div>
+      <div class="fc"><h4>Kontak</h4><ul>
+        <li><a href="#">+62 812-3456-7890</a></li><li><a href="#">@blackaxe.barbershop</a></li>
+        <li><a href="#">Jl. Sudirman 88, Jaksel</a></li>
+      </ul></div>
+    </div>
+    <div class="fb">
+      <span class="fc-t">2025 Black Axe Barbershop. Hak cipta dilindungi. — DEMO TEMPLATE</span>
+      <span class="fc-t">Syarat &amp; Ketentuan</span>
+    </div>
+  </footer>
+
+  <script>
+    const rev = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+    rev.forEach(el => obs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});} }));
+    // Hamburger
+    document.querySelector('.nh').addEventListener('click', () => { document.querySelector('.nls').style.display = document.querySelector('.nls').style.display === 'flex' ? 'none' : 'flex'; });
+  </script>
+</body>
+</html>

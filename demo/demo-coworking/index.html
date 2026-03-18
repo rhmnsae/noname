@@ -1,217 +1,1007 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Hub Cowork — Ruang Kerja &amp; Komunitas Profesional</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hub Cowork — Ruang Kerja & Komunitas Profesional</title>
   <meta name="description" content="Coworking space modern di pusat kota. Hot desk, private office, meeting room, dan komunitas profesional yang tumbuh bersama." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap');
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#fafafa;--surface:#f4f4f5;--dark:#18181b;--border:#e4e4e7;--border2:#d4d4d8;--amber:#d97706;--amber-light:#f59e0b;--amber-pale:#fffbeb;--muted:#71717a;--muted2:#a1a1aa;--white:#ffffff}
-    html{scroll-behavior:smooth}body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--dark);line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}ul{list-style:none}
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
-    .nl{font-size:1.05rem;font-weight:800;color:var(--dark)}.nl span{color:var(--amber)}
-    .nls{display:flex;gap:32px}.nls a{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);transition:color .2s}.nls a:hover{color:var(--dark)}
-    .nc{background:var(--dark);color:#fff;font-size:.76rem;font-weight:700;padding:10px 22px;border:none;cursor:pointer;border-radius:6px;transition:background .2s}.nc:hover{background:#27272a}
-    .nh{display:none;flex-direction:column;gap:5px;cursor:pointer}.nh span{display:block;width:22px;height:2px;background:var(--dark)}
-    .hero{min-height:100vh;padding:100px 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden;background:var(--amber-pale)}
-    .hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(217,119,6,.08) 0%,transparent 65%);pointer-events:none}
-    .h-tag{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
-    .hero h1{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:800;line-height:1.12;margin-bottom:18px}.hero h1 .hl{color:var(--amber)}
-    .hero-desc{font-family:'Inter',sans-serif;font-size:.94rem;color:var(--muted);line-height:1.75;max-width:460px;margin-bottom:32px}
-    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-    .b-amber{background:var(--amber);color:#fff;font-size:.8rem;font-weight:700;padding:12px 28px;border-radius:6px;transition:all .2s;display:inline-block}.b-amber:hover{background:var(--amber-light);transform:translateY(-1px)}
-    .b-outline{background:var(--white);color:var(--dark);font-size:.8rem;font-weight:600;padding:12px 28px;border-radius:6px;border:1px solid var(--border2);transition:all .2s;display:inline-block}.b-outline:hover{border-color:var(--amber);color:var(--amber)}
-    .hero-right{display:flex;flex-direction:column;gap:12px}
-    .stat-mini{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .sm-item{text-align:center;padding:12px;background:var(--bg);border-radius:6px}
-    .sm-val{font-size:1.4rem;font-weight:800;color:var(--dark)}.sm-label{font-family:'Inter',sans-serif;font-size:.68rem;color:var(--muted);margin-top:2px}
-    .avail-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px}
-    .avail-title{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted2);margin-bottom:12px}
-    .avail-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)}.avail-row:last-child{border-bottom:none}
-    .avail-type{font-size:.8rem;color:var(--dark)}.avail-status{font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:100px}
-    .available{background:#f0fdf4;color:#15803d}.partial{background:#fffbeb;color:#92400e}.full{background:#fef2f2;color:#b91c1c}
-    section{padding:88px 80px}.sec-tag{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
-    .sec-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;margin-bottom:12px;line-height:1.2}
-    .sec-sub{font-family:'Inter',sans-serif;font-size:.9rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:48px}
-    .divider{height:1px;background:var(--border);margin:0 80px}
-    #space{background:var(--white)}
-    .space-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .sp-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s}.sp-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-2px)}
-    .sp-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2)}
-    .sp-body{padding:18px 20px}
-    .sp-tag{display:inline-block;font-size:.6rem;font-weight:700;background:var(--amber-pale);color:var(--amber);padding:3px 9px;border-radius:100px;margin-bottom:8px}
-    .sp-name{font-size:.94rem;font-weight:700;margin-bottom:5px}
-    .sp-desc{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);margin-bottom:14px;line-height:1.6}
-    .sp-footer{display:flex;justify-content:space-between;align-items:center}
-    .sp-price{font-size:1rem;font-weight:800;color:var(--amber)}.sp-cap{font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted)}
-    #fitur{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .f-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px}
-    .f-num{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
-    .f-card h3{font-size:.94rem;font-weight:700;margin-bottom:8px}
-    .f-card p{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.65}
-    #paket{background:var(--white)}
-    .pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .pk-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:24px}
-    .pk-badge{display:inline-block;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:12px}
-    .pk-name{font-size:1.1rem;font-weight:800;margin-bottom:4px}.pk-desc{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);margin-bottom:16px}
-    .pk-price{font-size:1.6rem;font-weight:800;color:var(--dark);margin-bottom:4px}.pk-per{font-family:'Inter',sans-serif;font-size:.75rem;color:var(--muted);margin-bottom:16px}
-    .pk-feats{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
-    .pk-feat{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:6px}.pk-feat::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0}
-    .pk-btn{display:block;text-align:center;font-size:.8rem;font-weight:700;padding:11px;border-radius:6px;border:2px solid var(--dark);color:var(--dark);transition:all .2s}.pk-btn:hover{background:var(--dark);color:#fff}.pk-btn.p{background:var(--amber);color:#fff;border-color:var(--amber)}
-    #testi{background:var(--bg);border-top:1px solid var(--border)}
-    .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .t-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px}
-    .t-q{font-family:'Inter',sans-serif;font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:14px}
-    .t-name{font-size:.84rem;font-weight:700}.t-role{font-size:.72rem;color:var(--muted2);margin-top:2px}
-    #cta{background:var(--dark);padding:80px;display:flex;align-items:center;justify-content:space-between;gap:40px}
-    #cta h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;max-width:500px;line-height:1.2}
-    .b-cta{background:var(--amber);color:#fff;font-size:.8rem;font-weight:700;padding:14px 32px;border-radius:6px;display:inline-block;transition:all .2s;white-space:nowrap}.b-cta:hover{background:var(--amber-light)}
-    footer{background:#0f0f10;padding:50px 80px 26px}
-    .ft{display:flex;justify-content:space-between;gap:48px;margin-bottom:36px}
-    .fl{font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}.fl span{color:var(--amber-light)}
-    .fd{font-family:'Inter',sans-serif;font-size:.78rem;color:#71717a;max-width:220px;line-height:1.65}
-    .fc h4{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber-light);margin-bottom:12px}
-    .fc ul{display:flex;flex-direction:column;gap:8px}.fc a{font-family:'Inter',sans-serif;font-size:.78rem;color:#71717a;transition:color .2s}.fc a:hover{color:#fff}
-    .fb{border-top:1px solid #27272a;padding-top:20px;display:flex;justify-content:space-between}
-    .fc-t{font-family:'Inter',sans-serif;font-size:.72rem;color:#52525b}
-    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
-    @media(max-width:1100px){nav{padding:0 32px}.hero,section{padding:72px 40px}.divider{margin:0 40px}#cta{padding:60px 40px}footer{padding:44px 40px 22px}}
-    @media(max-width:820px){nav{padding:0 20px}.nls{display:none}.nh{display:flex}.hero{grid-template-columns:1fr;padding:84px 24px 56px}.hero-right{display:none}section{padding:52px 24px}.divider{margin:0 24px}.space-grid,.f-grid,.pk-grid,.t-grid{grid-template-columns:1fr}#cta{flex-direction:column;align-items:flex-start;padding:40px 24px}footer{padding:36px 24px 20px}.ft{flex-direction:column;gap:28px}.fb{flex-direction:column;gap:8px}}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --dark: #0e0e0f;
+      --dark2: #16161a;
+      --dark3: #1f1f24;
+      --card: #1a1a1f;
+      --gold: #b8912a;
+      --gold2: #d4a843;
+      --gold3: #e8c56a;
+      --gold-pale: rgba(184, 145, 42, 0.08);
+      --gold-border: rgba(184, 145, 42, 0.25);
+      --text: #e8e6e1;
+      --text2: #9d9b96;
+      --text3: #6b6966;
+      --border: rgba(255,255,255,0.06);
+      --border2: rgba(255,255,255,0.10);
+      --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      height: 68px;
+      background: rgba(14,14,15,0.90);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .nav-logo span { color: var(--gold2); }
+    .nav-links {
+      display: flex; gap: 40px;
+    }
+    .nav-links a {
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold2); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 10px 24px; border-radius: 3px;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--gold2); }
+    .nav-ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      padding: 130px 64px 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--dark);
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 10% 50%, rgba(184,145,42,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 90% 20%, rgba(184,145,42,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.65rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 28px;
+    }
+    .hero-label::before {
+      content: '';
+      display: inline-block;
+      width: 32px; height: 1px;
+      background: var(--gold2);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold2);
+    }
+    .hero-desc {
+      font-size: 0.95rem; font-weight: 300;
+      color: var(--text2);
+      line-height: 1.8;
+      max-width: 440px;
+      margin-bottom: 40px;
+    }
+    .hero-btns {
+      display: flex; gap: 14px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 3px;
+      transition: all 0.25s;
+    }
+    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 3px;
+      border: 1px solid var(--border2);
+      transition: all 0.25s;
+    }
+    .btn-secondary:hover { border-color: var(--gold-border); color: var(--gold2); }
+
+    /* Hero Right — Stats */
+    .hero-right { display: flex; flex-direction: column; gap: 14px; }
+    .hero-stats-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px; overflow: hidden;
+    }
+    .stat-item {
+      background: var(--card);
+      padding: 24px 22px;
+      text-align: center;
+    }
+    .stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.68rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text3);
+      margin-top: 6px;
+    }
+    .avail-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 24px;
+    }
+    .avail-header {
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .avail-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .avail-row:last-child { border-bottom: none; }
+    .avail-type { font-size: 0.8rem; color: var(--text2); }
+    .tag-green {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+      padding: 3px 10px; border-radius: 2px;
+      background: rgba(16,185,129,0.1); color: #34d399;
+    }
+    .tag-amber {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+      padding: 3px 10px; border-radius: 2px;
+      background: rgba(184,145,42,0.12); color: var(--gold3);
+    }
+    .tag-red {
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+      padding: 3px 10px; border-radius: 2px;
+      background: rgba(239,68,68,0.1); color: #f87171;
+    }
+
+    /* ── DIVIDER ── */
+    .line { height: 1px; background: var(--border); margin: 0 64px; }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 64px; }
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 20px;
+    }
+    .sec-label::before {
+      content: '';
+      display: inline-block; width: 22px; height: 1px;
+      background: var(--gold2);
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .sec-sub {
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--text2);
+      line-height: 1.8;
+      max-width: 480px;
+      margin-bottom: 56px;
+    }
+
+    /* ── SPACE SECTION ── */
+    #space { background: var(--dark2); }
+    .space-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; }
+    .sp-card {
+      background: var(--card);
+      transition: background 0.3s;
+    }
+    .sp-card:hover { background: #1e1e24; }
+    .sp-visual {
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: flex-end;
+      padding: 0;
+    }
+    .sp-visual-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sp-visual-label {
+      position: absolute; bottom: 14px; left: 18px;
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+    .sp-body { padding: 24px; }
+    .sp-badge {
+      display: inline-block;
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 2px;
+      margin-bottom: 12px;
+      background: var(--gold-pale);
+      color: var(--gold2);
+      border: 1px solid var(--gold-border);
+    }
+    .sp-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .sp-desc {
+      font-size: 0.8rem; font-weight: 300;
+      color: var(--text2); line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .sp-footer { display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 1px solid var(--border); }
+    .sp-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 600; color: var(--gold2);
+    }
+    .sp-price small { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 300; color: var(--text3); }
+    .sp-cap { font-size: 0.7rem; color: var(--text3); }
+
+    /* ── FACILITIES ── */
+    #fitur { background: var(--dark); }
+    .f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    .f-card {
+      background: var(--dark2);
+      padding: 32px;
+      transition: background 0.3s;
+    }
+    .f-card:hover { background: var(--dark3); }
+    .f-num {
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .f-num::after { content: ''; flex: 1; height: 1px; background: var(--gold-border); max-width: 40px; }
+    .f-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .f-card p {
+      font-size: 0.8rem; font-weight: 300;
+      color: var(--text2); line-height: 1.75;
+    }
+
+    /* ── PAKET ── */
+    #paket { background: var(--dark2); }
+    .pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .pk-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px;
+      transition: border-color 0.3s;
+    }
+    .pk-card:hover { border-color: var(--border2); }
+    .pk-card.featured {
+      border-color: var(--gold-border);
+      background: linear-gradient(135deg, var(--card) 0%, rgba(184,145,42,0.04) 100%);
+    }
+    .pk-tier {
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 20px;
+    }
+    .pk-tier.gold { color: var(--gold2); }
+    .pk-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+    .pk-desc {
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text2);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .pk-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem; font-weight: 600;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pk-per {
+      font-size: 0.72rem; color: var(--text3);
+      margin-bottom: 24px;
+    }
+    .pk-divider { height: 1px; background: var(--border); margin-bottom: 22px; }
+    .pk-feats { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .pk-feat {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text2);
+    }
+    .pk-feat::before {
+      content: '';
+      width: 4px; height: 4px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+    .pk-btn {
+      display: block; text-align: center;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 13px;
+      border-radius: 3px;
+      transition: all 0.2s;
+    }
+    .pk-btn.outline {
+      border: 1px solid var(--border2);
+      color: var(--text2);
+    }
+    .pk-btn.outline:hover { border-color: var(--gold-border); color: var(--gold2); }
+    .pk-btn.solid {
+      background: var(--gold);
+      color: #fff;
+      border: 1px solid transparent;
+    }
+    .pk-btn.solid:hover { background: var(--gold2); }
+
+    /* ── TESTIMONIAL ── */
+    #testi { background: var(--dark); }
+    .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .t-card {
+      background: var(--dark2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 30px;
+      transition: border-color 0.3s;
+    }
+    .t-card:hover { border-color: var(--border2); }
+    .t-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-style: italic;
+      color: var(--text); line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .t-rule { height: 1px; background: var(--border); margin-bottom: 16px; }
+    .t-name {
+      font-size: 0.82rem; font-weight: 500;
+      color: var(--white);
+    }
+    .t-role { font-size: 0.72rem; color: var(--text3); margin-top: 3px; }
+
+    /* ── LOKASI / WHY ── */
+    #lokasi { background: var(--dark2); }
+    .lokasi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .lokasi-map {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      height: 320px;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 10px;
+    }
+    .lokasi-map-pin {
+      width: 14px; height: 14px;
+      border: 2px solid var(--gold2);
+      border-radius: 50%;
+    }
+    .lokasi-map-label {
+      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--text3);
+    }
+    .lokasi-info { display: flex; flex-direction: column; gap: 20px; }
+    .lokasi-item { display: flex; align-items: flex-start; gap: 16px; }
+    .lokasi-icon {
+      width: 36px; height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card);
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lokasi-icon svg { width: 14px; height: 14px; fill: none; stroke: var(--gold2); stroke-width: 1.5; }
+    .lokasi-item-title { font-size: 0.8rem; font-weight: 500; color: var(--white); margin-bottom: 3px; }
+    .lokasi-item-text { font-size: 0.78rem; font-weight: 300; color: var(--text2); line-height: 1.6; }
+
+    /* ── CTA ── */
+    #cta {
+      padding: 100px 64px;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    #cta .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    #cta .cta-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.62rem; font-weight: 500;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 20px;
+    }
+    #cta .cta-label::before,
+    #cta .cta-label::after {
+      content: '';
+      display: inline-block; width: 22px; height: 1px;
+      background: var(--gold2);
+    }
+    #cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    #cta p {
+      font-size: 0.9rem; font-weight: 300;
+      color: var(--text2);
+      margin-bottom: 36px;
+      line-height: 1.8;
+    }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      padding: 56px 64px 28px;
+    }
+    .ft-wrap { display: flex; justify-content: space-between; gap: 48px; margin-bottom: 44px; }
+    .ft-brand .ft-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; font-weight: 600;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .ft-brand .ft-logo span { color: var(--gold2); }
+    .ft-brand p {
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text3);
+      max-width: 220px; line-height: 1.7;
+    }
+    .ft-col h4 {
+      font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 16px;
+    }
+    .ft-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .ft-col a {
+      font-size: 0.78rem; font-weight: 300;
+      color: var(--text3);
+      transition: color 0.2s;
+    }
+    .ft-col a:hover { color: var(--gold2); }
+    .ft-bottom {
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .ft-copy { font-size: 0.7rem; color: var(--text3); }
+    .ft-tag {
+      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--border2);
+    }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1100px) {
+      nav { padding: 0 40px; }
+      .hero { padding: 110px 40px 80px; gap: 50px; }
+      section { padding: 72px 40px; }
+      .line { margin: 0 40px; }
+      footer { padding: 48px 40px 24px; }
+      #cta { padding: 80px 40px; }
+    }
+    @media (max-width: 860px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-ham { display: flex; }
+      .hero { grid-template-columns: 1fr; padding: 104px 24px 64px; gap: 0; }
+      .hero-right { display: none; }
+      section { padding: 56px 24px; }
+      .line { margin: 0 24px; }
+      .space-grid, .f-grid, .pk-grid, .t-grid { grid-template-columns: 1fr; }
+      .f-grid { background: none; border-collapse: separate; border: none; }
+      .f-card { border-radius: 8px; border: 1px solid var(--border); }
+      .space-grid { gap: 12px; background: none; }
+      .sp-card { border-radius: 8px; border: 1px solid var(--border); }
+      .lokasi-grid { grid-template-columns: 1fr; }
+      #cta { padding: 56px 24px; }
+      footer { padding: 40px 24px 20px; }
+      .ft-wrap { flex-direction: column; gap: 32px; }
+      .ft-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- NAV -->
   <nav>
-    <div class="nl">The<span>Hub</span> Cowork</div>
-    <ul class="nls"><li><a href="#space">Tipe Ruang</a></li><li><a href="#fitur">Fasilitas</a></li><li><a href="#paket">Paket</a></li><li><a href="#cta">Kunjungi</a></li></ul>
-    <button class="nc" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Daftar Tour</button>
-    <div class="nh"><span></span><span></span><span></span></div>
+    <div class="nav-logo">The<span>Hub</span> Cowork</div>
+    <ul class="nav-links">
+      <li><a href="#space">Ruang</a></li>
+      <li><a href="#fitur">Fasilitas</a></li>
+      <li><a href="#paket">Paket</a></li>
+      <li><a href="#lokasi">Lokasi</a></li>
+    </ul>
+    <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20tour%20gratis." class="nav-cta" target="_blank" rel="noopener">
+      Jadwalkan Tour
+    </a>
+    <div class="nav-ham"><span></span><span></span><span></span></div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
     <div>
-      <div class="h-tag">[ Coworking Space Profesional ]</div>
-      <h1>Ruang untuk <span class="hl">Bekerja</span>,<br>Komunitas<br>untuk Berkembang</h1>
-      <p class="hero-desc">The Hub hadir di jantung kota sebagai ruang kerja yang dirancang untuk produktivitas, kolaborasi, dan pertumbuhan — bagi freelancer, startup, hingga enterprise.</p>
+      <div class="hero-label">Coworking Space Profesional</div>
+      <h1>Ruang untuk <em>Bekerja</em>,<br>Komunitas untuk Berkembang</h1>
+      <p class="hero-desc">
+        The Hub hadir di jantung kota sebagai ruang kerja yang dirancang untuk produktivitas, kolaborasi, dan pertumbuhan — bagi freelancer, startup, hingga enterprise.
+      </p>
       <div class="hero-btns">
-        <a href="#paket" class="b-amber">Lihat Paket Harga</a>
-        <a href="#space" class="b-outline">Tur Virtual</a>
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20bertanya%20tentang%20paket%20membership." class="btn-primary" target="_blank" rel="noopener">
+          Tanya via WhatsApp
+        </a>
+        <a href="#space" class="btn-secondary">Lihat Ruang</a>
       </div>
     </div>
     <div class="hero-right">
-      <div class="stat-mini">
-        <div class="sm-item"><div class="sm-val">340</div><div class="sm-label">Seat Total</div></div>
-        <div class="sm-item"><div class="sm-val">12</div><div class="sm-label">Meeting Room</div></div>
-        <div class="sm-item"><div class="sm-val">24/7</div><div class="sm-label">Akses</div></div>
-        <div class="sm-item"><div class="sm-val">800+</div><div class="sm-label">Member Aktif</div></div>
+      <div class="hero-stats-grid">
+        <div class="stat-item">
+          <div class="stat-val">340</div>
+          <div class="stat-label">Total Seat</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">12</div>
+          <div class="stat-label">Meeting Room</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">24/7</div>
+          <div class="stat-label">Akses</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">800+</div>
+          <div class="stat-label">Member Aktif</div>
+        </div>
       </div>
       <div class="avail-card">
-        <div class="avail-title">Ketersediaan Hari Ini</div>
-        <div class="avail-row"><span class="avail-type">Hot Desk — Open Area</span><span class="avail-status available">Tersedia 28 Seat</span></div>
-        <div class="avail-row"><span class="avail-type">Dedicated Desk</span><span class="avail-status partial">2 Slot Tersisa</span></div>
-        <div class="avail-row"><span class="avail-type">Private Office (4-8 pax)</span><span class="avail-status available">3 Unit Tersedia</span></div>
-        <div class="avail-row"><span class="avail-type">Meeting Room</span><span class="avail-status partial">Tersedia Sesi Sore</span></div>
+        <div class="avail-header">Ketersediaan Hari Ini</div>
+        <div class="avail-row">
+          <span class="avail-type">Hot Desk — Open Area</span>
+          <span class="tag-green">28 Seat Tersedia</span>
+        </div>
+        <div class="avail-row">
+          <span class="avail-type">Dedicated Desk</span>
+          <span class="tag-amber">2 Slot Tersisa</span>
+        </div>
+        <div class="avail-row">
+          <span class="avail-type">Private Office (4–8 pax)</span>
+          <span class="tag-green">3 Unit Tersedia</span>
+        </div>
+        <div class="avail-row">
+          <span class="avail-type">Meeting Room</span>
+          <span class="tag-amber">Tersedia Sesi Sore</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="line"></div>
 
+  <!-- SPACE -->
   <section id="space">
-    <div class="sec-tag">[ Tipe Ruang ]</div>
-    <h2 class="sec-title reveal">Pilih Ruang yang Pas</h2>
-    <p class="sec-sub reveal">Dari hot desk fleksibel harian hingga private office permanen — semua tersedia untuk kebutuhan Anda.</p>
+    <div class="sec-label">Tipe Ruang</div>
+    <h2 class="sec-title reveal">Pilih Ruang yang Tepat</h2>
+    <p class="sec-sub reveal">Dari hot desk fleksibel harian hingga private office permanen — semua tersedia sesuai kebutuhan Anda.</p>
     <div class="space-grid">
-      <div class="sp-card reveal"><div class="sp-img" style="background:linear-gradient(135deg,#fffbeb,#fef3c7);">[ Open Area ]</div><div class="sp-body"><span class="sp-tag">Paling Fleksibel</span><div class="sp-name">Hot Desk</div><div class="sp-desc">Tempat duduk bebas di open area yang nyaman dengan meja ergonomis, loker personal, dan akses internet gigabit.</div><div class="sp-footer"><div class="sp-price">Rp 75.000<span style="font-size:.7rem;font-weight:400;color:var(--muted)">/hari</span></div><span class="sp-cap">240 seat tersedia</span></div></div></div>
-      <div class="sp-card reveal"><div class="sp-img" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);">[ Dedicated Area ]</div><div class="sp-body"><span class="sp-tag">Terpopuler</span><div class="sp-name">Dedicated Desk</div><div class="sp-desc">Meja tetap khusus Anda dengan kursi ergonomis premium, akses 24/7, lemari kunci pribadi, dan alamat bisnis resmi.</div><div class="sp-footer"><div class="sp-price">Rp 1.200.000<span style="font-size:.7rem;font-weight:400;color:var(--muted)">/bln</span></div><span class="sp-cap">60 slot, 2 tersisa</span></div></div></div>
-      <div class="sp-card reveal"><div class="sp-img" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);">[ Private Office ]</div><div class="sp-body"><span class="sp-tag">Tim & Startup</span><div class="sp-name">Private Office</div><div class="sp-desc">Ruang tertutup untuk tim 4-12 orang. Interior brandable, akses kartu, CCTV, AC individual, dan resepsionis bersama.</div><div class="sp-footer"><div class="sp-price">Rp 6.500.000<span style="font-size:.7rem;font-weight:400;color:var(--muted)">/bln</span></div><span class="sp-cap">4–12 orang/unit</span></div></div></div>
+      <div class="sp-card reveal">
+        <div class="sp-visual" style="background: linear-gradient(135deg, #1a1814 0%, #221e13 100%);">
+          <div class="sp-visual-inner">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.15;">
+              <rect x="8" y="20" width="32" height="4" rx="1" fill="#b8912a"/>
+              <rect x="12" y="10" width="24" height="10" rx="1" fill="#b8912a"/>
+              <rect x="6" y="24" width="4" height="16" rx="1" fill="#b8912a"/>
+              <rect x="38" y="24" width="4" height="16" rx="1" fill="#b8912a"/>
+            </svg>
+          </div>
+          <span class="sp-visual-label">Open Area</span>
+        </div>
+        <div class="sp-body">
+          <span class="sp-badge">Paling Fleksibel</span>
+          <div class="sp-name">Hot Desk</div>
+          <div class="sp-desc">Tempat duduk bebas di open area yang nyaman dengan meja ergonomis, loker personal, dan akses internet gigabit.</div>
+          <div class="sp-footer">
+            <div class="sp-price">Rp 75.000<small> /hari</small></div>
+            <span class="sp-cap">240 seat</span>
+          </div>
+        </div>
+      </div>
+      <div class="sp-card reveal">
+        <div class="sp-visual" style="background: linear-gradient(135deg, #131a14 0%, #162118 100%);">
+          <div class="sp-visual-inner">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.15;">
+              <rect x="6" y="14" width="36" height="20" rx="1" fill="#b8912a"/>
+              <rect x="10" y="8" width="28" height="6" rx="1" fill="#b8912a"/>
+              <rect x="16" y="34" width="16" height="6" rx="1" fill="#b8912a"/>
+            </svg>
+          </div>
+          <span class="sp-visual-label">Dedicated Area</span>
+        </div>
+        <div class="sp-body">
+          <span class="sp-badge">Terpopuler</span>
+          <div class="sp-name">Dedicated Desk</div>
+          <div class="sp-desc">Meja tetap khusus Anda dengan kursi ergonomis premium, akses 24/7, lemari kunci pribadi, dan alamat bisnis resmi.</div>
+          <div class="sp-footer">
+            <div class="sp-price">Rp 1.200.000<small> /bln</small></div>
+            <span class="sp-cap">60 slot</span>
+          </div>
+        </div>
+      </div>
+      <div class="sp-card reveal">
+        <div class="sp-visual" style="background: linear-gradient(135deg, #131519 0%, #151a22 100%);">
+          <div class="sp-visual-inner">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.15;">
+              <rect x="4" y="6" width="40" height="36" rx="2" fill="#b8912a"/>
+              <rect x="10" y="12" width="16" height="12" rx="1" fill="#0e0e0f"/>
+              <rect x="30" y="12" width="8" height="12" rx="1" fill="#0e0e0f"/>
+              <rect x="10" y="28" width="28" height="6" rx="1" fill="#0e0e0f"/>
+            </svg>
+          </div>
+          <span class="sp-visual-label">Private Office</span>
+        </div>
+        <div class="sp-body">
+          <span class="sp-badge">Tim & Startup</span>
+          <div class="sp-name">Private Office</div>
+          <div class="sp-desc">Ruang tertutup untuk tim 4–12 orang. Interior brandable, akses kartu, CCTV, AC individual, dan resepsionis bersama.</div>
+          <div class="sp-footer">
+            <div class="sp-price">Rp 6.500.000<small> /bln</small></div>
+            <span class="sp-cap">4–12 orang</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="line"></div>
 
+  <!-- FASILITAS -->
   <section id="fitur">
-    <div class="sec-tag">[ Fasilitas ]</div>
+    <div class="sec-label">Fasilitas</div>
     <h2 class="sec-title reveal">Semua yang Anda Butuhkan</h2>
     <p class="sec-sub reveal">Kami mengurus infrastruktur, Anda fokus pada pekerjaan.</p>
     <div class="f-grid">
-      <div class="f-card reveal"><div class="f-num">01</div><h3>Internet Gigabit Dedicated</h3><p>Koneksi fiber optik 1 Gbps dedicated dengan backup ISP — tidak akan ada gangguan produktivitas karena internet lambat.</p></div>
-      <div class="f-card reveal"><div class="f-num">02</div><h3>Meeting Room Lengkap</h3><p>12 meeting room berkapasitas 4–20 orang dengan video conferencing, proyektor 4K, dan papan tulis interaktif.</p></div>
-      <div class="f-card reveal"><div class="f-num">03</div><h3>Lounge &amp; Kafe</h3><p>Kafe in-house dengan menu lengkap, pantry mandiri, ruang istirahat, dan rooftop garden untuk break produktif.</p></div>
-      <div class="f-card reveal"><div class="f-num">04</div><h3>Event Space</h3><p>Auditorium 200 pax untuk seminar, workshop, dan peluncuran produk. Tersedia teknis audio-visual profesional on call.</p></div>
-      <div class="f-card reveal"><div class="f-num">05</div><h3>Komunitas Member</h3><p>Jaringan 800+ profesional aktif — pertemuan networking bulanan, mentoring session, dan job board eksklusif member.</p></div>
-      <div class="f-card reveal"><div class="f-num">06</div><h3>Layanan Bisnis</h3><p>Alamat bisnis resmi, penerimaan paket dan surat, resepsionis bersama, dan jasa pencetakan &amp; admin ringan.</p></div>
+      <div class="f-card reveal">
+        <div class="f-num">01</div>
+        <h3>Internet Gigabit Dedicated</h3>
+        <p>Koneksi fiber optik 1 Gbps dedicated dengan backup ISP — tidak akan ada gangguan produktivitas karena internet lambat.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-num">02</div>
+        <h3>Meeting Room Lengkap</h3>
+        <p>12 meeting room berkapasitas 4–20 orang dengan video conferencing, proyektor 4K, dan papan tulis interaktif.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-num">03</div>
+        <h3>Lounge & Kafe</h3>
+        <p>Kafe in-house dengan menu lengkap, pantry mandiri, ruang istirahat, dan rooftop garden untuk break produktif.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-num">04</div>
+        <h3>Event Space</h3>
+        <p>Auditorium 200 pax untuk seminar, workshop, dan peluncuran produk. Tersedia teknisi audio-visual profesional on call.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-num">05</div>
+        <h3>Komunitas Member</h3>
+        <p>Jaringan 800+ profesional aktif — pertemuan networking bulanan, mentoring session, dan job board eksklusif member.</p>
+      </div>
+      <div class="f-card reveal">
+        <div class="f-num">06</div>
+        <h3>Layanan Bisnis</h3>
+        <p>Alamat bisnis resmi, penerimaan paket dan surat, resepsionis bersama, dan jasa pencetakan & admin ringan.</p>
+      </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <div class="line"></div>
 
+  <!-- PAKET -->
   <section id="paket">
-    <div class="sec-tag">[ Harga Paket ]</div>
+    <div class="sec-label">Harga Paket</div>
     <h2 class="sec-title reveal">Paket Membership</h2>
     <p class="sec-sub reveal">Semua paket sudah termasuk internet, listrik, dan akses fasilitas bersama.</p>
     <div class="pk-grid">
       <div class="pk-card reveal">
-        <span class="pk-badge" style="background:var(--amber-pale);color:var(--amber)">Starter</span>
+        <div class="pk-tier">Starter</div>
         <div class="pk-name">Day Pass</div>
-        <div class="pk-desc">Untuk yang butuh ruang sesekali.</div>
+        <div class="pk-desc">Untuk yang butuh ruang sesekali tanpa komitmen.</div>
         <div class="pk-price">Rp 75.000</div>
         <div class="pk-per">per hari</div>
-        <div class="pk-feats"><div class="pk-feat">Hot desk open area</div><div class="pk-feat">Internet gigabit</div><div class="pk-feat">Akses pantry &amp; kafe</div><div class="pk-feat">1 jam meeting room/hari</div></div>
-        <a href="#" class="pk-btn">Beli Day Pass</a>
+        <div class="pk-divider"></div>
+        <div class="pk-feats">
+          <div class="pk-feat">Hot desk open area</div>
+          <div class="pk-feat">Internet gigabit</div>
+          <div class="pk-feat">Akses pantry & kafe</div>
+          <div class="pk-feat">1 jam meeting room per hari</div>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20pesan%20Day%20Pass." class="pk-btn outline" target="_blank" rel="noopener">Pesan Sekarang</a>
       </div>
-      <div class="pk-card reveal" style="border-color:var(--amber)">
-        <span class="pk-badge" style="background:var(--amber);color:#fff">Terpopuler</span>
+      <div class="pk-card featured reveal">
+        <div class="pk-tier gold">Terpopuler</div>
         <div class="pk-name">Monthly Hot Desk</div>
-        <div class="pk-desc">Untuk pekerja remote dan freelancer aktif.</div>
+        <div class="pk-desc">Untuk pekerja remote dan freelancer aktif setiap hari.</div>
         <div class="pk-price">Rp 850.000</div>
         <div class="pk-per">per bulan — hemat 62%</div>
-        <div class="pk-feats"><div class="pk-feat">Hot desk unlimited</div><div class="pk-feat">Akses 24/7</div><div class="pk-feat">5 jam meeting room/bln</div><div class="pk-feat">Loker personal</div><div class="pk-feat">Alamat bisnis resmi</div></div>
-        <a href="#" class="pk-btn p">Daftar Sekarang</a>
+        <div class="pk-divider"></div>
+        <div class="pk-feats">
+          <div class="pk-feat">Hot desk unlimited</div>
+          <div class="pk-feat">Akses 24/7</div>
+          <div class="pk-feat">5 jam meeting room per bulan</div>
+          <div class="pk-feat">Loker personal</div>
+          <div class="pk-feat">Alamat bisnis resmi</div>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20daftar%20paket%20Monthly%20Hot%20Desk." class="pk-btn solid" target="_blank" rel="noopener">Daftar Sekarang</a>
       </div>
       <div class="pk-card reveal">
-        <span class="pk-badge" style="background:var(--surface);color:var(--dark)">Tim</span>
+        <div class="pk-tier">Tim</div>
         <div class="pk-name">Private Office</div>
-        <div class="pk-desc">Untuk tim startup dan divisi perusahaan.</div>
+        <div class="pk-desc">Untuk tim startup dan divisi perusahaan yang membutuhkan ruang tetap.</div>
         <div class="pk-price">Rp 6,5 Jt</div>
         <div class="pk-per">per bulan — 4–8 orang</div>
-        <div class="pk-feats"><div class="pk-feat">Office pribadi brandable</div><div class="pk-feat">Akses 24/7 kartu</div><div class="pk-feat">20 jam meeting room/bln</div><div class="pk-feat">Resepsionis bersama</div><div class="pk-feat">Akses event space</div></div>
-        <a href="#" class="pk-btn">Hubungi Sales</a>
+        <div class="pk-divider"></div>
+        <div class="pk-feats">
+          <div class="pk-feat">Office pribadi brandable</div>
+          <div class="pk-feat">Akses 24/7 kartu</div>
+          <div class="pk-feat">20 jam meeting room per bulan</div>
+          <div class="pk-feat">Resepsionis bersama</div>
+          <div class="pk-feat">Akses event space</div>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20diskusi%20paket%20Private%20Office%20untuk%20tim%20saya." class="pk-btn outline" target="_blank" rel="noopener">Hubungi Kami</a>
       </div>
     </div>
   </section>
 
-  <section id="testi" style="border-top:1px solid var(--border)">
-    <div class="sec-tag">[ Komunitas ]</div>
+  <div class="line"></div>
+
+  <!-- TESTIMONIAL -->
+  <section id="testi">
+    <div class="sec-label">Komunitas</div>
     <h2 class="sec-title reveal">Kata Member Kami</h2>
-    <p class="sec-sub reveal">Komunitas yang mendukung tumbuh bersama.</p>
+    <p class="sec-sub reveal">Lebih dari 800 profesional telah menjadikan The Hub sebagai ruang kerja mereka.</p>
     <div class="t-grid">
-      <div class="t-card reveal"><p class="t-q">"The Hub telah menjadi rumah kedua saya. Internet-nya kencang, atmosfer kerja produktif, dan networking dengan sesama member sudah menghasilkan 3 klien baru untuk bisnis saya."</p><div class="t-name">Devi Anggraini</div><div class="t-role">UI/UX Freelancer</div></div>
-      <div class="t-card reveal"><p class="t-q">"Kami pindah dari WFH ke private office di The Hub dan produktivitas tim naik drastis. Fasilitasnya komplit dan tim management-nya sangat responsif."</p><div class="t-name">Rizal Firmansyah</div><div class="t-role">Co-Founder, Startup Fintech</div></div>
-      <div class="t-card reveal"><p class="t-q">"Event-event networking bulanannya berguna banget. Dalam 6 bulan saya berhasil membangun portfolio klien dari nol karena koneksi yang saya temukan di sini."</p><div class="t-name">Anisa Pratiwi</div><div class="t-role">Konsultan Digital Marketing</div></div>
+      <div class="t-card reveal">
+        <p class="t-quote">"The Hub telah menjadi rumah kedua saya. Internet-nya kencang, atmosfer kerja produktif, dan networking dengan sesama member sudah menghasilkan 3 klien baru untuk bisnis saya."</p>
+        <div class="t-rule"></div>
+        <div class="t-name">Devi Anggraini</div>
+        <div class="t-role">UI/UX Freelancer</div>
+      </div>
+      <div class="t-card reveal">
+        <p class="t-quote">"Kami pindah dari WFH ke private office di The Hub dan produktivitas tim naik drastis. Fasilitasnya komplit dan tim management-nya sangat responsif."</p>
+        <div class="t-rule"></div>
+        <div class="t-name">Rizal Firmansyah</div>
+        <div class="t-role">Co-Founder, Startup Fintech</div>
+      </div>
+      <div class="t-card reveal">
+        <p class="t-quote">"Event networking bulanannya sangat berguna. Dalam 6 bulan saya berhasil membangun portfolio klien dari nol berkat koneksi yang saya temukan di sini."</p>
+        <div class="t-rule"></div>
+        <div class="t-name">Anisa Pratiwi</div>
+        <div class="t-role">Konsultan Digital Marketing</div>
+      </div>
     </div>
   </section>
 
+  <div class="line"></div>
+
+  <!-- LOKASI -->
+  <section id="lokasi">
+    <div class="sec-label">Lokasi & Jam Operasional</div>
+    <h2 class="sec-title reveal">Strategis di Pusat Kota</h2>
+    <p class="sec-sub reveal">Mudah dijangkau dari berbagai penjuru kota dengan akses transportasi publik yang lengkap.</p>
+    <div class="lokasi-grid">
+      <div class="lokasi-map reveal">
+        <div class="lokasi-map-pin"></div>
+        <div class="lokasi-map-label">The Hub Cowork</div>
+      </div>
+      <div class="lokasi-info">
+        <div class="lokasi-item reveal">
+          <div class="lokasi-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="lokasi-item-title">Alamat</div>
+            <div class="lokasi-item-text">Jl. Sudirman Kav. 52–53, Lt. 18<br>Jakarta Selatan, 12190</div>
+          </div>
+        </div>
+        <div class="lokasi-item reveal">
+          <div class="lokasi-icon">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <div class="lokasi-item-title">Jam Operasional</div>
+            <div class="lokasi-item-text">Senin – Jumat: 07.00 – 22.00<br>Sabtu – Minggu: 08.00 – 20.00<br>Member 24/7: akses penuh sepanjang waktu</div>
+          </div>
+        </div>
+        <div class="lokasi-item reveal">
+          <div class="lokasi-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="lokasi-item-title">Akses Transportasi</div>
+            <div class="lokasi-item-text">3 menit jalan dari MRT Bendungan Hilir<br>Tersedia parkir motor & mobil</div>
+          </div>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20kunjungan%20ke%20coworking%20space%20Anda." class="btn-primary" style="align-self:flex-start;margin-top:8px;" target="_blank" rel="noopener">Jadwalkan Kunjungan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
   <section id="cta">
-    <h2>Jadwalkan Tour Gratis ke The Hub</h2>
-    <a href="#" class="b-cta">Daftar Tour Sekarang</a>
+    <div class="cta-inner">
+      <div class="cta-label">Mulai Sekarang</div>
+      <h2 class="reveal">Jadwalkan Tour Gratis ke The Hub</h2>
+      <p class="reveal">Kunjungi kami, rasakan atmosfernya, dan pilih ruang yang paling sesuai dengan kebutuhan Anda — tanpa komitmen.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20tour%20gratis." class="btn-primary" target="_blank" rel="noopener">
+          Hubungi via WhatsApp
+        </a>
+        <a href="#paket" class="btn-secondary">Lihat Paket Harga</a>
+      </div>
+    </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    <div class="ft">
-      <div><div class="fl">The<span>Hub</span> Cowork</div><p class="fd">Coworking space profesional untuk komunitas pekerja kreatif, startup, dan profesional di pusat kota.</p></div>
-      <div class="fc"><h4>Ruang</h4><ul><li><a href="#">Hot Desk</a></li><li><a href="#">Dedicated Desk</a></li><li><a href="#">Private Office</a></li><li><a href="#">Meeting Room</a></li></ul></div>
-      <div class="fc"><h4>Info</h4><ul><li><a href="#">Harga &amp; Paket</a></li><li><a href="#">Fasilitas</a></li><li><a href="#">Event Mendatang</a></li><li><a href="#">Kontak</a></li></ul></div>
+    <div class="ft-wrap">
+      <div class="ft-brand">
+        <div class="ft-logo">The<span>Hub</span> Cowork</div>
+        <p>Coworking space profesional untuk komunitas pekerja kreatif, startup, dan profesional di pusat kota.</p>
+      </div>
+      <div class="ft-col">
+        <h4>Ruang</h4>
+        <ul>
+          <li><a href="#space">Hot Desk</a></li>
+          <li><a href="#space">Dedicated Desk</a></li>
+          <li><a href="#space">Private Office</a></li>
+          <li><a href="#fitur">Meeting Room</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#paket">Harga & Paket</a></li>
+          <li><a href="#fitur">Fasilitas</a></li>
+          <li><a href="#lokasi">Lokasi</a></li>
+          <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Hubungi Kami</h4>
+        <ul>
+          <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="mailto:hello@thehubcowork.id">hello@thehubcowork.id</a></li>
+          <li><a href="#lokasi">Jl. Sudirman Kav. 52–53</a></li>
+          <li><a href="#lokasi">Jakarta Selatan</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="fb"><span class="fc-t">2025 The Hub Cowork. Hak cipta dilindungi. — DEMO TEMPLATE</span><span class="fc-t">Kebijakan Privasi</span></div>
+    <div class="ft-bottom">
+      <span class="ft-copy">2025 The Hub Cowork. Hak cipta dilindungi.</span>
+      <span class="ft-tag">Demo Template</span>
+    </div>
   </footer>
 
   <script>
-    const rev = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
-    rev.forEach(el => obs.observe(el));
-    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});} }));
+    // Reveal on scroll
+    const revEls = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    revEls.forEach(el => obs.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+      });
+    });
+
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.borderBottomColor = window.scrollY > 10
+        ? 'rgba(255,255,255,0.10)'
+        : 'rgba(255,255,255,0.06)';
+    });
   </script>
 </body>
 </html>
