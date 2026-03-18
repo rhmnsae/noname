@@ -1,59 +1,663 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nusantara Sonic Fest 2025 — Festival Musik Terbesar</title>
-  <meta name="description" content="Festival musik terbesar di Indonesia. 3 hari, 4 panggung, 60+ artis. 20-22 September 2025." />
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nusantara Sonic Fest 2025 — Festival Musik Terbesar</title>
+<meta name="description" content="Festival musik terbesar di Indonesia. 3 hari, 4 panggung, 60+ artis. 20-22 September 2025."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050507;
+  --bg2:#0b0b0e;
+  --bg3:#101014;
+  --card:#0e0e12;
+  --lime:#c8f135;
+  --lime2:#d4f55a;
+  --lime-dim:rgba(200,241,53,0.1);
+  --lime-border:rgba(200,241,53,0.25);
+  --white:#f0eee8;
+  --text:#b8b4aa;
+  --text2:#6b6760;
+  --text3:#3a3835;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.13);
+  --sb-w:72px;
+  --sb-exp:260px;
+  --nav-h:60px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* ===== DESKTOP SIDEBAR ===== */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;
+  width:var(--sb-w);
+  background:var(--bg2);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  z-index:400;overflow:hidden;
+  transition:width 0.38s cubic-bezier(0.4,0,0.2,1);
+}
+.sidebar:hover{width:var(--sb-exp)}
+.sidebar:hover .sb-cd-grid{grid-template-columns:repeat(4,1fr)}
+.sidebar:hover .sb-countdown{padding:14px 20px}
+.sidebar:hover .sb-lbl,.sidebar:hover .sb-date-val,
+.sidebar:hover .sb-section-title,.sidebar:hover .sb-logo-full,
+.sidebar:hover .sb-contact-text{opacity:1;transform:translateX(0)}
+.sidebar:hover .sb-logo-short{opacity:0;position:absolute}
+
+.sb-head{
+  height:var(--nav-h);border-bottom:1px solid var(--border);
+  display:flex;align-items:center;padding:0 20px;
+  flex-shrink:0;gap:12px;overflow:hidden;white-space:nowrap;position:relative;
+}
+.sb-logo-short{
+  font-family:'Anton',sans-serif;font-size:1.1rem;
+  letter-spacing:0.08em;color:var(--lime);flex-shrink:0;
+  transition:opacity 0.2s;
+}
+.sb-logo-full{
+  font-family:'Anton',sans-serif;font-size:0.85rem;
+  letter-spacing:0.06em;color:var(--white);
+  opacity:0;transition:opacity 0.3s 0.08s;white-space:nowrap;
+  transform:translateX(0);
+}
+.sb-logo-full span{color:var(--lime)}
+
+.sb-date{padding:12px 20px;border-bottom:1px solid var(--border);flex-shrink:0;overflow:hidden;white-space:nowrap}
+.sb-date-inner{display:flex;align-items:center;gap:12px}
+.sb-date-icon{
+  width:32px;height:32px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--lime-dim);border:1px solid var(--lime-border);border-radius:4px;
+}
+.sb-date-icon svg{width:15px;height:15px;stroke:var(--lime);fill:none;stroke-width:1.8}
+.sb-date-val{
+  font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;
+  color:var(--lime);opacity:0;
+  transition:opacity 0.25s;white-space:nowrap;
+}
+
+.sb-countdown{padding:10px 8px;border-bottom:1px solid var(--border);flex-shrink:0;overflow:hidden}
+.sb-section-title{
+  font-family:'DM Mono',monospace;font-size:0.52rem;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--text3);
+  margin-bottom:8px;opacity:0;
+  transition:opacity 0.25s;white-space:nowrap;
+}
+.sb-cd-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px}
+.sb-cd-unit{
+  background:var(--bg3);border:1px solid var(--border);
+  padding:6px 4px;text-align:center;border-radius:3px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.sb-cd-num{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:0.04em;color:var(--white);line-height:1}
+.sb-cd-lbl{font-family:'DM Mono',monospace;font-size:0.42rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-top:2px}
+
+.sb-nav{flex:1;padding:18px 0;overflow-y:auto;overflow-x:hidden}
+.sb-nav::-webkit-scrollbar{display:none}
+.sb-link{
+  display:flex;align-items:center;gap:16px;
+  padding:11px 20px;cursor:pointer;
+  transition:background 0.2s;white-space:nowrap;
+  border-left:2px solid transparent;text-decoration:none;
+}
+.sb-link:hover,.sb-link.active{background:var(--lime-dim);border-left-color:var(--lime)}
+.sb-link-icon{width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.sb-link-icon svg{width:17px;height:17px;stroke:var(--text2);fill:none;stroke-width:1.8;transition:stroke 0.2s}
+.sb-link:hover .sb-link-icon svg,.sb-link.active .sb-link-icon svg{stroke:var(--lime)}
+.sb-lbl{
+  font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;
+  letter-spacing:0.06em;text-transform:uppercase;color:var(--text2);
+  opacity:0;transform:translateX(-8px);
+  transition:opacity 0.22s,transform 0.22s,color 0.2s;
+}
+.sb-link:hover .sb-lbl,.sb-link.active .sb-lbl{color:var(--white)}
+
+.sb-bottom{padding:14px 20px;border-top:1px solid var(--border);flex-shrink:0;overflow:hidden}
+.sb-contact-item{display:flex;align-items:center;gap:12px;padding:7px 0;white-space:nowrap}
+.sb-contact-icon{width:30px;height:30px;flex-shrink:0;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.sb-contact-icon.wa{background:#128c7e}
+.sb-contact-icon.gm{background:#ea4335}
+.sb-contact-icon svg{width:14px;height:14px}
+.sb-contact-text{opacity:0;transform:translateX(-6px);transition:opacity 0.25s,transform 0.25s}
+.sb-contact-lbl{font-family:'DM Mono',monospace;font-size:0.5rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3)}
+.sb-contact-val{font-size:0.72rem;font-weight:500;color:var(--white)}
+
+/* ===== MOBILE NAV ===== */
+.topnav{
+  display:none;position:fixed;top:0;left:0;right:0;
+  height:var(--nav-h);background:rgba(5,5,7,0.97);
+  backdrop-filter:blur(20px);border-bottom:1px solid var(--border);
+  padding:0 20px;align-items:center;justify-content:space-between;z-index:380;
+}
+.topnav-logo{font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:0.08em;color:var(--white)}
+.topnav-logo span{color:var(--lime)}
+.topnav-right{display:flex;align-items:center;gap:14px}
+.topnav-ticket{
+  font-family:'DM Mono',monospace;font-size:0.65rem;font-weight:500;
+  letter-spacing:0.12em;text-transform:uppercase;
+  background:var(--lime);color:#000;padding:7px 16px;border-radius:2px;cursor:pointer;
+}
+.topnav-ham{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.topnav-ham span{display:block;width:22px;height:1.5px;background:var(--white);transition:all 0.3s}
+.topnav-ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.topnav-ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.topnav-ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ===== MOBILE DRAWER ===== */
+.mob-sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:280px;
+  background:var(--bg2);border-right:1px solid var(--border);
+  z-index:401;transform:translateX(-100%);
+  transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  display:none;flex-direction:column;overflow-y:auto;
+}
+.mob-sidebar.open{transform:translateX(0)}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:399;backdrop-filter:blur(3px)}
+.sb-overlay.open{display:block}
+
+.mob-sb-head{
+  height:var(--nav-h);border-bottom:1px solid var(--border);
+  padding:0 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+}
+.mob-sb-logo{font-family:'Anton',sans-serif;font-size:1.2rem;letter-spacing:0.08em;color:var(--white)}
+.mob-sb-logo span{color:var(--lime)}
+.mob-sb-close{width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text2)}
+
+.mob-date-box{
+  margin:18px 18px 10px;padding:14px 16px;
+  background:var(--lime-dim);border:1px solid var(--lime-border);border-radius:5px;
+}
+.mob-date-lbl{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--lime);margin-bottom:4px}
+.mob-date-val{font-family:'Anton',sans-serif;font-size:1rem;letter-spacing:0.06em;color:var(--white)}
+
+.mob-cd-box{margin:0 18px 18px;padding:14px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:5px}
+.mob-cd-title{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.mob-cd-row{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mob-cd-u{background:var(--bg2);border:1px solid var(--border);padding:8px 4px;text-align:center;border-radius:3px}
+.mob-cd-n{font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:0.04em;color:var(--lime);line-height:1}
+.mob-cd-l{font-family:'DM Mono',monospace;font-size:0.48rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-top:2px}
+
+.mob-sb-nav{padding:0 18px;flex:1}
+.mob-sb-sec-lbl{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.mob-sb-lnk{display:flex;align-items:center;gap:12px;padding:12px 10px;border-radius:4px;cursor:pointer;margin-bottom:2px;transition:background 0.2s;text-decoration:none}
+.mob-sb-lnk:hover{background:var(--lime-dim)}
+.mob-sb-lnk svg{width:18px;height:18px;stroke:var(--text2);fill:none;stroke-width:1.8;flex-shrink:0}
+.mob-sb-lnk:hover svg{stroke:var(--lime)}
+.mob-sb-lnk-lbl{font-family:'DM Mono',monospace;font-size:0.78rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--text2)}
+.mob-sb-lnk:hover .mob-sb-lnk-lbl{color:var(--white)}
+
+.mob-contacts{margin:16px 18px 24px;padding:16px;background:var(--bg3);border:1px solid var(--border);border-radius:5px}
+.mob-contacts-ttl{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.mob-c-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.mob-c-row:last-child{border:none;padding-bottom:0}
+.mob-c-icon{width:30px;height:30px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mob-c-icon.wa{background:#128c7e}
+.mob-c-icon.gm{background:#ea4335}
+.mob-c-icon svg{width:14px;height:14px}
+.mob-c-lbl{font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3)}
+.mob-c-val{font-size:0.76rem;font-weight:500;color:var(--white)}
+
+/* ===== MAIN ===== */
+.main{margin-left:var(--sb-w);min-height:100vh}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.hero-img{position:absolute;inset:0}
+.hero-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.5) brightness(0.5)}
+.hero-img::after{content:'';position:absolute;inset:0;background:linear-gradient(170deg,rgba(5,5,7,0.25) 0%,rgba(5,5,7,0.0) 30%,rgba(5,5,7,0.65) 65%,rgba(5,5,7,0.98) 100%)}
+.hero-stamp{
+  position:absolute;top:-0.08em;right:-0.04em;
+  font-family:'Anton',sans-serif;
+  font-size:clamp(13rem,26vw,26rem);
+  line-height:1;letter-spacing:-0.04em;
+  color:rgba(200,241,53,0.035);
+  pointer-events:none;z-index:1;user-select:none;
+}
+.hero-content{position:relative;z-index:2;padding:0 72px 80px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;font-size:0.66rem;font-weight:500;
+  letter-spacing:0.24em;text-transform:uppercase;color:var(--lime);margin-bottom:22px;
+}
+.hero-tag::before{content:'';display:block;width:32px;height:1px;background:var(--lime)}
+.hero h1{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(4rem,9vw,8.5rem);
+  line-height:0.92;letter-spacing:0.02em;
+  color:var(--white);margin-bottom:28px;text-transform:uppercase;
+}
+.hero h1 .lime{color:var(--lime)}
+.hero-meta{display:flex;align-items:center;gap:28px;margin-bottom:32px;flex-wrap:wrap}
+.h-meta{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text2)}
+.h-meta strong{color:var(--white);display:block;font-size:0.86rem;font-family:'DM Sans',sans-serif;font-weight:600;margin-bottom:2px;letter-spacing:0}
+.h-sep{width:4px;height:4px;background:var(--text3);border-radius:50%}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-lime{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--lime);color:#000;
+  font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;
+  letter-spacing:0.14em;text-transform:uppercase;
+  padding:14px 32px;border-radius:2px;border:2px solid var(--lime);transition:all 0.25s;
+}
+.btn-lime:hover{background:transparent;color:var(--lime)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;color:var(--text);
+  font-family:'DM Mono',monospace;font-size:0.72rem;font-weight:500;
+  letter-spacing:0.14em;text-transform:uppercase;
+  padding:14px 32px;border-radius:2px;border:2px solid var(--border2);transition:all 0.25s;
+}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
+
+.hero-ticker{
+  position:relative;z-index:2;border-top:1px solid var(--border2);
+  background:rgba(5,5,7,0.85);backdrop-filter:blur(10px);
+  height:44px;display:flex;align-items:center;overflow:hidden;
+}
+.ticker-track{display:flex;animation:ticker 34s linear infinite;white-space:nowrap}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.t-item{font-family:'DM Mono',monospace;font-size:0.63rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);padding:0 26px}
+.t-item.hi{color:var(--lime)}
+.t-dot{width:3px;height:3px;border-radius:50%;background:var(--text3);align-self:center;flex-shrink:0}
+
+/* ===== SECTIONS ===== */
+section{padding:88px 72px}
+.sec-ey{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;font-size:0.6rem;font-weight:500;
+  letter-spacing:0.26em;text-transform:uppercase;color:var(--lime);margin-bottom:14px;
+}
+.sec-ey::before{content:'';display:block;width:22px;height:1px;background:var(--lime)}
+.sec-title{font-family:'Anton',sans-serif;font-size:clamp(2.2rem,4vw,3.4rem);letter-spacing:0.04em;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:12px}
+.sec-sub{font-size:0.9rem;font-weight:300;color:var(--text2);line-height:1.85;max-width:500px;margin-bottom:52px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0 72px}
+
+/* ===== COUNTDOWN STRIP ===== */
+.cd-strip{background:var(--lime);display:grid;grid-template-columns:1fr auto}
+.cd-left{padding:40px 72px;border-right:1px solid rgba(0,0,0,0.1)}
+.cd-heading{font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(0,0,0,0.45);margin-bottom:14px}
+.cd-units{display:flex;gap:8px}
+.cd-unit{background:#000;padding:16px 24px;text-align:center;min-width:80px}
+.cd-num{font-family:'Anton',sans-serif;font-size:2.4rem;letter-spacing:0.04em;color:var(--lime);line-height:1}
+.cd-lbl{font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(200,241,53,0.45);margin-top:4px}
+.cd-right{padding:40px 72px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.cd-right-title{font-family:'Anton',sans-serif;font-size:clamp(1.3rem,2vw,1.8rem);letter-spacing:0.04em;text-transform:uppercase;color:#000;line-height:1.1;max-width:300px}
+.btn-blk{display:inline-flex;align-items:center;gap:10px;background:#000;color:var(--lime);font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:12px 28px;border-radius:2px;border:2px solid #000;transition:all 0.25s;align-self:flex-start}
+.btn-blk:hover{background:transparent;color:#000}
+
+/* ===== LINEUP ===== */
+#lineup{background:var(--bg2)}
+.lineup-main{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:1px}
+.lc{background:var(--card);overflow:hidden;transition:background 0.3s}
+.lc:hover{background:var(--bg3)}
+.lc-img{height:220px;position:relative;overflow:hidden;background:var(--bg3)}
+.lc-img img{transition:transform 0.5s ease,filter 0.3s;filter:saturate(0.55)}
+.lc:hover .lc-img img{transform:scale(1.04);filter:saturate(0.85)}
+.lc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(14,14,18,0.82) 0%,transparent 55%)}
+.lc-body{padding:22px 24px 26px}
+.lc-cat{font-family:'DM Mono',monospace;font-size:0.56rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.lc-cat::before{content:'';display:block;width:14px;height:1px;background:var(--lime)}
+.lc-name{font-family:'Anton',sans-serif;font-size:1.3rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--white);margin-bottom:5px;line-height:1}
+.lc-role{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--text2);margin-bottom:10px}
+.lc-bio{font-size:0.8rem;font-weight:300;color:var(--text2);line-height:1.75}
+.lineup-more{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-top:none}
+.lm-item{background:var(--card);padding:18px 22px;display:flex;align-items:center;gap:14px;transition:background 0.2s}
+.lm-item:hover{background:var(--bg3)}
+.lm-img{width:46px;height:46px;border-radius:4px;overflow:hidden;flex-shrink:0;background:var(--bg3)}
+.lm-img img{filter:saturate(0.6)}
+.lm-name{font-family:'Anton',sans-serif;font-size:0.9rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--white)}
+.lm-genre{font-size:0.7rem;color:var(--text3);margin-top:2px}
+
+/* ===== SCHEDULE ===== */
+#schedule{background:var(--bg);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sched-tabs{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:26px}
+.sched-tab{flex:1;padding:13px 20px;background:var(--bg2);font-family:'DM Mono',monospace;font-size:0.66rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text2);cursor:pointer;text-align:center;transition:all 0.2s;border:none}
+.sched-tab:hover{background:var(--bg3);color:var(--white)}
+.sched-tab.active{background:var(--lime);color:#000}
+.sched-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border)}
+.sched-row{background:var(--bg2);padding:20px 28px;display:grid;grid-template-columns:90px auto 1fr auto;align-items:center;gap:20px;border-bottom:1px solid var(--border);transition:background 0.2s}
+.sched-row:last-child{border:none}
+.sched-row:hover{background:var(--bg3)}
+.sched-time{font-family:'DM Mono',monospace;font-size:1.1rem;font-weight:500;letter-spacing:0.04em;color:var(--white)}
+.sched-stage{font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:4px 10px;border-radius:2px;text-align:center;background:var(--bg3);border:1px solid var(--border2);color:var(--text2);white-space:nowrap;display:inline-block;align-self:center;line-height:1.6;width:auto;max-height:28px}
+.sched-stage.highlight{border-color:var(--lime-border);color:var(--lime);background:var(--lime-dim)}
+.sched-artist{font-family:'Anton',sans-serif;font-size:1.05rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--white)}
+.sched-genre{font-size:0.72rem;color:var(--text3);margin-top:2px}
+.sched-hl{font-family:'DM Mono',monospace;font-size:0.56rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:4px 10px;border-radius:2px;background:var(--lime-dim);border:1px solid var(--lime-border);color:var(--lime);white-space:nowrap}
+
+/* ===== TICKETS ===== */
+#tickets{background:var(--bg2)}
+.tkts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tkt{background:var(--card);border:1px solid var(--border);padding:32px 26px;display:flex;flex-direction:column;transition:all 0.3s;position:relative;overflow:hidden}
+.tkt::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--border);transition:background 0.3s}
+.tkt:hover::before{background:var(--lime)}
+.tkt.feat{border-color:var(--lime-border);background:var(--bg3)}
+.tkt.feat::before{background:var(--lime)}
+.tkt-cat{font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.tkt.feat .tkt-cat{color:var(--lime)}
+.tkt-name{font-family:'Anton',sans-serif;font-size:1.55rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--white);margin-bottom:10px;line-height:1}
+.tkt-price{font-family:'Anton',sans-serif;font-size:2.2rem;letter-spacing:0.02em;color:var(--lime);line-height:1;margin-bottom:4px}
+.tkt-note{font-family:'DM Mono',monospace;font-size:0.66rem;color:var(--text3);margin-bottom:22px}
+.tkt-feats{display:flex;flex-direction:column;gap:10px;margin-bottom:26px;flex:1}
+.tkt-feat{display:flex;align-items:flex-start;gap:10px;font-size:0.82rem;font-weight:300;color:var(--text2)}
+.tkt-feat::before{content:'';display:block;width:16px;height:1px;background:var(--text3);flex-shrink:0;margin-top:10px}
+.tkt.feat .tkt-feat::before{background:var(--lime-border)}
+.tkt-cta{font-family:'DM Mono',monospace;font-size:0.68rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:13px 20px;border-radius:2px;text-align:center;background:var(--bg2);border:1px solid var(--border2);color:var(--text);transition:all 0.2s;display:block}
+.tkt-cta:hover{border-color:var(--lime-border);color:var(--lime)}
+.tkt.feat .tkt-cta{background:var(--lime);color:#000;border-color:var(--lime)}
+.tkt.feat .tkt-cta:hover{background:transparent;color:var(--lime)}
+
+/* ===== GALLERY ===== */
+#gallery{background:var(--bg);padding:88px 0}
+.gallery-hd{padding:0 72px 46px}
+.gallery-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr;grid-template-rows:260px 220px;gap:3px}
+.g-cell{overflow:hidden;position:relative;background:var(--bg3)}
+.g-cell:first-child{grid-row:1/3}
+.g-cell img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease,filter 0.3s;filter:saturate(0.6)}
+.g-cell:hover img{transform:scale(1.04);filter:saturate(0.9)}
+.g-cell::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(5,5,7,0.6) 0%,transparent 55%)}
+.g-label{position:absolute;bottom:14px;left:18px;z-index:1;font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.45);opacity:0;transition:opacity 0.3s}
+.g-cell:hover .g-label{opacity:1}
+
+/* ===== INFO ===== */
+#info{background:var(--bg2);border-top:1px solid var(--border)}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.info-box{background:var(--bg2);padding:30px 26px;transition:background 0.2s}
+.info-box:hover{background:var(--bg3)}
+.info-lbl{font-family:'DM Mono',monospace;font-size:0.58rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--lime);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.info-lbl::before{content:'';display:block;width:12px;height:1px;background:var(--lime)}
+.info-txt{font-size:0.86rem;font-weight:300;color:var(--text2);line-height:1.8}
+
+/* ===== CONTACT CTA ===== */
+#contact{background:var(--bg);padding:0;border-top:1px solid var(--lime-border)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:380px}
+.contact-left{padding:72px;border-right:1px solid var(--border)}
+.contact-right{padding:72px;background:var(--lime);display:flex;flex-direction:column;justify-content:center;gap:18px}
+.contact-title{font-family:'Anton',sans-serif;font-size:clamp(2rem,3.5vw,3rem);letter-spacing:0.04em;text-transform:uppercase;color:var(--white);line-height:1;margin-bottom:16px}
+.contact-desc{font-size:0.88rem;font-weight:300;color:var(--text2);line-height:1.85;margin-bottom:28px}
+.c-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.c-icon{width:40px;height:40px;border-radius:4px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-icon.wa{background:#128c7e}
+.c-icon.gm{background:#ea4335}
+.c-icon svg{width:19px;height:19px}
+.c-lbl{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3)}
+.c-val{font-size:0.88rem;font-weight:500;color:var(--white)}
+.cr-kicker{font-family:'DM Mono',monospace;font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(0,0,0,0.45)}
+.cr-title{font-family:'Anton',sans-serif;font-size:1.9rem;letter-spacing:0.04em;text-transform:uppercase;color:#000;line-height:1.05}
+.btn-bk{display:inline-flex;align-items:center;gap:10px;background:#000;color:var(--lime);font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:13px 28px;border-radius:2px;border:2px solid #000;transition:all 0.25s}
+.btn-bk:hover{background:transparent;color:#000}
+.btn-bk-outline{display:inline-flex;align-items:center;gap:10px;background:transparent;color:#000;font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;padding:13px 28px;border-radius:2px;border:2px solid rgba(0,0,0,0.25);transition:all 0.25s}
+.btn-bk-outline:hover{border-color:#000;background:rgba(0,0,0,0.07)}
+
+/* ===== FOOTER ===== */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 72px 28px}
+.ft-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.ft-logo{font-family:'Anton',sans-serif;font-size:2rem;letter-spacing:0.06em;color:var(--white);margin-bottom:8px}
+.ft-logo span{color:var(--lime)}
+.ft-desc{font-size:0.78rem;font-weight:300;color:var(--text3);line-height:1.75;max-width:210px;margin-bottom:18px}
+.ft-ci{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.ft-ci:hover .ft-ci-val{color:var(--white)}
+.ft-ci-icon{width:26px;height:26px;border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-ci-icon.wa{background:#128c7e}
+.ft-ci-icon.gm{background:#ea4335}
+.ft-ci-icon svg{width:12px;height:12px}
+.ft-ci-val{font-size:0.72rem;color:var(--text2);transition:color 0.2s}
+.ft-col h4{font-family:'DM Mono',monospace;font-size:0.56rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--text3);margin-bottom:16px}
+.ft-col ul{display:flex;flex-direction:column;gap:10px}
+.ft-col a{font-size:0.8rem;font-weight:300;color:var(--text3);transition:color 0.2s}
+.ft-col a:hover{color:var(--lime)}
+.ft-bottom{padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.ft-copy{font-family:'DM Mono',monospace;font-size:0.66rem;color:var(--text3)}
+.ft-tag{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--text3);border:1px solid var(--border);padding:4px 10px;border-radius:2px}
+
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1100px){
+  :root{--sb-w:60px}
+  section{padding:72px 48px}
+  .hero-content{padding:0 48px 72px}
+  .divider,.gallery-hd{padding-left:48px;padding-right:48px}
+  .divider{margin:0}
+  footer{padding:48px 48px 24px}
+  .contact-left,.contact-right{padding:56px 48px}
+  .cd-strip{grid-template-columns:1fr}
+  .cd-right{padding:0 72px 40px;border-top:1px solid rgba(0,0,0,0.12)}
+  .cd-left{padding:40px 72px 24px}
+}
+@media(max-width:900px){
+  :root{--sb-w:0px}
+  .sidebar{display:none}
+  .topnav{display:flex}
+  .mob-sidebar{display:flex}
+  .main{margin-left:0;padding-top:var(--nav-h)}
+  .hero{min-height:calc(100vh - var(--nav-h))}
+  .hero-content{padding:0 24px 56px}
+  .hero-stamp{font-size:48vw}
+  section{padding:60px 24px}
+  .divider{margin:0 24px}
+  .lineup-main{grid-template-columns:1fr}
+  .lineup-more{grid-template-columns:1fr}
+  .tkts-grid{grid-template-columns:1fr}
+  .gallery-hd{padding:0 24px 32px}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 180px 180px}
+  .g-cell:first-child{grid-row:1;grid-column:1/3}
+  .info-grid{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr}
+  .contact-left{border-right:none;padding:56px 24px 36px}
+  .contact-right{padding:36px 24px 56px}
+  .sched-row{grid-template-columns:70px 1fr;gap:12px}
+  .sched-stage,.sched-hl{display:none}
+  .cd-left,.cd-right{padding:32px 24px}
+  .cd-units{gap:6px}
+  .cd-unit{padding:12px 14px;min-width:60px}
+  .cd-num{font-size:1.8rem}
+  footer{padding:40px 24px 20px}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .ft-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:560px){
+  .hero h1{font-size:3.4rem}
+  .hero-btns{flex-direction:column}
+  .btn-lime,.btn-ghost{justify-content:center}
+  .gallery-grid{grid-template-columns:1fr;grid-template-rows:200px 160px 160px 160px 160px}
+  .g-cell:first-child{grid-column:1}
+  .ft-grid{grid-template-columns:1fr}
+  .cd-units{flex-wrap:wrap}
+  .lc-img{height:180px}
+}
+</style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-logo">NSF<span>2025</span></div>
-    <ul class="nav-links">
-      <li><a href="#lineup">Lineup</a></li>
-      <li><a href="#schedule">Jadwal</a></li>
-      <li><a href="#tickets">Tiket</a></li>
-      <li><a href="#info">Info Event</a></li>
-    </ul>
-    <button class="nav-cta" onclick="document.getElementById('tickets').scrollIntoView({behavior:'smooth'})">Beli Tiket</button>
-    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+<!-- MOBILE TOPNAV -->
+<nav class="topnav" id="topnav">
+  <div class="topnav-logo">NSF<span>2025</span></div>
+  <div class="topnav-right">
+    <a href="#tickets" class="topnav-ticket">Beli Tiket</a>
+    <div class="topnav-ham" id="topHam"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE SIDEBAR OVERLAY -->
+<div class="sb-overlay" id="mobOverlay"></div>
+
+<!-- MOBILE SIDEBAR DRAWER -->
+<aside class="mob-sidebar" id="mobSidebar">
+  <div class="mob-sb-head">
+    <div class="mob-sb-logo">NSF<span>2025</span></div>
+    <div class="mob-sb-close" id="mobClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </div>
+  </div>
+  <div class="mob-date-box">
+    <div class="mob-date-lbl">Tanggal Festival</div>
+    <div class="mob-date-val">20 — 22 September 2025</div>
+  </div>
+  <div class="mob-cd-box">
+    <div class="mob-cd-title">Hitung Mundur</div>
+    <div class="mob-cd-row">
+      <div class="mob-cd-u"><div class="mob-cd-n" id="mcd-d">00</div><div class="mob-cd-l">Hari</div></div>
+      <div class="mob-cd-u"><div class="mob-cd-n" id="mcd-h">00</div><div class="mob-cd-l">Jam</div></div>
+      <div class="mob-cd-u"><div class="mob-cd-n" id="mcd-m">00</div><div class="mob-cd-l">Mnt</div></div>
+      <div class="mob-cd-u"><div class="mob-cd-n" id="mcd-s">00</div><div class="mob-cd-l">Dtk</div></div>
+    </div>
+  </div>
+  <div class="mob-sb-nav">
+    <div class="mob-sb-sec-lbl" style="margin-bottom:12px">Navigasi</div>
+    <a href="#lineup" class="mob-sb-lnk" onclick="closeMob()"><svg viewBox="0 0 24 24"><path d="M9 19V6l12-3v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg><span class="mob-sb-lnk-lbl">Lineup</span></a>
+    <a href="#schedule" class="mob-sb-lnk" onclick="closeMob()"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span class="mob-sb-lnk-lbl">Jadwal</span></a>
+    <a href="#tickets" class="mob-sb-lnk" onclick="closeMob()"><svg viewBox="0 0 24 24"><path d="M2 9a3 3 0 000 6v2a2 2 0 002 2h16a2 2 0 002-2v-2a3 3 0 000-6V7a2 2 0 00-2-2H4a2 2 0 00-2 2v2z"/></svg><span class="mob-sb-lnk-lbl">Tiket</span></a>
+    <a href="#gallery" class="mob-sb-lnk" onclick="closeMob()"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span class="mob-sb-lnk-lbl">Galeri</span></a>
+    <a href="#info" class="mob-sb-lnk" onclick="closeMob()"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span class="mob-sb-lnk-lbl">Info Event</span></a>
+    <a href="#contact" class="mob-sb-lnk" onclick="closeMob()"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.68 9.7a19.79 19.79 0 01-3.07-8.67A2 2 0 012.59 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.56a16 16 0 006.29 6.29l.87-.87a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg><span class="mob-sb-lnk-lbl">Kontak</span></a>
+  </div>
+  <div class="mob-contacts">
+    <div class="mob-contacts-ttl">Hubungi Kami</div>
+    <a href="https://wa.me/6281234567890?text=Halo%20NSF2025%2C%20saya%20ingin%20info%20tiket." class="mob-c-row" target="_blank" rel="noopener" style="display:flex">
+      <div class="mob-c-icon wa"><svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+      <div><div class="mob-c-lbl">WhatsApp</div><div class="mob-c-val">0812-3456-7890</div></div>
+    </a>
+    <a href="mailto:info@nsfest.id" class="mob-c-row" style="display:flex">
+      <div class="mob-c-icon gm"><svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <div><div class="mob-c-lbl">Gmail</div><div class="mob-c-val">info@nsfest.id</div></div>
+    </a>
+  </div>
+</aside>
+
+<!-- DESKTOP SIDEBAR -->
+<aside class="sidebar" id="deskSb">
+  <div class="sb-head">
+    <div class="sb-logo-short">NSF</div>
+    <div class="sb-logo-full">Nusantara <span>Sonic</span> Fest</div>
+  </div>
+  <div class="sb-date">
+    <div class="sb-date-inner">
+      <div class="sb-date-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <div class="sb-date-val">20 — 22 Sep 2025</div>
+    </div>
+  </div>
+  <div class="sb-countdown">
+    <div class="sb-section-title">Hitung Mundur</div>
+    <div class="sb-cd-grid">
+      <div class="sb-cd-unit"><div class="sb-cd-num" id="scd-d">00</div><div class="sb-cd-lbl">Hr</div></div>
+      <div class="sb-cd-unit"><div class="sb-cd-num" id="scd-h">00</div><div class="sb-cd-lbl">Jm</div></div>
+      <div class="sb-cd-unit"><div class="sb-cd-num" id="scd-m">00</div><div class="sb-cd-lbl">Mn</div></div>
+      <div class="sb-cd-unit"><div class="sb-cd-num" id="scd-s">00</div><div class="sb-cd-lbl">Dt</div></div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <a href="#lineup" class="sb-link active">
+      <div class="sb-link-icon"><svg viewBox="0 0 24 24"><path d="M9 19V6l12-3v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg></div>
+      <span class="sb-lbl">Lineup</span>
+    </a>
+    <a href="#schedule" class="sb-link">
+      <div class="sb-link-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+      <span class="sb-lbl">Jadwal</span>
+    </a>
+    <a href="#tickets" class="sb-link">
+      <div class="sb-link-icon"><svg viewBox="0 0 24 24"><path d="M2 9a3 3 0 000 6v2a2 2 0 002 2h16a2 2 0 002-2v-2a3 3 0 000-6V7a2 2 0 00-2-2H4a2 2 0 00-2 2v2z"/></svg></div>
+      <span class="sb-lbl">Tiket</span>
+    </a>
+    <a href="#gallery" class="sb-link">
+      <div class="sb-link-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div>
+      <span class="sb-lbl">Galeri</span>
+    </a>
+    <a href="#info" class="sb-link">
+      <div class="sb-link-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      <span class="sb-lbl">Info Event</span>
+    </a>
+    <a href="#contact" class="sb-link">
+      <div class="sb-link-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.68 9.7a19.79 19.79 0 01-3.07-8.67A2 2 0 012.59 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.56a16 16 0 006.29 6.29l.87-.87a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+      <span class="sb-lbl">Kontak</span>
+    </a>
   </nav>
+  <div class="sb-bottom">
+    <div class="sb-section-title">Kontak</div>
+    <a href="https://wa.me/6281234567890" class="sb-contact-item" target="_blank" rel="noopener" style="display:flex">
+      <div class="sb-contact-icon wa"><svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+      <div class="sb-contact-text"><div class="sb-contact-lbl">WhatsApp</div><div class="sb-contact-val">0812-3456-7890</div></div>
+    </a>
+    <a href="mailto:info@nsfest.id" class="sb-contact-item" style="display:flex">
+      <div class="sb-contact-icon gm"><svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+      <div class="sb-contact-text"><div class="sb-contact-lbl">Gmail</div><div class="sb-contact-val">info@nsfest.id</div></div>
+    </a>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<div class="main">
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg-text">NSF</div>
+  <section class="hero" id="hero">
+    <div class="hero-img"><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1800&q=80&auto=format&fit=crop" alt="NSF 2025"/></div>
+    <div class="hero-stamp">2025</div>
     <div class="hero-content">
-      <div class="hero-badge">20 - 22 September 2025</div>
-      <h1>Nusantara<br><span class="hl">Sonic</span><br>Fest 2025</h1>
-      <p class="hero-desc">Tiga hari perayaan musik — dari indie folk hingga electronic dance, dari jazz fusion hingga hip-hop — di Bumi Serpong Damai, Tangerang Selatan.</p>
-      <div class="hero-btns">
-        <a href="#tickets" class="btn-y">Beli Tiket Sekarang</a>
-        <a href="#lineup" class="btn-outline">Lihat Lineup</a>
+      <div class="hero-tag">Nusantara Sonic Fest</div>
+      <h1>MUSIK<br>TANPA<br><span class="lime">BATAS</span></h1>
+      <div class="hero-meta">
+        <div class="h-meta"><strong>20 — 22 September 2025</strong>Tiga Hari Penuh</div>
+        <div class="h-sep"></div>
+        <div class="h-meta"><strong>BSD City, Tangerang Selatan</strong>Lapangan A, Banten</div>
+        <div class="h-sep"></div>
+        <div class="h-meta"><strong>60+ Artis</strong>4 Panggung</div>
       </div>
-      <div class="hero-info">
-        <div><div class="h-info-val">60+</div><div class="h-info-label">Artis</div></div>
-        <div><div class="h-info-val">4</div><div class="h-info-label">Panggung</div></div>
-        <div><div class="h-info-val">25K</div><div class="h-info-label">Kapasitas</div></div>
+      <div class="hero-btns">
+        <a href="#tickets" class="btn-lime">Beli Tiket Sekarang</a>
+        <a href="#lineup" class="btn-ghost">Lihat Lineup</a>
+      </div>
+    </div>
+    <div class="hero-ticker">
+      <div class="ticker-track">
+        <span class="t-item hi">Fourtwnty</span><div class="t-dot"></div>
+        <span class="t-item">Hindia</span><div class="t-dot"></div>
+        <span class="t-item hi">Reality Club</span><div class="t-dot"></div>
+        <span class="t-item">Bottlesmoker</span><div class="t-dot"></div>
+        <span class="t-item hi">Feast</span><div class="t-dot"></div>
+        <span class="t-item">Raisa</span><div class="t-dot"></div>
+        <span class="t-item hi">Danilla</span><div class="t-dot"></div>
+        <span class="t-item">Payung Teduh</span><div class="t-dot"></div>
+        <span class="t-item hi">Tulus</span><div class="t-dot"></div>
+        <span class="t-item">20 — 22 September 2025</span><div class="t-dot"></div>
+        <span class="t-item hi">Fourtwnty</span><div class="t-dot"></div>
+        <span class="t-item">Hindia</span><div class="t-dot"></div>
+        <span class="t-item hi">Reality Club</span><div class="t-dot"></div>
+        <span class="t-item">Bottlesmoker</span><div class="t-dot"></div>
+        <span class="t-item hi">Feast</span><div class="t-dot"></div>
+        <span class="t-item">Raisa</span><div class="t-dot"></div>
+        <span class="t-item hi">Danilla</span><div class="t-dot"></div>
+        <span class="t-item">Payung Teduh</span><div class="t-dot"></div>
+        <span class="t-item hi">Tulus</span><div class="t-dot"></div>
+        <span class="t-item">20 — 22 September 2025</span><div class="t-dot"></div>
       </div>
     </div>
   </section>
 
   <!-- COUNTDOWN -->
-  <div class="countdown-section">
-    <div>
-      <div class="countdown-label">Hitung Mundur Menuju Hari H</div>
-      <div class="countdown-timer">
-        <div class="countdown-unit"><div class="countdown-num" id="cd-days">00</div><div class="countdown-lbl">Hari</div></div>
-        <div class="countdown-unit"><div class="countdown-num" id="cd-hours">00</div><div class="countdown-lbl">Jam</div></div>
-        <div class="countdown-unit"><div class="countdown-num" id="cd-mins">00</div><div class="countdown-lbl">Menit</div></div>
-        <div class="countdown-unit"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-lbl">Detik</div></div>
+  <div class="cd-strip">
+    <div class="cd-left">
+      <div class="cd-heading">Hitung Mundur Menuju Hari H</div>
+      <div class="cd-units">
+        <div class="cd-unit"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">Hari</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Jam</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Menit</div></div>
+        <div class="cd-unit"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Detik</div></div>
       </div>
     </div>
-    <div class="countdown-cta">
-      <h2>Tiket Early Bird Tersisa 800 Lembar</h2>
-      <a href="#tickets" class="btn-dark">Dapatkan Sekarang</a>
+    <div class="cd-right">
+      <div class="cd-right-title">Early Bird Tersisa 800 Lembar</div>
+      <a href="#tickets" class="btn-blk">Dapatkan Sekarang</a>
     </div>
   </div>
 
@@ -61,45 +665,50 @@
 
   <!-- LINEUP -->
   <section id="lineup">
-    <div class="sec-overline">[ 01 / Lineup ]</div>
-    <h2 class="sec-title reveal">Artis yang Tampil</h2>
-    <p class="sec-sub reveal">Lebih dari 60 musisi dan band dari seluruh Indonesia serta mancanegara. Berikut headliner dan artis pilihan NSF 2025.</p>
-    <div class="lineup-grid">
-      <div class="lineup-card reveal">
-        <div class="lineup-cat">Headliner — Main Stage</div>
-        <div class="lineup-name">Fourtwnty</div>
-        <div class="lineup-role">Indie Folk / Alternative</div>
-        <div class="lineup-bio">Band indie urban asal Jakarta yang dikenal dengan lirik puitis dan aransemen yang kaya. Tampil perdana di NSF dengan set istimewa 90 menit.</div>
+    <div class="sec-ey">01 / Lineup</div>
+    <h2 class="sec-title reveal">ARTIS YANG TAMPIL</h2>
+    <p class="sec-sub reveal">Lebih dari 60 musisi dari Indonesia dan mancanegara. Berikut headliner dan artis pilihan NSF 2025.</p>
+    <div class="lineup-main">
+      <div class="lc reveal">
+        <div class="lc-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800&q=80&auto=format&fit=crop" alt="Fourtwnty"/></div>
+        <div class="lc-body">
+          <div class="lc-cat">Headliner — Main Stage</div>
+          <div class="lc-name">Fourtwnty</div>
+          <div class="lc-role">Indie Folk / Alternative</div>
+          <div class="lc-bio">Band indie urban asal Jakarta yang dikenal dengan lirik puitis dan aransemen yang kaya. Tampil perdana di NSF dengan set istimewa 90 menit.</div>
+        </div>
       </div>
-      <div class="lineup-card reveal">
-        <div class="lineup-cat">Headliner — Jungle Stage</div>
-        <div class="lineup-name">Hindia</div>
-        <div class="lineup-role">Indie Pop / Bedroom Pop</div>
-        <div class="lineup-bio">Proyek solo Baskara Putra yang meramu narasi intim dengan produksi modern. Set NSF menampilkan materi album terbaru secara eksklusif.</div>
+      <div class="lc reveal">
+        <div class="lc-img"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&auto=format&fit=crop" alt="Hindia"/></div>
+        <div class="lc-body">
+          <div class="lc-cat">Headliner — Jungle Stage</div>
+          <div class="lc-name">Hindia</div>
+          <div class="lc-role">Indie Pop / Bedroom Pop</div>
+          <div class="lc-bio">Proyek solo Baskara Putra yang meramu narasi intim dengan produksi modern. Set NSF menampilkan materi album terbaru secara eksklusif.</div>
+        </div>
       </div>
-      <div class="lineup-card reveal">
-        <div class="lineup-cat">Headliner — Electric Stage</div>
-        <div class="lineup-name">Reality Club</div>
-        <div class="lineup-role">Indie Rock / Post-punk</div>
-        <div class="lineup-bio">Band post-punk energenik dari Jakarta yang menghadirkan perpaduan distorsi gitar dan melodi yang menghantui. Kini dengan formasi terbaru.</div>
+      <div class="lc reveal">
+        <div class="lc-img"><img src="https://images.unsplash.com/photo-1598387181032-a3103a2db5b3?w=600&q=80&auto=format&fit=crop" alt="Reality Club"/></div>
+        <div class="lc-body">
+          <div class="lc-cat">Headliner — Electric Stage</div>
+          <div class="lc-name">Reality Club</div>
+          <div class="lc-role">Indie Rock / Post-punk</div>
+          <div class="lc-bio">Band post-punk energetik dari Jakarta dengan perpaduan distorsi gitar dan melodi yang menghantui. Kini dengan formasi terbaru.</div>
+        </div>
       </div>
-      <div class="lineup-card reveal">
-        <div class="lineup-cat">Featured Artist</div>
-        <div class="lineup-name">Bottlesmoker</div>
-        <div class="lineup-role">Electronic / Synth-pop</div>
-        <div class="lineup-bio">Duo elektronik asal Bandung dengan sejarah panjang di skena musik independen Indonesia. Live set spesial dengan visualisasi generatif.</div>
+    </div>
+    <div class="lineup-more">
+      <div class="lm-item reveal">
+        <div class="lm-img"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&q=80&auto=format&fit=crop" alt="Bottlesmoker"/></div>
+        <div><div class="lm-name">Bottlesmoker</div><div class="lm-genre">Electronic / Synth-pop</div></div>
       </div>
-      <div class="lineup-card reveal">
-        <div class="lineup-cat">Featured Artist</div>
-        <div class="lineup-name">Feast</div>
-        <div class="lineup-role">Punk Rock / Post-punk</div>
-        <div class="lineup-bio">Band punk berenergi tinggi dengan pesan sosial yang kuat. Selalu menghadirkan penampilan live yang brutal dan jujur di atas panggung.</div>
+      <div class="lm-item reveal">
+        <div class="lm-img"><img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=200&q=80&auto=format&fit=crop" alt="Feast"/></div>
+        <div><div class="lm-name">Feast</div><div class="lm-genre">Punk Rock / Post-punk</div></div>
       </div>
-      <div class="lineup-card reveal">
-        <div class="lineup-cat">Featured Artist</div>
-        <div class="lineup-name">Raisa</div>
-        <div class="lineup-role">Pop / R&amp;B</div>
-        <div class="lineup-bio">Penyanyi pop terkemuka Indonesia dengan vokal yang memukau. Penampilan spesial dengan orkestra chamber untuk NSF 2025.</div>
+      <div class="lm-item reveal">
+        <div class="lm-img"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=200&q=80&auto=format&fit=crop" alt="Raisa"/></div>
+        <div><div class="lm-name">Raisa</div><div class="lm-genre">Pop / R&amp;B</div></div>
       </div>
     </div>
   </section>
@@ -108,40 +717,21 @@
 
   <!-- SCHEDULE -->
   <section id="schedule">
-    <div class="sec-overline">[ 02 / Jadwal ]</div>
-    <h2 class="sec-title reveal">Jadwal Penampilan — Hari Pertama</h2>
+    <div class="sec-ey">02 / Jadwal</div>
+    <h2 class="sec-title reveal">JADWAL PENAMPILAN</h2>
     <p class="sec-sub reveal">20 September 2025 — Pintu dibuka pukul 13.00 WIB</p>
-    <div class="schedule-list">
-      <div class="schedule-item reveal">
-        <span class="schedule-time">13.30</span>
-        <span class="schedule-stage">Acoustic</span>
-        <div><div class="schedule-artist">Naif Acoustic Session</div><div class="schedule-genre">Indie Pop</div></div>
-      </div>
-      <div class="schedule-item reveal">
-        <span class="schedule-time">15.00</span>
-        <span class="schedule-stage">Jungle</span>
-        <div><div class="schedule-artist">Danilla Riyadi</div><div class="schedule-genre">Dream Pop / Folk</div></div>
-      </div>
-      <div class="schedule-item reveal">
-        <span class="schedule-time">16.30</span>
-        <span class="schedule-stage">Electric</span>
-        <div><div class="schedule-artist">Feast</div><div class="schedule-genre">Punk Rock</div></div>
-      </div>
-      <div class="schedule-item reveal">
-        <span class="schedule-time">18.00</span>
-        <span class="schedule-stage">Electric</span>
-        <div><div class="schedule-artist">Reality Club</div><div class="schedule-genre">Indie Rock / Post-punk</div></div>
-      </div>
-      <div class="schedule-item reveal">
-        <span class="schedule-time">19.30</span>
-        <span class="schedule-stage">Electronic</span>
-        <div><div class="schedule-artist">Bottlesmoker (Live Electronic Set)</div><div class="schedule-genre">Synth-pop / Electronic</div></div>
-      </div>
-      <div class="schedule-item reveal">
-        <span class="schedule-time">21.00</span>
-        <span class="schedule-stage">Main Stage</span>
-        <div><div class="schedule-artist">Fourtwnty — Headline Set</div><div class="schedule-genre">Indie Folk / Alternative</div></div>
-      </div>
+    <div class="sched-tabs">
+      <button class="sched-tab active" onclick="setDay(this,0)">Hari 1 — 20 Sep</button>
+      <button class="sched-tab" onclick="setDay(this,1)">Hari 2 — 21 Sep</button>
+      <button class="sched-tab" onclick="setDay(this,2)">Hari 3 — 22 Sep</button>
+    </div>
+    <div class="sched-list" id="schedList">
+      <div class="sched-row reveal"><div class="sched-time">13.30</div><div class="sched-stage">Acoustic</div><div><div class="sched-artist">Naif Acoustic Session</div><div class="sched-genre">Indie Pop</div></div><div></div></div>
+      <div class="sched-row reveal"><div class="sched-time">15.00</div><div class="sched-stage">Jungle</div><div><div class="sched-artist">Danilla Riyadi</div><div class="sched-genre">Dream Pop / Folk</div></div><div></div></div>
+      <div class="sched-row reveal"><div class="sched-time">16.30</div><div class="sched-stage">Electric</div><div><div class="sched-artist">Feast</div><div class="sched-genre">Punk Rock</div></div><div></div></div>
+      <div class="sched-row reveal"><div class="sched-time">18.00</div><div class="sched-stage highlight">Electric</div><div><div class="sched-artist">Reality Club</div><div class="sched-genre">Indie Rock / Post-punk</div></div><div></div></div>
+      <div class="sched-row reveal"><div class="sched-time">19.30</div><div class="sched-stage">Electronic</div><div><div class="sched-artist">Bottlesmoker (Live Electronic Set)</div><div class="sched-genre">Synth-pop / Electronic</div></div><div></div></div>
+      <div class="sched-row reveal"><div class="sched-time">21.00</div><div class="sched-stage highlight">Main Stage</div><div><div class="sched-artist">Fourtwnty — Headline Set</div><div class="sched-genre">Indie Folk / Alternative</div></div><div class="sched-hl">Headliner</div></div>
     </div>
   </section>
 
@@ -149,104 +739,207 @@
 
   <!-- TICKETS -->
   <section id="tickets">
-    <div class="sec-overline">[ 03 / Tiket ]</div>
-    <h2 class="sec-title reveal">Pilih Tiket Anda</h2>
+    <div class="sec-ey">03 / Tiket</div>
+    <h2 class="sec-title reveal">PILIH TIKET ANDA</h2>
     <p class="sec-sub reveal">Semua tiket sudah termasuk akses ke seluruh panggung dan area utama festival.</p>
-    <div class="tickets-grid">
-      <div class="ticket-card reveal">
-        <div class="ticket-cat">Ekonomis</div>
-        <div class="ticket-name">Early Bird</div>
-        <div class="ticket-price">Rp 350.000</div>
-        <div class="ticket-note">/ hari — terbatas 800 lembar</div>
-        <div class="ticket-features">
-          <div class="ticket-feature">Akses 1 hari pilihan</div>
-          <div class="ticket-feature">General Area — semua panggung</div>
-          <div class="ticket-feature">E-ticket via email</div>
+    <div class="tkts-grid">
+      <div class="tkt reveal">
+        <div class="tkt-cat">Ekonomis</div>
+        <div class="tkt-name">Early Bird</div>
+        <div class="tkt-price">Rp 350K</div>
+        <div class="tkt-note">/ hari — terbatas 800 lembar</div>
+        <div class="tkt-feats">
+          <div class="tkt-feat">Akses 1 hari pilihan</div>
+          <div class="tkt-feat">General Area — semua panggung</div>
+          <div class="tkt-feat">E-ticket via email</div>
         </div>
-        <a href="#" class="ticket-btn">Beli Tiket</a>
+        <a href="https://wa.me/6281234567890?text=Saya%20ingin%20beli%20tiket%20Early%20Bird%20NSF2025." class="tkt-cta" target="_blank" rel="noopener">Beli via WhatsApp</a>
       </div>
-      <div class="ticket-card featured reveal">
-        <div class="ticket-cat">Terpopuler</div>
-        <div class="ticket-name">3-Day Pass</div>
-        <div class="ticket-price">Rp 850.000</div>
-        <div class="ticket-note">/ orang — hemat 19%</div>
-        <div class="ticket-features">
-          <div class="ticket-feature">Akses penuh 3 hari</div>
-          <div class="ticket-feature">General Area — semua panggung</div>
-          <div class="ticket-feature">E-ticket + lanyard eksklusif</div>
-          <div class="ticket-feature">Akses food court khusus peserta</div>
+      <div class="tkt feat reveal">
+        <div class="tkt-cat">Terpopuler</div>
+        <div class="tkt-name">3-Day Pass</div>
+        <div class="tkt-price">Rp 850K</div>
+        <div class="tkt-note">/ orang — hemat 19%</div>
+        <div class="tkt-feats">
+          <div class="tkt-feat">Akses penuh 3 hari</div>
+          <div class="tkt-feat">General Area — semua panggung</div>
+          <div class="tkt-feat">E-ticket + lanyard eksklusif</div>
+          <div class="tkt-feat">Akses food court khusus</div>
         </div>
-        <a href="#" class="ticket-btn primary">Beli Sekarang</a>
+        <a href="https://wa.me/6281234567890?text=Saya%20ingin%20beli%203-Day%20Pass%20NSF2025." class="tkt-cta" target="_blank" rel="noopener">Beli Sekarang</a>
       </div>
-      <div class="ticket-card reveal">
-        <div class="ticket-cat">Premium</div>
-        <div class="ticket-name">VIP Experience</div>
-        <div class="ticket-price">Rp 2.200.000</div>
-        <div class="ticket-note">/ orang — semua hari</div>
-        <div class="ticket-features">
-          <div class="ticket-feature">Akses penuh 3 hari</div>
-          <div class="ticket-feature">Area VIP terdekat panggung utama</div>
-          <div class="ticket-feature">Lounge VIP ber-AC + minuman gratis</div>
-          <div class="ticket-feature">Merchandise kit eksklusif</div>
-          <div class="ticket-feature">Akses pre-show soundcheck tour</div>
+      <div class="tkt reveal">
+        <div class="tkt-cat">Premium</div>
+        <div class="tkt-name">VIP Experience</div>
+        <div class="tkt-price">Rp 2,2Jt</div>
+        <div class="tkt-note">/ orang — semua hari</div>
+        <div class="tkt-feats">
+          <div class="tkt-feat">Akses penuh 3 hari</div>
+          <div class="tkt-feat">Area VIP terdekat panggung utama</div>
+          <div class="tkt-feat">Lounge VIP ber-AC + minuman gratis</div>
+          <div class="tkt-feat">Merchandise kit eksklusif</div>
+          <div class="tkt-feat">Akses pre-show soundcheck tour</div>
         </div>
-        <a href="#" class="ticket-btn">Beli Tiket VIP</a>
+        <a href="https://wa.me/6281234567890?text=Saya%20ingin%20beli%20tiket%20VIP%20NSF2025." class="tkt-cta" target="_blank" rel="noopener">Beli Tiket VIP</a>
       </div>
     </div>
   </section>
 
+  <div class="divider"></div>
+
+  <!-- GALLERY -->
+  <section id="gallery" style="background:var(--bg);padding:88px 0">
+    <div class="gallery-hd">
+      <div class="sec-ey">04 / Galeri</div>
+      <h2 class="sec-title reveal">SUASANA FESTIVAL</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-cell"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=1200&q=80&auto=format&fit=crop" alt="Main Stage"/><div class="g-label">Main Stage</div></div>
+      <div class="g-cell"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=600&q=80&auto=format&fit=crop" alt="Stage Lights"/><div class="g-label">Stage Lightning</div></div>
+      <div class="g-cell"><img src="https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=600&q=80&auto=format&fit=crop" alt="Crowd"/><div class="g-label">Crowd Energy</div></div>
+      <div class="g-cell"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80&auto=format&fit=crop" alt="Performance"/><div class="g-label">Live Performance</div></div>
+      <div class="g-cell"><img src="https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=600&q=80&auto=format&fit=crop" alt="Electronic Stage"/><div class="g-label">Electronic Stage</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
   <!-- INFO -->
-  <section id="info" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px;">
-    <div class="sec-overline">[ 04 / Info Event ]</div>
-    <h2 class="sec-title reveal">Informasi Penting</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);">
-      <div style="background:var(--surface);padding:28px 24px;" class="reveal">
-        <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--yellow-dark);margin-bottom:10px;">Lokasi</div>
-        <div style="font-size:0.9rem;line-height:1.65;color:var(--muted2);">Lapangan A Bumi Serpong Damai<br>Tangerang Selatan, Banten 15310</div>
+  <section id="info">
+    <div class="sec-ey">05 / Info Event</div>
+    <h2 class="sec-title reveal">INFORMASI PENTING</h2>
+    <div class="info-grid">
+      <div class="info-box reveal">
+        <div class="info-lbl">Lokasi</div>
+        <div class="info-txt">Lapangan A Bumi Serpong Damai<br>Tangerang Selatan, Banten 15310<br><br>Akses mudah via tol Jakarta-Serpong. Tersedia shuttle dari Stasiun BSD.</div>
       </div>
-      <div style="background:var(--surface);padding:28px 24px;" class="reveal">
-        <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--yellow-dark);margin-bottom:10px;">Tanggal &amp; Waktu</div>
-        <div style="font-size:0.9rem;line-height:1.65;color:var(--muted2);">20 – 22 September 2025<br>Pintu buka: 13.00 WIB<br>Acara berakhir: 00.00 WIB</div>
+      <div class="info-box reveal">
+        <div class="info-lbl">Tanggal &amp; Waktu</div>
+        <div class="info-txt">20 – 22 September 2025<br>Pintu dibuka: 13.00 WIB<br>Acara berakhir: 00.00 WIB<br><br>Seluruh penonton wajib hadir sebelum 23.30 WIB.</div>
       </div>
-      <div style="background:var(--surface);padding:28px 24px;" class="reveal">
-        <div style="font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--yellow-dark);margin-bottom:10px;">Kebijakan</div>
-        <div style="font-size:0.9rem;line-height:1.65;color:var(--muted2);">Tiket tidak dapat dikembalikan setelah dibeli. Dilarang membawa makanan dari luar. Hewan peliharaan tidak diizinkan.</div>
+      <div class="info-box reveal">
+        <div class="info-lbl">Kebijakan</div>
+        <div class="info-txt">Tiket tidak dapat dikembalikan setelah dibeli. Dilarang membawa makanan dari luar. Hewan peliharaan tidak diizinkan masuk area festival.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CTA -->
+  <section id="contact" style="padding:0">
+    <div class="contact-wrap">
+      <div class="contact-left">
+        <div class="sec-ey">06 / Kontak</div>
+        <h2 class="contact-title reveal">HUBUNGI<br>TIM KAMI</h2>
+        <p class="contact-desc reveal">Ada pertanyaan tentang tiket, akreditasi media, kemitraan, atau informasi lainnya? Tim kami siap membantu.</p>
+        <div class="c-row">
+          <div class="c-icon wa"><svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div><div class="c-lbl">WhatsApp</div><div class="c-val">0812-3456-7890</div></div>
+        </div>
+        <div class="c-row">
+          <div class="c-icon gm"><svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <div><div class="c-lbl">Gmail</div><div class="c-val">info@nsfest.id</div></div>
+        </div>
+      </div>
+      <div class="contact-right">
+        <div class="cr-kicker">Tiket Tersedia Sekarang</div>
+        <div class="cr-title">DAPATKAN<br>TIKET<br>ANDA</div>
+        <a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20membeli%20tiket%20NSF2025." class="btn-bk" target="_blank" rel="noopener">Beli via WhatsApp</a>
+        <a href="mailto:info@nsfest.id?subject=Tiket%20NSF2025" class="btn-bk-outline">Hubungi via Gmail</a>
+        <div style="margin-top:18px;padding-top:18px;border-top:1px solid rgba(0,0,0,0.12)">
+          <div style="font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(0,0,0,0.4);margin-bottom:6px">Atau email kami</div>
+          <a href="mailto:info@nsfest.id" style="font-family:'DM Mono',monospace;font-size:0.8rem;color:#000;font-weight:500">info@nsfest.id</a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-top">
+    <div class="ft-grid">
       <div>
-        <div class="footer-name">NSF<span>2025</span></div>
-        <p class="footer-brand-desc">Festival musik tahunan yang merayakan keberagaman suara Indonesia — untuk musisi dan pendengar sejati.</p>
+        <div class="ft-logo">NSF<span>2025</span></div>
+        <p class="ft-desc">Festival musik tahunan yang merayakan keberagaman suara Indonesia — untuk musisi dan pendengar sejati.</p>
+        <a href="https://wa.me/6281234567890" class="ft-ci" target="_blank" rel="noopener" style="display:flex;align-items:center">
+          <div class="ft-ci-icon wa"><svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <span class="ft-ci-val">0812-3456-7890</span>
+        </a>
+        <a href="mailto:info@nsfest.id" class="ft-ci" style="display:flex;align-items:center">
+          <div class="ft-ci-icon gm"><svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <span class="ft-ci-val">info@nsfest.id</span>
+        </a>
       </div>
-      <div class="footer-col">
-        <h4>Festival</h4>
-        <ul>
-          <li><a href="#">Lineup Lengkap</a></li>
-          <li><a href="#">Jadwal Detail</a></li>
-          <li><a href="#">Peta Venue</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Informasi</h4>
-        <ul>
-          <li><a href="#">Kebijakan Tiket</a></li>
-          <li><a href="#">Akreditasi Media</a></li>
-          <li><a href="#">Sponsor &amp; Partner</a></li>
-          <li><a href="#">Hubungi Kami</a></li>
-        </ul>
-      </div>
+      <div class="ft-col"><h4>Festival</h4><ul><li><a href="#lineup">Lineup Lengkap</a></li><li><a href="#schedule">Jadwal Detail</a></li><li><a href="#">Peta Venue</a></li><li><a href="#">FAQ</a></li></ul></div>
+      <div class="ft-col"><h4>Tiket</h4><ul><li><a href="#tickets">Early Bird</a></li><li><a href="#tickets">3-Day Pass</a></li><li><a href="#tickets">VIP Experience</a></li><li><a href="#">Kebijakan Tiket</a></li></ul></div>
+      <div class="ft-col"><h4>Informasi</h4><ul><li><a href="#">Akreditasi Media</a></li><li><a href="#">Sponsor &amp; Partner</a></li><li><a href="#contact">Hubungi Kami</a></li><li><a href="#">Syarat &amp; Ketentuan</a></li></ul></div>
     </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">2025 Nusantara Sonic Fest. Hak cipta dilindungi. — DEMO TEMPLATE</span>
-      <span class="footer-copy">Syarat &amp; Ketentuan</span>
+    <div class="ft-bottom">
+      <span class="ft-copy">2025 Nusantara Sonic Fest. Hak cipta dilindungi.</span>
+      <span class="ft-tag">Demo Template</span>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+</div><!-- /main -->
+
+<script>
+// Countdown
+function tick(){
+  const t=new Date('2025-09-20T13:00:00'),n=new Date();
+  const diff=Math.max(0,t-n);
+  const d=Math.floor(diff/864e5),h=Math.floor((diff%864e5)/36e5),m=Math.floor((diff%36e5)/6e4),s=Math.floor((diff%6e4)/1e3);
+  const p=n=>String(n).padStart(2,'0');
+  ['d','h','m','s'].forEach((k,i)=>{
+    const v=p([d,h,m,s][i]);
+    ['cd-','scd-','mcd-'].forEach(pre=>{
+      const el=document.getElementById(pre+k);
+      if(el)el.textContent=v;
+    });
+  });
+}
+tick();setInterval(tick,1000);
+
+// Mobile sidebar
+const topHam=document.getElementById('topHam');
+const mobSb=document.getElementById('mobSidebar');
+const mobOv=document.getElementById('mobOverlay');
+const mobCl=document.getElementById('mobClose');
+function openMob(){mobSb.classList.add('open');mobOv.classList.add('open');topHam.classList.add('open');document.body.style.overflow='hidden'}
+function closeMob(){mobSb.classList.remove('open');mobOv.classList.remove('open');topHam.classList.remove('open');document.body.style.overflow=''}
+topHam.addEventListener('click',()=>mobSb.classList.contains('open')?closeMob():openMob());
+mobOv.addEventListener('click',closeMob);
+mobCl.addEventListener('click',closeMob);
+
+// Active link
+const sbLinks=document.querySelectorAll('.sidebar .sb-link');
+const secIds=['lineup','schedule','tickets','gallery','info','contact'];
+function upActive(){
+  const sy=window.scrollY+140;let cur=secIds[0];
+  secIds.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=sy)cur=id});
+  sbLinks.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));
+}
+window.addEventListener('scroll',upActive,{passive:true});upActive();
+
+// Schedule tabs
+const schedData=[
+  [{time:'13.30',stage:'Acoustic',artist:'Naif Acoustic Session',genre:'Indie Pop',hl:false},{time:'15.00',stage:'Jungle',artist:'Danilla Riyadi',genre:'Dream Pop / Folk',hl:false},{time:'16.30',stage:'Electric',artist:'Feast',genre:'Punk Rock',hl:false},{time:'18.00',stage:'Electric',artist:'Reality Club',genre:'Indie Rock / Post-punk',hl:true},{time:'19.30',stage:'Electronic',artist:'Bottlesmoker (Live Set)',genre:'Synth-pop / Electronic',hl:false},{time:'21.00',stage:'Main Stage',artist:'Fourtwnty — Headline Set',genre:'Indie Folk / Alternative',hl:true}],
+  [{time:'14.00',stage:'Jungle',artist:'Yura Yunita',genre:'Pop / Soul',hl:false},{time:'15.30',stage:'Acoustic',artist:'Payung Teduh',genre:'Folk / Acoustic',hl:false},{time:'17.00',stage:'Electric',artist:'Barasuara',genre:'Art Rock',hl:true},{time:'19.00',stage:'Electronic',artist:'Duo Maia',genre:'Electronic / Pop',hl:false},{time:'21.00',stage:'Main Stage',artist:'Hindia — Headline Set',genre:'Indie Pop / Bedroom Pop',hl:true}],
+  [{time:'13.30',stage:'Acoustic',artist:'Float',genre:'Post-rock / Ambient',hl:false},{time:'15.00',stage:'Jungle',artist:'Mocca',genre:'Indie Pop / Jazz',hl:false},{time:'16.30',stage:'Electric',artist:'Efek Rumah Kaca',genre:'Alternative / Experimental',hl:true},{time:'18.30',stage:'Electronic',artist:'DJ Yasmin',genre:'Electronic / House',hl:false},{time:'20.00',stage:'Main Stage',artist:'Raisa — Penutupan NSF',genre:'Pop / R&B — Orkestra Special',hl:true}]
+];
+function setDay(el,i){
+  document.querySelectorAll('.sched-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  const list=document.getElementById('schedList');
+  list.innerHTML=schedData[i].map(r=>`<div class="sched-row"><div class="sched-time">${r.time}</div><div class="sched-stage${r.hl?' highlight':''}">${r.stage}</div><div><div class="sched-artist">${r.artist}</div><div class="sched-genre">${r.genre}</div></div><div>${r.hl?'<div class="sched-hl">Headliner</div>':''}</div></div>`).join('');
+  list.querySelectorAll('.sched-row').forEach((el,i)=>{el.style.cssText=`opacity:0;transform:translateY(10px);transition:opacity 0.35s ${i*0.045}s ease,transform 0.35s ${i*0.045}s ease`;setTimeout(()=>{el.style.opacity='1';el.style.transform='none'},10)});
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}});
+});
+
+// Reveal
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>

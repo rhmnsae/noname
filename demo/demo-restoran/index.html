@@ -9,181 +9,299 @@
 </head>
 <body>
 
-  <nav>
-    <div class="nav-logo">Warung <span>Senja</span></div>
+  <!-- FLOATING WA -->
+  <a class="float-wa" href="https://wa.me/62274555888" target="_blank" rel="noopener" aria-label="Chat WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Warung <em>Senja</em></a>
     <ul class="nav-links">
       <li><a href="#menu">Menu</a></li>
       <li><a href="#story">Kisah Kami</a></li>
       <li><a href="#testi">Ulasan</a></li>
       <li><a href="#reservasi">Reservasi</a></li>
     </ul>
-    <button class="nav-cta" onclick="document.getElementById('reservasi').scrollIntoView({behavior:'smooth'})">Pesan Meja</button>
-    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+    <div class="nav-right">
+      <a href="#reservasi" class="nav-cta">Pesan Meja</a>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
-  <!-- HERO -->
+  <!-- SIDEBAR OVERLAY -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <!-- SIDEBAR DRAWER -->
+  <aside class="drawer" id="drawer">
+    <div class="drawer-header">
+      <a href="#" class="drawer-logo">Warung <em>Senja</em></a>
+      <button class="drawer-close" id="drawerClose" aria-label="Tutup menu">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="1" y1="1" x2="15" y2="15"/><line x1="15" y1="1" x2="1" y2="15"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="drawer-body">
+      <nav class="drawer-nav">
+        <a href="#menu" class="drawer-link">
+          <span class="drawer-link-num">01</span>
+          <span class="drawer-link-label">Menu</span>
+          <span class="drawer-link-arrow"></span>
+        </a>
+        <a href="#story" class="drawer-link">
+          <span class="drawer-link-num">02</span>
+          <span class="drawer-link-label">Kisah Kami</span>
+          <span class="drawer-link-arrow"></span>
+        </a>
+        <a href="#testi" class="drawer-link">
+          <span class="drawer-link-num">03</span>
+          <span class="drawer-link-label">Ulasan</span>
+          <span class="drawer-link-arrow"></span>
+        </a>
+        <a href="#reservasi" class="drawer-link">
+          <span class="drawer-link-num">04</span>
+          <span class="drawer-link-label">Reservasi</span>
+          <span class="drawer-link-arrow"></span>
+        </a>
+      </nav>
+
+      <div class="drawer-contact">
+        <p class="drawer-contact-label">Hubungi Kami</p>
+        <a class="drawer-clink" href="https://wa.me/62274555888" target="_blank" rel="noopener">
+          <svg class="dc-icon" viewBox="0 0 24 24"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          +62 274 555-8888
+        </a>
+        <a class="drawer-clink" href="mailto:warungreservasi@senja.id">
+          <svg class="dc-icon" viewBox="0 0 24 24"><path fill="#EA4335" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.910 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          warungreservasi@senja.id
+        </a>
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <a href="#reservasi" class="drawer-cta">Pesan Meja Sekarang</a>
+    </div>
+  </aside>
+
+  <!-- ─── HERO ─── -->
   <section class="hero">
-    <div>
-      <div class="hero-eyebrow">[ Kuliner Otentik Nusantara ]</div>
-      <h1>Rasa yang<br><em>Tak Terlupakan</em></h1>
-      <p class="hero-desc">Setiap hidangan dimasak dari bahan segar pilihan, menggunakan resep turun-temurun yang dijaga cita rasanya selama tiga generasi.</p>
-      <div class="hero-btns">
-        <a href="#menu" class="btn-amber">Lihat Menu</a>
-        <a href="#reservasi" class="btn-outline">Reservasi Meja</a>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="menu-card">
-        <div class="menu-card-header">
-          <span class="menu-card-cat">[ Menu Unggulan ]</span>
-        </div>
-        <div class="menu-card-body">
-          <div class="menu-item">
-            <div>
-              <div class="menu-item-name">Rendang Sapi Padang</div>
-              <div class="menu-item-desc">Daging sapi premium, 40+ rempah</div>
-            </div>
-            <div class="menu-item-price">Rp 65.000</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item-name">Soto Betawi Spesial</div>
-              <div class="menu-item-desc">Santan segar, jeroan pilihan</div>
-            </div>
-            <div class="menu-item-price">Rp 48.000</div>
-          </div>
-          <div class="menu-item">
-            <div>
-              <div class="menu-item-name">Nasi Liwet Solo</div>
-              <div class="menu-item-desc">Lauk komplit, sambal goreng</div>
-            </div>
-            <div class="menu-item-price">Rp 52.000</div>
-          </div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <p class="hero-tag">Kuliner Otentik Nusantara — Yogyakarta</p>
+        <h1 class="hero-title">Rasa yang<br><em>Tak Terlupakan</em></h1>
+        <p class="hero-desc">Setiap hidangan dimasak dari bahan segar pilihan, menggunakan resep turun-temurun yang dijaga cita rasanya selama tiga generasi.</p>
+        <div class="hero-btns">
+          <a href="#menu" class="btn-primary">Lihat Menu</a>
+          <a href="#reservasi" class="btn-secondary">Reservasi Meja</a>
         </div>
       </div>
-      <div class="menu-card">
-        <div class="menu-card-header">
-          <span class="menu-card-cat">[ Jam Buka ]</span>
-        </div>
-        <div class="menu-card-body">
-          <div class="menu-item">
-            <div class="menu-item-name">Senin — Jumat</div>
-            <div class="menu-item-price">10.00 — 22.00</div>
+      <div class="hero-visual">
+        <div class="hero-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1000&q=85&auto=format&fit=crop"
+            alt="Hidangan autentik Nusantara di Warung Senja"
+            class="hero-img"
+          />
+          <div class="hero-img-badge">
+            <span class="badge-num">4.200+</span>
+            <span class="badge-label">Ulasan Bintang Lima</span>
           </div>
-          <div class="menu-item">
-            <div class="menu-item-name">Sabtu — Minggu</div>
-            <div class="menu-item-price">09.00 — 23.00</div>
+        </div>
+        <div class="hero-aside">
+          <div class="hero-stat">
+            <span class="stat-val">1978</span>
+            <span class="stat-lbl">Berdiri Sejak</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-val">3</span>
+            <span class="stat-lbl">Generasi</span>
+          </div>
+          <div class="hero-hours">
+            <p class="hours-label">Jam Buka</p>
+            <p class="hours-row"><span>Senin–Jumat</span><span>10.00–22.00</span></p>
+            <p class="hours-row"><span>Sabtu–Minggu</span><span>09.00–23.00</span></p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
+  <!-- ─── STRIP ─── -->
+  <div class="strip">
+    <span>Rendang Sapi</span>
+    <span class="strip-dot"></span>
+    <span>Soto Betawi</span>
+    <span class="strip-dot"></span>
+    <span>Nasi Liwet Solo</span>
+    <span class="strip-dot"></span>
+    <span>Gulai Kambing</span>
+    <span class="strip-dot"></span>
+    <span>Ikan Pepes</span>
+    <span class="strip-dot"></span>
+    <span>Sayur Asem</span>
+    <span class="strip-dot"></span>
+    <span>Tiga Generasi</span>
+    <span class="strip-dot"></span>
+    <span>Resep Otentik</span>
+  </div>
 
-  <!-- MENU -->
-  <section id="menu">
-    <div class="sec-eyebrow">[ 01 / Menu ]</div>
-    <h2 class="sec-title reveal">Pilihan Hidangan Kami</h2>
-    <p class="sec-sub reveal">Dari makanan utama hingga minuman penutup — semuanya dibuat dengan cinta dan bahan terbaik.</p>
-    <div class="menu-grid">
-      <div class="menu-dish reveal">
-        <div class="menu-dish-name">Rendang Sapi Padang</div>
-        <div class="menu-dish-desc">Daging sapi pilihan dimasak perlahan bersama lebih dari empat puluh jenis rempah selama delapan jam hingga bumbu meresap sempurna.</div>
-        <div class="menu-dish-footer">
-          <div class="menu-dish-price">Rp 65.000</div>
-          <div class="menu-dish-tag">Signature</div>
+  <!-- ─── MENU ─── -->
+  <section id="menu" class="section-menu">
+    <div class="section-head">
+      <div class="eyebrow reveal">01 / Menu Unggulan</div>
+      <h2 class="sec-title reveal">Pilihan Hidangan Kami</h2>
+      <p class="sec-sub reveal">Dari makanan utama hingga minuman penutup — semuanya dibuat dengan cinta dan bahan terbaik pilihan pasar pagi.</p>
+    </div>
+    <div class="menu-layout">
+      <div class="menu-feature reveal">
+        <div class="menu-feature-img">
+          <img
+            src="https://images.unsplash.com/photo-1643357852170-fceded0940a2?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=wherda-arsianto-sF93q-pHbUg-unsplash.jpg"
+            alt="Rendang Sapi Padang"
+          />
+          <div class="menu-feature-badge">Signature</div>
+        </div>
+        <div class="menu-feature-body">
+          <h3 class="menu-feature-name">Rendang Sapi Padang</h3>
+          <p class="menu-feature-desc">Daging sapi pilihan dimasak perlahan bersama lebih dari empat puluh jenis rempah selama delapan jam hingga bumbu meresap sempurna ke setiap serat dagingnya.</p>
+          <div class="menu-feature-price">Rp 65.000</div>
         </div>
       </div>
-      <div class="menu-dish reveal">
-        <div class="menu-dish-name">Soto Betawi Spesial</div>
-        <div class="menu-dish-desc">Kuah santan segar dengan irisan daging, jeroan pilihan, dan perkedel kentang. Disajikan dengan emping dan acar segar.</div>
-        <div class="menu-dish-footer">
-          <div class="menu-dish-price">Rp 48.000</div>
-          <div class="menu-dish-tag">Populer</div>
+      <div class="menu-list">
+        <div class="menu-row reveal">
+          <div class="menu-row-img">
+            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=300&q=80&auto=format&fit=crop" alt="Soto Betawi" />
+          </div>
+          <div class="menu-row-body">
+            <div class="menu-row-top">
+              <h4 class="menu-row-name">Soto Betawi Spesial</h4>
+              <span class="menu-row-tag">Populer</span>
+            </div>
+            <p class="menu-row-desc">Kuah santan segar dengan daging, jeroan pilihan, dan perkedel kentang.</p>
+            <div class="menu-row-price">Rp 48.000</div>
+          </div>
         </div>
-      </div>
-      <div class="menu-dish reveal">
-        <div class="menu-dish-name">Nasi Liwet Solo</div>
-        <div class="menu-dish-desc">Nasi gurih dimasak dengan santan dan serai, disajikan dengan lauk lengkap dan sambal goreng ati khas Solo.</div>
-        <div class="menu-dish-footer">
-          <div class="menu-dish-price">Rp 52.000</div>
+        <div class="menu-row reveal">
+          <div class="menu-row-img">
+            <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=300&q=80&auto=format&fit=crop" alt="Nasi Liwet" />
+          </div>
+          <div class="menu-row-body">
+            <div class="menu-row-top">
+              <h4 class="menu-row-name">Nasi Liwet Solo</h4>
+            </div>
+            <p class="menu-row-desc">Nasi gurih dengan santan dan serai, disajikan lauk komplit khas Solo.</p>
+            <div class="menu-row-price">Rp 52.000</div>
+          </div>
         </div>
-      </div>
-      <div class="menu-dish reveal">
-        <div class="menu-dish-name">Gulai Kambing Muda</div>
-        <div class="menu-dish-desc">Kambing muda pilihan dimasak dengan rempah Sumatera dalam kuah gulai kental yang kaya rasa dan aroma.</div>
-        <div class="menu-dish-footer">
-          <div class="menu-dish-price">Rp 72.000</div>
-          <div class="menu-dish-tag">Weekend</div>
+        <div class="menu-row reveal">
+          <div class="menu-row-img">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&q=80&auto=format&fit=crop" alt="Gulai Kambing" />
+          </div>
+          <div class="menu-row-body">
+            <div class="menu-row-top">
+              <h4 class="menu-row-name">Gulai Kambing Muda</h4>
+              <span class="menu-row-tag">Weekend</span>
+            </div>
+            <p class="menu-row-desc">Kambing muda dalam kuah gulai kental penuh rempah Sumatera.</p>
+            <div class="menu-row-price">Rp 72.000</div>
+          </div>
         </div>
-      </div>
-      <div class="menu-dish reveal">
-        <div class="menu-dish-name">Ikan Pepes Aroma</div>
-        <div class="menu-dish-desc">Ikan segar pilihan dibungkus daun pisang bersama bumbu kencur, tomat hijau, dan cabai rawit, lalu dikukus dan dipanggang.</div>
-        <div class="menu-dish-footer">
-          <div class="menu-dish-price">Rp 55.000</div>
+        <div class="menu-row reveal">
+          <div class="menu-row-img">
+            <img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=300&q=80&auto=format&fit=crop" alt="Ikan Pepes" />
+          </div>
+          <div class="menu-row-body">
+            <div class="menu-row-top">
+              <h4 class="menu-row-name">Ikan Pepes Aroma</h4>
+            </div>
+            <p class="menu-row-desc">Ikan segar dibungkus daun pisang bersama bumbu kencur dan cabai rawit.</p>
+            <div class="menu-row-price">Rp 55.000</div>
+          </div>
         </div>
-      </div>
-      <div class="menu-dish reveal">
-        <div class="menu-dish-name">Sayur Asem Betawi</div>
-        <div class="menu-dish-desc">Sayur bening asam segar dengan jagung, labu siam, kacang panjang, dan melinjo — cocok sebagai pelengkap menu utama.</div>
-        <div class="menu-dish-footer">
-          <div class="menu-dish-price">Rp 22.000</div>
+        <div class="menu-row reveal">
+          <div class="menu-row-img">
+            <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=300&q=80&auto=format&fit=crop" alt="Sayur Asem" />
+          </div>
+          <div class="menu-row-body">
+            <div class="menu-row-top">
+              <h4 class="menu-row-name">Sayur Asem Betawi</h4>
+            </div>
+            <p class="menu-row-desc">Sayur bening asam segar dengan jagung, labu siam, dan melinjo.</p>
+            <div class="menu-row-price">Rp 22.000</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- STORY -->
-  <section id="story">
-    <div class="story-grid">
-      <div class="story-visual reveal">
-        <div class="story-block">
-          <div class="story-block-label">Berdiri Sejak</div>
-          <div class="story-block-val">1978</div>
-        </div>
-        <div class="story-block">
-          <div class="story-block-label">Generasi</div>
-          <div class="story-block-val">3</div>
-        </div>
-        <div class="story-block wide">
-          <div>
-            <div class="story-block-label">Reviews Bintang Lima</div>
-            <div class="story-block-val">4.200+</div>
-          </div>
-          <div>
-            <div class="story-block-label">Tamu Per Bulan</div>
-            <div class="story-block-val">12.000+</div>
-          </div>
-        </div>
+  <!-- ─── STORY ─── -->
+  <section id="story" class="section-story">
+    <div class="story-inner">
+      <div class="story-left reveal">
+        <div class="eyebrow">02 / Kisah Kami</div>
+        <h2 class="sec-title">Tiga Generasi<br>Menjaga Warisan Rasa</h2>
+        <p class="story-body">Warung Senja lahir dari dapur kecil Ibu Sarinah di Solo pada tahun 1978. Dengan berbekal resep turun-temurun dan keikhlasan memasak, warung ini tumbuh menjadi restoran yang dicintai ribuan pelanggan dari berbagai penjuru Indonesia.</p>
+        <blockquote class="story-quote">
+          "Masak bukan sekadar pekerjaan. Itu adalah cara kami merawat orang-orang yang kita cintai, meski mereka orang asing."
+        </blockquote>
+        <p class="story-attr">— Sarinah Wulandari, Pendiri</p>
       </div>
-      <div>
-        <div class="sec-eyebrow">[ 02 / Kisah Kami ]</div>
-        <h2 class="sec-title reveal">Tiga Generasi Menjaga<br>Warisan Rasa</h2>
-        <p class="reveal" style="font-size:0.92rem;color:var(--muted);line-height:1.75;margin-bottom:20px;">Warung Senja lahir dari dapur kecil Ibu Sarinah di Solo pada tahun 1978. Dengan berbekal resep turun-temurun dan keikhlasan memasak, warung ini tumbuh menjadi restoran yang dicintai ribuan pelanggan.</p>
-        <p class="sec-quote reveal" style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.7;border-left:2px solid var(--amber);padding-left:18px;margin-bottom:16px;">"Masak bukan sekadar pekerjaan. Itu adalah cara kami merawat orang-orang yang kita cintai, meski mereka orang asing."</p>
-        <p style="font-size:0.78rem;color:var(--amber);letter-spacing:1px;">— Sarinah Wulandari, Pendiri</p>
+      <div class="story-right">
+        <div class="story-img-grid">
+          <div class="story-img-main reveal">
+            <img
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=85&auto=format&fit=crop"
+              alt="Suasana Warung Senja"
+            />
+          </div>
+          <div class="story-img-sm reveal">
+            <img
+              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80&auto=format&fit=crop"
+              alt="Hidangan autentik"
+            />
+          </div>
+        </div>
+        <div class="story-stats reveal">
+          <div class="sstats-item">
+            <span class="sstats-val">1978</span>
+            <span class="sstats-lbl">Berdiri</span>
+          </div>
+          <div class="sstats-divider"></div>
+          <div class="sstats-item">
+            <span class="sstats-val">3</span>
+            <span class="sstats-lbl">Generasi</span>
+          </div>
+          <div class="sstats-divider"></div>
+          <div class="sstats-item">
+            <span class="sstats-val">12k+</span>
+            <span class="sstats-lbl">Tamu/Bulan</span>
+          </div>
+          <div class="sstats-divider"></div>
+          <div class="sstats-item">
+            <span class="sstats-val">4.2k+</span>
+            <span class="sstats-lbl">Review</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- RESERVASI -->
-  <section id="reservasi">
-    <div class="reservasi-grid">
-      <div>
-        <div class="sec-eyebrow">[ 03 / Reservasi ]</div>
+  <!-- ─── RESERVASI ─── -->
+  <section id="reservasi" class="section-reservasi">
+    <div class="reservasi-inner">
+      <div class="reservasi-form-col">
+        <div class="eyebrow reveal">03 / Reservasi</div>
         <h2 class="sec-title reveal">Pesan Meja Anda</h2>
         <p class="sec-sub reveal">Pastikan kursi terbaik untuk pengalaman makan malam yang tak terlupakan.</p>
-        <form onsubmit="return false;">
+        <form class="res-form" onsubmit="return false;">
           <div class="form-row">
             <div class="form-group">
-              <label class="form-label">Nama</label>
-              <input class="form-input" type="text" placeholder="Nama lengkap" />
+              <label class="form-label">Nama Lengkap</label>
+              <input class="form-input" type="text" placeholder="Nama lengkap Anda" />
             </div>
             <div class="form-group">
               <label class="form-label">No. Telepon</label>
@@ -203,85 +321,165 @@
           <div class="form-group">
             <label class="form-label">Jumlah Tamu</label>
             <select class="form-input">
-              <option>1 - 2 orang</option>
-              <option>3 - 5 orang</option>
-              <option>6 - 10 orang</option>
+              <option>1 – 2 orang</option>
+              <option>3 – 5 orang</option>
+              <option>6 – 10 orang</option>
               <option>10+ orang (Hubungi Kami)</option>
             </select>
           </div>
           <button class="form-submit" type="submit">Konfirmasi Reservasi</button>
         </form>
       </div>
-      <div class="reservasi-info">
-        <div class="info-box reveal">
-          <div class="info-box-title">Lokasi</div>
+      <div class="reservasi-info-col">
+        <div class="info-card reveal">
+          <div class="info-card-label">Lokasi</div>
           <p>Jl. Malioboro No. 47, Yogyakarta<br>Gedung depan, lantai 1</p>
         </div>
-        <div class="info-box reveal">
-          <div class="info-box-title">Jam Operasional</div>
+        <div class="info-card reveal">
+          <div class="info-card-label">Jam Operasional</div>
           <p>Senin – Jumat: 10.00 – 22.00<br>Sabtu – Minggu: 09.00 – 23.00</p>
         </div>
-        <div class="info-box reveal">
-          <div class="info-box-title">Reservasi Grup & Private Event</div>
-          <p>Untuk acara keluarga, kantor, atau gathering dengan tamu 10 orang ke atas, hubungi kami langsung untuk paket khusus.</p>
+        <div class="info-card reveal">
+          <div class="info-card-label">Private Event &amp; Grup</div>
+          <p>Untuk acara keluarga atau gathering dengan 10 orang ke atas, hubungi kami untuk paket spesial.</p>
+        </div>
+        <div class="info-card reveal">
+          <div class="info-card-label">Kontak Langsung</div>
+          <div class="contact-links">
+            <a class="clink clink-wa" href="https://wa.me/62274555888" target="_blank" rel="noopener">
+              <svg class="clink-icon" viewBox="0 0 24 24"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              +62 274 555-8888
+            </a>
+            <a class="clink clink-gm" href="mailto:warungreservasi@senja.id">
+              <svg class="clink-icon" viewBox="0 0 24 24"><path fill="#EA4335" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.910 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+              warungreservasi@senja.id
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTI -->
-  <section id="testi">
-    <div class="sec-eyebrow">[ 04 / Ulasan ]</div>
-    <h2 class="sec-title reveal">Kata Mereka tentang Kami</h2>
-    <p class="sec-sub reveal">Kepuasan tamu adalah penghargaan tertinggi bagi setiap masak yang kami sajikan.</p>
+  <!-- ─── GALLERY ─── -->
+  <section class="section-gallery">
+    <div class="gallery-grid">
+      <div class="gallery-item g-tall reveal">
+        <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&q=80&auto=format&fit=crop" alt="Suasana makan malam" />
+        <div class="gallery-cap">Suasana Malam</div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80&auto=format&fit=crop" alt="Masakan tradisional" />
+        <div class="gallery-cap">Masakan Tradisional</div>
+      </div>
+      <div class="gallery-item reveal">
+        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?w=600&q=80&auto=format&fit=crop" alt="Cita rasa Nusantara" />
+        <div class="gallery-cap">Cita Rasa Nusantara</div>
+      </div>
+      <div class="gallery-item g-wide reveal">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=900&q=80&auto=format&fit=crop" alt="Bahan segar pilihan" />
+        <div class="gallery-cap">Bahan Segar Setiap Hari</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TESTI ─── -->
+  <section id="testi" class="section-testi">
+    <div class="section-head centered">
+      <div class="eyebrow reveal">04 / Ulasan</div>
+      <h2 class="sec-title reveal">Kata Mereka tentang Kami</h2>
+      <p class="sec-sub reveal">Kepuasan tamu adalah penghargaan tertinggi bagi setiap masak yang kami sajikan.</p>
+    </div>
     <div class="testi-grid">
       <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-rating">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
         <p class="testi-quote">"Rendangnya juara. Sudah coba di banyak tempat, tapi yang di sini memang beda levelnya. Daging empuk, bumbu meresap sampai dalam."</p>
         <div class="testi-author">
-          <div class="testi-name">Rina Kusumawati</div>
-          <div class="testi-role">Food Blogger, Jakarta</div>
+          <div class="testi-avatar">RK</div>
+          <div>
+            <div class="testi-name">Rina Kusumawati</div>
+            <div class="testi-role">Food Blogger, Jakarta</div>
+          </div>
         </div>
       </div>
       <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
+        <div class="testi-rating">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
         <p class="testi-quote">"Suasananya bikin betah, pelayanan ramah, dan makanannya konsisten enak dari pertama sampai sekarang sudah lebih dari dua tahun jadi pelanggan."</p>
         <div class="testi-author">
-          <div class="testi-name">Dimas Prasetyo</div>
-          <div class="testi-role">Pelanggan Setia</div>
+          <div class="testi-avatar">DP</div>
+          <div>
+            <div class="testi-name">Dimas Prasetyo</div>
+            <div class="testi-role">Pelanggan Setia</div>
+          </div>
         </div>
       </div>
       <div class="testi-card reveal">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Kami adakan arisan keluarga 20 orang di sini. Tim dapur sangat akomodatif, menyiapkan hidangan tepat waktu dengan kualitas yang luar biasa."</p>
+        <div class="testi-rating">
+          <span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span><span class="star"></span>
+        </div>
+        <p class="testi-quote">"Kami adakan arisan keluarga 20 orang di sini. Tim dapur sangat akomodatif, menyiapkan hidangan tepat waktu dengan kualitas luar biasa."</p>
         <div class="testi-author">
-          <div class="testi-name">Hartati Soeharto</div>
-          <div class="testi-role">Tamu Event, Surabaya</div>
+          <div class="testi-avatar">HS</div>
+          <div>
+            <div class="testi-name">Hartati Soeharto</div>
+            <div class="testi-role">Tamu Event, Surabaya</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ─── CTA ─── -->
+  <section class="section-cta">
+    <div class="cta-inner">
+      <div class="cta-left reveal">
+        <h2 class="cta-title">Nikmati Pengalaman<br>Makan yang Tak Terlupakan</h2>
+        <p class="cta-desc">Reservasi sekarang dan dapatkan meja pilihan terbaik untuk Anda dan keluarga.</p>
+        <a href="#reservasi" class="btn-cta">Pesan Meja Sekarang</a>
+      </div>
+      <div class="cta-img reveal">
+        <img
+          src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=700&q=80&auto=format&fit=crop"
+          alt="Hidangan lezat Warung Senja"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
   <footer>
-    <div class="footer-top">
+    <div class="footer-inner">
       <div class="footer-brand">
-        <div class="logo">Warung Senja</div>
+        <div class="footer-logo">Warung <em>Senja</em></div>
         <p>Menjaga cita rasa autentik Nusantara sejak 1978 — selalu segar, selalu dari hati.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/62274555888" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="mailto:warungreservasi@senja.id" aria-label="Email">
+            <svg viewBox="0 0 24 24"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.910 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          </a>
+          <a href="https://instagram.com/warungreservasisenja" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Menu</h4>
         <ul>
-          <li><a href="#">Makanan Utama</a></li>
-          <li><a href="#">Snack & Gorengan</a></li>
-          <li><a href="#">Minuman Tradisional</a></li>
-          <li><a href="#">Dessert</a></li>
+          <li><a href="#menu">Makanan Utama</a></li>
+          <li><a href="#menu">Snack &amp; Gorengan</a></li>
+          <li><a href="#menu">Minuman Tradisional</a></li>
+          <li><a href="#menu">Dessert</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>Informasi</h4>
         <ul>
-          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#story">Tentang Kami</a></li>
           <li><a href="#">Galeri Foto</a></li>
           <li><a href="#">Private Event</a></li>
           <li><a href="#">Katering</a></li>
@@ -290,15 +488,15 @@
       <div class="footer-col">
         <h4>Kontak</h4>
         <ul>
-          <li><a href="#">+62 274 555-8888</a></li>
-          <li><a href="#">warungreservasi@senja.id</a></li>
+          <li><a href="https://wa.me/62274555888">+62 274 555-8888</a></li>
+          <li><a href="mailto:warungreservasi@senja.id">warungreservasi@senja.id</a></li>
           <li><a href="#">Jl. Malioboro 47, Yogyakarta</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span class="footer-copy">2025 Warung Senja. Seluruh hak cipta dilindungi. — DEMO TEMPLATE</span>
-      <span class="footer-copy">Syarat & Ketentuan</span>
+      <span>2025 Warung Senja. Seluruh hak cipta dilindungi.</span>
+      <span>Syarat &amp; Ketentuan</span>
     </div>
   </footer>
 

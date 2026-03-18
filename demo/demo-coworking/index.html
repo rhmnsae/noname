@@ -7,686 +7,1332 @@
   <meta name="description" content="Coworking space modern di pusat kota. Hot desk, private office, meeting room, dan komunitas profesional yang tumbuh bersama." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --dark: #0e0e0f;
-      --dark2: #16161a;
-      --dark3: #1f1f24;
-      --card: #1a1a1f;
-      --gold: #b8912a;
-      --gold2: #d4a843;
-      --gold3: #e8c56a;
-      --gold-pale: rgba(184, 145, 42, 0.08);
-      --gold-border: rgba(184, 145, 42, 0.25);
-      --text: #e8e6e1;
-      --text2: #9d9b96;
-      --text3: #6b6966;
-      --border: rgba(255,255,255,0.06);
-      --border2: rgba(255,255,255,0.10);
+      --bg: #f5f3ef;
+      --bg2: #edeae4;
+      --bg3: #e4e0d8;
+      --ink: #1a1814;
+      --ink2: #3d3930;
+      --ink3: #7a7570;
+      --accent: #c4572a;
+      --accent2: #d4673a;
+      --accent-pale: rgba(196, 87, 42, 0.08);
+      --accent-border: rgba(196, 87, 42, 0.2);
       --white: #ffffff;
+      --border: rgba(26, 24, 20, 0.10);
+      --border2: rgba(26, 24, 20, 0.18);
+      --sidebar-w: min(300px, 88vw);
     }
+
     html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
-      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
       line-height: 1.6;
       overflow-x: hidden;
     }
+
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ── SIDEBAR ── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 400;
+      background: rgba(26, 24, 20, 0.5);
+      backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .sidebar-overlay.open { opacity: 1; }
+
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--sidebar-w);
+      max-width: 320px;
+      height: 100%;
+      height: 100dvh;
+      background: var(--ink);
+      z-index: 500;
+      transform: translateX(-100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sidebar.open { transform: translateX(0); }
+
+    .sidebar-header {
+      padding: 22px 24px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .sidebar-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--white);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .sidebar-logo span { color: var(--accent2); }
+
+    .sidebar-close {
+      width: 36px; height: 36px;
+      min-width: 36px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 4px;
+      cursor: pointer;
+      background: none;
+      color: rgba(255,255,255,0.5);
+      transition: all 0.2s;
+      font-size: 1.1rem;
+      line-height: 1;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sidebar-close:hover { border-color: var(--accent); color: var(--accent2); }
+
+    .sidebar-nav {
+      padding: 12px 0 16px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .sidebar-section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      padding: 0 20px;
+      margin-bottom: 4px;
+      margin-top: 20px;
+    }
+    .sidebar-section-label:first-child { margin-top: 8px; }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+      min-height: 54px;
+      -webkit-tap-highlight-color: transparent;
+      letter-spacing: 0.01em;
+    }
+    .sidebar-nav a:hover, .sidebar-nav a:active {
+      color: var(--white);
+      background: rgba(255,255,255,0.06);
+      border-left-color: var(--accent);
+      padding-left: 22px;
+    }
+    .sidebar-nav a svg {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+    .sidebar-nav a:hover svg, .sidebar-nav a:active svg { opacity: 1; }
+
+    .sidebar-nav-arrow {
+      margin-left: auto;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      font-size: 0.75rem;
+      color: var(--accent2);
+    }
+    .sidebar-nav a:hover .sidebar-nav-arrow,
+    .sidebar-nav a:active .sidebar-nav-arrow {
+      opacity: 1;
+      transform: translateX(3px);
+    }
+
+    .sidebar-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 8px 20px; }
+
+    .sidebar-contact {
+      padding: 18px 24px 24px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+    .sidebar-contact-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.53rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 12px;
+    }
+    .sidebar-contact-links { display: flex; flex-direction: column; gap: 8px; }
+    .sidebar-contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      transition: color 0.2s;
+      padding: 5px 0;
+      min-height: 40px;
+      -webkit-tap-highlight-color: transparent;
+      overflow: hidden;
+    }
+    .sidebar-contact-links a span.contact-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .sidebar-contact-links a:hover { color: var(--white); }
+    .sidebar-contact-links a .contact-icon {
+      width: 30px; height: 30px;
+      min-width: 30px;
+      border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon.wa { background: rgba(37, 211, 102, 0.15); }
+    .contact-icon.gmail { background: rgba(234, 67, 53, 0.15); }
+    .contact-icon svg { width: 14px; height: 14px; }
+
+    .sidebar-cta {
+      margin-top: 14px;
+      display: block;
+      text-align: center;
+      padding: 13px 12px;
+      background: var(--accent);
+      border-radius: 5px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      transition: background 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sidebar-cta:hover, .sidebar-cta:active { background: var(--accent2); }
 
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 68px;
-      background: rgba(14,14,15,0.90);
+      height: 64px;
+      background: rgba(245, 243, 239, 0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      padding: 0 64px;
+      padding: 0 48px;
       display: flex; align-items: center; justify-content: space-between;
     }
+
+    .nav-left { display: flex; align-items: center; gap: 40px; }
+
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem; font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--text);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      color: var(--ink);
+      letter-spacing: 0.01em;
+      white-space: nowrap;
     }
-    .nav-logo span { color: var(--gold2); }
+    .nav-logo span { color: var(--accent); }
+
     .nav-links {
-      display: flex; gap: 40px;
+      display: flex; gap: 32px;
     }
     .nav-links a {
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text2);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink3);
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--gold2); }
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+
+    .nav-contact-icons { display: flex; align-items: center; gap: 6px; }
+    .nav-icon-btn {
+      width: 34px; height: 34px;
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      background: transparent;
+      cursor: pointer;
+    }
+    .nav-icon-btn:hover { border-color: var(--accent-border); background: var(--accent-pale); }
+    .nav-icon-btn svg { width: 16px; height: 16px; }
+
     .nav-cta {
       display: inline-flex; align-items: center; gap: 8px;
-      background: var(--gold);
+      background: var(--ink);
       color: #fff;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 10px 24px; border-radius: 3px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border-radius: 4px;
       transition: background 0.2s;
       white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--gold2); }
-    .nav-ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--text); }
+    .nav-cta:hover { background: var(--ink2); }
+
+    .nav-ham {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .nav-ham span { display: block; width: 20px; height: 1.5px; background: var(--ink); transition: all 0.2s; }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      padding: 130px 64px 100px;
+      padding-top: 64px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
       position: relative;
       overflow: hidden;
-      background: var(--dark);
     }
-    .hero::before {
+
+    .hero-left {
+      padding: 80px 48px 80px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg);
+      position: relative;
+    }
+
+    .hero-left::after {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        radial-gradient(ellipse 60% 50% at 10% 50%, rgba(184,145,42,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 60% at 90% 20%, rgba(184,145,42,0.04) 0%, transparent 60%);
+      position: absolute;
+      top: 10%;
+      left: -60px;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(196,87,42,0.06) 0%, transparent 70%);
       pointer-events: none;
     }
-    .hero-label {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold2);
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: block;
+      width: 28px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 4.5vw, 4.8rem);
+      font-weight: 400;
+      line-height: 1.05;
+      color: var(--ink);
       margin-bottom: 28px;
     }
-    .hero-label::before {
-      content: '';
-      display: inline-block;
-      width: 32px; height: 1px;
-      background: var(--gold2);
-    }
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 5vw, 4.2rem);
-      font-weight: 600;
-      line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin-bottom: 24px;
-      color: var(--white);
-    }
     .hero h1 em {
-      font-style: normal;
-      color: var(--gold2);
+      font-style: italic;
+      color: var(--accent);
     }
+
     .hero-desc {
-      font-size: 0.95rem; font-weight: 300;
-      color: var(--text2);
-      line-height: 1.8;
-      max-width: 440px;
-      margin-bottom: 40px;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--ink3);
+      line-height: 1.85;
+      max-width: 400px;
+      margin-bottom: 44px;
     }
+
     .hero-btns {
-      display: flex; gap: 14px; flex-wrap: wrap;
-    }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--gold);
-      color: #fff;
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 14px 32px; border-radius: 3px;
-      transition: all 0.25s;
-    }
-    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: transparent;
-      color: var(--text);
-      font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 14px 32px; border-radius: 3px;
-      border: 1px solid var(--border2);
-      transition: all 0.25s;
-    }
-    .btn-secondary:hover { border-color: var(--gold-border); color: var(--gold2); }
-
-    /* Hero Right — Stats */
-    .hero-right { display: flex; flex-direction: column; gap: 14px; }
-    .hero-stats-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden;
-    }
-    .stat-item {
-      background: var(--card);
-      padding: 24px 22px;
-      text-align: center;
-    }
-    .stat-val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem; font-weight: 600;
-      color: var(--white);
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.68rem; font-weight: 400;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text3);
-      margin-top: 6px;
-    }
-    .avail-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 22px 24px;
-    }
-    .avail-header {
-      font-size: 0.62rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border);
-    }
-    .avail-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 9px 0;
-      border-bottom: 1px solid var(--border);
-    }
-    .avail-row:last-child { border-bottom: none; }
-    .avail-type { font-size: 0.8rem; color: var(--text2); }
-    .tag-green {
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
-      padding: 3px 10px; border-radius: 2px;
-      background: rgba(16,185,129,0.1); color: #34d399;
-    }
-    .tag-amber {
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
-      padding: 3px 10px; border-radius: 2px;
-      background: rgba(184,145,42,0.12); color: var(--gold3);
-    }
-    .tag-red {
-      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
-      padding: 3px 10px; border-radius: 2px;
-      background: rgba(239,68,68,0.1); color: #f87171;
-    }
-
-    /* ── DIVIDER ── */
-    .line { height: 1px; background: var(--border); margin: 0 64px; }
-
-    /* ── SECTIONS ── */
-    section { padding: 96px 64px; }
-    .sec-label {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold2);
-      margin-bottom: 20px;
-    }
-    .sec-label::before {
-      content: '';
-      display: inline-block; width: 22px; height: 1px;
-      background: var(--gold2);
-    }
-    .sec-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 600;
-      line-height: 1.15;
-      color: var(--white);
-      margin-bottom: 14px;
-    }
-    .sec-sub {
-      font-size: 0.9rem; font-weight: 300;
-      color: var(--text2);
-      line-height: 1.8;
-      max-width: 480px;
+      display: flex; gap: 12px; flex-wrap: wrap;
       margin-bottom: 56px;
     }
 
-    /* ── SPACE SECTION ── */
-    #space { background: var(--dark2); }
-    .space-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; }
-    .sp-card {
-      background: var(--card);
-      transition: background 0.3s;
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ink);
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 4px;
+      transition: all 0.22s;
     }
-    .sp-card:hover { background: #1e1e24; }
-    .sp-visual {
-      height: 160px;
+    .btn-primary:hover { background: var(--ink2); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: var(--ink2);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 4px;
+      border: 1px solid var(--border2);
+      transition: all 0.22s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .btn-wa {
+      background: #25d366;
+      color: #fff;
+    }
+    .btn-wa:hover { background: #1da851; transform: translateY(-1px); }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    .hero-stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      color: var(--ink);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hero-stat-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+
+    .hero-right {
       position: relative;
       overflow: hidden;
-      display: flex; align-items: flex-end;
-      padding: 0;
     }
-    .sp-visual-inner {
+    .hero-right img {
       width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
+      object-fit: cover;
+      object-position: center;
     }
-    .sp-visual-label {
-      position: absolute; bottom: 14px; left: 18px;
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
+    .hero-right-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(245,243,239,0.15) 0%, transparent 40%);
+    }
+    .hero-avail-card {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      right: 32px;
+      background: rgba(245, 243, 239, 0.96);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .avail-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 12px;
+    }
+    .avail-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .avail-row:last-child { border-bottom: none; }
+    .avail-type { font-size: 0.78rem; color: var(--ink2); }
+    .tag-green {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 3px 9px; border-radius: 3px;
+      background: rgba(16,185,129,0.1); color: #059669;
+    }
+    .tag-amber {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 3px 9px; border-radius: 3px;
+      background: rgba(196,87,42,0.1); color: var(--accent);
+    }
+    .tag-red {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.04em;
+      padding: 3px 9px; border-radius: 3px;
+      background: rgba(239,68,68,0.1); color: #dc2626;
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--ink);
+      color: var(--white);
+      overflow: hidden;
+      padding: 10px 0;
+      border-top: 1px solid var(--border);
+    }
+    .ticker-inner {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker-scroll 30s linear infinite;
+    }
+    .ticker-inner span {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       color: rgba(255,255,255,0.4);
+      padding: 0 40px;
+    }
+    .ticker-inner span strong {
+      color: var(--accent2);
+      font-weight: 700;
+    }
+    @keyframes ticker-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 96px 48px; }
+    .sec-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+    }
+    .sec-eyebrow::before {
+      content: '';
+      display: block; width: 20px; height: 1px;
+      background: var(--accent);
+    }
+    .sec-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 14px;
+    }
+    .sec-sub {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--ink3);
+      line-height: 1.8;
+      max-width: 460px;
+      margin-bottom: 52px;
+    }
+
+    /* ── DIVIDER ── */
+    .line { height: 1px; background: var(--border); margin: 0 48px; }
+
+    /* ── SPACE SECTION ── */
+    #space { background: var(--bg); }
+    .space-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .sp-card {
+      background: var(--white);
+      transition: background 0.25s;
+    }
+    .sp-card:hover { background: #faf9f7; }
+    .sp-visual {
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+    .sp-visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .sp-card:hover .sp-visual img { transform: scale(1.03); }
+    .sp-visual-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: rgba(245,243,239,0.92);
+      color: var(--ink2);
+      backdrop-filter: blur(4px);
     }
     .sp-body { padding: 24px; }
-    .sp-badge {
-      display: inline-block;
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 3px 9px; border-radius: 2px;
-      margin-bottom: 12px;
-      background: var(--gold-pale);
-      color: var(--gold2);
-      border: 1px solid var(--gold-border);
-    }
     .sp-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem; font-weight: 600;
-      color: var(--white);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--ink);
       margin-bottom: 8px;
     }
     .sp-desc {
-      font-size: 0.8rem; font-weight: 300;
-      color: var(--text2); line-height: 1.7;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--ink3);
+      line-height: 1.75;
       margin-bottom: 20px;
     }
-    .sp-footer { display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 1px solid var(--border); }
-    .sp-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem; font-weight: 600; color: var(--gold2);
+    .sp-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
     }
-    .sp-price small { font-family: 'Inter', sans-serif; font-size: 0.7rem; font-weight: 300; color: var(--text3); }
-    .sp-cap { font-size: 0.7rem; color: var(--text3); }
+    .sp-price {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--accent);
+    }
+    .sp-price small {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 300;
+      color: var(--ink3);
+    }
+    .sp-cap {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ink3);
+    }
+
+    /* ── GALLERY STRIP ── */
+    .gallery-strip {
+      padding: 0 48px 80px;
+      background: var(--bg);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 220px;
+      gap: 8px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .gallery-cell {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .gallery-cell:hover img { transform: scale(1.05); }
+    .gallery-cell-label {
+      position: absolute;
+      bottom: 10px; left: 12px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      background: rgba(26,24,20,0.5);
+      padding: 3px 8px;
+      border-radius: 2px;
+      backdrop-filter: blur(4px);
+    }
 
     /* ── FACILITIES ── */
-    #fitur { background: var(--dark); }
-    .f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+    #fitur { background: var(--ink); }
+    #fitur .sec-eyebrow { color: var(--accent2); }
+    #fitur .sec-eyebrow::before { background: var(--accent2); }
+    #fitur .sec-title { color: var(--white); }
+    #fitur .sec-sub { color: rgba(255,255,255,0.45); }
+    .f-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+      overflow: hidden;
+    }
     .f-card {
-      background: var(--dark2);
-      padding: 32px;
-      transition: background 0.3s;
+      background: rgba(255,255,255,0.03);
+      padding: 36px 32px;
+      transition: background 0.25s;
+      position: relative;
+      overflow: hidden;
     }
-    .f-card:hover { background: var(--dark3); }
+    .f-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 0;
+      background: var(--accent);
+      transition: height 0.3s ease;
+    }
+    .f-card:hover { background: rgba(255,255,255,0.05); }
+    .f-card:hover::before { height: 100%; }
     .f-num {
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      display: flex; align-items: center; gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 22px;
     }
-    .f-num::after { content: ''; flex: 1; height: 1px; background: var(--gold-border); max-width: 40px; }
     .f-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 600;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
       color: var(--white);
       margin-bottom: 10px;
     }
     .f-card p {
-      font-size: 0.8rem; font-weight: 300;
-      color: var(--text2); line-height: 1.75;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
     }
 
     /* ── PAKET ── */
-    #paket { background: var(--dark2); }
-    .pk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .pk-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 32px;
-      transition: border-color 0.3s;
+    #paket { background: var(--bg2); }
+    .pk-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
-    .pk-card:hover { border-color: var(--border2); }
+    .pk-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 32px;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+    .pk-card:hover { box-shadow: 0 8px 32px rgba(26,24,20,0.08); transform: translateY(-2px); }
     .pk-card.featured {
-      border-color: var(--gold-border);
-      background: linear-gradient(135deg, var(--card) 0%, rgba(184,145,42,0.04) 100%);
+      border-color: var(--accent);
+      background: var(--ink);
     }
     .pk-tier {
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text3);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink3);
       margin-bottom: 20px;
     }
-    .pk-tier.gold { color: var(--gold2); }
+    .pk-card.featured .pk-tier { color: var(--accent2); }
     .pk-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 600;
-      color: var(--white);
-      margin-bottom: 6px;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 8px;
     }
+    .pk-card.featured .pk-name { color: var(--white); }
     .pk-desc {
-      font-size: 0.78rem; font-weight: 300;
-      color: var(--text2);
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--ink3);
       margin-bottom: 24px;
-      line-height: 1.6;
+      line-height: 1.65;
     }
+    .pk-card.featured .pk-desc { color: rgba(255,255,255,0.45); }
     .pk-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem; font-weight: 600;
-      color: var(--white);
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.2rem;
+      color: var(--ink);
       line-height: 1;
       margin-bottom: 4px;
     }
-    .pk-per {
-      font-size: 0.72rem; color: var(--text3);
-      margin-bottom: 24px;
-    }
+    .pk-card.featured .pk-price { color: var(--white); }
+    .pk-per { font-size: 0.72rem; color: var(--ink3); margin-bottom: 24px; }
+    .pk-card.featured .pk-per { color: rgba(255,255,255,0.35); }
     .pk-divider { height: 1px; background: var(--border); margin-bottom: 22px; }
-    .pk-feats { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .pk-card.featured .pk-divider { background: rgba(255,255,255,0.1); }
+    .pk-feats { display: flex; flex-direction: column; gap: 11px; margin-bottom: 28px; }
     .pk-feat {
       display: flex; align-items: flex-start; gap: 10px;
-      font-size: 0.78rem; font-weight: 300;
-      color: var(--text2);
+      font-size: 0.8rem; font-weight: 300;
+      color: var(--ink2);
     }
+    .pk-card.featured .pk-feat { color: rgba(255,255,255,0.6); }
     .pk-feat::before {
       content: '';
-      width: 4px; height: 4px;
-      background: var(--gold);
+      width: 5px; height: 5px;
+      background: var(--accent);
       border-radius: 50%;
       flex-shrink: 0;
       margin-top: 7px;
     }
     .pk-btn {
       display: block; text-align: center;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
       padding: 13px;
-      border-radius: 3px;
+      border-radius: 4px;
       transition: all 0.2s;
     }
     .pk-btn.outline {
       border: 1px solid var(--border2);
-      color: var(--text2);
+      color: var(--ink2);
     }
-    .pk-btn.outline:hover { border-color: var(--gold-border); color: var(--gold2); }
+    .pk-btn.outline:hover { border-color: var(--accent); color: var(--accent); }
     .pk-btn.solid {
-      background: var(--gold);
+      background: var(--accent);
       color: #fff;
       border: 1px solid transparent;
     }
-    .pk-btn.solid:hover { background: var(--gold2); }
+    .pk-btn.solid:hover { background: var(--accent2); }
+    .pk-btn.dark {
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .pk-btn.dark:hover { background: rgba(255,255,255,0.15); }
 
     /* ── TESTIMONIAL ── */
-    #testi { background: var(--dark); }
-    .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    #testi { background: var(--bg); }
+    .t-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .t-card {
-      background: var(--dark2);
+      background: var(--white);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 30px;
-      transition: border-color 0.3s;
+      border-radius: 10px;
+      padding: 32px;
+      transition: box-shadow 0.25s;
     }
-    .t-card:hover { border-color: var(--border2); }
+    .t-card:hover { box-shadow: 0 6px 24px rgba(26,24,20,0.07); }
+    .t-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border: 2px solid var(--border);
+    }
+    .t-avatar img { width: 100%; height: 100%; object-fit: cover; }
     .t-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-style: italic;
-      color: var(--text); line-height: 1.7;
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.98rem;
+      font-style: italic;
+      color: var(--ink2);
+      line-height: 1.75;
       margin-bottom: 20px;
     }
-    .t-rule { height: 1px; background: var(--border); margin-bottom: 16px; }
-    .t-name {
-      font-size: 0.82rem; font-weight: 500;
-      color: var(--white);
+    .t-rule { height: 1px; background: var(--border); margin-bottom: 14px; }
+    .t-name { font-size: 0.82rem; font-weight: 600; color: var(--ink); }
+    .t-role {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ink3);
+      margin-top: 2px;
     }
-    .t-role { font-size: 0.72rem; color: var(--text3); margin-top: 3px; }
 
-    /* ── LOKASI / WHY ── */
-    #lokasi { background: var(--dark2); }
-    .lokasi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .lokasi-map {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      height: 320px;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 10px;
+    /* ── LOKASI ── */
+    #lokasi { background: var(--bg2); }
+    .lokasi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+    .lokasi-img {
+      border-radius: 10px;
+      overflow: hidden;
+      height: 360px;
     }
-    .lokasi-map-pin {
-      width: 14px; height: 14px;
-      border: 2px solid var(--gold2);
-      border-radius: 50%;
-    }
-    .lokasi-map-label {
-      font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text3);
-    }
+    .lokasi-img img { width: 100%; height: 100%; object-fit: cover; }
     .lokasi-info { display: flex; flex-direction: column; gap: 20px; }
     .lokasi-item { display: flex; align-items: flex-start; gap: 16px; }
     .lokasi-icon {
-      width: 36px; height: 36px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      background: var(--card);
+      width: 38px; height: 38px;
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      background: var(--white);
       flex-shrink: 0;
       display: flex; align-items: center; justify-content: center;
     }
-    .lokasi-icon svg { width: 14px; height: 14px; fill: none; stroke: var(--gold2); stroke-width: 1.5; }
-    .lokasi-item-title { font-size: 0.8rem; font-weight: 500; color: var(--white); margin-bottom: 3px; }
-    .lokasi-item-text { font-size: 0.78rem; font-weight: 300; color: var(--text2); line-height: 1.6; }
+    .lokasi-icon svg { width: 15px; height: 15px; fill: none; stroke: var(--accent); stroke-width: 1.5; }
+    .lokasi-item-title { font-size: 0.82rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+    .lokasi-item-text { font-size: 0.8rem; font-weight: 300; color: var(--ink3); line-height: 1.65; }
+
+    /* ── CONTACT BAR ── */
+    .contact-bar {
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-bar-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink3);
+    }
+    .contact-bar-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .contact-bar-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .contact-bar-link svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .contact-bar-link.wa {
+      background: #25d366;
+      color: #fff;
+    }
+    .contact-bar-link.wa:hover { background: #1da851; }
+    .contact-bar-link.gmail {
+      background: #fff;
+      color: var(--ink2);
+      border: 1px solid var(--border2);
+    }
+    .contact-bar-link.gmail:hover { border-color: var(--accent); color: var(--accent); }
 
     /* ── CTA ── */
     #cta {
-      padding: 100px 64px;
-      background: var(--dark);
-      border-top: 1px solid var(--border);
+      padding: 100px 48px;
+      background: var(--ink);
       text-align: center;
     }
-    #cta .cta-inner {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    #cta .cta-label {
+    .cta-inner { max-width: 640px; margin: 0 auto; }
+    .cta-label {
       display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold2);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
       margin-bottom: 20px;
     }
-    #cta .cta-label::before,
-    #cta .cta-label::after {
+    .cta-label::before, .cta-label::after {
       content: '';
-      display: inline-block; width: 22px; height: 1px;
-      background: var(--gold2);
+      display: block; width: 20px; height: 1px;
+      background: var(--accent2);
     }
     #cta h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 600;
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 400;
       color: var(--white);
       margin-bottom: 16px;
-      line-height: 1.2;
+      line-height: 1.15;
     }
     #cta p {
-      font-size: 0.9rem; font-weight: 300;
-      color: var(--text2);
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
       margin-bottom: 36px;
       line-height: 1.8;
     }
-    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white);
+      color: var(--ink);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 4px;
+      transition: all 0.22s;
+    }
+    .btn-cta-white:hover { background: var(--bg); }
+    .btn-cta-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 13px 28px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.22s;
+    }
+    .btn-cta-ghost:hover { border-color: rgba(255,255,255,0.35); color: var(--white); }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark2);
+      background: var(--bg2);
       border-top: 1px solid var(--border);
-      padding: 56px 64px 28px;
+      padding: 56px 48px 28px;
     }
-    .ft-wrap { display: flex; justify-content: space-between; gap: 48px; margin-bottom: 44px; }
-    .ft-brand .ft-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem; font-weight: 600;
-      color: var(--white);
-      margin-bottom: 10px;
+    .ft-wrap {
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1fr 1.4fr;
+      gap: 48px;
+      margin-bottom: 44px;
     }
-    .ft-brand .ft-logo span { color: var(--gold2); }
+    .ft-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--ink);
+      margin-bottom: 12px;
+    }
+    .ft-logo span { color: var(--accent); }
     .ft-brand p {
-      font-size: 0.78rem; font-weight: 300;
-      color: var(--text3);
-      max-width: 220px; line-height: 1.7;
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: var(--ink3);
+      max-width: 220px;
+      line-height: 1.75;
     }
     .ft-col h4 {
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text3);
-      margin-bottom: 16px;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 18px;
     }
     .ft-col ul { display: flex; flex-direction: column; gap: 10px; }
     .ft-col a {
-      font-size: 0.78rem; font-weight: 300;
-      color: var(--text3);
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--ink3);
       transition: color 0.2s;
     }
-    .ft-col a:hover { color: var(--gold2); }
+    .ft-col a:hover { color: var(--ink); }
+    .ft-contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--ink3);
+      transition: color 0.2s;
+    }
+    .ft-contact-link:hover { color: var(--ink); }
+    .ft-contact-link svg { width: 13px; height: 13px; }
     .ft-bottom {
       padding-top: 22px;
       border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .ft-copy { font-size: 0.7rem; color: var(--text3); }
-    .ft-tag {
-      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--border2);
+    .ft-copy {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--ink3);
     }
 
     /* ── REVEAL ── */
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1100px) {
-      nav { padding: 0 40px; }
-      .hero { padding: 110px 40px 80px; gap: 50px; }
-      section { padding: 72px 40px; }
-      .line { margin: 0 40px; }
-      footer { padding: 48px 40px 24px; }
-      #cta { padding: 80px 40px; }
+      nav { padding: 0 28px; }
+      section { padding: 72px 28px; }
+      .line { margin: 0 28px; }
+      .hero-left { padding: 80px 28px 64px; }
+      .gallery-strip { padding: 0 28px 64px; }
+      .contact-bar { padding: 20px 28px; }
+      footer { padding: 48px 28px 24px; }
+      #cta { padding: 80px 28px; }
     }
-    @media (max-width: 860px) {
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      .nav-ham { display: flex; }
-      .hero { grid-template-columns: 1fr; padding: 104px 24px 64px; gap: 0; }
-      .hero-right { display: none; }
-      section { padding: 56px 24px; }
-      .line { margin: 0 24px; }
-      .space-grid, .f-grid, .pk-grid, .t-grid { grid-template-columns: 1fr; }
-      .f-grid { background: none; border-collapse: separate; border: none; }
-      .f-card { border-radius: 8px; border: 1px solid var(--border); }
-      .space-grid { gap: 12px; background: none; }
-      .sp-card { border-radius: 8px; border: 1px solid var(--border); }
+
+    @media (max-width: 900px) {
+      .ft-wrap { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .space-grid { grid-template-columns: 1fr; }
+      .pk-grid { grid-template-columns: 1fr; }
+      .f-grid { grid-template-columns: 1fr 1fr; }
       .lokasi-grid { grid-template-columns: 1fr; }
-      #cta { padding: 56px 24px; }
-      footer { padding: 40px 24px 20px; }
-      .ft-wrap { flex-direction: column; gap: 32px; }
+      .t-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav-contact-icons { display: none; }
+      .nav-cta { display: none; }
+      .nav-ham { display: flex; }
+
+      /* Sidebar mobile tweaks */
+      :root { --sidebar-w: min(300px, 88vw); }
+      .sidebar-header { padding: 18px 20px 16px; }
+      .sidebar-section-label { padding: 0 16px; }
+      .sidebar-nav a { padding: 14px 16px; font-size: 0.95rem; }
+      .sidebar-nav a:hover { padding-left: 18px; }
+      .sidebar-divider { margin: 8px 16px; }
+      .sidebar-contact { padding: 16px 20px 20px; }
+
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 88px 20px 48px; }
+      .hero-right { height: 300px; }
+      .hero-avail-card { left: 16px; right: 16px; bottom: 16px; }
+      .hero-stats { gap: 20px; }
+
+      section { padding: 56px 20px; }
+      .line { margin: 0 20px; }
+      .gallery-strip { padding: 0 20px 56px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 180px 180px; }
+      .gallery-grid .gallery-cell:first-child { grid-column: 1 / -1; }
+      .contact-bar { padding: 18px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+      .contact-bar-links { width: 100%; }
+      .contact-bar-link { flex: 1; justify-content: center; }
+      footer { padding: 40px 20px 20px; }
+      .ft-wrap { grid-template-columns: 1fr; gap: 24px; }
       .ft-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      #cta { padding: 56px 20px; }
+      .f-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      :root { --sidebar-w: 92vw; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero-stats { flex-wrap: wrap; gap: 16px; }
+      .hero-stat-item { min-width: calc(50% - 8px); }
+      .gallery-grid { grid-template-rows: 150px 150px; }
+      .sidebar-header { padding: 16px 16px 14px; }
+      .sidebar-section-label { padding: 0 14px; }
+      .sidebar-nav a { padding: 14px 14px; font-size: 0.92rem; }
+      .sidebar-nav a:hover { padding-left: 16px; }
+      .sidebar-divider { margin: 8px 14px; }
+      .sidebar-contact { padding: 14px 16px 18px; }
+      .sidebar-contact-links a { font-size: 0.8rem; }
     }
   </style>
 </head>
 <body>
 
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar" aria-hidden="true">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">The<span>Hub</span> Cowork</div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Tutup menu">&#x2715;</button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Menu</div>
+      <a href="#space" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+        Tipe Ruang
+        <span class="sidebar-nav-arrow">›</span>
+      </a>
+      <a href="#fitur" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Fasilitas
+        <span class="sidebar-nav-arrow">›</span>
+      </a>
+      <a href="#paket" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8a2 2 0 0 0-2 2v2h12V5a2 2 0 0 0-2-2z"/></svg>
+        Paket Harga
+        <span class="sidebar-nav-arrow">›</span>
+      </a>
+      <a href="#testi" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Testimoni
+        <span class="sidebar-nav-arrow">›</span>
+      </a>
+      <a href="#lokasi" class="sidebar-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Lokasi
+        <span class="sidebar-nav-arrow">›</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-contact">
+      <div class="sidebar-contact-label">Hubungi Kami</div>
+      <div class="sidebar-contact-links">
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">
+          <span class="contact-icon wa">
+            <svg viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.533 5.853L.065 24l6.305-1.645A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.213-3.72.97.993-3.63-.234-.373A9.79 9.79 0 0 1 2.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+          </span>
+          <span class="contact-text">+62 812 3456 7890</span>
+        </a>
+        <a href="mailto:hello@thehubcowork.id">
+          <span class="contact-icon gmail">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#ea4335" stroke-width="1.5"/><path d="M22 6l-10 7L2 6" stroke="#ea4335" stroke-width="1.5"/></svg>
+          </span>
+          <span class="contact-text">hello@thehubcowork.id</span>
+        </a>
+      </div>
+      <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20tour%20gratis." class="sidebar-cta" target="_blank" rel="noopener">Jadwalkan Tour Gratis</a>
+    </div>
+  </aside>
+
   <!-- NAV -->
   <nav>
-    <div class="nav-logo">The<span>Hub</span> Cowork</div>
-    <ul class="nav-links">
-      <li><a href="#space">Ruang</a></li>
-      <li><a href="#fitur">Fasilitas</a></li>
-      <li><a href="#paket">Paket</a></li>
-      <li><a href="#lokasi">Lokasi</a></li>
-    </ul>
-    <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20tour%20gratis." class="nav-cta" target="_blank" rel="noopener">
-      Jadwalkan Tour
-    </a>
-    <div class="nav-ham"><span></span><span></span><span></span></div>
+    <div class="nav-left">
+      <div class="nav-logo">The<span>Hub</span> Cowork</div>
+      <ul class="nav-links">
+        <li><a href="#space">Ruang</a></li>
+        <li><a href="#fitur">Fasilitas</a></li>
+        <li><a href="#paket">Paket</a></li>
+        <li><a href="#lokasi">Lokasi</a></li>
+      </ul>
+    </div>
+    <div class="nav-right">
+      <div class="nav-contact-icons">
+        <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="nav-icon-btn" title="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.533 5.853L.065 24l6.305-1.645A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.213-3.72.97.993-3.63-.234-.373A9.79 9.79 0 0 1 2.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+        </a>
+        <a href="mailto:hello@thehubcowork.id" class="nav-icon-btn" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#ea4335" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+        </a>
+      </div>
+      <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20tour%20gratis." class="nav-cta" target="_blank" rel="noopener">
+        Jadwalkan Tour
+      </a>
+      <button class="nav-ham" id="navHam" aria-label="Buka menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div>
-      <div class="hero-label">Coworking Space Profesional</div>
-      <h1>Ruang untuk <em>Bekerja</em>,<br>Komunitas untuk Berkembang</h1>
+    <div class="hero-left">
+      <div class="hero-tag">Coworking Space Profesional — Jakarta</div>
+      <h1>Ruang untuk<br><em>Bekerja,</em><br>Tumbuh Bersama</h1>
       <p class="hero-desc">
         The Hub hadir di jantung kota sebagai ruang kerja yang dirancang untuk produktivitas, kolaborasi, dan pertumbuhan — bagi freelancer, startup, hingga enterprise.
       </p>
       <div class="hero-btns">
-        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20bertanya%20tentang%20paket%20membership." class="btn-primary" target="_blank" rel="noopener">
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20bertanya%20tentang%20paket%20membership." class="btn-primary btn-wa" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.533 5.853L.065 24l6.305-1.645A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.213-3.72.97.993-3.63-.234-.373A9.79 9.79 0 0 1 2.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
           Tanya via WhatsApp
         </a>
         <a href="#space" class="btn-secondary">Lihat Ruang</a>
       </div>
-    </div>
-    <div class="hero-right">
-      <div class="hero-stats-grid">
-        <div class="stat-item">
-          <div class="stat-val">340</div>
-          <div class="stat-label">Total Seat</div>
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">340</div>
+          <div class="hero-stat-label">Total Seat</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-val">12</div>
-          <div class="stat-label">Meeting Room</div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">12</div>
+          <div class="hero-stat-label">Meeting Room</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-val">24/7</div>
-          <div class="stat-label">Akses</div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">24/7</div>
+          <div class="hero-stat-label">Akses</div>
         </div>
-        <div class="stat-item">
-          <div class="stat-val">800+</div>
-          <div class="stat-label">Member Aktif</div>
+        <div class="hero-stat-item">
+          <div class="hero-stat-num">800+</div>
+          <div class="hero-stat-label">Member</div>
         </div>
       </div>
-      <div class="avail-card">
-        <div class="avail-header">Ketersediaan Hari Ini</div>
+    </div>
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=85&auto=format&fit=crop" alt="The Hub Cowork — Open Area" loading="eager" />
+      <div class="hero-right-overlay"></div>
+      <div class="hero-avail-card">
+        <div class="avail-title">Ketersediaan Hari Ini</div>
         <div class="avail-row">
           <span class="avail-type">Hot Desk — Open Area</span>
-          <span class="tag-green">28 Seat Tersedia</span>
+          <span class="tag-green">28 Tersedia</span>
         </div>
         <div class="avail-row">
           <span class="avail-type">Dedicated Desk</span>
           <span class="tag-amber">2 Slot Tersisa</span>
         </div>
         <div class="avail-row">
-          <span class="avail-type">Private Office (4–8 pax)</span>
+          <span class="avail-type">Private Office</span>
           <span class="tag-green">3 Unit Tersedia</span>
         </div>
         <div class="avail-row">
           <span class="avail-type">Meeting Room</span>
-          <span class="tag-amber">Tersedia Sesi Sore</span>
+          <span class="tag-amber">Sesi Sore</span>
         </div>
       </div>
     </div>
   </section>
 
-  <div class="line"></div>
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-inner">
+      <span>Internet <strong>1 Gbps</strong></span>
+      <span>Akses <strong>24/7</strong></span>
+      <span>800+ <strong>Member Aktif</strong></span>
+      <span>12 <strong>Meeting Room</strong></span>
+      <span>Lokasi <strong>Strategis Sudirman</strong></span>
+      <span>Komunitas <strong>Profesional</strong></span>
+      <span>Day Pass <strong>Rp 75.000</strong></span>
+      <span>Event Space <strong>200 Pax</strong></span>
+      <span>Internet <strong>1 Gbps</strong></span>
+      <span>Akses <strong>24/7</strong></span>
+      <span>800+ <strong>Member Aktif</strong></span>
+      <span>12 <strong>Meeting Room</strong></span>
+      <span>Lokasi <strong>Strategis Sudirman</strong></span>
+      <span>Komunitas <strong>Profesional</strong></span>
+      <span>Day Pass <strong>Rp 75.000</strong></span>
+      <span>Event Space <strong>200 Pax</strong></span>
+    </div>
+  </div>
 
   <!-- SPACE -->
   <section id="space">
-    <div class="sec-label">Tipe Ruang</div>
+    <div class="sec-eyebrow">Tipe Ruang</div>
     <h2 class="sec-title reveal">Pilih Ruang yang Tepat</h2>
     <p class="sec-sub reveal">Dari hot desk fleksibel harian hingga private office permanen — semua tersedia sesuai kebutuhan Anda.</p>
     <div class="space-grid">
       <div class="sp-card reveal">
-        <div class="sp-visual" style="background: linear-gradient(135deg, #1a1814 0%, #221e13 100%);">
-          <div class="sp-visual-inner">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.15;">
-              <rect x="8" y="20" width="32" height="4" rx="1" fill="#b8912a"/>
-              <rect x="12" y="10" width="24" height="10" rx="1" fill="#b8912a"/>
-              <rect x="6" y="24" width="4" height="16" rx="1" fill="#b8912a"/>
-              <rect x="38" y="24" width="4" height="16" rx="1" fill="#b8912a"/>
-            </svg>
-          </div>
-          <span class="sp-visual-label">Open Area</span>
+        <div class="sp-visual">
+          <img src="https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=600&q=80&auto=format&fit=crop" alt="Hot Desk Open Area" loading="lazy" />
+          <span class="sp-visual-badge">Paling Fleksibel</span>
         </div>
         <div class="sp-body">
-          <span class="sp-badge">Paling Fleksibel</span>
           <div class="sp-name">Hot Desk</div>
           <div class="sp-desc">Tempat duduk bebas di open area yang nyaman dengan meja ergonomis, loker personal, dan akses internet gigabit.</div>
           <div class="sp-footer">
@@ -696,18 +1342,11 @@
         </div>
       </div>
       <div class="sp-card reveal">
-        <div class="sp-visual" style="background: linear-gradient(135deg, #131a14 0%, #162118 100%);">
-          <div class="sp-visual-inner">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.15;">
-              <rect x="6" y="14" width="36" height="20" rx="1" fill="#b8912a"/>
-              <rect x="10" y="8" width="28" height="6" rx="1" fill="#b8912a"/>
-              <rect x="16" y="34" width="16" height="6" rx="1" fill="#b8912a"/>
-            </svg>
-          </div>
-          <span class="sp-visual-label">Dedicated Area</span>
+        <div class="sp-visual">
+          <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=600&q=80&auto=format&fit=crop" alt="Dedicated Desk" loading="lazy" />
+          <span class="sp-visual-badge">Terpopuler</span>
         </div>
         <div class="sp-body">
-          <span class="sp-badge">Terpopuler</span>
           <div class="sp-name">Dedicated Desk</div>
           <div class="sp-desc">Meja tetap khusus Anda dengan kursi ergonomis premium, akses 24/7, lemari kunci pribadi, dan alamat bisnis resmi.</div>
           <div class="sp-footer">
@@ -717,19 +1356,11 @@
         </div>
       </div>
       <div class="sp-card reveal">
-        <div class="sp-visual" style="background: linear-gradient(135deg, #131519 0%, #151a22 100%);">
-          <div class="sp-visual-inner">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="opacity:0.15;">
-              <rect x="4" y="6" width="40" height="36" rx="2" fill="#b8912a"/>
-              <rect x="10" y="12" width="16" height="12" rx="1" fill="#0e0e0f"/>
-              <rect x="30" y="12" width="8" height="12" rx="1" fill="#0e0e0f"/>
-              <rect x="10" y="28" width="28" height="6" rx="1" fill="#0e0e0f"/>
-            </svg>
-          </div>
-          <span class="sp-visual-label">Private Office</span>
+        <div class="sp-visual">
+          <img src="https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=600&q=80&auto=format&fit=crop" alt="Private Office" loading="lazy" />
+          <span class="sp-visual-badge">Tim & Startup</span>
         </div>
         <div class="sp-body">
-          <span class="sp-badge">Tim & Startup</span>
           <div class="sp-name">Private Office</div>
           <div class="sp-desc">Ruang tertutup untuk tim 4–12 orang. Interior brandable, akses kartu, CCTV, AC individual, dan resepsionis bersama.</div>
           <div class="sp-footer">
@@ -741,11 +1372,29 @@
     </div>
   </section>
 
+  <!-- GALLERY STRIP -->
+  <div class="gallery-strip">
+    <div class="gallery-grid">
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&q=80&auto=format&fit=crop" alt="Suasana The Hub Cowork" loading="lazy" />
+        <span class="gallery-cell-label">Open Area</span>
+      </div>
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1577412647305-991150c7d163?w=500&q=80&auto=format&fit=crop" alt="Meeting Room" loading="lazy" />
+        <span class="gallery-cell-label">Meeting Room</span>
+      </div>
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1600508774634-4e11d34730e2?w=500&q=80&auto=format&fit=crop" alt="Lounge Area" loading="lazy" />
+        <span class="gallery-cell-label">Lounge</span>
+      </div>
+    </div>
+  </div>
+
   <div class="line"></div>
 
   <!-- FASILITAS -->
   <section id="fitur">
-    <div class="sec-label">Fasilitas</div>
+    <div class="sec-eyebrow">Fasilitas</div>
     <h2 class="sec-title reveal">Semua yang Anda Butuhkan</h2>
     <p class="sec-sub reveal">Kami mengurus infrastruktur, Anda fokus pada pekerjaan.</p>
     <div class="f-grid">
@@ -782,11 +1431,11 @@
     </div>
   </section>
 
-  <div class="line"></div>
+  <div class="line" style="margin:0;background:rgba(255,255,255,0.06);"></div>
 
   <!-- PAKET -->
   <section id="paket">
-    <div class="sec-label">Harga Paket</div>
+    <div class="sec-eyebrow">Harga Paket</div>
     <h2 class="sec-title reveal">Paket Membership</h2>
     <p class="sec-sub reveal">Semua paket sudah termasuk internet, listrik, dan akses fasilitas bersama.</p>
     <div class="pk-grid">
@@ -806,7 +1455,7 @@
         <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20pesan%20Day%20Pass." class="pk-btn outline" target="_blank" rel="noopener">Pesan Sekarang</a>
       </div>
       <div class="pk-card featured reveal">
-        <div class="pk-tier gold">Terpopuler</div>
+        <div class="pk-tier">Terpopuler</div>
         <div class="pk-name">Monthly Hot Desk</div>
         <div class="pk-desc">Untuk pekerja remote dan freelancer aktif setiap hari.</div>
         <div class="pk-price">Rp 850.000</div>
@@ -844,23 +1493,32 @@
 
   <!-- TESTIMONIAL -->
   <section id="testi">
-    <div class="sec-label">Komunitas</div>
+    <div class="sec-eyebrow">Komunitas</div>
     <h2 class="sec-title reveal">Kata Member Kami</h2>
     <p class="sec-sub reveal">Lebih dari 800 profesional telah menjadikan The Hub sebagai ruang kerja mereka.</p>
     <div class="t-grid">
       <div class="t-card reveal">
+        <div class="t-avatar">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=face" alt="Devi Anggraini" loading="lazy" />
+        </div>
         <p class="t-quote">"The Hub telah menjadi rumah kedua saya. Internet-nya kencang, atmosfer kerja produktif, dan networking dengan sesama member sudah menghasilkan 3 klien baru untuk bisnis saya."</p>
         <div class="t-rule"></div>
         <div class="t-name">Devi Anggraini</div>
         <div class="t-role">UI/UX Freelancer</div>
       </div>
       <div class="t-card reveal">
+        <div class="t-avatar">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face" alt="Rizal Firmansyah" loading="lazy" />
+        </div>
         <p class="t-quote">"Kami pindah dari WFH ke private office di The Hub dan produktivitas tim naik drastis. Fasilitasnya komplit dan tim management-nya sangat responsif."</p>
         <div class="t-rule"></div>
         <div class="t-name">Rizal Firmansyah</div>
         <div class="t-role">Co-Founder, Startup Fintech</div>
       </div>
       <div class="t-card reveal">
+        <div class="t-avatar">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&auto=format&fit=crop&crop=face" alt="Anisa Pratiwi" loading="lazy" />
+        </div>
         <p class="t-quote">"Event networking bulanannya sangat berguna. Dalam 6 bulan saya berhasil membangun portfolio klien dari nol berkat koneksi yang saya temukan di sini."</p>
         <div class="t-rule"></div>
         <div class="t-name">Anisa Pratiwi</div>
@@ -873,20 +1531,17 @@
 
   <!-- LOKASI -->
   <section id="lokasi">
-    <div class="sec-label">Lokasi & Jam Operasional</div>
+    <div class="sec-eyebrow">Lokasi & Jam Operasional</div>
     <h2 class="sec-title reveal">Strategis di Pusat Kota</h2>
     <p class="sec-sub reveal">Mudah dijangkau dari berbagai penjuru kota dengan akses transportasi publik yang lengkap.</p>
     <div class="lokasi-grid">
-      <div class="lokasi-map reveal">
-        <div class="lokasi-map-pin"></div>
-        <div class="lokasi-map-label">The Hub Cowork</div>
+      <div class="lokasi-img reveal">
+        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80&auto=format&fit=crop" alt="Lokasi The Hub Cowork — Sudirman Jakarta" loading="lazy" />
       </div>
       <div class="lokasi-info">
         <div class="lokasi-item reveal">
           <div class="lokasi-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="none"/><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
           </div>
           <div>
             <div class="lokasi-item-title">Alamat</div>
@@ -895,9 +1550,7 @@
         </div>
         <div class="lokasi-item reveal">
           <div class="lokasi-icon">
-            <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div>
             <div class="lokasi-item-title">Jam Operasional</div>
@@ -906,34 +1559,55 @@
         </div>
         <div class="lokasi-item reveal">
           <div class="lokasi-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
           </div>
           <div>
             <div class="lokasi-item-title">Akses Transportasi</div>
             <div class="lokasi-item-text">3 menit jalan dari MRT Bendungan Hilir<br>Tersedia parkir motor & mobil</div>
           </div>
         </div>
-        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20kunjungan%20ke%20coworking%20space%20Anda." class="btn-primary" style="align-self:flex-start;margin-top:8px;" target="_blank" rel="noopener">Jadwalkan Kunjungan</a>
+        <div class="lokasi-item reveal">
+          <div class="lokasi-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.38 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="lokasi-item-title">Kontak</div>
+            <div class="lokasi-item-text">+62 812 3456 7890<br>hello@thehubcowork.id</div>
+          </div>
+        </div>
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20kunjungan." class="btn-primary" style="align-self:flex-start;margin-top:8px;" target="_blank" rel="noopener">Jadwalkan Kunjungan</a>
       </div>
     </div>
   </section>
+
+  <!-- CONTACT BAR -->
+  <div class="contact-bar">
+    <div class="contact-bar-label">Hubungi kami langsung</div>
+    <div class="contact-bar-links">
+      <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20bertanya." class="contact-bar-link wa" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="white" width="16" height="16"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.533 5.853L.065 24l6.305-1.645A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.213-3.72.97.993-3.63-.234-.373A9.79 9.79 0 0 1 2.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+        +62 812 3456 7890
+      </a>
+      <a href="mailto:hello@thehubcowork.id" class="contact-bar-link gmail">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#ea4335" stroke-width="1.5"/><path d="M22 6l-10 7L2 6" stroke="#ea4335" stroke-width="1.5"/></svg>
+        hello@thehubcowork.id
+      </a>
+    </div>
+  </div>
 
   <!-- CTA -->
   <section id="cta">
     <div class="cta-inner">
       <div class="cta-label">Mulai Sekarang</div>
-      <h2 class="reveal">Jadwalkan Tour Gratis ke The Hub</h2>
-      <p class="reveal">Kunjungi kami, rasakan atmosfernya, dan pilih ruang yang paling sesuai dengan kebutuhan Anda — tanpa komitmen.</p>
+      <h2>Jadwalkan Tour Gratis ke The Hub</h2>
+      <p>Kunjungi kami, rasakan atmosfernya, dan pilih ruang yang paling sesuai dengan kebutuhan Anda — tanpa komitmen.</p>
       <div class="cta-btns">
-        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20tour%20gratis." class="btn-primary" target="_blank" rel="noopener">
+        <a href="https://wa.me/6281234567890?text=Halo%20The%20Hub%2C%20saya%20ingin%20menjadwalkan%20tour%20gratis." class="btn-cta-white" target="_blank" rel="noopener">
           Hubungi via WhatsApp
         </a>
-        <a href="#paket" class="btn-secondary">Lihat Paket Harga</a>
+        <a href="mailto:hello@thehubcowork.id" class="btn-cta-ghost">
+          Kirim Email
+        </a>
       </div>
     </div>
   </section>
@@ -943,7 +1617,7 @@
     <div class="ft-wrap">
       <div class="ft-brand">
         <div class="ft-logo">The<span>Hub</span> Cowork</div>
-        <p>Coworking space profesional untuk komunitas pekerja kreatif, startup, dan profesional di pusat kota.</p>
+        <p>Coworking space profesional untuk komunitas pekerja kreatif, startup, dan profesional di pusat kota Jakarta.</p>
       </div>
       <div class="ft-col">
         <h4>Ruang</h4>
@@ -960,26 +1634,67 @@
           <li><a href="#paket">Harga & Paket</a></li>
           <li><a href="#fitur">Fasilitas</a></li>
           <li><a href="#lokasi">Lokasi</a></li>
-          <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">Kontak</a></li>
+          <li><a href="#testi">Testimoni</a></li>
         </ul>
       </div>
       <div class="ft-col">
         <h4>Hubungi Kami</h4>
         <ul>
-          <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="mailto:hello@thehubcowork.id">hello@thehubcowork.id</a></li>
+          <li>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="ft-contact-link">
+              <svg viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.533 5.853L.065 24l6.305-1.645A11.944 11.944 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.013-1.376l-.36-.213-3.72.97.993-3.63-.234-.373A9.79 9.79 0 0 1 2.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+              +62 812 3456 7890
+            </a>
+          </li>
+          <li>
+            <a href="mailto:hello@thehubcowork.id" class="ft-contact-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#ea4335" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+              hello@thehubcowork.id
+            </a>
+          </li>
           <li><a href="#lokasi">Jl. Sudirman Kav. 52–53</a></li>
-          <li><a href="#lokasi">Jakarta Selatan</a></li>
+          <li><a href="#lokasi">Jakarta Selatan, 12190</a></li>
         </ul>
       </div>
     </div>
     <div class="ft-bottom">
       <span class="ft-copy">2025 The Hub Cowork. Hak cipta dilindungi.</span>
-      <span class="ft-tag">Demo Template</span>
+      <span class="ft-copy">Demo Template</span>
     </div>
   </footer>
 
   <script>
+    // Sidebar toggle
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const navHam = document.getElementById('navHam');
+    const sidebarClose = document.getElementById('sidebarClose');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('open');
+      overlay.style.display = 'block';
+      sidebar.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('open');
+      sidebar.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
+    }
+
+    navHam.addEventListener('click', openSidebar);
+    sidebarClose.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on nav link click
+    document.querySelectorAll('.sidebar-link, .sidebar-nav a[href^="#"]').forEach(a => {
+      a.addEventListener('click', closeSidebar);
+    });
+
     // Reveal on scroll
     const revEls = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(entries => {
@@ -991,16 +1706,17 @@
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
 
     // Nav scroll effect
     const nav = document.querySelector('nav');
     window.addEventListener('scroll', () => {
-      nav.style.borderBottomColor = window.scrollY > 10
-        ? 'rgba(255,255,255,0.10)'
-        : 'rgba(255,255,255,0.06)';
+      nav.style.borderBottomColor = window.scrollY > 20 ? 'rgba(26,24,20,0.12)' : 'rgba(26,24,20,0.08)';
     });
   </script>
 </body>

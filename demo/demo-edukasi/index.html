@@ -7,907 +7,1812 @@
   <meta name="description" content="Belajar skill baru dari instruktur terbaik. Kursus online bersertifikat di bidang teknologi, bisnis, kreatif, dan lainnya." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --dark:    #080810;
-      --dark2:   #0f0f1c;
-      --dark3:   #14142a;
-      --card:    #111122;
-      --navy:    #0d0d1f;
-      --indigo:  #3a3aff;
-      --indigo2: #5252ff;
-      --indigo3: #8585ff;
-      --indigo-pale: rgba(58,58,255,0.08);
-      --indigo-border: rgba(58,58,255,0.22);
-      --gold:    #c9a84c;
-      --gold2:   #e0bf78;
-      --text:    #e2e0f0;
-      --text2:   #8e8aaa;
-      --text3:   #5a576e;
-      --border:  rgba(255,255,255,0.06);
-      --border2: rgba(255,255,255,0.10);
-      --white:   #ffffff;
+      --sidebar-w: 268px;
+      --sidebar-bg: #14213D;
+      --sidebar-hover: #1c2f56;
+      --sidebar-active: #22375e;
+      --sidebar-text: rgba(220,228,245,0.65);
+      --sidebar-text-bright: #DCE4F5;
+      --sidebar-border: rgba(220,228,245,0.08);
+      --sidebar-accent: #4B9EFF;
+
+      --bg: #F8F8F5;
+      --bg-card: #FFFFFF;
+      --bg-alt: #EFF0EA;
+      --blue: #1D5ECC;
+      --blue-hover: #1449A8;
+      --blue-light: #EBF2FF;
+      --teal: #0B7B6A;
+      --amber: #C9841A;
+      --amber-light: #FEF3DC;
+      --green: #15803D;
+      --green-light: #DCFCE7;
+      --red-light: #FEE2E2;
+
+      --text: #111827;
+      --text2: #4B5563;
+      --text3: #9CA3AF;
+      --border: #E4E4DE;
+      --border2: #D1D1C9;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.07);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.10);
+
+      --radius: 12px;
+      --radius-sm: 8px;
     }
+
     html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
+
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
+    img { display: block; width: 100%; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      height: 68px;
-      background: rgba(8,8,16,0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 64px;
-      display: flex; align-items: center; justify-content: space-between;
+    /* ══════════════════════════════════════
+       SIDEBAR
+    ══════════════════════════════════════ */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem; font-weight: 600;
-      letter-spacing: 0.03em;
-      color: var(--white);
+
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    /* SIDEBAR HEADER */
+    .sidebar-header {
+      padding: 28px 24px 24px;
+      border-bottom: 1px solid var(--sidebar-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
     }
-    .nav-logo span { color: var(--indigo3); }
-    .nav-links { display: flex; gap: 40px; }
-    .nav-links a {
-      font-size: 0.74rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--text2);
-      transition: color 0.2s;
+
+    .sidebar-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 0.01em;
     }
-    .nav-links a:hover { color: var(--indigo3); }
-    .nav-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--indigo);
+    .sidebar-logo span {
+      color: var(--sidebar-accent);
+    }
+
+    .sidebar-badge {
+      display: inline-block;
+      background: rgba(75,158,255,0.15);
+      border: 1px solid rgba(75,158,255,0.25);
+      color: var(--sidebar-accent);
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 4px;
+    }
+
+    .sidebar-close {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+      color: var(--sidebar-text);
+    }
+
+    /* SIDEBAR NAV */
+    .sidebar-section {
+      padding: 22px 16px 8px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-section-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(220,228,245,0.3);
+      padding: 0 10px;
+      margin-bottom: 6px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.83rem;
+      font-weight: 500;
+      color: var(--sidebar-text);
+      transition: all 0.18s;
+      margin-bottom: 2px;
+      cursor: pointer;
+    }
+
+    .nav-item:hover {
+      background: var(--sidebar-hover);
+      color: var(--sidebar-text-bright);
+    }
+
+    .nav-item.active {
+      background: var(--sidebar-active);
+      color: #FFFFFF;
+    }
+
+    .nav-item.active .nav-icon { color: var(--sidebar-accent); }
+
+    .nav-icon {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+
+    .nav-item:hover .nav-icon,
+    .nav-item.active .nav-icon { opacity: 1; }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--sidebar-border);
+      margin: 6px 16px;
+      flex-shrink: 0;
+    }
+
+    /* SIDEBAR CONTACT */
+    .sidebar-contact {
+      padding: 16px;
+      margin-top: auto;
+      flex-shrink: 0;
+    }
+
+    .sidebar-contact-label {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(220,228,245,0.3);
+      padding: 0 2px;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-contact-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .contact-btn.wa {
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.2);
+      color: #4ADE80;
+    }
+    .contact-btn.wa:hover {
+      background: rgba(37,211,102,0.2);
+      border-color: rgba(37,211,102,0.35);
+    }
+
+    .contact-btn.gmail {
+      background: rgba(234,67,53,0.1);
+      border: 1px solid rgba(234,67,53,0.18);
+      color: #F87171;
+    }
+    .contact-btn.gmail:hover {
+      background: rgba(234,67,53,0.18);
+      border-color: rgba(234,67,53,0.3);
+    }
+
+    .contact-btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-footer-copy {
+      padding: 14px 18px 20px;
+      font-size: 0.62rem;
+      color: rgba(220,228,245,0.2);
+      flex-shrink: 0;
+      border-top: 1px solid var(--sidebar-border);
+    }
+
+    /* OVERLAY */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 299;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .overlay.show {
+      display: block;
+      opacity: 1;
+    }
+
+    /* ══════════════════════════════════════
+       MAIN WRAPPER
+    ══════════════════════════════════════ */
+    .main-wrapper {
+      margin-left: var(--sidebar-w);
+      min-height: 100vh;
+    }
+
+    /* ══════════════════════════════════════
+       TOP BAR (visible on mobile/tablet)
+    ══════════════════════════════════════ */
+    .topbar {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 60px;
+      background: var(--sidebar-bg);
+      z-index: 200;
+      padding: 0 20px;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .topbar-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .topbar-logo span { color: var(--sidebar-accent); }
+
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: #FFFFFF;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    .topbar-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
       color: #fff;
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 10px 24px; border-radius: 3px;
-      transition: background 0.2s;
-      white-space: nowrap;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 7px 14px;
+      border-radius: 6px;
     }
-    .nav-cta:hover { background: var(--indigo2); }
-    .nav-ham { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-    .nav-ham span { display: block; width: 22px; height: 1.5px; background: var(--text); }
 
-    /* ── HERO ── */
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
     .hero {
       min-height: 100vh;
-      padding: 130px 64px 100px;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
       position: relative;
       overflow: hidden;
     }
-    .hero::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        radial-gradient(ellipse 55% 70% at 5% 40%, rgba(58,58,255,0.09) 0%, transparent 65%),
-        radial-gradient(ellipse 40% 50% at 95% 15%, rgba(58,58,255,0.05) 0%, transparent 60%);
-      pointer-events: none;
+
+    .hero-left {
+      padding: 100px 56px 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg);
+      position: relative;
+      z-index: 1;
     }
-    .hero-label {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.65rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--indigo3);
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-light);
+      border: 1px solid rgba(29,94,204,0.18);
+      padding: 6px 14px;
+      border-radius: 100px;
       margin-bottom: 28px;
+      width: fit-content;
     }
-    .hero-label::before {
-      content: '';
-      display: inline-block; width: 32px; height: 1px;
-      background: var(--indigo3);
-    }
+
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.4rem, 3.8vw, 3.6rem);
       font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-      color: var(--white);
-      margin-bottom: 24px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
     }
+
     .hero h1 em {
       font-style: italic;
-      color: var(--indigo3);
+      color: var(--blue);
     }
+
     .hero-desc {
-      font-size: 0.95rem; font-weight: 300;
+      font-size: 0.97rem;
+      font-weight: 400;
       color: var(--text2);
-      line-height: 1.85;
-      max-width: 440px;
+      line-height: 1.8;
+      max-width: 420px;
       margin-bottom: 36px;
     }
-    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--indigo);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
       color: #fff;
-      font-size: 0.78rem; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 14px 32px; border-radius: 3px;
-      transition: all 0.25s;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      transition: all 0.22s;
+      border: none;
+      cursor: pointer;
     }
-    .btn-primary:hover { background: var(--indigo2); transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 8px;
+    .btn-primary:hover {
+      background: var(--blue-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(29,94,204,0.28);
+    }
+
+    .btn-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #25D366;
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      transition: all 0.22s;
+    }
+    .btn-wa:hover {
+      background: #1fba59;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(37,211,102,0.3);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       background: transparent;
-      color: var(--text);
-      font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 14px 32px; border-radius: 3px;
-      border: 1px solid var(--border2);
-      transition: all 0.25s;
+      color: var(--text2);
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border2);
+      transition: all 0.22s;
     }
-    .btn-secondary:hover { border-color: var(--indigo-border); color: var(--indigo3); }
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
 
     /* Hero Stats */
-    .hero-stats { display: flex; gap: 36px; }
-    .hero-stat {
-      display: flex; flex-direction: column; gap: 4px;
-      padding-left: 16px;
-      border-left: 2px solid var(--indigo-border);
+    .hero-stats {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-card);
+      box-shadow: var(--shadow-sm);
+      width: fit-content;
     }
+    .hero-stat {
+      padding: 16px 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .hero-stat:last-child { border-right: none; }
     .hero-stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem; font-weight: 600;
-      color: var(--white); line-height: 1;
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
     }
     .hero-stat-label {
-      font-size: 0.68rem; font-weight: 400;
-      letter-spacing: 0.08em;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       color: var(--text3);
       text-transform: uppercase;
     }
 
-    /* Hero Right */
-    .hero-right { display: flex; flex-direction: column; gap: 14px; }
-    .kursus-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+    /* Hero Right (Photo) */
+    .hero-right {
+      position: relative;
       overflow: hidden;
-      transition: border-color 0.3s;
     }
-    .kursus-card:hover { border-color: var(--border2); }
-    .kursus-visual {
-      height: 88px;
-      display: flex; align-items: center; justify-content: center;
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .kursus-visual-label {
-      font-size: 0.55rem; letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.18);
+    .hero-right-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(20,33,61,0.35) 0%, rgba(20,33,61,0.1) 60%, transparent 100%);
     }
-    .kursus-body { padding: 14px 18px; }
-    .kursus-cat {
-      font-size: 0.6rem; font-weight: 600;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--indigo3);
-      margin-bottom: 5px;
+
+    /* Hero floating card */
+    .hero-float-card {
+      position: absolute;
+      bottom: 36px;
+      left: -28px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+      min-width: 200px;
     }
-    .kursus-name {
-      font-size: 0.86rem; font-weight: 500;
-      color: var(--white); margin-bottom: 8px;
+    .hfc-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .hfc-val {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+    .hfc-sub { font-size: 0.72rem; color: var(--text3); margin-top: 4px; }
+
+    /* ══════════════════════════════════════
+       STATS BAND
+    ══════════════════════════════════════ */
+    .stats-band {
+      background: var(--sidebar-bg);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .sb-item {
+      padding: 44px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(220,228,245,0.07);
+    }
+    .sb-item:last-child { border-right: none; }
+    .sb-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.4rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1;
+    }
+    .sb-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(220,228,245,0.45);
+      margin-top: 8px;
+    }
+
+    /* ══════════════════════════════════════
+       SECTIONS SHARED
+    ══════════════════════════════════════ */
+    .section {
+      padding: 88px 56px;
+    }
+    .section-alt { background: var(--bg-alt); }
+
+    .section-header { margin-bottom: 52px; }
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 14px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      color: var(--text);
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      font-size: 0.93rem;
+      font-weight: 400;
+      color: var(--text2);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+
+    /* REVEAL animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ══════════════════════════════════════
+       COURSES GRID
+    ══════════════════════════════════════ */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .course-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.28s;
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .course-thumb {
+      height: 160px;
+      overflow: hidden;
+      position: relative;
+    }
+    .course-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .course-card:hover .course-thumb img {
+      transform: scale(1.04);
+    }
+    .course-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.45), transparent 60%);
+    }
+
+    .course-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .course-body {
+      padding: 20px;
+    }
+    .course-name {
+      font-family: 'Fraunces', serif;
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
       line-height: 1.4;
     }
-    .kursus-footer {
-      display: flex; justify-content: space-between; align-items: center;
-      padding-top: 8px;
+    .course-instructor {
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text3);
+      margin-bottom: 14px;
+    }
+    .course-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
       border-top: 1px solid var(--border);
     }
-    .kursus-rating-dots {
-      display: flex; gap: 3px; align-items: center;
+    .course-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
-    .rating-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold);
+    .stars {
+      display: flex;
+      gap: 2px;
     }
-    .rating-dot.empty { background: var(--border2); }
-    .rating-text { font-size: 0.68rem; color: var(--text3); margin-left: 6px; }
-    .kursus-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 600;
-      color: var(--indigo3);
+    .star {
+      width: 10px;
+      height: 10px;
+    }
+    .star-full path { fill: #F59E0B; }
+    .star-half path:first-child { fill: #F59E0B; }
+    .star-half path:last-child { fill: #E5E7EB; }
+    .star-empty path { fill: #E5E7EB; }
+    .rating-txt {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text2);
+    }
+    .rating-count {
+      font-size: 0.68rem;
+      color: var(--text3);
+    }
+    .course-price {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--blue);
     }
 
-    /* ── DIVIDER ── */
-    .line { height: 1px; background: var(--border); margin: 0 64px; }
+    /* ══════════════════════════════════════
+       FEATURES GRID
+    ══════════════════════════════════════ */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
 
-    /* ── SECTIONS ── */
-    section { padding: 96px 64px; }
-    .sec-label {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--indigo3);
+    .feature-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), #60A5FA);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card:hover {
+      box-shadow: var(--shadow);
+      border-color: transparent;
+    }
+
+    .feature-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--blue-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 20px;
     }
-    .sec-label::before {
-      content: '';
-      display: inline-block; width: 22px; height: 1px;
-      background: var(--indigo3);
-    }
-    .sec-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 2.9rem);
-      font-weight: 600; line-height: 1.15;
-      color: var(--white); margin-bottom: 14px;
-    }
-    .sec-sub {
-      font-size: 0.9rem; font-weight: 300;
-      color: var(--text2); line-height: 1.85;
-      max-width: 480px; margin-bottom: 56px;
+    .feature-icon svg {
+      width: 22px;
+      height: 22px;
+      color: var(--blue);
     }
 
-    /* ── KURSUS GRID ── */
-    #kursus { background: var(--dark2); }
-    .grid-kursus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .k-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden;
-      transition: all 0.3s;
-    }
-    .k-card:hover {
-      border-color: var(--indigo-border);
-      box-shadow: 0 8px 32px rgba(58,58,255,0.12);
-      transform: translateY(-2px);
-    }
-    .k-visual {
-      height: 130px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .k-visual-label {
-      font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
-      color: rgba(255,255,255,0.16);
-    }
-    .k-body { padding: 18px 20px; }
-    .k-cat {
-      display: inline-block;
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--indigo3);
-      background: var(--indigo-pale);
-      border: 1px solid var(--indigo-border);
-      padding: 3px 9px; border-radius: 2px;
+    .feature-num {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text3);
       margin-bottom: 10px;
     }
-    .k-name {
-      font-size: 0.9rem; font-weight: 500;
-      color: var(--white); margin-bottom: 4px;
-      line-height: 1.4;
+    .feature-card h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
     }
-    .k-inst {
-      font-size: 0.74rem; font-weight: 300;
-      color: var(--text3); margin-bottom: 14px;
+    .feature-card p {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--text2);
+      line-height: 1.75;
     }
-    .k-footer {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      padding-top: 12px;
+
+    /* ══════════════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════════════ */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testi-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s;
+    }
+    .testi-card:hover {
+      box-shadow: var(--shadow);
+      border-color: transparent;
+    }
+
+    .testi-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .testi-star {
+      width: 14px;
+      height: 14px;
+    }
+    .testi-star path { fill: #F59E0B; }
+
+    .testi-quote {
+      font-family: 'Fraunces', serif;
+      font-size: 0.97rem;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.72;
+      margin-bottom: 24px;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
       border-top: 1px solid var(--border);
     }
-    .k-score {
-      display: flex; align-items: center; gap: 5px;
+    .testi-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
     }
-    .score-bar {
-      display: flex; gap: 2px;
+    .testi-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-    .score-pip {
-      width: 16px; height: 3px; border-radius: 2px;
-      background: var(--gold);
+    .testi-name {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text);
     }
-    .score-pip.empty { background: var(--border2); }
-    .score-val { font-size: 0.68rem; color: var(--text3); }
-    .k-price {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.05rem; font-weight: 600;
-      color: var(--indigo3);
-    }
-
-    /* ── FITUR ── */
-    #fitur { background: var(--dark); }
-    .fitur-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 8px; overflow: hidden;
-    }
-    .f-item {
-      background: var(--dark2);
-      padding: 32px;
-      transition: background 0.3s;
-    }
-    .f-item:hover { background: var(--dark3); }
-    .f-num {
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--indigo3);
-      margin-bottom: 20px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .f-num::after {
-      content: ''; flex: 1; height: 1px;
-      background: var(--indigo-border); max-width: 36px;
-    }
-    .f-item h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 600;
-      color: var(--white); margin-bottom: 10px;
-    }
-    .f-item p {
-      font-size: 0.8rem; font-weight: 300;
-      color: var(--text2); line-height: 1.75;
+    .testi-role {
+      font-size: 0.72rem;
+      color: var(--text3);
+      margin-top: 2px;
     }
 
-    /* ── STATS BANNER ── */
-    #stats {
-      padding: 0;
-      background: linear-gradient(135deg, #1a1a38 0%, #0e0e26 100%);
-      border-top: 1px solid var(--indigo-border);
-      border-bottom: 1px solid var(--indigo-border);
+    /* ══════════════════════════════════════
+       CTA SECTION
+    ══════════════════════════════════════ */
+    .cta-section {
+      background: var(--sidebar-bg);
+      padding: 96px 56px;
+      position: relative;
+      overflow: hidden;
     }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
-    .s-box {
-      padding: 52px 24px;
-      text-align: center;
-      border-right: 1px solid rgba(58,58,255,0.15);
-    }
-    .s-box:last-child { border-right: none; }
-    .s-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem; font-weight: 600;
-      color: var(--white); line-height: 1;
-    }
-    .s-label {
-      font-size: 0.68rem; font-weight: 400;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--text3); margin-top: 8px;
-    }
-
-    /* ── TESTIMONIAL ── */
-    #testi { background: var(--dark2); }
-    .testi-g { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .t-card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 8px; padding: 28px;
-      transition: border-color 0.3s;
-    }
-    .t-card:hover { border-color: var(--border2); }
-    .t-score {
-      display: flex; gap: 3px; margin-bottom: 16px;
-    }
-    .t-pip {
-      width: 20px; height: 3px; border-radius: 2px;
-      background: var(--gold);
-    }
-    .t-pip.empty { background: var(--border); }
-    .t-q {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-style: italic;
-      color: var(--text); line-height: 1.7; margin-bottom: 20px;
-    }
-    .t-rule { height: 1px; background: var(--border); margin-bottom: 16px; }
-    .t-name { font-size: 0.82rem; font-weight: 500; color: var(--white); }
-    .t-role { font-size: 0.72rem; color: var(--text3); margin-top: 3px; }
-
-    /* ── CTA ── */
-    #cta {
-      padding: 100px 64px;
-      background: var(--dark);
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    #cta .cta-inner { max-width: 640px; margin: 0 auto; }
-    #cta .cta-eyebrow {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-size: 0.62rem; font-weight: 500;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--indigo3); margin-bottom: 20px;
-    }
-    #cta .cta-eyebrow::before,
-    #cta .cta-eyebrow::after {
+    .cta-section::before {
       content: '';
-      display: inline-block; width: 22px; height: 1px;
-      background: var(--indigo3);
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(75,158,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
-    #cta h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.1rem);
-      font-weight: 600; line-height: 1.2;
-      color: var(--white); margin-bottom: 16px;
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -60px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(37,211,102,0.06) 0%, transparent 70%);
+      pointer-events: none;
     }
-    #cta p {
-      font-size: 0.9rem; font-weight: 300;
-      color: var(--text2); margin-bottom: 36px; line-height: 1.85;
-    }
-    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-    /* ── FOOTER ── */
+    .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sidebar-accent);
+      background: rgba(75,158,255,0.1);
+      border: 1px solid rgba(75,158,255,0.2);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .cta-section h2 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+    }
+    .cta-section h2 em {
+      font-style: italic;
+      color: var(--sidebar-accent);
+    }
+
+    .cta-section p {
+      font-size: 0.93rem;
+      font-weight: 400;
+      color: rgba(220,228,245,0.6);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-gmail {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(234,67,53,0.12);
+      border: 1.5px solid rgba(234,67,53,0.3);
+      color: #FCA5A5;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      transition: all 0.22s;
+    }
+    .btn-gmail:hover {
+      background: rgba(234,67,53,0.2);
+      border-color: rgba(234,67,53,0.45);
+    }
+
+    .btn-wa-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,211,102,0.12);
+      border: 1.5px solid rgba(37,211,102,0.3);
+      color: #4ADE80;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 13px 26px;
+      border-radius: var(--radius-sm);
+      transition: all 0.22s;
+    }
+    .btn-wa-outline:hover {
+      background: rgba(37,211,102,0.2);
+      border-color: rgba(37,211,102,0.45);
+    }
+
+    /* CONTACT CARDS */
+    .contact-cards {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 40px;
+    }
+    .contact-info-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .contact-info-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info-icon.wa { background: rgba(37,211,102,0.15); }
+    .contact-info-icon.gm { background: rgba(234,67,53,0.12); }
+    .contact-info-icon svg { width: 20px; height: 20px; }
+    .contact-info-text { text-align: left; }
+    .contact-info-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(220,228,245,0.4);
+      margin-bottom: 3px;
+    }
+    .contact-info-value {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: rgba(220,228,245,0.85);
+    }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
     footer {
-      background: var(--navy);
-      border-top: 1px solid var(--border);
-      padding: 56px 64px 28px;
-    }
-    .ft-wrap { display: flex; justify-content: space-between; gap: 48px; margin-bottom: 44px; }
-    .ft-brand .ft-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2rem; font-weight: 600;
-      color: var(--white); margin-bottom: 10px;
-    }
-    .ft-brand .ft-logo span { color: var(--indigo3); }
-    .ft-brand p {
-      font-size: 0.78rem; font-weight: 300;
-      color: var(--text3); max-width: 220px; line-height: 1.7;
-    }
-    .ft-col h4 {
-      font-size: 0.58rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text3); margin-bottom: 16px;
-    }
-    .ft-col ul { display: flex; flex-direction: column; gap: 10px; }
-    .ft-col a {
-      font-size: 0.78rem; font-weight: 300;
-      color: var(--text3); transition: color 0.2s;
-    }
-    .ft-col a:hover { color: var(--indigo3); }
-    .ft-bottom {
-      padding-top: 22px;
-      border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .ft-copy { font-size: 0.7rem; color: var(--text3); }
-    .ft-tag {
-      font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--border2);
+      background: #0D1526;
+      padding: 56px 56px 28px;
     }
 
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(220,228,245,0.07);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1100px) {
-      nav { padding: 0 40px; }
-      .hero { padding: 110px 40px 80px; gap: 50px; }
-      section { padding: 72px 40px; }
-      .line { margin: 0 40px; }
+    .footer-brand-logo {
+      font-family: 'Fraunces', serif;
+      font-size: 1.22rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      margin-bottom: 14px;
+    }
+    .footer-brand-logo span { color: var(--sidebar-accent); }
+
+    .footer-brand-desc {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: rgba(220,228,245,0.45);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      max-width: 260px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(220,228,245,0.1);
+      color: rgba(220,228,245,0.5);
+      transition: all 0.2s;
+    }
+    .footer-social-btn:hover {
+      border-color: rgba(220,228,245,0.25);
+      color: rgba(220,228,245,0.9);
+    }
+    .footer-social-btn svg { width: 16px; height: 16px; }
+
+    .footer-col h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(220,228,245,0.55);
+      margin-bottom: 18px;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 0.8rem;
+      color: rgba(220,228,245,0.45);
+      transition: color 0.18s;
+    }
+    .footer-col ul li a:hover {
+      color: rgba(220,228,245,0.9);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+    }
+    .footer-copy {
+      font-size: 0.73rem;
+      color: rgba(220,228,245,0.25);
+    }
+    .footer-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(75,158,255,0.4);
+      background: rgba(75,158,255,0.06);
+      border: 1px solid rgba(75,158,255,0.12);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 1200px) {
+      :root { --sidebar-w: 240px; }
+      .section { padding: 72px 40px; }
+      .hero-left { padding: 80px 40px 60px; }
+      .cta-section { padding: 80px 40px; }
       footer { padding: 48px 40px 24px; }
-      #cta { padding: 80px 40px; }
     }
-    @media (max-width: 860px) {
-      nav { padding: 0 24px; }
-      .nav-links { display: none; }
-      .nav-ham { display: flex; }
-      .hero { grid-template-columns: 1fr; padding: 104px 24px 64px; }
-      .hero-right { display: none; }
-      section { padding: 56px 24px; }
-      .line { margin: 0 24px; }
-      .grid-kursus, .testi-g { grid-template-columns: 1fr; }
-      .fitur-grid { background: none; border: none; }
-      .f-item { border-radius: 8px; border: 1px solid var(--border); }
-      .stats-grid { grid-template-columns: 1fr 1fr; }
-      .s-box { border-right: none; border-bottom: 1px solid rgba(58,58,255,0.15); }
-      #cta { padding: 56px 24px; }
-      footer { padding: 40px 24px 20px; }
-      .ft-wrap { flex-direction: column; gap: 32px; }
-      .ft-bottom { flex-direction: column; gap: 8px; text-align: center; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
+
+    @media (max-width: 1024px) {
+      .courses-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 900px) {
+      :root { --sidebar-w: 0px; }
+
+      .sidebar {
+        width: 280px;
+        transform: translateX(-100%);
+      }
+      .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 4px 0 32px rgba(0,0,0,0.25);
+      }
+      .sidebar-close {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        background: rgba(255,255,255,0.06);
+        border: 1px solid rgba(255,255,255,0.1);
+        transition: all 0.2s;
+      }
+      .sidebar-close:hover {
+        background: rgba(255,255,255,0.12);
+      }
+
+      .topbar { display: flex; }
+      .main-wrapper { margin-left: 0; padding-top: 60px; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 48px 28px 40px; }
+      .hero-right { height: 320px; }
+      .hero-float-card { display: none; }
+      .hero-btns { gap: 10px; }
+      .btn-primary, .btn-wa, .btn-outline { padding: 11px 20px; font-size: 0.78rem; }
+      .section { padding: 56px 28px; }
+      .cta-section { padding: 64px 28px; }
+      footer { padding: 40px 28px 20px; }
+      .stats-band { grid-template-columns: repeat(2, 1fr); }
+      .sb-item { border-right: none; border-bottom: 1px solid rgba(220,228,245,0.07); }
+      .sb-item:nth-child(even) { border-bottom: none; }
+      .contact-cards { flex-direction: column; align-items: center; }
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2.1rem; }
+      .courses-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+      .hero-stats { flex-direction: column; width: 100%; }
+      .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-stat:last-child { border-bottom: none; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .contact-info-card { width: 100%; }
+    }
+
+    @media (max-width: 400px) {
+      .section { padding: 48px 18px; }
+      .cta-section { padding: 56px 18px; }
+      footer { padding: 36px 18px 18px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-logo">Akademi<span>Cerdas</span></div>
-    <ul class="nav-links">
-      <li><a href="#kursus">Kursus</a></li>
-      <li><a href="#fitur">Fitur</a></li>
-      <li><a href="#testi">Alumni</a></li>
-      <li><a href="#cta">Konsultasi</a></li>
-    </ul>
-    <a href="https://wa.me/6281234567890?text=Halo%20Akademi%20Cerdas%2C%20saya%20ingin%20bertanya%20tentang%20kursus%20yang%20tersedia." class="nav-cta" target="_blank" rel="noopener">
-      Tanya Kursus
-    </a>
-    <div class="nav-ham"><span></span><span></span><span></span></div>
-  </nav>
+  <!-- ══ SIDEBAR ══ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div>
+        <div class="sidebar-logo">Akademi<span>Cerdas</span></div>
+        <div class="sidebar-badge">Platform Edukasi</div>
+      </div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Tutup menu">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <line x1="1" y1="1" x2="13" y2="13"/><line x1="13" y1="1" x2="1" y2="13"/>
+        </svg>
+      </button>
+    </div>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <div class="hero-label">Platform Edukasi Online</div>
-      <h1>Investasi Terbaik<br>adalah <em>Ilmu</em></h1>
-      <p class="hero-desc">
-        Ratusan kursus online dari instruktur praktisi terbaik Indonesia. Belajar sesuai jadwal Anda, dapatkan sertifikat, dan langsung siap karir.
-      </p>
-      <div class="hero-btns">
-        <a href="https://wa.me/6281234567890?text=Halo%20Akademi%20Cerdas%2C%20saya%20ingin%20tahu%20lebih%20lanjut%20tentang%20kursus%20yang%20tersedia." class="btn-primary" target="_blank" rel="noopener">
-          Konsultasi via WhatsApp
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Menu Utama</div>
+      <a href="#hero" class="nav-item active" onclick="closeNav()">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+        Beranda
+      </a>
+      <a href="#kursus" class="nav-item" onclick="closeNav()">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/></svg>
+        Kursus
+      </a>
+      <a href="#fitur" class="nav-item" onclick="closeNav()">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/></svg>
+        Fitur
+      </a>
+      <a href="#testi" class="nav-item" onclick="closeNav()">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+        Alumni
+      </a>
+      <a href="#cta" class="nav-item" onclick="closeNav()">
+        <svg class="nav-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"/></svg>
+        Konsultasi
+      </a>
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <div class="sidebar-contact">
+      <div class="sidebar-contact-label">Hubungi Kami</div>
+      <div class="sidebar-contact-btns">
+        <a href="https://wa.me/6281234567890?text=Halo%20Akademi%20Cerdas%2C%20saya%20ingin%20konsultasi%20kursus." class="contact-btn wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          WhatsApp
         </a>
-        <a href="#kursus" class="btn-secondary">Lihat Kursus</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num">80K+</div>
-          <div class="hero-stat-label">Pelajar Aktif</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">350+</div>
-          <div class="hero-stat-label">Kursus Tersedia</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">4.8</div>
-          <div class="hero-stat-label">Rating Rata-rata</div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-right">
-      <div class="kursus-card">
-        <div class="kursus-visual" style="background: linear-gradient(135deg, #0d0d2e 0%, #1a1a4a 100%);">
-          <span class="kursus-visual-label">Cover Kursus</span>
-        </div>
-        <div class="kursus-body">
-          <div class="kursus-cat">Web Development</div>
-          <div class="kursus-name">React &amp; Next.js: Dari Nol ke Deploy</div>
-          <div class="kursus-footer">
-            <div class="kursus-rating-dots">
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <span class="rating-text">4.9 &nbsp;(2.1K)</span>
-            </div>
-            <div class="kursus-price">Rp 299.000</div>
-          </div>
-        </div>
-      </div>
-      <div class="kursus-card">
-        <div class="kursus-visual" style="background: linear-gradient(135deg, #0d1e0d 0%, #0f2d14 100%);">
-          <span class="kursus-visual-label">Cover Kursus</span>
-        </div>
-        <div class="kursus-body">
-          <div class="kursus-cat">Data Science</div>
-          <div class="kursus-name">Python untuk Analisis Data Bisnis</div>
-          <div class="kursus-footer">
-            <div class="kursus-rating-dots">
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <div class="rating-dot"></div>
-              <span class="rating-text">4.8 &nbsp;(1.4K)</span>
-            </div>
-            <div class="kursus-price">Rp 249.000</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="line"></div>
-
-  <!-- KURSUS -->
-  <section id="kursus">
-    <div class="sec-label">Kursus</div>
-    <h2 class="sec-title reveal">Kursus Terpopuler</h2>
-    <p class="sec-sub reveal">Dipilih berdasarkan rating dan relevansi pasar kerja saat ini.</p>
-    <div class="grid-kursus">
-      <div class="k-card reveal">
-        <div class="k-visual" style="background: linear-gradient(135deg, #0d0d2e 0%, #1a1a4a 100%);">
-          <span class="k-visual-label">Frontend Dev</span>
-        </div>
-        <div class="k-body">
-          <span class="k-cat">Frontend Dev</span>
-          <div class="k-name">React &amp; Next.js Masterclass</div>
-          <div class="k-inst">Ahmad Fauzi &mdash; Senior Developer, Tokopedia</div>
-          <div class="k-footer">
-            <div class="k-score">
-              <div class="score-bar">
-                <div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div>
-              </div>
-              <span class="score-val">4.9 (2.1K)</span>
-            </div>
-            <div class="k-price">Rp 299K</div>
-          </div>
-        </div>
-      </div>
-      <div class="k-card reveal">
-        <div class="k-visual" style="background: linear-gradient(135deg, #0d1e0d 0%, #0f2d14 100%);">
-          <span class="k-visual-label">Data Science</span>
-        </div>
-        <div class="k-body">
-          <span class="k-cat">Data Science</span>
-          <div class="k-name">Python untuk Data Bisnis</div>
-          <div class="k-inst">Dewi Rahayu &mdash; Data Scientist, GOJEK</div>
-          <div class="k-footer">
-            <div class="k-score">
-              <div class="score-bar">
-                <div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div>
-              </div>
-              <span class="score-val">4.8 (1.4K)</span>
-            </div>
-            <div class="k-price">Rp 249K</div>
-          </div>
-        </div>
-      </div>
-      <div class="k-card reveal">
-        <div class="k-visual" style="background: linear-gradient(135deg, #150d22 0%, #261540 100%);">
-          <span class="k-visual-label">UI/UX Design</span>
-        </div>
-        <div class="k-body">
-          <span class="k-cat">UI/UX Design</span>
-          <div class="k-name">Figma: Design System Profesional</div>
-          <div class="k-inst">Sari Permata &mdash; Product Designer, Grab</div>
-          <div class="k-footer">
-            <div class="k-score">
-              <div class="score-bar">
-                <div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip empty"></div>
-              </div>
-              <span class="score-val">4.7 (980)</span>
-            </div>
-            <div class="k-price">Rp 199K</div>
-          </div>
-        </div>
-      </div>
-      <div class="k-card reveal">
-        <div class="k-visual" style="background: linear-gradient(135deg, #1a1200 0%, #2e1f00 100%);">
-          <span class="k-visual-label">Digital Marketing</span>
-        </div>
-        <div class="k-body">
-          <span class="k-cat">Digital Marketing</span>
-          <div class="k-name">Growth Hacking &amp; Performance Ads</div>
-          <div class="k-inst">Budi Santoso &mdash; CMO, Startup FMCG</div>
-          <div class="k-footer">
-            <div class="k-score">
-              <div class="score-bar">
-                <div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div>
-              </div>
-              <span class="score-val">4.9 (710)</span>
-            </div>
-            <div class="k-price">Rp 349K</div>
-          </div>
-        </div>
-      </div>
-      <div class="k-card reveal">
-        <div class="k-visual" style="background: linear-gradient(135deg, #1a0010 0%, #2d0020 100%);">
-          <span class="k-visual-label">Bisnis & Startup</span>
-        </div>
-        <div class="k-body">
-          <span class="k-cat">Bisnis &amp; Startup</span>
-          <div class="k-name">Membangun Startup dari Nol</div>
-          <div class="k-inst">Raka Wirawan &mdash; Founder &amp; CEO</div>
-          <div class="k-footer">
-            <div class="k-score">
-              <div class="score-bar">
-                <div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip empty"></div>
-              </div>
-              <span class="score-val">4.7 (1.2K)</span>
-            </div>
-            <div class="k-price">Rp 399K</div>
-          </div>
-        </div>
-      </div>
-      <div class="k-card reveal">
-        <div class="k-visual" style="background: linear-gradient(135deg, #001a1a 0%, #002a2a 100%);">
-          <span class="k-visual-label">Cloud & DevOps</span>
-        </div>
-        <div class="k-body">
-          <span class="k-cat">Cloud &amp; DevOps</span>
-          <div class="k-name">AWS untuk Developer Indonesia</div>
-          <div class="k-inst">Nanda Putra &mdash; AWS Certified Architect</div>
-          <div class="k-footer">
-            <div class="k-score">
-              <div class="score-bar">
-                <div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div><div class="score-pip"></div>
-              </div>
-              <span class="score-val">4.8 (540)</span>
-            </div>
-            <div class="k-price">Rp 299K</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="line"></div>
-
-  <!-- FITUR -->
-  <section id="fitur">
-    <div class="sec-label">Fitur Platform</div>
-    <h2 class="sec-title reveal">Kenapa Akademi Cerdas?</h2>
-    <p class="sec-sub reveal">Dirancang khusus untuk pelajar Indonesia yang serius membangun karir.</p>
-    <div class="fitur-grid">
-      <div class="f-item reveal">
-        <div class="f-num">01</div>
-        <h3>Instruktur Praktisi</h3>
-        <p>Bukan teori semata — semua instruktur adalah praktisi aktif di industri terkemuka Indonesia.</p>
-      </div>
-      <div class="f-item reveal">
-        <div class="f-num">02</div>
-        <h3>Sertifikat Diakui</h3>
-        <p>Sertifikat penyelesaian diakui oleh 200+ perusahaan mitra kami. Tambahkan langsung ke profil LinkedIn.</p>
-      </div>
-      <div class="f-item reveal">
-        <div class="f-num">03</div>
-        <h3>Akses Seumur Hidup</h3>
-        <p>Bayar sekali, akses selamanya — termasuk pembaruan materi saat industri berkembang.</p>
-      </div>
-      <div class="f-item reveal">
-        <div class="f-num">04</div>
-        <h3>Belajar Offline</h3>
-        <p>Unduh materi dan tonton tanpa koneksi internet. Belajar di mana saja, kapan saja.</p>
-      </div>
-      <div class="f-item reveal">
-        <div class="f-num">05</div>
-        <h3>Komunitas Aktif</h3>
-        <p>Forum diskusi, study group, dan sesi tanya jawab live dengan instruktur setiap bulan.</p>
-      </div>
-      <div class="f-item reveal">
-        <div class="f-num">06</div>
-        <h3>Job Board Eksklusif</h3>
-        <p>Akses lowongan eksklusif dari perusahaan mitra yang khusus mencari alumni Akademi Cerdas.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section id="stats" style="padding: 0;">
-    <div class="stats-grid">
-      <div class="s-box">
-        <div class="s-num">80K+</div>
-        <div class="s-label">Pelajar Aktif</div>
-      </div>
-      <div class="s-box">
-        <div class="s-num">350+</div>
-        <div class="s-label">Kursus Tersedia</div>
-      </div>
-      <div class="s-box">
-        <div class="s-num">200+</div>
-        <div class="s-label">Perusahaan Mitra</div>
-      </div>
-      <div class="s-box">
-        <div class="s-num">4.8</div>
-        <div class="s-label">Rating Rata-rata</div>
-      </div>
-    </div>
-  </section>
-
-  <div class="line"></div>
-
-  <!-- TESTIMONI -->
-  <section id="testi">
-    <div class="sec-label">Alumni</div>
-    <h2 class="sec-title reveal">Kata Alumni Kami</h2>
-    <p class="sec-sub reveal">Nyata. Terukur. Mengubah karir.</p>
-    <div class="testi-g">
-      <div class="t-card reveal">
-        <div class="t-score">
-          <div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div>
-        </div>
-        <p class="t-q">"Setelah kursus React di sini, saya dapat kerja di startup fintech dalam 3 bulan. Materi sangat aplikatif dan instrukturnya responsif menjawab pertanyaan."</p>
-        <div class="t-rule"></div>
-        <div class="t-name">Rizky Pratama</div>
-        <div class="t-role">Frontend Developer &mdash; Jakarta</div>
-      </div>
-      <div class="t-card reveal">
-        <div class="t-score">
-          <div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div>
-        </div>
-        <p class="t-q">"Kursus data science-nya sangat komprehensif. Dari Python dasar sampai machine learning tersedia semua. Sertifikatnya diakui di tempat kerja baru saya."</p>
-        <div class="t-rule"></div>
-        <div class="t-name">Anisa Dewi</div>
-        <div class="t-role">Data Analyst &mdash; Bandung</div>
-      </div>
-      <div class="t-card reveal">
-        <div class="t-score">
-          <div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div><div class="t-pip"></div>
-        </div>
-        <p class="t-q">"Nilainya sepadan, bahkan lebih. Instruktur berbagi pengalaman nyata, bukan sekadar teori. Komunitasnya sangat suportif untuk belajar bersama."</p>
-        <div class="t-rule"></div>
-        <div class="t-name">Doni Wahyudi</div>
-        <div class="t-role">UI/UX Designer &mdash; Surabaya</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="cta">
-    <div class="cta-inner">
-      <div class="cta-eyebrow">Mulai Sekarang</div>
-      <h2 class="reveal">Mulai Perjalanan Belajar Anda Hari Ini</h2>
-      <p class="reveal">Konsultasikan kebutuhan belajar Anda dengan tim kami. Kami akan bantu menemukan kursus yang paling sesuai dengan tujuan karir Anda.</p>
-      <div class="cta-btns">
-        <a href="https://wa.me/6281234567890?text=Halo%20Akademi%20Cerdas%2C%20saya%20ingin%20konsultasi%20untuk%20memilih%20kursus%20yang%20sesuai." class="btn-primary" target="_blank" rel="noopener">
-          Konsultasi via WhatsApp
+        <a href="mailto:info@akademicerdas.id" class="contact-btn gmail">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+          Gmail
         </a>
-        <a href="#kursus" class="btn-secondary">Lihat Semua Kursus</a>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="ft-wrap">
-      <div class="ft-brand">
-        <div class="ft-logo">Akademi<span>Cerdas</span></div>
-        <p>Platform edukasi online Indonesia untuk membangun skill yang relevan dan memenangkan karir impian.</p>
+    <div class="sidebar-footer-copy">
+      2025 Akademi Cerdas. Semua hak dilindungi.
+    </div>
+  </aside>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ══ MAIN WRAPPER ══ -->
+  <div class="main-wrapper">
+
+    <!-- TOP BAR (mobile only) -->
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Buka menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="topbar-logo">Akademi<span>Cerdas</span></div>
+      <a href="https://wa.me/6281234567890" class="topbar-cta" target="_blank" rel="noopener">
+        Konsultasi
+      </a>
+    </header>
+
+    <!-- ══ HERO ══ -->
+    <section class="hero" id="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">Platform Edukasi Online No. 1 Indonesia</div>
+        <h1>Belajar Skill,<br>Raih <em>Karir</em> Impian</h1>
+        <p class="hero-desc">
+          Ratusan kursus dari instruktur praktisi terbaik Indonesia. Belajar fleksibel, dapatkan sertifikat diakui, dan langsung siap terjun ke dunia kerja.
+        </p>
+        <div class="hero-btns">
+          <a href="#kursus" class="btn-primary">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+            Lihat Kursus
+          </a>
+          <a href="https://wa.me/6281234567890?text=Halo%20Akademi%20Cerdas%2C%20saya%20ingin%20konsultasi%20kursus." class="btn-wa" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Konsultasi WA
+          </a>
+          <a href="#fitur" class="btn-outline">Pelajari Lebih</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">80K+</div>
+            <div class="hero-stat-label">Pelajar</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">350+</div>
+            <div class="hero-stat-label">Kursus</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">4.8</div>
+            <div class="hero-stat-label">Rating</div>
+          </div>
+        </div>
       </div>
-      <div class="ft-col">
-        <h4>Kategori</h4>
-        <ul>
-          <li><a href="#kursus">Web &amp; Mobile Dev</a></li>
-          <li><a href="#kursus">Data Science</a></li>
-          <li><a href="#kursus">UI/UX Design</a></li>
-          <li><a href="#kursus">Bisnis &amp; Marketing</a></li>
-        </ul>
+
+      <div class="hero-right">
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1200&q=82&auto=format&fit=crop"
+          alt="Mahasiswa belajar online bersama"
+          loading="eager"
+        />
+        <div class="hero-right-overlay"></div>
       </div>
-      <div class="ft-col">
-        <h4>Platform</h4>
-        <ul>
-          <li><a href="#fitur">Tentang Kami</a></li>
-          <li><a href="https://wa.me/6281234567890?text=Halo%2C%20saya%20ingin%20menjadi%20instruktur%20di%20Akademi%20Cerdas." target="_blank" rel="noopener">Jadi Instruktur</a></li>
-          <li><a href="#cta">Program Beasiswa</a></li>
-          <li><a href="#testi">Alumni</a></li>
-        </ul>
+    </section>
+
+    <!-- ══ STATS BAND ══ -->
+    <div class="stats-band">
+      <div class="sb-item">
+        <div class="sb-num">80K+</div>
+        <div class="sb-label">Pelajar Aktif</div>
       </div>
-      <div class="ft-col">
-        <h4>Hubungi Kami</h4>
-        <ul>
-          <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="mailto:hello@akademicerdas.id">hello@akademicerdas.id</a></li>
-          <li><a href="#kursus">Katalog Kursus</a></li>
-          <li><a href="#cta">Konsultasi Gratis</a></li>
-        </ul>
+      <div class="sb-item">
+        <div class="sb-num">350+</div>
+        <div class="sb-label">Kursus Tersedia</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-num">200+</div>
+        <div class="sb-label">Perusahaan Mitra</div>
+      </div>
+      <div class="sb-item">
+        <div class="sb-num">4.8</div>
+        <div class="sb-label">Rating Rata-rata</div>
       </div>
     </div>
-    <div class="ft-bottom">
-      <span class="ft-copy">2025 Akademi Cerdas. Hak cipta dilindungi.</span>
-      <span class="ft-tag">Demo Template</span>
-    </div>
-  </footer>
+
+    <!-- ══ KURSUS ══ -->
+    <section class="section" id="kursus">
+      <div class="section-header">
+        <div class="section-eyebrow reveal">Kursus Terpopuler</div>
+        <h2 class="section-title reveal">Pilihan Kursus Terbaik</h2>
+        <p class="section-sub reveal">Dipilih berdasarkan rating tertinggi dan relevansi pasar kerja saat ini.</p>
+      </div>
+      <div class="courses-grid">
+
+        <div class="course-card reveal">
+          <div class="course-thumb">
+            <img src="https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=600&q=80&auto=format&fit=crop" alt="React dan Next.js Course" loading="lazy" />
+            <div class="course-thumb-overlay"></div>
+            <div class="course-badge">Frontend Dev</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">React &amp; Next.js Masterclass</div>
+            <div class="course-instructor">Ahmad Fauzi — Senior Developer, Tokopedia</div>
+            <div class="course-meta">
+              <div class="course-rating">
+                <div class="stars">
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <span class="rating-txt">4.9</span>
+                <span class="rating-count">(2.1K)</span>
+              </div>
+              <div class="course-price">Rp 299K</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&auto=format&fit=crop" alt="Python Data Science" loading="lazy" />
+            <div class="course-thumb-overlay"></div>
+            <div class="course-badge">Data Science</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">Python untuk Data Bisnis</div>
+            <div class="course-instructor">Dewi Rahayu — Data Scientist, GOJEK</div>
+            <div class="course-meta">
+              <div class="course-rating">
+                <div class="stars">
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <span class="rating-txt">4.8</span>
+                <span class="rating-count">(1.4K)</span>
+              </div>
+              <div class="course-price">Rp 249K</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&q=80&auto=format&fit=crop" alt="Figma UI UX Design" loading="lazy" />
+            <div class="course-thumb-overlay"></div>
+            <div class="course-badge">UI/UX Design</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">Figma: Design System Profesional</div>
+            <div class="course-instructor">Sari Permata — Product Designer, Grab</div>
+            <div class="course-meta">
+              <div class="course-rating">
+                <div class="stars">
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-empty" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <span class="rating-txt">4.7</span>
+                <span class="rating-count">(980)</span>
+              </div>
+              <div class="course-price">Rp 199K</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80&auto=format&fit=crop" alt="Digital Marketing Course" loading="lazy" />
+            <div class="course-thumb-overlay"></div>
+            <div class="course-badge">Digital Marketing</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">Growth Hacking &amp; Performance Ads</div>
+            <div class="course-instructor">Budi Santoso — CMO, Startup FMCG</div>
+            <div class="course-meta">
+              <div class="course-rating">
+                <div class="stars">
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <span class="rating-txt">4.9</span>
+                <span class="rating-count">(710)</span>
+              </div>
+              <div class="course-price">Rp 349K</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb">
+            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80&auto=format&fit=crop" alt="Bisnis dan Startup" loading="lazy" />
+            <div class="course-thumb-overlay"></div>
+            <div class="course-badge">Bisnis</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">Membangun Startup dari Nol</div>
+            <div class="course-instructor">Raka Wirawan — Founder &amp; CEO</div>
+            <div class="course-meta">
+              <div class="course-rating">
+                <div class="stars">
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-empty" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <span class="rating-txt">4.7</span>
+                <span class="rating-count">(1.2K)</span>
+              </div>
+              <div class="course-price">Rp 399K</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-card reveal">
+          <div class="course-thumb">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80&auto=format&fit=crop" alt="AWS Cloud DevOps" loading="lazy" />
+            <div class="course-thumb-overlay"></div>
+            <div class="course-badge">Cloud &amp; DevOps</div>
+          </div>
+          <div class="course-body">
+            <div class="course-name">AWS untuk Developer Indonesia</div>
+            <div class="course-instructor">Nanda Putra — AWS Certified Architect</div>
+            <div class="course-meta">
+              <div class="course-rating">
+                <div class="stars">
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="star star-full" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <span class="rating-txt">4.8</span>
+                <span class="rating-count">(540)</span>
+              </div>
+              <div class="course-price">Rp 299K</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ FITUR ══ -->
+    <section class="section section-alt" id="fitur">
+      <div class="section-header">
+        <div class="section-eyebrow reveal">Keunggulan Platform</div>
+        <h2 class="section-title reveal">Kenapa Akademi Cerdas?</h2>
+        <p class="section-sub reveal">Dirancang khusus untuk pelajar Indonesia yang serius membangun karir profesional.</p>
+      </div>
+      <div class="features-grid">
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="feature-num">01</div>
+          <h3>Instruktur Praktisi</h3>
+          <p>Bukan sekadar teori — semua instruktur adalah praktisi aktif di perusahaan-perusahaan terkemuka Indonesia seperti Tokopedia, GOJEK, dan Grab.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+          </div>
+          <div class="feature-num">02</div>
+          <h3>Sertifikat Diakui</h3>
+          <p>Sertifikat penyelesaian diakui oleh 200+ perusahaan mitra. Tambahkan langsung ke profil LinkedIn dan portofolio profesional Anda.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="feature-num">03</div>
+          <h3>Akses Seumur Hidup</h3>
+          <p>Bayar sekali, akses selamanya — termasuk semua pembaruan materi di masa mendatang saat industri dan teknologi berkembang.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="feature-num">04</div>
+          <h3>Komunitas Aktif</h3>
+          <p>Forum diskusi, study group, dan sesi tanya jawab live dengan instruktur setiap bulan. Belajar lebih efektif bersama ribuan pelajar lain.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 0v10m0 0 4-4m-4 4-4-4"/></svg>
+          </div>
+          <div class="feature-num">05</div>
+          <h3>Belajar Offline</h3>
+          <p>Unduh materi dan tonton tanpa koneksi internet. Belajar di perjalanan, di mana saja, kapan saja sesuai jadwal Anda.</p>
+        </div>
+
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="feature-num">06</div>
+          <h3>Job Board Eksklusif</h3>
+          <p>Akses lowongan eksklusif dari perusahaan mitra yang khusus mencari alumni Akademi Cerdas. Karir Anda adalah prioritas kami.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ TESTIMONIALS ══ -->
+    <section class="section" id="testi">
+      <div class="section-header">
+        <div class="section-eyebrow reveal">Alumni</div>
+        <h2 class="section-title reveal">Kata Alumni Kami</h2>
+        <p class="section-sub reveal">Nyata. Terukur. Mengubah karir dan kehidupan para pelajar Indonesia.</p>
+      </div>
+      <div class="testi-grid">
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testi-quote">"Setelah kursus React di sini, saya dapat kerja di startup fintech dalam 3 bulan. Materi sangat aplikatif dan instrukturnya responsif menjawab setiap pertanyaan."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=faces" alt="Rizky Pratama" loading="lazy" />
+            </div>
+            <div>
+              <div class="testi-name">Rizky Pratama</div>
+              <div class="testi-role">Frontend Developer — Jakarta</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testi-quote">"Kursus data science-nya komprehensif. Dari Python dasar hingga machine learning tersedia lengkap. Sertifikatnya langsung diakui di tempat kerja saya."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=faces" alt="Anisa Dewi" loading="lazy" />
+            </div>
+            <div>
+              <div class="testi-name">Anisa Dewi</div>
+              <div class="testi-role">Data Analyst — Bandung</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal">
+          <div class="testi-stars">
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="testi-star" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="testi-quote">"Nilainya sepadan bahkan lebih. Instruktur berbagi pengalaman nyata dari industri, bukan teori semata. Komunitas belajarnya sangat suportif."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80&auto=format&fit=crop&crop=faces" alt="Doni Wahyudi" loading="lazy" />
+            </div>
+            <div>
+              <div class="testi-name">Doni Wahyudi</div>
+              <div class="testi-role">UI/UX Designer — Surabaya</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <section class="cta-section" id="cta">
+      <div class="cta-inner">
+        <div class="cta-eyebrow reveal">Mulai Sekarang</div>
+        <h2 class="reveal">Siap Mulai Perjalanan<br><em>Belajar</em> Anda?</h2>
+        <p class="reveal">Konsultasikan kebutuhan belajar Anda dengan tim kami secara gratis. Kami bantu menemukan kursus yang paling sesuai dengan tujuan karir Anda.</p>
+        <div class="cta-btns reveal">
+          <a href="https://wa.me/6281234567890?text=Halo%20Akademi%20Cerdas%2C%20saya%20ingin%20konsultasi%20untuk%20memilih%20kursus%20yang%20sesuai." class="btn-wa-outline" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Konsultasi via WhatsApp
+          </a>
+          <a href="mailto:info@akademicerdas.id" class="btn-gmail">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+            Kirim Email
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-logo">Akademi<span>Cerdas</span></div>
+          <p class="footer-brand-desc">Platform edukasi online Indonesia untuk membangun skill relevan dan memenangkan karir impian Anda.</p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://wa.me/6281234567890" class="footer-social-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Kategori</h4>
+          <ul>
+            <li><a href="#kursus">Web &amp; Mobile Dev</a></li>
+            <li><a href="#kursus">Data Science</a></li>
+            <li><a href="#kursus">UI/UX Design</a></li>
+            <li><a href="#kursus">Digital Marketing</a></li>
+            <li><a href="#kursus">Cloud &amp; DevOps</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#fitur">Tentang Kami</a></li>
+            <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">Jadi Instruktur</a></li>
+            <li><a href="#cta">Program Beasiswa</a></li>
+            <li><a href="#testi">Cerita Alumni</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hubungi Kami</h4>
+          <ul>
+            <li><a href="https://wa.me/6281234567890" target="_blank" rel="noopener">WhatsApp: +62 812-3456-7890</a></li>
+            <li><a href="mailto:info@akademicerdas.id">info@akademicerdas.id</a></li>
+            <li><a href="#kursus">Katalog Kursus</a></li>
+            <li><a href="#cta">Konsultasi Gratis</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span class="footer-copy">2025 Akademi Cerdas. Semua hak dilindungi.</span>
+        <span class="footer-tag">Demo Template</span>
+      </div>
+    </footer>
+
+  </div><!-- end .main-wrapper -->
 
   <script>
-    // Reveal on scroll
-    const revEls = document.querySelectorAll('.reveal');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    revEls.forEach(el => obs.observe(el));
+    // ── Sidebar Toggle ──
+    const sidebar   = document.getElementById('sidebar');
+    const overlay   = document.getElementById('overlay');
+    const hamburger = document.getElementById('hamburger');
+    const closeBtn  = document.getElementById('sidebarClose');
 
-    // Smooth scroll
+    function openNav() {
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeNav() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    overlay.addEventListener('click', closeNav);
+
+    // Close on ESC
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+    // ── Active nav item on scroll ──
+    const navItems = document.querySelectorAll('.nav-item');
+    const sections = document.querySelectorAll('section[id], div.stats-band');
+
+    const highlightNav = () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        const href = item.getAttribute('href');
+        if (href && href === '#' + current) item.classList.add('active');
+      });
+      if (!current) navItems[0]?.classList.add('active');
+    };
+
+    window.addEventListener('scroll', highlightNav, { passive: true });
+
+    // ── Smooth scroll ──
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        if (target) {
+          e.preventDefault();
+          const offset = window.innerWidth <= 900 ? 60 : 0;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
       });
     });
 
-    // Nav scroll effect
-    const nav = document.querySelector('nav');
-    window.addEventListener('scroll', () => {
-      nav.style.borderBottomColor = window.scrollY > 10
-        ? 'rgba(255,255,255,0.10)'
-        : 'rgba(255,255,255,0.06)';
+    // ── Reveal on scroll ──
+    const revEls = document.querySelectorAll('.reveal');
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    revEls.forEach(el => revObs.observe(el));
+
+    // ── Stagger delays ──
+    document.querySelectorAll('.courses-grid .course-card, .features-grid .feature-card, .testi-grid .testi-card').forEach((el, i) => {
+      el.style.transitionDelay = (i % 3) * 0.08 + 's';
     });
   </script>
 </body>

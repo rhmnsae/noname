@@ -4,325 +4,2030 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Klinik Medika Prima — Layanan Kesehatan Terpercaya</title>
-  <meta name="description" content="Klinik kesehatan modern dengan dokter spesialis berpengalaman, fasilitas lengkap, dan sistem reservasi online yang mudah." />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Klinik kesehatan premium dengan dokter spesialis berpengalaman, fasilitas diagnostik mutakhir, dan sistem reservasi online yang mudah." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       RESET & ROOT
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      --navy-deep:   #0b1f3a;
+      --navy-mid:    #163155;
+      --navy-light:  #1e4470;
+      --gold:        #c9a44a;
+      --gold-light:  #e6c97a;
+      --gold-pale:   #fdf6e8;
+      --teal:        #0d8f7c;
+      --teal-light:  #12b09a;
+      --teal-pale:   #e6f7f5;
+      --white:       #ffffff;
+      --off-white:   #f8f5f0;
+      --stone-100:   #f3f0ec;
+      --stone-200:   #e8e3dc;
+      --text-dark:   #0b1f3a;
+      --text-body:   #3a4a5c;
+      --text-muted:  #6c7a8a;
+      --border:      #ddd8d0;
+      --shadow-xs:   0 1px 3px rgba(11,31,58,0.06);
+      --shadow-sm:   0 2px 8px rgba(11,31,58,0.08);
+      --shadow-md:   0 6px 24px rgba(11,31,58,0.10);
+      --shadow-lg:   0 16px 48px rgba(11,31,58,0.12);
+      --shadow-xl:   0 32px 80px rgba(11,31,58,0.15);
+      --radius-sm:   8px;
+      --radius-md:   14px;
+      --radius-lg:   22px;
+      --radius-xl:   32px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text-body);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garant', serif;
+      color: var(--text-dark);
+      line-height: 1.15;
+      font-weight: 700;
+    }
+
+    a { text-decoration: none; color: inherit; transition: all 0.25s ease; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    button { font-family: 'DM Sans', sans-serif; cursor: pointer; border: none; outline: none; }
+
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ============================================================
+       TOP BAR
+    ============================================================ */
+    .top-bar {
+      background: var(--navy-deep);
+      color: rgba(255,255,255,0.78);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      padding: 9px 0;
+    }
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .tb-group { display: flex; gap: 24px; flex-wrap: wrap; }
+    .tb-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .tb-item svg { flex-shrink: 0; opacity: 0.7; }
+    .tb-contact { display: flex; gap: 16px; }
+    .tb-wa {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(37,211,102,0.15);
+      color: #4ade80;
+      padding: 3px 12px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      transition: background 0.2s;
+    }
+    .tb-wa:hover { background: rgba(37,211,102,0.25); color: #4ade80; }
+    .tb-mail {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--gold-light);
+      padding: 3px 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .tb-mail:hover { color: #fff; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--stone-200);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: var(--shadow-md); }
+
+    .nav-container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 28px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .nav-logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--navy-deep);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-logo-icon svg { width: 20px; height: 20px; }
+    .nav-logo-text {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      letter-spacing: -0.3px;
+    }
+    .nav-logo-text span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    .nav-links li a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-body);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      letter-spacing: 0.2px;
+    }
+    .nav-links li a:hover {
+      color: var(--navy-deep);
+      background: var(--stone-100);
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+
+    .btn-nav-wa {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #25d366;
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 100px;
+      transition: all 0.2s;
+      box-shadow: 0 3px 12px rgba(37,211,102,0.3);
+    }
+    .btn-nav-wa:hover {
+      background: #1fb957;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(37,211,102,0.4);
+    }
+    .btn-nav-wa svg { width: 16px; height: 16px; }
+
+    .btn-nav-primary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--navy-deep);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 9px 20px;
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .btn-nav-primary:hover {
+      background: var(--navy-mid);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .nav-hamburger:hover { background: var(--stone-100); }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-dark);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    .nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Sidebar Overlay */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11,31,58,0.45);
+      z-index: 299;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .sidebar-overlay.visible { opacity: 1; }
+
+    /* Mobile Sidebar */
+    .mobile-sidebar {
+      position: fixed;
+      top: 0;
+      right: -320px;
+      width: 300px;
+      max-width: 85vw;
+      height: 100dvh;
+      background: var(--white);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-xl);
+    }
+    .mobile-sidebar.open { right: 0; }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--stone-200);
+    }
+    .sidebar-logo {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+    }
+    .sidebar-logo span { color: var(--gold); }
+    .sidebar-close {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: var(--stone-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      transition: background 0.2s;
+    }
+    .sidebar-close:hover { background: var(--stone-200); }
+    .sidebar-close svg { width: 18px; height: 18px; stroke: var(--text-dark); }
+
+    .sidebar-nav {
+      padding: 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      overflow-y: auto;
+    }
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-body);
+      transition: all 0.2s;
+    }
+    .sidebar-nav a:hover {
+      background: var(--stone-100);
+      color: var(--navy-deep);
+    }
+    .sidebar-nav a svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .sidebar-nav a:hover svg { stroke: var(--navy-deep); }
+
+    .sidebar-divider {
+      height: 1px;
+      background: var(--stone-200);
+      margin: 10px 16px;
+    }
+
+    .sidebar-bottom {
+      padding: 16px 16px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-top: 1px solid var(--stone-200);
+    }
+    .sidebar-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: #25d366;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 13px;
+      border-radius: var(--radius-md);
+      transition: background 0.2s;
+    }
+    .sidebar-wa:hover { background: #1fb957; color: #fff; }
+    .sidebar-wa svg { width: 18px; height: 18px; }
+    .sidebar-email {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: var(--navy-deep);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 13px;
+      border-radius: var(--radius-md);
+      transition: background 0.2s;
+    }
+    .sidebar-email:hover { background: var(--navy-mid); color: #fff; }
+    .sidebar-email svg { width: 18px; height: 18px; }
+
+    .sidebar-info {
+      padding: 12px 16px;
+      background: var(--stone-100);
+      border-radius: var(--radius-md);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .sidebar-info svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      background: var(--navy-deep);
+      position: relative;
+      overflow: hidden;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-bg-lines {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-bg-lines::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -15%;
+      width: 70%;
+      height: 140%;
+      background: radial-gradient(ellipse at center, rgba(201,164,74,0.08) 0%, transparent 65%);
+    }
+    .hero-bg-lines::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 50%;
+      height: 80%;
+      background: radial-gradient(ellipse at center, rgba(13,143,124,0.12) 0%, transparent 65%);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      position: relative;
+      z-index: 2;
+      padding: 80px 0;
+    }
+
+    .hero-content { color: #fff; }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(201,164,74,0.12);
+      border: 1px solid rgba(201,164,74,0.3);
+      color: var(--gold-light);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .kicker-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse-gold 2s infinite;
+    }
+    @keyframes pulse-gold {
+      0% { box-shadow: 0 0 0 0 rgba(201,164,74,0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(201,164,74,0); }
+      100% { box-shadow: 0 0 0 0 rgba(201,164,74,0); }
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      max-width: 480px;
+      line-height: 1.75;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 52px;
+    }
+    .btn-hero-wa {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #25d366;
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 14px 26px;
+      border-radius: 100px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+    }
+    .btn-hero-wa:hover {
+      background: #1fb957;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+      color: #fff;
+    }
+    .btn-hero-wa svg { width: 18px; height: 18px; }
+    .btn-hero-ghost {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 14px 26px;
+      border-radius: 100px;
+      transition: all 0.25s;
+    }
+    .btn-hero-ghost:hover {
+      border-color: rgba(255,255,255,0.6);
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero-trust {
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+    .trust-check {
+      width: 20px; height: 20px;
+      background: rgba(201,164,74,0.2);
+      border: 1px solid rgba(201,164,74,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-check svg { width: 10px; height: 10px; stroke: var(--gold-light); }
+
+    /* Hero Right - Image + Form */
+    .hero-right { position: relative; }
+
+    .hero-img-frame {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: 520px;
+      box-shadow: var(--shadow-xl);
+    }
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .hero-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11,31,58,0.55) 0%, transparent 50%);
+    }
+
+    .hero-float-card {
+      position: absolute;
+      bottom: -24px;
+      left: -28px;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-xl);
+      max-width: 220px;
+    }
+    .hero-float-card .fc-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      line-height: 1;
+    }
+    .hero-float-card .fc-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .hero-float-tag {
+      position: absolute;
+      top: 24px;
+      right: -20px;
+      background: var(--gold);
+      color: var(--navy-deep);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ============================================================
+       STATS BAR
+    ============================================================ */
+    .stats-bar {
+      background: var(--off-white);
+      border-bottom: 1px solid var(--stone-200);
+      padding: 0;
+    }
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 28px 32px;
+      border-right: 1px solid var(--stone-200);
+      transition: background 0.2s;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item:hover { background: var(--white); }
+    .stat-icon {
+      width: 48px; height: 48px;
+      background: var(--navy-deep);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .stat-icon svg { width: 22px; height: 22px; stroke: var(--gold-light); }
+    .stat-num {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 3px;
+    }
+
+    /* ============================================================
+       SECTION COMMONS
+    ============================================================ */
+    section { padding: 96px 0; }
+    .sec-head { margin-bottom: 60px; }
+    .sec-head.center { text-align: center; }
+    .sec-head.center .sec-desc { margin-inline: auto; }
+    .sec-kicker {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .sec-kicker::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .sec-head.center .sec-kicker { justify-content: center; }
+    .sec-head.center .sec-kicker::before { display: none; }
+    .sec-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .sec-desc {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.75;
+    }
+
+    /* ============================================================
+       SERVICES
+    ============================================================ */
+    .services-sec { background: var(--white); }
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .svc-card {
+      background: var(--off-white);
+      border: 1px solid var(--stone-200);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--navy-deep), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .svc-card:hover {
+      background: var(--white);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+      transform: translateY(-4px);
+    }
+    .svc-card:hover::after { transform: scaleX(1); }
+    .svc-icon-wrap {
+      width: 56px; height: 56px;
+      background: var(--navy-deep);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .svc-icon-wrap svg { width: 26px; height: 26px; stroke: var(--gold-light); }
+    .svc-card h3 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .svc-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+    .svc-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .svc-link:hover { color: var(--gold); }
+
+    /* ============================================================
+       ABOUT SPLIT
+    ============================================================ */
+    .about-sec { background: var(--off-white); }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      height: 520px;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .about-badge {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      background: var(--navy-deep);
+      color: #fff;
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      text-align: center;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .about-badge strong {
+      display: block;
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .about-content { }
+    .about-content .sec-desc { max-width: 100%; margin-bottom: 32px; }
+    .about-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+    .about-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 18px 20px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--stone-200);
+    }
+    .about-list-icon {
+      width: 36px; height: 36px;
+      background: var(--teal-pale);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .about-list-icon svg { width: 18px; height: 18px; stroke: var(--teal); }
+    .about-list-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 3px;
+    }
+    .about-list-desc {
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--navy-deep);
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 100px;
+      transition: all 0.25s;
+    }
+    .btn-primary:hover {
+      background: var(--navy-mid);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      color: #fff;
+    }
+
+    /* ============================================================
+       DOCTORS
+    ============================================================ */
+    .doctors-sec { background: var(--white); }
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .doc-card {
+      background: var(--white);
+      border: 1px solid var(--stone-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .doc-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-5px);
+      border-color: transparent;
+    }
+    .doc-img-wrap {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      background: var(--stone-100);
+    }
+    .doc-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.5s ease;
+    }
+    .doc-card:hover .doc-img-wrap img { transform: scale(1.04); }
+    .doc-status {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.4px;
+    }
+    .doc-status.avail {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .doc-status.appt {
+      background: #fef3c7;
+      color: #92400e;
+    }
+    .doc-body {
+      padding: 20px 20px 22px;
+    }
+    .doc-spec {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .doc-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .doc-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .btn-doc {
+      width: 100%;
+      padding: 10px;
+      border: 1.5px solid var(--navy-deep);
+      background: transparent;
+      color: var(--navy-deep);
+      border-radius: var(--radius-sm);
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      transition: all 0.2s;
+    }
+    .btn-doc:hover { background: var(--navy-deep); color: #fff; }
+
+    /* ============================================================
+       BOOKING SECTION
+    ============================================================ */
+    .booking-sec {
+      background: var(--navy-deep);
+      position: relative;
+      overflow: hidden;
+      padding: 96px 0;
+    }
+    .booking-sec::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(201,164,74,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .booking-inner {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 80px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    .booking-left { color: #fff; }
+    .booking-left .sec-kicker { color: var(--gold-light); }
+    .booking-left .sec-kicker::before { background: var(--gold); }
+    .booking-left .sec-title { color: #fff; }
+    .booking-left .sec-desc { color: rgba(255,255,255,0.6); max-width: 100%; }
+
+    .contact-methods {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+      width: 100%;
+      text-align: left;
+    }
+    .contact-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+    .contact-btn-wa {
+      background: rgba(37,211,102,0.12);
+      border: 1px solid rgba(37,211,102,0.25);
+      color: #4ade80;
+    }
+    .contact-btn-wa:hover { background: rgba(37,211,102,0.2); color: #86efac; }
+    .contact-btn-gmail {
+      background: rgba(234,67,53,0.1);
+      border: 1px solid rgba(234,67,53,0.2);
+      color: #f87171;
+    }
+    .contact-btn-gmail:hover { background: rgba(234,67,53,0.18); color: #fca5a5; }
+    .contact-btn-phone {
+      background: rgba(201,164,74,0.1);
+      border: 1px solid rgba(201,164,74,0.2);
+      color: var(--gold-light);
+    }
+    .contact-btn-phone:hover { background: rgba(201,164,74,0.18); }
+    .cb-info { flex: 1; }
+    .cb-label { font-size: 0.75rem; opacity: 0.6; font-weight: 500; display: block; }
+    .cb-val { font-size: 0.95rem; font-weight: 700; }
+
+    /* Form Card */
+    .booking-form-card {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      box-shadow: var(--shadow-xl);
+    }
+    .booking-form-card h3 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .booking-form-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-body);
+      margin-bottom: 7px;
+      letter-spacing: 0.3px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--stone-200);
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text-dark);
+      background: var(--off-white);
+      transition: all 0.2s;
+      outline: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--navy-deep);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(11,31,58,0.07);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .btn-submit-form {
+      width: 100%;
+      padding: 15px;
+      border-radius: var(--radius-md);
+      background: #25d366;
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      transition: all 0.25s;
+      margin-top: 8px;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+    }
+    .btn-submit-form:hover {
+      background: #1fb957;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,211,102,0.45);
+    }
+    .btn-submit-form svg { width: 18px; height: 18px; }
+
+    /* ============================================================
+       INSURANCE BANNER
+    ============================================================ */
+    .insurance-sec {
+      background: var(--off-white);
+      border-top: 1px solid var(--stone-200);
+      border-bottom: 1px solid var(--stone-200);
+      padding: 56px 0;
+    }
+    .insurance-inner {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+    .insurance-text { flex: 1; min-width: 240px; }
+    .insurance-text h3 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .insurance-text p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .insurance-logos {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .ins-logo {
+      background: var(--white);
+      border: 1px solid var(--stone-200);
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      transition: all 0.2s;
+    }
+    .ins-logo:hover {
+      border-color: var(--navy-deep);
+      color: var(--navy-deep);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    .testi-sec { background: var(--white); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testi-card {
+      background: var(--off-white);
+      border: 1px solid var(--stone-200);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      position: relative;
+    }
+    .testi-quote-mark {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 5rem;
+      color: var(--stone-200);
+      line-height: 0.7;
+      position: absolute;
+      top: 24px;
+      right: 28px;
+    }
+    .testi-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .testi-stars svg { width: 14px; height: 14px; fill: var(--gold); stroke: none; }
+    .testi-text {
+      font-size: 0.92rem;
+      color: var(--text-body);
+      line-height: 1.75;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--stone-200);
+    }
+    .testi-av {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--stone-200);
+      flex-shrink: 0;
+    }
+    .testi-av img { width: 100%; height: 100%; object-fit: cover; }
+    .testi-av-initials {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--navy-deep);
+      color: #fff;
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .testi-name { font-size: 0.9rem; font-weight: 700; color: var(--text-dark); }
+    .testi-role { font-size: 0.76rem; color: var(--text-muted); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--navy-deep);
+      color: rgba(255,255,255,0.7);
+      padding: 80px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.6fr;
+      gap: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand-logo {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .footer-brand-logo span { color: var(--gold-light); }
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 280px;
+    }
+    .footer-socials { display: flex; gap: 10px; }
+    .footer-social-btn {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .footer-social-btn:hover { background: var(--gold); border-color: var(--gold); }
+    .footer-social-btn svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.8); }
+    .footer-social-btn:hover svg { stroke: var(--navy-deep); }
+
+    .footer-col h4 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 22px;
+    }
+    .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.55);
+      transition: all 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--gold-light); padding-left: 4px; }
+
+    .footer-contact-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 16px;
+      align-items: flex-start;
+    }
+    .fci-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .fci-icon.wa { background: rgba(37,211,102,0.15); }
+    .fci-icon.mail { background: rgba(234,67,53,0.15); }
+    .fci-icon.phone { background: rgba(201,164,74,0.15); }
+    .fci-icon.loc { background: rgba(255,255,255,0.08); }
+    .fci-icon svg { width: 16px; height: 16px; }
+    .fci-icon.wa svg { stroke: #4ade80; }
+    .fci-icon.mail svg { stroke: #f87171; }
+    .fci-icon.phone svg { stroke: var(--gold-light); }
+    .fci-icon.loc svg { stroke: rgba(255,255,255,0.5); }
+    .fci-label { font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-bottom: 2px; }
+    .fci-val {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+      font-weight: 600;
+      line-height: 1.5;
+    }
+    .fci-val a { color: rgba(255,255,255,0.8); }
+    .fci-val a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+      font-size: 0.78rem;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .fb-links { display: flex; gap: 20px; }
+    .fb-links a:hover { color: rgba(255,255,255,0.8); }
+
+    /* ============================================================
+       FLOATING WA BUTTON
+    ============================================================ */
+    .float-wa {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 150;
+      background: #25d366;
+      color: #fff;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+      transition: all 0.25s;
+      border: none;
+      cursor: pointer;
+    }
+    .float-wa:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.6);
+    }
+    .float-wa svg { width: 28px; height: 28px; }
+    .float-wa-pulse {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #25d366;
+      animation: wa-pulse 2.5s infinite;
+    }
+    @keyframes wa-pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      70% { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    /* ============================================================
+       REVEAL ANIMATION
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .hero-inner { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner .stat-item:nth-child(2) { border-right: none; }
+      .stats-inner .stat-item:nth-child(3) { border-bottom: 1px solid var(--stone-200); }
+      .stats-inner .stat-item:nth-child(4) { border-right: none; }
+      .doc-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .booking-inner { grid-template-columns: 1fr; gap: 48px; }
+      .booking-inner .booking-form-card { max-width: 540px; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-img-frame { height: 360px; }
+      .hero-float-card { left: -10px; bottom: -12px; }
+      .hero-float-tag { right: -8px; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .about-img-wrap { height: 320px; }
+      .svc-grid { grid-template-columns: repeat(2, 1fr); }
+      .testi-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links, .nav-right { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    @media (max-width: 640px) {
+      .top-bar .tb-group { gap: 12px; }
+      .top-bar .tb-item:not(:last-child) { display: none; }
+      section { padding: 64px 0; }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 56px 0 48px; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions a, .hero-actions button { width: 100%; justify-content: center; }
+      .hero-trust { gap: 16px; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stats-inner .stat-item { padding: 20px 18px; }
+      .svc-grid { grid-template-columns: 1fr; }
+      .doc-grid { grid-template-columns: 1fr 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .insurance-inner { flex-direction: column; gap: 24px; }
+      .booking-form-card { padding: 28px 22px; }
+      .contact-methods { gap: 10px; }
+    }
+
+    @media (max-width: 400px) {
+      .doc-grid { grid-template-columns: 1fr; }
+      .hero-float-card { display: none; }
+      .hero-float-tag { display: none; }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- FLOATING WA BUTTON -->
+  <a href="https://wa.me/628119999777" target="_blank" class="float-wa" aria-label="Hubungi via WhatsApp">
+    <span class="float-wa-pulse"></span>
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+  </a>
+
+  <!-- SIDEBAR OVERLAY -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- MOBILE SIDEBAR -->
+  <aside class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">Medika<span>Prima.</span></div>
+      <button class="sidebar-close" id="sidebarClose" aria-label="Tutup Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#tentang">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+        Tentang Kami
+      </a>
+      <a href="#layanan">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        Layanan Medis
+      </a>
+      <a href="#dokter">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Jadwal Dokter
+      </a>
+      <a href="#fasilitas">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        Fasilitas
+      </a>
+      <div class="sidebar-divider"></div>
+      <a href="#booking">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Buat Janji Temu
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-info">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Buka Setiap Hari 08:00 - 22:00
+      </div>
+      <a href="https://wa.me/628119999777" target="_blank" class="sidebar-wa">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+        Chat WhatsApp
+      </a>
+      <a href="mailto:info@medikaprima.co.id" class="sidebar-email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Kirim Email
+      </a>
+    </div>
+  </aside>
 
   <!-- TOP BAR -->
   <div class="top-bar">
     <div class="container top-bar-inner">
-      <div class="tb-left">
-        <span style="display:flex;align-items:center;gap:6px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Buka Setiap Hari: 08:00 - 22:00
+      <div class="tb-group">
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Buka Setiap Hari: 08:00 - 22:00
         </span>
-        <span style="display:flex;align-items:center;gap:6px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> Jl. Kesehatan Raya No. 12, Jakarta
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Jl. Kesehatan Raya No. 12, Jakarta Selatan
         </span>
       </div>
-      <div class="tb-right">
-        <span style="display:flex;align-items:center;gap:6px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg> Gawat Darurat: (021) 1500-888
-        </span>
+      <div class="tb-contact">
+        <a href="https://wa.me/628119999777" target="_blank" class="tb-wa">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+          0811-9999-777
+        </a>
+        <a href="mailto:info@medikaprima.co.id" class="tb-mail">
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          info@medikaprima.co.id
+        </a>
       </div>
     </div>
   </div>
 
-  <nav>
+  <!-- NAVBAR -->
+  <nav id="mainNav">
     <div class="nav-container">
-      <div class="nav-logo">Medika<span>Prima.</span></div>
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#c9a44a" stroke-width="2" stroke-linecap="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
+        </div>
+        <span class="nav-logo-text">Medika<span>Prima.</span></span>
+      </a>
+
       <ul class="nav-links">
         <li><a href="#tentang">Tentang Kami</a></li>
         <li><a href="#layanan">Layanan</a></li>
-        <li><a href="#dokter">Jadwal Dokter</a></li>
+        <li><a href="#dokter">Dokter</a></li>
         <li><a href="#fasilitas">Fasilitas</a></li>
       </ul>
-      <div class="nav-actions">
-        <button class="nav-btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Hubungi Kami</button>
+
+      <div class="nav-right">
+        <a href="https://wa.me/628119999777" target="_blank" class="btn-nav-wa">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+          WhatsApp
+        </a>
+        <button class="btn-nav-primary" onclick="document.getElementById('booking').scrollIntoView({behavior:'smooth'})">Buat Janji</button>
       </div>
-      <div class="nav-hamburger"><span></span><span></span><span></span></div>
+
+      <button class="nav-hamburger" id="navHamburger" aria-label="Buka Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg-shape"></div>
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <div class="hero-badge reveal">
-          <span class="pulse-dot"></span> Klinik Terakreditasi Paripurna
+  <!-- HERO SECTION -->
+  <section class="hero" id="beranda">
+    <div class="hero-bg-lines"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-content">
+          <div class="hero-kicker reveal">
+            <span class="kicker-dot"></span>
+            Terakreditasi Paripurna KARS 2024
+          </div>
+          <h1 class="hero-title reveal" style="transition-delay:0.1s">
+            Perawatan Medis<br><em>Presisi</em> untuk<br>Hidup Lebih Sehat
+          </h1>
+          <p class="hero-desc reveal" style="transition-delay:0.2s">
+            Klinik Medika Prima menghadirkan layanan kesehatan komprehensif dengan dokter spesialis berpengalaman, teknologi diagnostik terkini, dan lingkungan perawatan yang nyaman.
+          </p>
+          <div class="hero-actions reveal" style="transition-delay:0.3s">
+            <a href="https://wa.me/628119999777" target="_blank" class="btn-hero-wa">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+              Chat WhatsApp
+            </a>
+            <button class="btn-hero-ghost" onclick="document.getElementById('layanan').scrollIntoView({behavior:'smooth'})">
+              Lihat Layanan
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+          <div class="hero-trust reveal" style="transition-delay:0.4s">
+            <span class="trust-item">
+              <span class="trust-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              32 Dokter Spesialis
+            </span>
+            <span class="trust-item">
+              <span class="trust-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              IGD 24 Jam
+            </span>
+            <span class="trust-item">
+              <span class="trust-check"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Menerima BPJS
+            </span>
+          </div>
         </div>
-        <h1 class="reveal" style="transition-delay: 0.1s">Layanan Kesehatan <br><span>Komprehensif</span> &amp; Modern</h1>
-        <p class="hero-desc reveal" style="transition-delay: 0.2s">Klinik Medika Prima memadukan keahlian medis spesialis dengan fasilitas diagnostik mutakhir untuk memberikan perawatan terbaik bagi Anda dan keluarga.</p>
-        
-        <div class="hero-trust reveal" style="transition-delay: 0.3s">
-          <div class="trust-item">
-            <div class="trust-icon">✓</div>
-            <span>Dokter Spesialis Senior</span>
+
+        <div class="hero-right reveal" style="transition-delay:0.25s">
+          <div class="hero-img-frame">
+            <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=900&q=85&auto=format&fit=crop" alt="Dokter dan pasien di klinik modern" loading="eager" />
+            <div class="hero-img-overlay"></div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon">✓</div>
-            <span>Peralatan Medis Terkini</span>
+          <div class="hero-float-card">
+            <div class="fc-num">4.9</div>
+            <div class="fc-label">Rating Pasien dari 3.200+ Ulasan</div>
           </div>
-          <div class="trust-item">
-            <div class="trust-icon">✓</div>
-            <span>Menerima BPJS &amp; Asuransi</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- FLOATING BOOKING FORM -->
-      <div class="hero-form-wrapper reveal" style="transition-delay: 0.4s" id="booking">
-        <div class="hero-form">
-          <h3>Buat Janji Konsultasi</h3>
-          <p>Tanpa antre panjang, konfirmasi instan.</p>
-          <form id="waForm" onsubmit="return submitWA(event)">
-            <div class="input-group">
-              <label>Layanan Medis</label>
-              <select id="waLayanan">
-                <option>Konsultasi Dokter Umum</option>
-                <option>Spesialis Penyakit Dalam</option>
-                <option>Spesialis Anak</option>
-                <option>Spesialis Kandungan (Obgyn)</option>
-                <option>Laboratorium &amp; Cek Darah</option>
-                <option>Poli Gigi</option>
-              </select>
-            </div>
-            <div class="input-group">
-              <label>Tanggal Rencana Hadir</label>
-              <input type="date" id="waTanggal" required>
-            </div>
-            <div class="input-group">
-              <label>Nama Pasien</label>
-              <input type="text" id="waNama" placeholder="Masukkan nama lengkap" required>
-            </div>
-            <button type="submit" class="btn-submit">Chat via WhatsApp &rarr;</button>
-          </form>
+          <div class="hero-float-tag">Akreditasi Paripurna</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <section class="stats-section">
-    <div class="container stats-grid">
-      <div class="stat-card reveal">
-        <div class="stat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h6M12 6v6"></path></svg></div>
-        <div class="stat-info">
-          <div class="stat-num">15+</div>
-          <div class="stat-label">Tahun Berdiri</div>
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-inner">
+        <div class="stat-item reveal">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14M9 10h6M12 7v6"/></svg>
+          </div>
+          <div>
+            <div class="stat-num">15+</div>
+            <div class="stat-label">Tahun Berdiri</div>
+          </div>
         </div>
-      </div>
-      <div class="stat-card reveal" style="transition-delay: 0.1s">
-        <div class="stat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/><circle cx="12" cy="8" r="4"/></svg></div>
-        <div class="stat-info">
-          <div class="stat-num">32</div>
-          <div class="stat-label">Dokter Spesialis</div>
+        <div class="stat-item reveal" style="transition-delay:0.1s">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div class="stat-num">32</div>
+            <div class="stat-label">Dokter Spesialis</div>
+          </div>
         </div>
-      </div>
-      <div class="stat-card reveal" style="transition-delay: 0.2s">
-        <div class="stat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-        <div class="stat-info">
-          <div class="stat-num">12</div>
-          <div class="stat-label">Poli Layanan</div>
+        <div class="stat-item reveal" style="transition-delay:0.2s">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div>
+            <div class="stat-num">12</div>
+            <div class="stat-label">Poli Spesialis</div>
+          </div>
         </div>
-      </div>
-      <div class="stat-card reveal" style="transition-delay: 0.3s">
-        <div class="stat-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg></div>
-        <div class="stat-info">
-          <div class="stat-num">4.9/5</div>
-          <div class="stat-label">Rating Pasien</div>
+        <div class="stat-item reveal" style="transition-delay:0.3s">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="stat-num">50K+</div>
+            <div class="stat-label">Pasien Dilayani</div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- SERVICES -->
+  <!-- SERVICES SECTION -->
   <section id="layanan" class="services-sec">
     <div class="container">
-      <div class="sec-header text-center">
-        <div class="subtitle">Layanan Unggulan</div>
-        <h2>Pusat Kesehatan Terpadu Kami</h2>
-        <p>Berbagai layanan medis dan diagnostik tersedia dalam satu atap untuk kenyamanan Anda.</p>
+      <div class="sec-head center reveal">
+        <div class="sec-kicker">Layanan Unggulan</div>
+        <h2 class="sec-title">Pelayanan Kesehatan<br>Terpadu dalam Satu Atap</h2>
+        <p class="sec-desc">Berbagai layanan medis dan diagnostik komprehensif tersedia untuk memenuhi kebutuhan kesehatan Anda dan seluruh keluarga.</p>
       </div>
-
       <div class="svc-grid">
         <div class="svc-card reveal">
-          <div class="svc-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           </div>
-          <h3>Instalasi Gawat Darurat (IGD)</h3>
-          <p>Layanan tanggap darurat 24 jam dengan tim medis siaga dan ambulans standar ICU untuk penanganan kritis.</p>
-          <a href="#" class="svc-link">Pelajari &rarr;</a>
+          <h3>Instalasi Gawat Darurat</h3>
+          <p>Layanan tanggap darurat 24 jam non-stop dengan tim dokter dan perawat siaga, dilengkapi ambulans berstandar ICU untuk penanganan kondisi kritis.</p>
+          <a href="#" class="svc-link">
+            Pelajari Lebih Lanjut
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
-        <div class="svc-card reveal" style="transition-delay: 0.1s">
-          <div class="svc-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <div class="svc-card reveal" style="transition-delay:0.1s">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           </div>
           <h3>Poli Spesialis</h3>
-          <p>Konsultasi mendalam dengan dokter spesialis berpengalaman di bidang Penyakit Dalam, Anak, Obgyn, Saraf, dll.</p>
-          <a href="#" class="svc-link">Lihat Jadwal &rarr;</a>
+          <p>Konsultasi mendalam bersama dokter spesialis senior di bidang Penyakit Dalam, Anak, Obstetri-Ginekologi, Saraf, Jantung, dan berbagai spesialisasi lainnya.</p>
+          <a href="#dokter" class="svc-link">
+            Lihat Jadwal Dokter
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
-        <div class="svc-card reveal" style="transition-delay: 0.2s">
-          <div class="svc-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.5 14L12 21.5 4.5 14A5.5 5.5 0 0112 6.5a5.5 5.5 0 017.5 7.5z"/></svg>
+        <div class="svc-card reveal" style="transition-delay:0.2s">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0h10m-10 0H3m10 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5m14 0v5a2 2 0 0 0 2-2v-5"/></svg>
           </div>
-          <h3>Maternity &amp; Ibu Hamil</h3>
-          <p>Perawatan komprehensif kehamilan, USG 4D, senam hamil, hingga persalinan normal dan operasi caesar.</p>
-          <a href="#" class="svc-link">Paket Persalinan &rarr;</a>
+          <h3>Laboratorium Klinik</h3>
+          <p>Pemeriksaan laboratorium lengkap dengan hasil akurat dan cepat, menggunakan peralatan diagnostik modern berstandar internasional untuk berbagai tes darah dan urin.</p>
+          <a href="#" class="svc-link">
+            Info Pemeriksaan
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
-        <div class="svc-card reveal">
-          <div class="svc-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        <div class="svc-card reveal" style="transition-delay:0.05s">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg>
           </div>
-          <h3>MCU &amp; Laboratorium</h3>
-          <p>Medical check-up berkala, tes darah, urine, rontgen, rekam jantung (EKG) dengan hasil akurat dan cepat.</p>
-          <a href="#" class="svc-link">Pesan Paket MCU &rarr;</a>
+          <h3>Medical Check-Up</h3>
+          <p>Paket pemeriksaan kesehatan menyeluruh untuk individu, pasangan, maupun korporat. Tersedia MCU dasar, komprehensif, hingga executive package dengan laporan lengkap.</p>
+          <a href="#" class="svc-link">
+            Lihat Paket MCU
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
-        <div class="svc-card reveal" style="transition-delay: 0.1s">
-          <div class="svc-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        <div class="svc-card reveal" style="transition-delay:0.15s">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3M12 17h.01"/></svg>
           </div>
-          <h3>Poli Gigi &amp; Mulut</h3>
-          <p>Scaling, tambal gigi, pencabutan, pemasangan kawat gigi (behel), hingga bedah mulut oleh dokter gigi spesialis.</p>
-          <a href="#" class="svc-link">Konsultasi Gigi &rarr;</a>
+          <h3>Radiologi &amp; Imaging</h3>
+          <p>Layanan pencitraan diagnostik lengkap: Rontgen digital, USG 4D, CT-Scan multi-slice, dan MRI dengan resolusi tinggi untuk diagnosis yang lebih presisi dan akurat.</p>
+          <a href="#" class="svc-link">
+            Info Radiologi
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
-        <div class="svc-card reveal" style="transition-delay: 0.2s">
-          <div class="svc-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+        <div class="svc-card reveal" style="transition-delay:0.25s">
+          <div class="svc-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
-          <h3>Apotek 24 Jam</h3>
-          <p>Penyediaan obat resep dan bebas terjamin asli, suplemen kesehatan, alat medis, melayani pembelian umum.</p>
-          <a href="#" class="svc-link">Tanya Apoteker &rarr;</a>
+          <h3>Apotek &amp; Farmasi</h3>
+          <p>Apotek lengkap beroperasi 24 jam dengan ketersediaan obat-obatan berstandar nasional dan internasional, ditangani apoteker berlisensi untuk konsultasi obat yang aman.</p>
+          <a href="#" class="svc-link">
+            Info Farmasi
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="tentang" class="about-sec">
+    <div class="container">
+      <div class="about-inner">
+        <div class="about-img-wrap reveal">
+          <img src="https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=800&q=85&auto=format&fit=crop" alt="Fasilitas modern klinik Medika Prima" loading="lazy" />
+          <div class="about-badge">
+            <strong>15+</strong>
+            Tahun Pengalaman Melayani
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="sec-kicker reveal">Tentang Kami</div>
+          <h2 class="sec-title reveal" style="transition-delay:0.1s">Standar Klinik Premium<br>dengan Hati yang Tulus</h2>
+          <p class="sec-desc reveal" style="transition-delay:0.15s">Sejak 2009, Klinik Medika Prima berkomitmen memberikan pelayanan kesehatan terbaik dengan memadukan keahlian medis, teknologi terkini, dan pendekatan yang berpusat pada pasien.</p>
+          <div class="about-list reveal" style="transition-delay:0.2s">
+            <div class="about-list-item">
+              <div class="about-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div>
+                <div class="about-list-title">Teknologi Diagnostik Terkini</div>
+                <div class="about-list-desc">Peralatan medis generasi terbaru untuk diagnosis yang akurat dan penanganan yang efektif pada setiap pasien.</div>
+              </div>
+            </div>
+            <div class="about-list-item">
+              <div class="about-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/><circle cx="12" cy="8" r="4"/></svg>
+              </div>
+              <div>
+                <div class="about-list-title">Tim Dokter Spesialis Berpengalaman</div>
+                <div class="about-list-desc">32 dokter spesialis bersertifikat dengan pengalaman praktik di rumah sakit nasional maupun internasional terkemuka.</div>
+              </div>
+            </div>
+            <div class="about-list-item">
+              <div class="about-list-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <div>
+                <div class="about-list-title">Pendekatan Berpusat pada Pasien</div>
+                <div class="about-list-desc">Setiap pasien mendapatkan perhatian penuh, penjelasan yang transparan, dan rencana perawatan yang personal.</div>
+              </div>
+            </div>
+          </div>
+          <a href="#booking" class="btn-primary reveal" style="transition-delay:0.3s">
+            Hubungi Kami
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- DOCTORS -->
-  <section id="dokter" class="doc-sec">
+  <section id="dokter" class="doctors-sec">
     <div class="container">
-      <div class="sec-header">
-        <div class="subtitle">Tim Medis Kredibel</div>
-        <h2>Dokter Spesialis Unggulan</h2>
-        <p>Didukung oleh jajaran dokter spesialis dan subspesialis dengan jam terbang tinggi dari institusi terkemuka.</p>
+      <div class="sec-head center reveal">
+        <div class="sec-kicker">Tim Medis</div>
+        <h2 class="sec-title">Dokter Spesialis Kami</h2>
+        <p class="sec-desc">Ditangani oleh para ahli medis berpengalaman yang berdedikasi untuk kesehatan optimal Anda.</p>
       </div>
-
       <div class="doc-grid">
         <div class="doc-card reveal">
-          <div class="doc-img-wrapper">
-            <div class="doc-img" style="background:#e0f2fe;"></div>
-            <div class="doc-badge">Senin, Rabu, Jumat</div>
+          <div class="doc-img-wrap">
+            <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80&auto=format&fit=crop&crop=faces" alt="dr. Ahmad Fauzi" loading="lazy" />
+            <span class="doc-status avail">Tersedia Hari Ini</span>
           </div>
-          <div class="doc-info">
-            <h4>dr. Amanda Wijaya, Sp.PD, K-EMD</h4>
-            <div class="doc-spec">Spesialis Penyakit Dalam - Konsultan Endokrin</div>
-            <p>Berpengalaman &gt;15 tahun menangani diabetes melitus dan gangguan tiroid kompleks. Anggota Perkeni.</p>
-            <button class="btn-outline">Reservasi</button>
-          </div>
-        </div>
-        <div class="doc-card reveal" style="transition-delay: 0.1s">
-          <div class="doc-img-wrapper">
-            <div class="doc-img" style="background:#dbeafe;"></div>
-            <div class="doc-badge">Selasa, Kamis, Sabtu</div>
-          </div>
-          <div class="doc-info">
-            <h4>dr. Bima Aryanto, Sp.A</h4>
-            <div class="doc-spec">Spesialis Anak (Pediatri)</div>
-            <p>Fokus pada tumbuh kembang anak, asma, dan alergi. Pendekatan sangat bersahabat sehingga anak tidak takut dokter.</p>
-            <button class="btn-outline">Reservasi</button>
+          <div class="doc-body">
+            <div class="doc-spec">Penyakit Dalam</div>
+            <div class="doc-name">dr. Ahmad Fauzi, Sp.PD</div>
+            <p class="doc-desc">Spesialis penanganan diabetes, hipertensi, gangguan metabolisme, dan penyakit infeksi sistemik dengan pengalaman 18 tahun.</p>
+            <button class="btn-doc" onclick="openWADoctor('dr. Ahmad Fauzi, Sp.PD')">Buat Janji</button>
           </div>
         </div>
-        <div class="doc-card reveal" style="transition-delay: 0.2s">
-          <div class="doc-img-wrapper">
-            <div class="doc-img" style="background:#fce7f3;"></div>
-            <div class="doc-badge">Senin - Sabtu</div>
+        <div class="doc-card reveal" style="transition-delay:0.1s">
+          <div class="doc-img-wrap">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80&auto=format&fit=crop&crop=faces" alt="dr. Cindy Margaretha" loading="lazy" />
+            <span class="doc-status avail">Tersedia Hari Ini</span>
           </div>
-          <div class="doc-info">
-            <h4>dr. Cindy Lestari, Sp.OG</h4>
-            <div class="doc-spec">Spesialis Kebidanan &amp; Kandungan</div>
-            <p>Ahli dalam program kehamilan, persalinan ERACS, dan deteksi dini masalah kandungan menggunakan USG 4D.</p>
-            <button class="btn-outline">Reservasi</button>
+          <div class="doc-body">
+            <div class="doc-spec">Obstetri &amp; Ginekologi</div>
+            <div class="doc-name">dr. Cindy Margaretha, Sp.OG</div>
+            <p class="doc-desc">Spesialis kehamilan, persalinan, USG 4D, kesehatan reproduksi wanita, dan penanganan masalah kesuburan.</p>
+            <button class="btn-doc" onclick="openWADoctor('dr. Cindy Margaretha, Sp.OG')">Buat Janji</button>
           </div>
         </div>
-        <div class="doc-card reveal" style="transition-delay: 0.3s">
-          <div class="doc-img-wrapper">
-            <div class="doc-img" style="background:#f3e8ff;"></div>
-            <div class="doc-badge">Atas Perjanjian</div>
+        <div class="doc-card reveal" style="transition-delay:0.2s">
+          <div class="doc-img-wrap">
+            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&q=80&auto=format&fit=crop&crop=faces" alt="dr. Budi Santoso" loading="lazy" />
+            <span class="doc-status appt">Atas Perjanjian</span>
           </div>
-          <div class="doc-info">
-            <h4>dr. Deny Setiawan, Sp.S</h4>
-            <div class="doc-spec">Spesialis Saraf (Neurologi)</div>
-            <p>Penanganan stroke akut, saraf terjepit (HNP), nyeri kepala kronis, dan gangguan fungsi memori.</p>
-            <button class="btn-outline">Reservasi</button>
+          <div class="doc-body">
+            <div class="doc-spec">Kesehatan Anak</div>
+            <div class="doc-name">dr. Budi Santoso, Sp.A</div>
+            <p class="doc-desc">Dokter anak berpengalaman untuk tumbuh kembang optimal, imunisasi, nutrisi anak, dan penanganan penyakit pediatrik.</p>
+            <button class="btn-doc" onclick="openWADoctor('dr. Budi Santoso, Sp.A')">Buat Janji</button>
+          </div>
+        </div>
+        <div class="doc-card reveal" style="transition-delay:0.3s">
+          <div class="doc-img-wrap">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80&auto=format&fit=crop&crop=faces" alt="dr. Deny Setiawan" loading="lazy" />
+            <span class="doc-status appt">Atas Perjanjian</span>
+          </div>
+          <div class="doc-body">
+            <div class="doc-spec">Neurologi</div>
+            <div class="doc-name">dr. Deny Setiawan, Sp.S</div>
+            <p class="doc-desc">Penanganan stroke akut, saraf terjepit, nyeri kepala kronis, dan gangguan fungsi memori dan kognitif.</p>
+            <button class="btn-doc" onclick="openWADoctor('dr. Deny Setiawan, Sp.S')">Buat Janji</button>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- INFO BANNER -->
-  <section class="banner-sec">
+  <!-- INSURANCE BANNER -->
+  <div class="insurance-sec">
     <div class="container">
-      <div class="banner-box reveal">
-        <div class="banner-content">
-          <h2>Menerima Pasien BPJS Kesehatan &amp; Asuransi Swasta</h2>
-          <p>Klinik Medika Prima adalah faskes tingkat pertama dan lanjutan yang bekerjasama dengan BPJS dan &gt;40 asuransi kesehatan terkemuka di Indonesia.</p>
-          <div class="insurance-logos">
-            <div class="i-logo">BPJS</div>
-            <div class="i-logo">ALLIANZ</div>
-            <div class="i-logo">PRUDENTIAL</div>
-            <div class="i-logo">MANULIFE</div>
-            <div class="i-logo">ASTRA Life</div>
+      <div class="insurance-inner reveal">
+        <div class="insurance-text">
+          <h3>Menerima BPJS Kesehatan &amp; Asuransi Swasta</h3>
+          <p>Kami bekerja sama dengan BPJS dan lebih dari 40 perusahaan asuransi terkemuka di Indonesia untuk kemudahan akses kesehatan Anda.</p>
+        </div>
+        <div class="insurance-logos">
+          <div class="ins-logo">BPJS</div>
+          <div class="ins-logo">ALLIANZ</div>
+          <div class="ins-logo">PRUDENTIAL</div>
+          <div class="ins-logo">MANULIFE</div>
+          <div class="ins-logo">ASTRA</div>
+          <div class="ins-logo">AXA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING SECTION -->
+  <section id="booking" class="booking-sec">
+    <div class="container">
+      <div class="booking-inner">
+        <div class="booking-left reveal">
+          <div class="sec-kicker">Hubungi Kami</div>
+          <h2 class="sec-title">Buat Janji atau<br>Tanya Langsung</h2>
+          <p class="sec-desc">Reservasi konsultasi mudah dan cepat, tanpa antrian panjang. Tim kami siap membantu Anda 7 hari seminggu.</p>
+          <div class="contact-methods">
+            <a href="https://wa.me/628119999777" target="_blank" class="contact-btn contact-btn-wa">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+              <div class="cb-info">
+                <span class="cb-label">Chat WhatsApp</span>
+                <span class="cb-val">0811-9999-777</span>
+              </div>
+            </a>
+            <a href="mailto:info@medikaprima.co.id" class="contact-btn contact-btn-gmail">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div class="cb-info">
+                <span class="cb-label">Email Klinik (Gmail)</span>
+                <span class="cb-val">info@medikaprima.co.id</span>
+              </div>
+            </a>
+            <a href="tel:0211500888" class="contact-btn contact-btn-phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div class="cb-info">
+                <span class="cb-label">Telepon IGD / Informasi</span>
+                <span class="cb-val">(021) 1500-888</span>
+              </div>
+            </a>
           </div>
         </div>
-        <div class="banner-img">
-          <div class="placeholder-img" style="background:#0f766e;"></div>
+
+        <div class="booking-form-card reveal" style="transition-delay:0.2s">
+          <h3>Buat Janji Konsultasi</h3>
+          <p>Isi formulir di bawah, kami akan konfirmasi via WhatsApp dalam 5 menit.</p>
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="waNama" placeholder="Masukkan nama lengkap Anda" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nomor HP / WhatsApp</label>
+              <input type="tel" id="waPhone" placeholder="08xx-xxxx-xxxx" />
+            </div>
+            <div class="form-group">
+              <label>Tanggal Kunjungan</label>
+              <input type="date" id="waTanggal" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Pilih Layanan / Poli</label>
+            <select id="waLayanan">
+              <option value="">-- Pilih Layanan --</option>
+              <option>Konsultasi Dokter Umum</option>
+              <option>Spesialis Penyakit Dalam</option>
+              <option>Spesialis Anak (Pediatri)</option>
+              <option>Spesialis Kandungan (Obgyn)</option>
+              <option>Spesialis Saraf (Neurologi)</option>
+              <option>Laboratorium &amp; Cek Darah</option>
+              <option>Radiologi &amp; Imaging</option>
+              <option>Medical Check-Up</option>
+              <option>Poli Gigi</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Keluhan / Catatan (opsional)</label>
+            <textarea id="waCatatan" rows="3" placeholder="Ceritakan keluhan atau pertanyaan Anda singkat..."></textarea>
+          </div>
+          <button class="btn-submit-form" onclick="submitWA()">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+            Kirim via WhatsApp
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TESTIMONI -->
+  <!-- TESTIMONIALS -->
   <section class="testi-sec">
     <div class="container">
-      <div class="sec-header text-center">
-        <div class="subtitle">Dari Hati Pasien</div>
-        <h2>Pengalaman Berobat Mereka</h2>
+      <div class="sec-head center reveal">
+        <div class="sec-kicker">Testimoni Pasien</div>
+        <h2 class="sec-title">Pengalaman Pasien Kami</h2>
+        <p class="sec-desc">Kepercayaan dan kepuasan pasien adalah standar tertinggi yang kami jaga setiap harinya.</p>
       </div>
-      
       <div class="testi-grid">
         <div class="testi-card reveal">
-          <div class="testi-rating">★★★★★</div>
-          <p class="testi-text">"Sangat puas dengan pelayanan di poli kandungan. dr. Cindy sangat sabar menjelaskan tiap detail USG. Fasilitas ruang tunggunya sangat nyaman, seperti di hotel, bukan di RS."</p>
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testi-text">Sangat puas dengan pelayanan poli kandungan. dr. Cindy sangat sabar menjelaskan tiap detail hasil USG. Ruang tunggu bersih dan nyaman, tidak terasa seperti berada di fasilitas kesehatan biasa.</p>
           <div class="testi-author">
-            <div class="author-av">M</div>
+            <div class="testi-av-initials">M</div>
             <div>
-              <div class="author-name">Mrs. Maharani</div>
-              <div class="author-role">Pasien Poli Kandungan</div>
+              <div class="testi-name">Mrs. Maharani</div>
+              <div class="testi-role">Pasien Poli Kandungan</div>
             </div>
           </div>
         </div>
-        <div class="testi-card reveal" style="transition-delay: 0.1s">
-          <div class="testi-rating">★★★★★</div>
-          <p class="testi-text">"Proses pendaftaran antrean onlinenya juara. Datang ke klinik tinggal scan barcode, tunggu 5 menit langsung masuk ruang dokter. Dokter spesialis dalamnya juga sangat komunikatif."</p>
+        <div class="testi-card reveal" style="transition-delay:0.1s">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testi-text">Proses pendaftaran antrean online sangat memudahkan. Datang ke klinik tinggal scan barcode, hanya tunggu beberapa menit langsung masuk ruang dokter. Spesialis penyakit dalam sangat komunikatif dan detail.</p>
           <div class="testi-author">
-            <div class="author-av">H</div>
+            <div class="testi-av-initials">H</div>
             <div>
-              <div class="author-name">Hendra Kusuma</div>
-              <div class="author-role">Pasien Poli Penyakit Dalam</div>
+              <div class="testi-name">Hendra Kusuma</div>
+              <div class="testi-role">Pasien Poli Penyakit Dalam</div>
             </div>
           </div>
         </div>
-        <div class="testi-card reveal" style="transition-delay: 0.2s">
-          <div class="testi-rating">★★★★★</div>
-          <p class="testi-text">"Pernah bawa ayah yang kena serangan stroke subuh-subuh ke IGD Medika Prima. Tim dokternya sigap sekali 24 jam. Terima kasih banyak sudah menyelamatkan ayah saya."</p>
+        <div class="testi-card reveal" style="transition-delay:0.2s">
+          <div class="testi-quote-mark">"</div>
+          <div class="testi-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testi-text">Bawa ayah yang kena serangan stroke subuh-subuh ke IGD Medika Prima. Tim dokter dan perawatnya sangat sigap menangani sejak menit pertama. Terima kasih sebesar-besarnya atas pertolongan yang cepat dan profesional.</p>
           <div class="testi-author">
-            <div class="author-av">R</div>
+            <div class="testi-av-initials">R</div>
             <div>
-              <div class="author-name">Reza Alfarizi</div>
-              <div class="author-role">Keluarga Pasien IGD</div>
+              <div class="testi-name">Reza Alfarizi</div>
+              <div class="testi-role">Keluarga Pasien IGD</div>
             </div>
           </div>
         </div>
@@ -335,91 +2040,208 @@
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <div class="nav-logo" style="color:#fff">Medika<span style="color:#2dd4bf">Prima.</span></div>
-          <p>Berdedikasi untuk memberikan standar pelayanan kesehatan terbaik, aman, dan nyaman untuk semua lapisan masyarakat.</p>
-          <div class="social-links">
-            <a href="#">IG</a>
-            <a href="#">FB</a>
-            <a href="#">YT</a>
+          <div class="footer-brand-logo">Medika<span>Prima.</span></div>
+          <p>Berdedikasi memberikan standar pelayanan kesehatan terbaik, aman, dan nyaman untuk semua lapisan masyarakat sejak 2009.</p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-btn" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="footer-social-btn" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-1.96C18.88 4 12 4 12 4s-6.88 0-8.6.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.04C5.12 19.5 12 19.5 12 19.5s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-1.96 29 29 0 0 0 .46-5.29 29 29 0 0 0-.46-5.37z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
           </div>
         </div>
-        <div class="footer-links">
+
+        <div class="footer-col">
           <h4>Jelajahi</h4>
           <ul>
             <li><a href="#">Beranda</a></li>
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Jadwal Dokter</a></li>
-            <li><a href="#">Fasilitas Medis</a></li>
+            <li><a href="#tentang">Tentang Kami</a></li>
+            <li><a href="#dokter">Jadwal Dokter</a></li>
+            <li><a href="#layanan">Layanan Medis</a></li>
             <li><a href="#">Karir &amp; Lowongan</a></li>
           </ul>
         </div>
-        <div class="footer-links">
+
+        <div class="footer-col">
           <h4>Layanan</h4>
           <ul>
-            <li><a href="#">Gawat Darurat 24 Jam</a></li>
+            <li><a href="#">IGD 24 Jam</a></li>
             <li><a href="#">Poli Spesialis</a></li>
-            <li><a href="#">Medical Check Up</a></li>
-            <li><a href="#">Farmasi / Apotek</a></li>
+            <li><a href="#">Medical Check-Up</a></li>
             <li><a href="#">Laboratorium</a></li>
+            <li><a href="#">Radiologi</a></li>
+            <li><a href="#">Apotek 24 Jam</a></li>
           </ul>
         </div>
-        <div class="footer-contact">
-          <h4>Pusat Kontak</h4>
-          <p><strong>IGD / Ambulance:</strong><br><span style="color:#2dd4bf; font-size:1.1rem; font-weight:700">(021) 1500-888</span></p>
-          <p><strong>WhatsApp Reservasi:</strong><br>0811-9999-777</p>
-          <p><strong>Email Klinik:</strong><br>cs@medikaprima.id</p>
-          <p><strong>Alamat Utama:</strong><br>Jl. Kesehatan Raya No. 12,<br>Kebayoran Baru, Jakarta Selatan</p>
+
+        <div class="footer-col">
+          <h4>Kontak</h4>
+          <div class="footer-contact-item">
+            <div class="fci-icon wa">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.553 4.124 1.524 5.868L0 24l6.282-1.488A11.947 11.947 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.371l-.36-.213-3.727.882.922-3.618-.232-.372A9.818 9.818 0 1112 21.818z"/></svg>
+            </div>
+            <div>
+              <div class="fci-label">WhatsApp Reservasi</div>
+              <div class="fci-val"><a href="https://wa.me/628119999777" target="_blank">0811-9999-777</a></div>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="fci-icon mail">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="fci-label">Email (Gmail)</div>
+              <div class="fci-val"><a href="mailto:info@medikaprima.co.id">info@medikaprima.co.id</a></div>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="fci-icon phone">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="fci-label">IGD / Gawat Darurat 24 Jam</div>
+              <div class="fci-val">(021) 1500-888</div>
+            </div>
+          </div>
+          <div class="footer-contact-item">
+            <div class="fci-icon loc">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="fci-label">Alamat Klinik</div>
+              <div class="fci-val">Jl. Kesehatan Raya No. 12,<br>Kebayoran Baru, Jakarta Selatan</div>
+            </div>
+          </div>
         </div>
       </div>
+
       <div class="footer-bottom">
-        <p>&copy; 2025 Klinik Medika Prima. Hak Cipta Dilindungi. — DEMO THEME</p>
+        <p>&copy; 2025 Klinik Medika Prima. Hak Cipta Dilindungi.</p>
         <div class="fb-links">
           <a href="#">Kebijakan Privasi</a>
           <a href="#">Syarat &amp; Ketentuan</a>
+          <a href="#">Sitemap</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
-    // Intersection Observer untuk animasi reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('visible');
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        }
       });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => revealObserver.observe(el));
 
-    // Nav hamburger toggle
-    const hamburger = document.querySelector('.nav-hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    if(hamburger) {
-      hamburger.addEventListener('click', () => {
-        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        navLinks.style.flexDirection = 'column';
-        navLinks.style.position = 'absolute';
-        navLinks.style.top = '80px';
-        navLinks.style.left = '0';
-        navLinks.style.width = '100%';
-        navLinks.style.background = '#fff';
-        navLinks.style.padding = '20px';
-        navLinks.style.boxShadow = '0 10px 15px -3px rgba(0,0,0,0.1)';
-      });
+    /* ============================================================
+       NAV SCROLL SHADOW
+    ============================================================ */
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ============================================================
+       MOBILE SIDEBAR
+    ============================================================ */
+    const hamburger = document.getElementById('navHamburger');
+    const sidebar = document.getElementById('mobileSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const sidebarClose = document.getElementById('sidebarClose');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.style.display = 'block';
+      hamburger.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => overlay.classList.add('visible'));
+    }
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+      hamburger.classList.remove('active');
+      document.body.style.overflow = '';
+      setTimeout(() => { overlay.style.display = 'none'; }, 300);
     }
 
-    // WA Submit
-    function submitWA(e) {
-      e.preventDefault();
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+    sidebarClose.addEventListener('click', closeSidebar);
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar on link click
+    document.querySelectorAll('.sidebar-nav a').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    /* ============================================================
+       SMOOTH SCROLL for all internal links
+    ============================================================ */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ============================================================
+       WA FORM SUBMIT
+    ============================================================ */
+    function submitWA() {
+      const nama    = document.getElementById('waNama').value.trim();
+      const phone   = document.getElementById('waPhone').value.trim();
+      const tgl     = document.getElementById('waTanggal').value;
       const layanan = document.getElementById('waLayanan').value;
-      const tgl = document.getElementById('waTanggal').value;
-      const nama = document.getElementById('waNama').value;
-      
-      const msg = `Halo Klinik Medika Prima, saya ingin bertanya info / buat janji konsultasi:\n\nNama: *${nama}*\nLayanan: *${layanan}*\nRencana Tanggal: *${tgl}*\n\nApakah jadwal masih tersedia?`;
-      const waUrl = `https://wa.me/628119999777?text=${encodeURIComponent(msg)}`;
-      window.open(waUrl, '_blank');
-      return false;
+      const catatan = document.getElementById('waCatatan').value.trim();
+
+      if (!nama || !layanan) {
+        alert('Harap isi Nama Lengkap dan pilih Layanan terlebih dahulu.');
+        return;
+      }
+      const tglFormatted = tgl ? new Date(tgl).toLocaleDateString('id-ID', {weekday:'long', year:'numeric', month:'long', day:'numeric'}) : 'Belum ditentukan';
+      let msg = `Halo Klinik Medika Prima, saya ingin membuat janji konsultasi:\n\n`;
+      msg += `Nama: *${nama}*\n`;
+      if (phone) msg += `No. HP: *${phone}*\n`;
+      msg += `Layanan: *${layanan}*\n`;
+      msg += `Tanggal: *${tglFormatted}*\n`;
+      if (catatan) msg += `Keluhan: ${catatan}\n`;
+      msg += `\nTerima kasih.`;
+      window.open(`https://wa.me/628119999777?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function openWADoctor(doctorName) {
+      const msg = `Halo Klinik Medika Prima, saya ingin membuat janji konsultasi dengan *${doctorName}*. Mohon informasi jadwal yang tersedia. Terima kasih.`;
+      window.open(`https://wa.me/628119999777?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    /* ============================================================
+       SET MIN DATE for date input
+    ============================================================ */
+    const dateInput = document.getElementById('waTanggal');
+    if (dateInput) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      dateInput.min = `${yyyy}-${mm}-${dd}`;
     }
   </script>
+
 </body>
 </html>

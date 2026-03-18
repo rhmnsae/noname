@@ -1,500 +1,1533 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Griya Properti — Jual, Beli & Sewa Properti Terpercaya</title>
-  <meta name="description" content="Platform properti terpercaya. Temukan rumah, apartemen, ruko, dan kavling impian bersama agen tersertifikasi." />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Griya Properti — Jual, Beli &amp; Sewa Properti Terpercaya</title>
+<meta name="description" content="Platform properti terpercaya. Temukan rumah, apartemen, ruko, dan kavling impian bersama agen tersertifikasi."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&family=Jost:ital,wght@1,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#faf8f4;
+  --cream2:#f3f0ea;
+  --cream3:#ede9e0;
+  --white:#ffffff;
+  --text:#1a1612;
+  --text2:#4a4540;
+  --text3:#8a857c;
+  --text4:#b8b3aa;
+  --gold:#b8965a;
+  --gold2:#d4a96a;
+  --gold-dim:rgba(184,150,90,0.1);
+  --gold-border:rgba(184,150,90,0.2);
+  --wa:#25d366;
+  --wa-dk:#128c4b;
+  --border:rgba(26,22,18,0.09);
+  --border2:rgba(26,22,18,0.15);
+  --sh:0 2px 16px rgba(26,22,18,0.06);
+  --sh-lg:0 8px 40px rgba(26,22,18,0.1);
+  --sb-w:260px;
+  --nav-h:68px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);line-height:1.65;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+img{display:block;width:100%;height:100%;object-fit:cover}
+button{font-family:inherit;cursor:pointer;border:none;outline:none}
+
+/* ===================== SIDEBAR ===================== */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;
+  width:var(--sb-w);
+  background:var(--white);
+  border-right:1px solid var(--border);
+  display:flex;flex-direction:column;
+  z-index:400;
+  overflow-y:auto;
+  overflow-x:hidden;
+}
+.sidebar::-webkit-scrollbar{width:0}
+
+/* Sidebar logo */
+.sb-logo-wrap{
+  padding:28px 28px 24px;
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+}
+.sb-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--text);letter-spacing:0.01em;
+  margin-bottom:3px;
+}
+.sb-logo span{color:var(--gold)}
+.sb-tagline{
+  font-size:0.65rem;font-weight:500;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text4);
+}
+
+/* Agent card in sidebar */
+.sb-agent{
+  margin:20px 20px 0;
+  padding:16px;
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.sb-agent-label{
+  font-size:0.6rem;font-weight:600;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--text4);margin-bottom:10px;
+}
+.sb-agent-row{display:flex;align-items:center;gap:12px}
+.sb-agent-avatar{
+  width:40px;height:40px;border-radius:50%;
+  overflow:hidden;flex-shrink:0;
+  border:2px solid var(--gold-border);
+}
+.sb-agent-name{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:2px}
+.sb-agent-cert{
+  font-size:0.62rem;font-weight:500;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* Sidebar navigation */
+.sb-nav{
+  padding:24px 0 16px;
+  flex:1;
+}
+.sb-nav-label{
+  padding:0 28px;
+  font-size:0.58rem;font-weight:600;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--text4);
+  margin-bottom:8px;
+}
+.sb-link{
+  display:flex;align-items:center;gap:14px;
+  padding:11px 28px;
+  font-size:0.82rem;font-weight:500;
+  color:var(--text3);
+  transition:all 0.2s;
+  border-left:2px solid transparent;
+  cursor:pointer;
+  text-decoration:none;
+}
+.sb-link:hover{background:var(--cream);color:var(--text);border-left-color:var(--gold)}
+.sb-link.active{background:var(--gold-dim);color:var(--text);border-left-color:var(--gold)}
+.sb-link svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;flex-shrink:0;opacity:0.7}
+.sb-link:hover svg,.sb-link.active svg{opacity:1}
+
+.sb-sep{height:1px;background:var(--border);margin:16px 20px}
+
+/* Contact links in sidebar */
+.sb-contacts{padding:0 20px 20px}
+.sb-contacts-label{
+  font-size:0.58rem;font-weight:600;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--text4);margin-bottom:10px;padding:0 8px;
+}
+.sb-contact-btn{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;
+  border-radius:7px;
+  margin-bottom:8px;
+  font-size:0.78rem;font-weight:600;
+  transition:all 0.2s;
+  cursor:pointer;
+  text-decoration:none;
+}
+.sb-contact-btn.wa{background:#e9faf0;border:1px solid rgba(37,211,102,0.25);color:#0a5c2a}
+.sb-contact-btn.wa:hover{background:#d4f5e3;border-color:rgba(37,211,102,0.45)}
+.sb-contact-btn.gm{background:#fef2f0;border:1px solid rgba(234,67,53,0.2);color:#a01e12}
+.sb-contact-btn.gm:hover{background:#fde4e0;border-color:rgba(234,67,53,0.35)}
+.sb-contact-icon{
+  width:30px;height:30px;border-radius:6px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.sb-contact-btn.wa .sb-contact-icon{background:#25d366}
+.sb-contact-btn.gm .sb-contact-icon{background:#ea4335}
+.sb-contact-icon svg{width:15px;height:15px}
+.sb-contact-info{}
+.sb-contact-lbl{font-size:0.58rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;display:block;margin-bottom:1px}
+.sb-contact-val{font-size:0.78rem;font-weight:600}
+
+/* Hours in sidebar */
+.sb-hours{
+  margin:0 20px 24px;
+  padding:14px 16px;
+  background:var(--cream2);
+  border:1px solid var(--border);
+  border-radius:8px;
+}
+.sb-hours-label{
+  font-size:0.58rem;font-weight:600;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text4);margin-bottom:10px;
+}
+.sb-hours-row{
+  display:flex;justify-content:space-between;
+  font-size:0.74rem;color:var(--text3);
+  padding:4px 0;border-bottom:1px solid var(--border);
+}
+.sb-hours-row:last-child{border:none;padding-bottom:0}
+.sb-hours-row span:last-child{font-weight:600;color:var(--text)}
+
+/* SIDEBAR OVERLAY */
+.sb-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(26,22,18,0.5);
+  z-index:399;
+  backdrop-filter:blur(4px);
+}
+.sb-overlay.open{display:block}
+
+/* ===================== MOBILE NAV ===================== */
+.topnav{
+  display:none;
+  position:fixed;top:0;left:0;right:0;
+  height:var(--nav-h);
+  background:rgba(250,248,244,0.97);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 20px;
+  align-items:center;justify-content:space-between;
+  z-index:380;
+}
+.topnav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.25rem;font-weight:700;color:var(--text);
+}
+.topnav-logo span{color:var(--gold)}
+.topnav-right{display:flex;align-items:center;gap:12px}
+.topnav-wa{
+  display:flex;align-items:center;gap:6px;
+  background:var(--wa);color:#fff;
+  font-size:0.7rem;font-weight:600;
+  padding:7px 14px;border-radius:6px;
+}
+.topnav-wa svg{width:14px;height:14px}
+.topnav-ham{
+  display:flex;flex-direction:column;gap:5px;
+  cursor:pointer;padding:4px;
+}
+.topnav-ham span{display:block;width:22px;height:1.5px;background:var(--text);transition:all 0.3s}
+.topnav-ham.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.topnav-ham.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.topnav-ham.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ===================== MAIN ===================== */
+.main{margin-left:var(--sb-w);min-height:100vh}
+
+/* ===================== TOPBAR ===================== */
+.topbar{
+  background:var(--text);
+  color:rgba(255,255,255,0.8);
+  padding:0 64px;
+  height:40px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.topbar-left{display:flex;align-items:center;gap:28px}
+.topbar-item{
+  display:flex;align-items:center;gap:6px;
+  font-size:0.7rem;font-weight:400;letter-spacing:0.04em;
+}
+.topbar-item svg{width:12px;height:12px;stroke:rgba(255,255,255,0.5);fill:none;stroke-width:2;flex-shrink:0}
+.topbar-right{
+  font-size:0.7rem;font-weight:600;
+  letter-spacing:0.08em;
+  color:var(--gold2);
+}
+
+/* ===================== HERO ===================== */
+.hero{
+  position:relative;
+  min-height:calc(100vh - 40px);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  overflow:hidden;
+}
+.hero-left{
+  padding:80px 64px 80px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--cream);
+  position:relative;
+  z-index:2;
+}
+/* Subtle texture line */
+.hero-left::after{
+  content:'';
+  position:absolute;right:0;top:10%;bottom:10%;
+  width:1px;background:linear-gradient(to bottom,transparent,var(--border2),transparent);
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:0.65rem;font-weight:600;
+  letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.hero-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,4.2vw,3.8rem);
+  font-weight:700;line-height:1.12;
+  color:var(--text);margin-bottom:20px;
+  letter-spacing:0.01em;
+}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-desc{
+  font-size:0.95rem;font-weight:300;
+  color:var(--text2);line-height:1.85;
+  max-width:440px;margin-bottom:36px;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--gold);color:#fff;
+  font-size:0.78rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:14px 30px;border-radius:4px;
+  transition:all 0.25s;
+}
+.btn-gold:hover{background:#a0803c;transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,150,90,0.35)}
+.btn-wa{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--wa);color:#fff;
+  font-size:0.78rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:14px 30px;border-radius:4px;
+  transition:all 0.25s;
+}
+.btn-wa:hover{background:var(--wa-dk);transform:translateY(-1px)}
+.btn-wa svg,.btn-gold svg{width:16px;height:16px;flex-shrink:0}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:9px;
+  background:transparent;color:var(--text);
+  font-size:0.78rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:14px 30px;border-radius:4px;
+  border:1.5px solid var(--border2);
+  transition:all 0.25s;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+.hero-stats{
+  display:flex;gap:32px;
+  padding-top:32px;
+  border-top:1px solid var(--border);
+}
+.h-stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:1.8rem;font-weight:700;
+  color:var(--text);line-height:1;margin-bottom:4px;
+}
+.h-stat-label{font-size:0.72rem;font-weight:400;color:var(--text3);letter-spacing:0.04em}
+
+/* Hero right — photo grid */
+.hero-right{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
+  gap:3px;
+}
+.hero-photo{overflow:hidden;position:relative}
+.hero-photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s ease;
+  filter:saturate(0.85);
+}
+.hero-photo:hover img{transform:scale(1.04)}
+.hero-photo.large{grid-row:1/3;grid-column:1}
+.hp-badge{
+  position:absolute;bottom:14px;left:14px;
+  font-size:0.65rem;font-weight:600;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:5px 11px;border-radius:4px;
+  backdrop-filter:blur(8px);
+}
+.hp-badge.dijual{background:rgba(255,255,255,0.92);color:var(--gold)}
+.hp-badge.disewa{background:rgba(255,255,255,0.92);color:#1d6c3e}
+
+/* ===================== SEARCH BAR ===================== */
+.search-wrap{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:0 64px;
+}
+.search-inner{
+  display:flex;align-items:center;gap:0;
+  border:1.5px solid var(--border2);
+  border-radius:6px;
+  overflow:hidden;
+  margin:20px 0;
+}
+.search-field{
+  flex:1;padding:13px 18px;
+  font-family:'Jost',sans-serif;
+  font-size:0.88rem;font-weight:400;
+  border:none;outline:none;
+  background:transparent;color:var(--text);
+}
+.search-field::placeholder{color:var(--text4)}
+.search-sep{width:1px;height:36px;background:var(--border2);flex-shrink:0}
+.search-select{
+  padding:13px 18px;
+  font-family:'Jost',sans-serif;
+  font-size:0.88rem;font-weight:400;
+  border:none;outline:none;background:transparent;
+  color:var(--text2);cursor:pointer;
+}
+.search-btn{
+  padding:0 24px;height:100%;
+  background:var(--gold);color:#fff;
+  font-family:'Jost',sans-serif;
+  font-size:0.78rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+  transition:background 0.2s;
+  white-space:nowrap;
+}
+.search-btn:hover{background:#a0803c}
+.search-btn svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+
+/* ===================== SECTION BASE ===================== */
+section{padding:88px 64px}
+.sec-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:0.63rem;font-weight:600;
+  letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+}
+.sec-eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--gold)}
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.9rem,3vw,2.8rem);
+  font-weight:700;color:var(--text);
+  line-height:1.15;margin-bottom:12px;
+}
+.sec-sub{
+  font-size:0.9rem;font-weight:300;
+  color:var(--text2);line-height:1.85;
+  max-width:480px;margin-bottom:52px;
+}
+.divider-line{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border2),transparent);
+  margin:0 64px;
+}
+
+/* ===================== STATS STRIP ===================== */
+.stats-strip{
+  background:var(--text);
+  padding:0;
+}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-box{
+  padding:36px 28px;
+  text-align:center;
+  border-right:1px solid rgba(255,255,255,0.07);
+}
+.stat-box:last-child{border-right:none}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.4rem;font-weight:700;
+  color:var(--gold2);line-height:1;margin-bottom:6px;
+}
+.stat-label{
+  font-size:0.7rem;font-weight:400;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:rgba(255,255,255,0.5);
+}
+
+/* ===================== PROPERTY LISTINGS ===================== */
+#properti{background:var(--white)}
+.filter-tabs{
+  display:flex;gap:4px;
+  margin-bottom:36px;
+  border-bottom:1px solid var(--border);
+  padding-bottom:0;
+}
+.ftab{
+  padding:10px 22px;
+  font-family:'Jost',sans-serif;
+  font-size:0.78rem;font-weight:600;
+  letter-spacing:0.06em;
+  color:var(--text3);
+  background:transparent;
+  border-radius:0;
+  border-bottom:2px solid transparent;
+  margin-bottom:-1px;
+  transition:all 0.2s;
+}
+.ftab:hover{color:var(--text)}
+.ftab.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+.prop-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.p-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  transition:all 0.3s;
+}
+.p-card:hover{
+  box-shadow:var(--sh-lg);
+  transform:translateY(-4px);
+  border-color:var(--gold-border);
+}
+.p-img-wrap{position:relative;height:200px;overflow:hidden}
+.p-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s ease;
+  filter:saturate(0.9);
+}
+.p-card:hover .p-img-wrap img{transform:scale(1.04)}
+.p-badge{
+  position:absolute;top:14px;left:14px;
+  font-size:0.62rem;font-weight:700;
+  letter-spacing:0.14em;text-transform:uppercase;
+  padding:4px 11px;border-radius:4px;
+}
+.p-badge.dijual{background:var(--gold);color:#fff}
+.p-badge.disewa{background:#1d6c3e;color:#fff}
+.p-badge.kpr{background:var(--text);color:var(--gold2)}
+.p-body{padding:20px 20px 22px}
+.p-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:600;
+  color:var(--text);margin-bottom:7px;line-height:1.3;
+}
+.p-loc{
+  display:flex;align-items:center;gap:5px;
+  font-size:0.76rem;font-weight:400;
+  color:var(--text3);margin-bottom:14px;
+}
+.p-loc svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:2;flex-shrink:0}
+.p-price{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;font-weight:700;
+  color:var(--text);margin-bottom:12px;line-height:1;
+}
+.p-price small{font-family:'Jost',sans-serif;font-size:0.75rem;font-weight:400;color:var(--text3)}
+.p-specs{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-bottom:16px;padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.p-spec{
+  font-size:0.72rem;font-weight:500;
+  color:var(--text3);
+  background:var(--cream2);
+  padding:4px 10px;border-radius:4px;
+}
+.p-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.p-btn-wa{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px;border-radius:5px;
+  background:var(--wa);color:#fff;
+  font-size:0.72rem;font-weight:600;
+  transition:background 0.2s;
+}
+.p-btn-wa:hover{background:var(--wa-dk)}
+.p-btn-wa svg{width:14px;height:14px;flex-shrink:0}
+.p-btn-detail{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px;border-radius:5px;
+  background:transparent;color:var(--text);
+  font-size:0.72rem;font-weight:600;
+  border:1.5px solid var(--border2);
+  transition:all 0.2s;
+}
+.p-btn-detail:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ===================== KEUNGGULAN ===================== */
+#why{background:var(--cream)}
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.why-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:32px 28px;
+  transition:all 0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.why-card::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;
+  height:3px;
+  background:transparent;
+  transition:background 0.3s;
+}
+.why-card:hover{box-shadow:var(--sh-lg);transform:translateY(-3px)}
+.why-card:hover::before{background:var(--gold)}
+.why-icon{
+  width:48px;height:48px;
+  background:var(--gold-dim);
+  border:1px solid var(--gold-border);
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+}
+.why-icon svg{width:22px;height:22px;stroke:var(--gold);fill:none;stroke-width:1.8}
+.why-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:600;
+  color:var(--text);margin-bottom:10px;
+}
+.why-card p{font-size:0.84rem;font-weight:300;color:var(--text2);line-height:1.75}
+
+/* ===================== GALLERY ===================== */
+#gallery{background:var(--white);padding:88px 0}
+.gallery-header{padding:0 64px 44px}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  grid-template-rows:240px 200px;
+  gap:3px;
+}
+.g-cell{overflow:hidden;position:relative;background:var(--cream2)}
+.g-cell:first-child{grid-row:1/3}
+.g-cell img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s ease,filter 0.3s;
+  filter:saturate(0.85);
+}
+.g-cell:hover img{transform:scale(1.04);filter:saturate(1)}
+.g-cell::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(26,22,18,0.3) 0%,transparent 55%);
+  opacity:0;transition:opacity 0.3s;
+}
+.g-cell:hover::after{opacity:1}
+.g-label{
+  position:absolute;bottom:14px;left:16px;z-index:1;
+  font-size:0.65rem;font-weight:600;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(255,255,255,0.85);
+  opacity:0;transition:opacity 0.3s;
+}
+.g-cell:hover .g-label{opacity:1}
+
+/* ===================== TESTIMONI ===================== */
+#testi{background:var(--cream)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.testi-card{
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:28px;
+  transition:box-shadow 0.3s;
+  position:relative;
+}
+.testi-card:hover{box-shadow:var(--sh-lg)}
+.testi-quote-mark{
+  font-family:'Playfair Display',serif;
+  font-size:4rem;line-height:1;
+  color:var(--gold-border);
+  position:absolute;top:16px;right:20px;
+}
+.testi-stars{
+  display:flex;gap:2px;margin-bottom:14px;
+}
+.testi-stars svg{width:14px;height:14px;fill:var(--gold);stroke:none}
+.testi-q{
+  font-size:0.88rem;font-weight:300;font-style:italic;
+  color:var(--text2);line-height:1.8;margin-bottom:20px;
+}
+.testi-divider{height:1px;background:var(--border);margin-bottom:16px}
+.testi-author{display:flex;align-items:center;gap:12px}
+.author-av{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--gold-dim);border:1px solid var(--gold-border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:1rem;font-weight:700;color:var(--gold);
+  flex-shrink:0;
+}
+.author-name{font-size:0.84rem;font-weight:600;color:var(--text)}
+.author-role{font-size:0.72rem;color:var(--text3);margin-top:2px}
+
+/* ===================== CONTACT SECTION ===================== */
+#kontak{background:var(--white);padding:0}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr}
+.contact-left{
+  padding:80px 64px;
+  background:var(--text);
+}
+.contact-right{
+  padding:80px 64px;
+  background:var(--cream);
+  border-left:1px solid var(--border);
+}
+.contact-eyebrow{
+  font-size:0.63rem;font-weight:600;
+  letter-spacing:0.24em;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:16px;
+  display:flex;align-items:center;gap:10px;
+}
+.contact-eyebrow::before{content:'';display:block;width:22px;height:1px;background:var(--gold2)}
+.contact-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3vw,2.8rem);
+  font-weight:700;line-height:1.15;
+  color:var(--white);margin-bottom:14px;
+}
+.contact-desc{
+  font-size:0.9rem;font-weight:300;
+  color:rgba(255,255,255,0.6);
+  line-height:1.85;margin-bottom:36px;
+}
+.contact-checklist{display:flex;flex-direction:column;gap:10px;margin-bottom:36px}
+.contact-check{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.84rem;font-weight:400;
+  color:rgba(255,255,255,0.75);
+}
+.contact-check svg{width:16px;height:16px;stroke:var(--gold2);fill:none;stroke-width:2.5;flex-shrink:0}
+.contact-btn-wa{
+  display:inline-flex;align-items:center;gap:12px;
+  background:var(--wa);color:#fff;
+  font-size:0.84rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:16px 32px;border-radius:6px;
+  transition:all 0.25s;
+  width:100%;justify-content:center;
+  margin-bottom:12px;
+}
+.contact-btn-wa:hover{background:var(--wa-dk);transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,211,102,0.3)}
+.contact-btn-wa svg{width:22px;height:22px;flex-shrink:0}
+.contact-btn-gm{
+  display:inline-flex;align-items:center;gap:12px;
+  background:transparent;color:rgba(255,255,255,0.8);
+  font-size:0.84rem;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:16px 32px;border-radius:6px;
+  border:1.5px solid rgba(255,255,255,0.2);
+  transition:all 0.25s;
+  width:100%;justify-content:center;
+}
+.contact-btn-gm:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.35)}
+.contact-btn-gm svg{width:20px;height:20px;flex-shrink:0}
+
+/* Right side of contact */
+.contact-form-title{
+  font-family:'Playfair Display',serif;
+  font-size:1.5rem;font-weight:700;
+  color:var(--text);margin-bottom:6px;
+}
+.contact-form-sub{font-size:0.84rem;font-weight:300;color:var(--text2);margin-bottom:28px;line-height:1.6}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/3}
+.form-label{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)}
+.form-input,.form-select,.form-textarea{
+  font-family:'Jost',sans-serif;
+  font-size:0.88rem;font-weight:400;
+  padding:12px 14px;
+  border:1.5px solid var(--border2);
+  border-radius:6px;
+  background:var(--white);
+  color:var(--text);
+  transition:border-color 0.2s;
+  outline:none;
+  width:100%;
+}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--gold)}
+.form-textarea{resize:vertical;min-height:96px}
+.form-submit{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;padding:14px 24px;
+  background:var(--gold);color:#fff;
+  font-family:'Jost',sans-serif;
+  font-size:0.82rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  border-radius:6px;border:none;cursor:pointer;
+  transition:all 0.25s;
+  margin-top:6px;
+}
+.form-submit:hover{background:#a0803c;transform:translateY(-1px);box-shadow:0 6px 20px rgba(184,150,90,0.35)}
+.form-submit svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2}
+
+/* ===================== FOOTER ===================== */
+footer{
+  background:var(--text);
+  padding:60px 64px 28px;
+}
+.ft-grid{
+  display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;
+  gap:40px;margin-bottom:48px;
+}
+.ft-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;font-weight:700;
+  color:var(--white);margin-bottom:8px;
+}
+.ft-logo span{color:var(--gold2)}
+.ft-desc{font-size:0.78rem;font-weight:300;color:rgba(255,255,255,0.45);line-height:1.75;max-width:220px;margin-bottom:20px}
+.ft-contact-row{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:10px;
+}
+.ft-contact-row:hover .ft-cv{color:var(--white)}
+.ft-ci{
+  width:28px;height:28px;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.ft-ci.wa{background:#25d366}
+.ft-ci.gm{background:#ea4335}
+.ft-ci svg{width:13px;height:13px}
+.ft-cv{font-size:0.76rem;color:rgba(255,255,255,0.5);transition:color 0.2s}
+.ft-col h4{
+  font-size:0.62rem;font-weight:600;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);margin-bottom:16px;
+}
+.ft-col ul{display:flex;flex-direction:column;gap:10px}
+.ft-col a{
+  font-size:0.82rem;font-weight:300;
+  color:rgba(255,255,255,0.5);transition:color 0.2s;
+}
+.ft-col a:hover{color:var(--gold2)}
+.ft-bottom{
+  padding-top:24px;border-top:1px solid rgba(255,255,255,0.08);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+}
+.ft-copy{font-size:0.72rem;color:rgba(255,255,255,0.3)}
+.ft-badge{
+  font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.25);border:1px solid rgba(255,255,255,0.1);
+  padding:4px 10px;border-radius:4px;
+}
+
+/* ===================== REVEAL ===================== */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ===================== RESPONSIVE ===================== */
+@media(max-width:1100px){
+  section{padding:72px 48px}
+  .hero-left{padding:64px 48px}
+  .topbar{padding:0 48px}
+  .search-wrap{padding:0 48px}
+  .gallery-header{padding:0 48px 36px}
+  .contact-left,.contact-right{padding:64px 48px}
+  footer{padding:48px 48px 24px}
+  .divider-line{margin:0 48px}
+}
+@media(max-width:960px){
+  :root{--sb-w:0px}
+  .sidebar{display:none}
+  .topnav{display:flex}
+  .main{margin-left:0;padding-top:var(--nav-h)}
+  .topbar{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:56px 24px 48px;order:1}
+  .hero-left::after{display:none}
+  .hero-right{
+    order:0;height:300px;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 1fr;
+  }
+  .hero-photo.large{grid-row:1;grid-column:1/3}
+  section{padding:60px 24px}
+  .search-wrap{padding:0 24px}
+  .topbar{display:none}
+  .prop-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-box{border-bottom:1px solid rgba(255,255,255,0.07)}
+  .gallery-header{padding:0 24px 32px}
+  .gallery-grid{
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:200px 160px 160px;
+  }
+  .g-cell:first-child{grid-row:1;grid-column:1/3}
+  .contact-grid{grid-template-columns:1fr}
+  .contact-left{padding:56px 24px 40px}
+  .contact-right{padding:40px 24px 56px;border-left:none;border-top:1px solid var(--border)}
+  .divider-line{margin:0 24px}
+  footer{padding:40px 24px 20px}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .ft-bottom{flex-direction:column;text-align:center}
+}
+@media(max-width:600px){
+  .hero-right{height:220px}
+  .prop-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .form-group.full{grid-column:1}
+  .ft-grid{grid-template-columns:1fr}
+  .hero h1{font-size:2.2rem}
+  .hero-btns{flex-direction:column}
+  .btn-gold,.btn-wa,.btn-outline{justify-content:center}
+  .gallery-grid{
+    grid-template-columns:1fr;
+    grid-template-rows:180px 140px 140px 140px 140px;
+  }
+  .g-cell:first-child{grid-column:1;grid-row:1}
+  .topnav-wa{display:none}
+}
+</style>
 </head>
 <body>
 
-  <!-- TOP BAR -->
-  <div class="top-bar">
-    <div class="container top-bar-inner">
-      <div class="tb-items">
-        <span class="tb-item">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Lebih dari 45 kota di Indonesia
-        </span>
-        <span class="tb-item">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-          Agen AREBI Tersertifikasi
-        </span>
-        <span class="tb-item">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 11.83a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.574 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Konsultasi Gratis setiap hari
-        </span>
+<!-- MOBILE TOP NAV -->
+<nav class="topnav" id="topnav">
+  <div class="topnav-logo">Griya<span>Properti</span></div>
+  <div class="topnav-right">
+    <a href="https://wa.me/628119999100?text=Halo,%20saya%20ingin%20konsultasi%20properti" class="topnav-wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp
+    </a>
+    <div class="topnav-ham" id="topHam"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- SIDEBAR OVERLAY -->
+<div class="sb-overlay" id="sbOverlay"></div>
+
+<!-- DESKTOP SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-logo-wrap">
+    <div class="sb-logo">Griya<span>Properti</span></div>
+    <div class="sb-tagline">Platform Properti No.1</div>
+  </div>
+
+  <div class="sb-agent">
+    <div class="sb-agent-label">Agen Anda</div>
+    <div class="sb-agent-row">
+      <div class="sb-agent-avatar">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=100&q=80&auto=format&fit=crop" alt="Agen"/>
       </div>
-      <span class="tb-wa">WA: 0811-9999-100</span>
+      <div>
+        <div class="sb-agent-name">Budi Santoso</div>
+        <div class="sb-agent-cert">AREBI Certified</div>
+      </div>
     </div>
   </div>
 
-  <!-- NAV -->
-  <nav>
-    <div class="nav-container">
-      <div class="nav-logo">Griya<span>Properti</span></div>
-      <ul class="nav-links">
-        <li><a href="#properti">Properti</a></li>
-        <li><a href="#why">Keunggulan</a></li>
-        <li><a href="#testi">Testimoni</a></li>
-        <li><a href="#kontak">Kontak Agen</a></li>
-      </ul>
-      <div class="nav-actions">
-        <a href="https://wa.me/628119999100?text=Halo,%20saya%20ingin%20konsultasi%20properti" target="_blank" class="nav-btn-wa">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-          WhatsApp Kami
-        </a>
-      </div>
-      <div class="nav-hamburger"><span></span><span></span><span></span></div>
-    </div>
+  <nav class="sb-nav">
+    <div class="sb-nav-label">Navigasi</div>
+    <a href="#hero" class="sb-link active">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Beranda
+    </a>
+    <a href="#properti" class="sb-link">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      Properti Pilihan
+    </a>
+    <a href="#why" class="sb-link">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Keunggulan
+    </a>
+    <a href="#gallery" class="sb-link">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Galeri
+    </a>
+    <a href="#testi" class="sb-link">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      Testimoni
+    </a>
+    <a href="#kontak" class="sb-link">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 9.7a19.79 19.79 0 01-3.07-8.67A2 2 0 012.59 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.56a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      Kontak Agen
+    </a>
+
   </nav>
 
+  <div class="sb-contacts">
+    <div class="sb-contacts-label">Hubungi Kami</div>
+    <a href="https://wa.me/628119999100?text=Halo,%20saya%20ingin%20konsultasi%20properti" class="sb-contact-btn wa" target="_blank" rel="noopener">
+      <div class="sb-contact-icon">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      </div>
+      <div class="sb-contact-info">
+        <span class="sb-contact-lbl">WhatsApp</span>
+        <span class="sb-contact-val">0811-9999-100</span>
+      </div>
+    </a>
+    <a href="mailto:info@griyaproperti.id" class="sb-contact-btn gm">
+      <div class="sb-contact-icon">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </div>
+      <div class="sb-contact-info">
+        <span class="sb-contact-lbl">Gmail</span>
+        <span class="sb-contact-val">info@griyaproperti.id</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="sb-hours">
+    <div class="sb-hours-label">Jam Operasional</div>
+    <div class="sb-hours-row"><span>Senin — Jumat</span><span>08.00 — 17.00</span></div>
+    <div class="sb-hours-row"><span>Sabtu</span><span>09.00 — 14.00</span></div>
+    <div class="sb-hours-row"><span>Minggu</span><span>Tutup</span></div>
+  </div>
+</aside>
+
+<!-- MOBILE SIDEBAR DRAWER (shared overlay reuse topHam logic) -->
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Lebih dari 45 kota di Indonesia
+      </div>
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        Agen AREBI Tersertifikasi
+      </div>
+      <div class="topbar-item">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.7 9.7a19.79 19.79 0 01-3.07-8.67A2 2 0 012.59 0h3a2 2 0 012 1.72 16 16 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.56a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 16 16 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        Konsultasi gratis setiap hari
+      </div>
+    </div>
+    <div class="topbar-right">WA: 0811-9999-100</div>
+  </div>
+
   <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <div class="hero-label reveal">Platform Properti No. 1 Indonesia</div>
-        <h1 class="reveal" style="transition-delay:.1s">Temukan Properti <span>Impian</span> Anda dengan Mudah</h1>
-        <p class="hero-desc reveal" style="transition-delay:.2s">Kami menghubungkan Anda dengan ribuan listing properti terpilih dan agen berpengalaman di seluruh Indonesia. Dari pencarian hingga serah terima kunci.</p>
-
-        <div class="hero-btns reveal" style="transition-delay:.3s">
-          <a href="#properti" class="btn-primary">Lihat Properti Pilihan</a>
-          <a href="https://wa.me/628119999100?text=Halo,%20saya%20ingin%20konsultasi%20properti" target="_blank" class="btn-ghost-wa">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-            Konsultasi Gratis
-          </a>
-        </div>
-
-        <div class="hero-stats reveal" style="transition-delay:.4s">
-          <div class="hstat"><span class="hstat-num">8.400+</span><span class="hstat-label">Properti Listing</span></div>
-          <div class="hstat-divider"></div>
-          <div class="hstat"><span class="hstat-num">3.200+</span><span class="hstat-label">Transaksi Sukses</span></div>
-          <div class="hstat-divider"></div>
-          <div class="hstat"><span class="hstat-num">240+</span><span class="hstat-label">Agen Tersertifikasi</span></div>
-        </div>
+  <section class="hero" id="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Platform Properti No.1 Indonesia</div>
+      <h1>Temukan Properti<br><em>Impian Anda</em><br>dengan Mudah</h1>
+      <p class="hero-desc">Kami menghubungkan Anda dengan ribuan listing properti terpilih dan agen berpengalaman di seluruh Indonesia. Dari pencarian hingga serah terima kunci.</p>
+      <div class="hero-btns">
+        <a href="#properti" class="btn-gold">Lihat Properti Pilihan</a>
+        <a href="https://wa.me/628119999100?text=Halo,%20saya%20ingin%20konsultasi%20properti" class="btn-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Konsultasi Gratis
+        </a>
       </div>
-
-      <!-- PROPERTY SHOWCASE CARDS -->
-      <div class="hero-showcase reveal" style="transition-delay:.3s">
-        <div class="showcase-card featured">
-          <div class="sc-img sc-img-1">
-            <span class="sc-badge dijual">Dijual</span>
-            <div class="sc-overlay"></div>
-          </div>
-          <div class="sc-body">
-            <div class="sc-name">Villa Modern Minimalis BSD</div>
-            <div class="sc-loc">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Bumi Serpong Damai, Tangerang Selatan
-            </div>
-            <div class="sc-footer">
-              <span class="sc-price">Rp 2,8 Miliar</span>
-              <span class="sc-specs">4 KT &nbsp;·&nbsp; 3 KM &nbsp;·&nbsp; 180 m²</span>
-            </div>
-          </div>
-        </div>
-        <div class="showcase-card">
-          <div class="sc-img sc-img-2">
-            <span class="sc-badge disewa">Disewa</span>
-          </div>
-          <div class="sc-body">
-            <div class="sc-name">Studio Apartemen Sudirman</div>
-            <div class="sc-loc">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Sudirman, Jakarta Pusat
-            </div>
-            <div class="sc-footer">
-              <span class="sc-price">Rp 6,5 Jt <small>/bulan</small></span>
-              <span class="sc-specs">1 KT &nbsp;·&nbsp; 34 m²</span>
-            </div>
-          </div>
-        </div>
+      <div class="hero-stats">
+        <div><div class="h-stat-num">8.400+</div><div class="h-stat-label">Properti Listing</div></div>
+        <div><div class="h-stat-num">3.200+</div><div class="h-stat-label">Transaksi Sukses</div></div>
+        <div><div class="h-stat-num">240+</div><div class="h-stat-label">Agen Tersertifikasi</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-photo large">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80&auto=format&fit=crop" alt="Villa Modern BSD"/>
+        <div class="hp-badge dijual">Dijual — Rp 2,8 M</div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80&auto=format&fit=crop" alt="Apartemen Sudirman"/>
+        <div class="hp-badge disewa">Disewa</div>
+      </div>
+      <div class="hero-photo">
+        <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=600&q=80&auto=format&fit=crop" alt="Cluster Depok"/>
+        <div class="hp-badge dijual">Dijual</div>
       </div>
     </div>
   </section>
 
-  <!-- PROPERTY FILTER + LISTING -->
-  <section id="properti" class="listing-sec">
-    <div class="container">
-      <div class="sec-header">
-        <div class="sec-subtitle">Properti Pilihan</div>
-        <h2>Temukan Properti<br>Yang Tepat Untuk Anda</h2>
-        <p>Dikurasi dan diverifikasi oleh agen kami dari lebih dari 8.000 listing di seluruh Indonesia.</p>
+  <!-- SEARCH BAR -->
+  <div class="search-wrap">
+    <div class="search-inner">
+      <input class="search-field" type="text" placeholder="Cari lokasi, nama proyek, atau tipe properti..."/>
+      <div class="search-sep"></div>
+      <select class="search-select">
+        <option>Semua Tipe</option>
+        <option>Rumah</option>
+        <option>Apartemen</option>
+        <option>Ruko</option>
+        <option>Kavling</option>
+      </select>
+      <div class="search-sep"></div>
+      <select class="search-select">
+        <option>Semua Harga</option>
+        <option>Di bawah 500 Jt</option>
+        <option>500 Jt - 1 M</option>
+        <option>1 M - 3 M</option>
+        <option>Di atas 3 M</option>
+      </select>
+      <button class="search-btn">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Cari Sekarang
+      </button>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stats-grid">
+      <div class="stat-box"><div class="stat-num">8.400+</div><div class="stat-label">Properti Terdaftar</div></div>
+      <div class="stat-box"><div class="stat-num">3.200+</div><div class="stat-label">Transaksi Sukses</div></div>
+      <div class="stat-box"><div class="stat-num">240+</div><div class="stat-label">Agen Tersertifikasi</div></div>
+      <div class="stat-box"><div class="stat-num">7 Tahun</div><div class="stat-label">Pengalaman</div></div>
+    </div>
+  </div>
+
+  <div class="divider-line"></div>
+
+  <!-- PROPERTY LISTINGS -->
+  <section id="properti">
+    <div class="sec-eyebrow">Properti Pilihan</div>
+    <h2 class="sec-title reveal">Temukan Properti<br>yang Tepat untuk Anda</h2>
+    <p class="sec-sub reveal">Dikurasi dan diverifikasi oleh agen kami dari lebih dari 8.000 listing di seluruh Indonesia.</p>
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="setTab(this,'semua')">Semua</button>
+      <button class="ftab" onclick="setTab(this,'dijual')">Dijual</button>
+      <button class="ftab" onclick="setTab(this,'disewa')">Disewa</button>
+      <button class="ftab" onclick="setTab(this,'kpr')">KPR Ready</button>
+    </div>
+    <div class="prop-grid">
+
+      <div class="p-card reveal" data-cat="dijual">
+        <div class="p-img-wrap">
+          <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=600&q=80&auto=format&fit=crop" alt="Rumah Cluster Depok"/>
+          <span class="p-badge dijual">Dijual</span>
+        </div>
+        <div class="p-body">
+          <div class="p-name">Rumah Cluster Modern Depok</div>
+          <div class="p-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Grand Depok City, Jawa Barat</div>
+          <div class="p-price">Rp 1,45 Miliar</div>
+          <div class="p-specs"><span class="p-spec">3 KT</span><span class="p-spec">3 KM</span><span class="p-spec">105 m²</span><span class="p-spec">SHM</span></div>
+          <div class="p-actions">
+            <a href="https://wa.me/628119999100?text=Saya%20tertarik%20Rumah%20Cluster%20Depok" class="p-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+            <a href="#kontak" class="p-btn-detail">Detail</a>
+          </div>
+        </div>
       </div>
 
-      <!-- FILTER TABS -->
-      <div class="filter-tabs">
-        <button class="ftab active" onclick="setTab(this,'semua')">Semua</button>
-        <button class="ftab" onclick="setTab(this,'dijual')">Dijual</button>
-        <button class="ftab" onclick="setTab(this,'disewa')">Disewa</button>
-        <button class="ftab" onclick="setTab(this,'kpr')">KPR Ready</button>
+      <div class="p-card reveal" data-cat="kpr">
+        <div class="p-img-wrap">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80&auto=format&fit=crop" alt="Grand Harmoni"/>
+          <span class="p-badge kpr">KPR Ready</span>
+        </div>
+        <div class="p-body">
+          <div class="p-name">Perumahan Grand Harmoni</div>
+          <div class="p-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Karawaci, Tangerang</div>
+          <div class="p-price">Rp 980 Juta</div>
+          <div class="p-specs"><span class="p-spec">3 KT</span><span class="p-spec">2 KM</span><span class="p-spec">90 m²</span><span class="p-spec">SHM</span></div>
+          <div class="p-actions">
+            <a href="https://wa.me/628119999100?text=Saya%20tertarik%20Grand%20Harmoni%20KPR" class="p-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+            <a href="#kontak" class="p-btn-detail">Detail</a>
+          </div>
+        </div>
       </div>
 
-      <div class="prop-grid">
-        <div class="p-card reveal" data-cat="dijual">
-          <div class="p-img-wrap">
-            <div class="p-img p-img-a"></div>
-            <span class="p-badge dijual">Dijual</span>
-          </div>
-          <div class="p-body">
-            <div class="p-name">Rumah Cluster Modern Depok</div>
-            <div class="p-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Grand Depok City, Jawa Barat</div>
-            <div class="p-price">Rp 1,45 Miliar</div>
-            <div class="p-specs-row">
-              <span class="p-spec"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9v11h18V9M1 9l11-7 11 7"/></svg> 3 KT</span>
-              <span class="p-spec">3 KM</span>
-              <span class="p-spec">105 m²</span>
-              <span class="p-spec">SHM</span>
-            </div>
-            <a href="https://wa.me/628119999100?text=Halo,%20saya%20tertarik%20dengan%20Rumah%20Cluster%20Modern%20Depok.%20Apakah%20masih%20tersedia?" target="_blank" class="p-wa-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-              Tanya via WhatsApp
+      <div class="p-card reveal" data-cat="disewa">
+        <div class="p-img-wrap">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80&auto=format&fit=crop" alt="Ruko Kelapa Gading"/>
+          <span class="p-badge disewa">Disewa</span>
+        </div>
+        <div class="p-body">
+          <div class="p-name">Ruko 3 Lantai Strategis</div>
+          <div class="p-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Kelapa Gading, Jakarta Utara</div>
+          <div class="p-price">Rp 45 Juta <small>/tahun</small></div>
+          <div class="p-specs"><span class="p-spec">Komersial</span><span class="p-spec">240 m²</span><span class="p-spec">SHM</span></div>
+          <div class="p-actions">
+            <a href="https://wa.me/628119999100?text=Saya%20tertarik%20Ruko%20Kelapa%20Gading" class="p-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
             </a>
+            <a href="#kontak" class="p-btn-detail">Detail</a>
           </div>
         </div>
+      </div>
 
-        <div class="p-card reveal" data-cat="kpr" style="transition-delay:.1s">
-          <div class="p-img-wrap">
-            <div class="p-img p-img-b"></div>
-            <span class="p-badge kpr">KPR Ready</span>
-          </div>
-          <div class="p-body">
-            <div class="p-name">Perumahan Grand Harmoni</div>
-            <div class="p-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Karawaci, Tangerang</div>
-            <div class="p-price">Rp 980 Juta</div>
-            <div class="p-specs-row">
-              <span class="p-spec">3 KT</span>
-              <span class="p-spec">2 KM</span>
-              <span class="p-spec">90 m²</span>
-              <span class="p-spec">SHM</span>
-            </div>
-            <a href="https://wa.me/628119999100?text=Halo,%20saya%20tertarik%20dengan%20Perumahan%20Grand%20Harmoni.%20Info%20KPR%20nya%20bagaimana?" target="_blank" class="p-wa-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-              Tanya via WhatsApp
+      <div class="p-card reveal" data-cat="dijual">
+        <div class="p-img-wrap">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&q=80&auto=format&fit=crop" alt="Kavling Bogor"/>
+          <span class="p-badge dijual">Dijual</span>
+        </div>
+        <div class="p-body">
+          <div class="p-name">Tanah Kavling SHM Bogor</div>
+          <div class="p-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Bogor Barat, Jawa Barat</div>
+          <div class="p-price">Rp 2,2 Juta <small>/m²</small></div>
+          <div class="p-specs"><span class="p-spec">600 m²</span><span class="p-spec">SHM</span><span class="p-spec">Strategis</span></div>
+          <div class="p-actions">
+            <a href="https://wa.me/628119999100?text=Saya%20tertarik%20Kavling%20Bogor" class="p-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
             </a>
+            <a href="#kontak" class="p-btn-detail">Detail</a>
           </div>
         </div>
+      </div>
 
-        <div class="p-card reveal" data-cat="disewa" style="transition-delay:.2s">
-          <div class="p-img-wrap">
-            <div class="p-img p-img-c"></div>
-            <span class="p-badge disewa">Disewa</span>
-          </div>
-          <div class="p-body">
-            <div class="p-name">Ruko 3 Lantai Strategis</div>
-            <div class="p-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kelapa Gading, Jakarta Utara</div>
-            <div class="p-price">Rp 45 Juta <small>/tahun</small></div>
-            <div class="p-specs-row">
-              <span class="p-spec">Komersial</span>
-              <span class="p-spec">240 m²</span>
-              <span class="p-spec">SHM</span>
-            </div>
-            <a href="https://wa.me/628119999100?text=Halo,%20saya%20tertarik%20dengan%20Ruko%203%20Lantai%20Kelapa%20Gading.%20Apakah%20masih%20tersedia?" target="_blank" class="p-wa-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-              Tanya via WhatsApp
+      <div class="p-card reveal" data-cat="kpr">
+        <div class="p-img-wrap">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&q=80&auto=format&fit=crop" alt="Apartemen Alam Sutera"/>
+          <span class="p-badge kpr">KPR Ready</span>
+        </div>
+        <div class="p-body">
+          <div class="p-name">Apartemen 2BR Full Furnished</div>
+          <div class="p-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Alam Sutera, Tangerang</div>
+          <div class="p-price">Rp 1,1 Miliar</div>
+          <div class="p-specs"><span class="p-spec">2 KT</span><span class="p-spec">2 KM</span><span class="p-spec">68 m²</span><span class="p-spec">SHM</span></div>
+          <div class="p-actions">
+            <a href="https://wa.me/628119999100?text=Saya%20tertarik%20Apartemen%20Alam%20Sutera" class="p-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
             </a>
+            <a href="#kontak" class="p-btn-detail">Detail</a>
           </div>
         </div>
+      </div>
 
-        <div class="p-card reveal" data-cat="dijual">
-          <div class="p-img-wrap">
-            <div class="p-img p-img-d"></div>
-            <span class="p-badge dijual">Dijual</span>
-          </div>
-          <div class="p-body">
-            <div class="p-name">Tanah Kavling SHM Bogor</div>
-            <div class="p-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bogor Barat, Jawa Barat</div>
-            <div class="p-price">Rp 2,2 Juta <small>/m²</small></div>
-            <div class="p-specs-row">
-              <span class="p-spec">600 m²</span>
-              <span class="p-spec">SHM</span>
-              <span class="p-spec">Strategis</span>
-            </div>
-            <a href="https://wa.me/628119999100?text=Halo,%20saya%20tertarik%20dengan%20Tanah%20Kavling%20Bogor.%20Bisa%20info%20lebih%20lanjut?" target="_blank" class="p-wa-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-              Tanya via WhatsApp
+      <div class="p-card reveal" data-cat="dijual">
+        <div class="p-img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&q=80&auto=format&fit=crop" alt="Villa BSD"/>
+          <span class="p-badge dijual">Dijual</span>
+        </div>
+        <div class="p-body">
+          <div class="p-name">Villa Modern Minimalis BSD</div>
+          <div class="p-loc"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> BSD City, Tangerang Selatan</div>
+          <div class="p-price">Rp 2,8 Miliar</div>
+          <div class="p-specs"><span class="p-spec">4 KT</span><span class="p-spec">3 KM</span><span class="p-spec">180 m²</span><span class="p-spec">SHM</span></div>
+          <div class="p-actions">
+            <a href="https://wa.me/628119999100?text=Saya%20tertarik%20Villa%20Modern%20BSD" class="p-btn-wa" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
             </a>
+            <a href="#kontak" class="p-btn-detail">Detail</a>
           </div>
         </div>
+      </div>
 
-        <div class="p-card reveal" data-cat="kpr" style="transition-delay:.1s">
-          <div class="p-img-wrap">
-            <div class="p-img p-img-e"></div>
-            <span class="p-badge kpr">KPR Ready</span>
-          </div>
-          <div class="p-body">
-            <div class="p-name">Apartemen 2BR Full Furnished</div>
-            <div class="p-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Alam Sutera, Tangerang</div>
-            <div class="p-price">Rp 1,1 Miliar</div>
-            <div class="p-specs-row">
-              <span class="p-spec">2 KT</span>
-              <span class="p-spec">1 KM</span>
-              <span class="p-spec">55 m²</span>
-            </div>
-            <a href="https://wa.me/628119999100?text=Halo,%20saya%20tertarik%20dengan%20Apartemen%202BR%20Alam%20Sutera.%20Info%20KPR%20nya%20bagaimana?" target="_blank" class="p-wa-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-              Tanya via WhatsApp
-            </a>
-          </div>
-        </div>
+    </div>
+  </section>
 
-        <div class="p-card reveal" data-cat="disewa" style="transition-delay:.2s">
-          <div class="p-img-wrap">
-            <div class="p-img p-img-f"></div>
-            <span class="p-badge disewa">Disewa</span>
-          </div>
-          <div class="p-body">
-            <div class="p-name">Gudang Industri Cikarang</div>
-            <div class="p-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cikarang Barat, Bekasi</div>
-            <div class="p-price">Rp 120 Juta <small>/tahun</small></div>
-            <div class="p-specs-row">
-              <span class="p-spec">1.200 m²</span>
-              <span class="p-spec">Industri</span>
-              <span class="p-spec">SHM</span>
-            </div>
-            <a href="https://wa.me/628119999100?text=Halo,%20saya%20tertarik%20dengan%20Gudang%20Cikarang.%20Bisa%20info%20lebih%20lanjut?" target="_blank" class="p-wa-btn">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-              Tanya via WhatsApp
-            </a>
-          </div>
-        </div>
+  <div class="divider-line"></div>
+
+  <!-- KEUNGGULAN -->
+  <section id="why">
+    <div class="sec-eyebrow">Keunggulan Kami</div>
+    <h2 class="sec-title reveal">Mengapa Memilih<br>Griya Properti?</h2>
+    <p class="sec-sub reveal">Kami bukan sekadar platform — kami adalah mitra terpercaya dalam perjalanan properti Anda.</p>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>
+        <h3>Agen Tersertifikasi AREBI</h3>
+        <p>Semua agen kami telah melalui seleksi ketat, bersertifikat, dan berpengalaman di bidangnya.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
+        <h3>Verifikasi Dokumen</h3>
+        <p>Setiap listing telah diverifikasi keabsahan sertifikat. Transaksi aman dari sengketa hukum.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Simulasi KPR Online</h3>
+        <p>Hitung cicilan Anda secara instan. Bermitra dengan 12 bank untuk kemudahan pengajuan.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Legal &amp; Notarisasi</h3>
+        <p>Tim legal internal membantu proses balik nama, AJB, dan notarisasi dengan biaya transparan.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>
+        <h3>Virtual Tour 3D</h3>
+        <p>Lihat interior properti langsung dari rumah dengan virtual tour 360 derajat yang imersif.</p>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
+        <h3>After-Sales Support</h3>
+        <p>Dukungan penuh setelah transaksi: serah terima kunci, utilitas, hingga renovasi awal.</p>
       </div>
     </div>
   </section>
 
-  <!-- WHY US -->
-  <section id="why" class="why-sec">
-    <div class="container">
-      <div class="sec-header">
-        <div class="sec-subtitle">Keunggulan Kami</div>
-        <h2>Mengapa Memilih<br>Griya Properti?</h2>
-        <p>Kami bukan sekadar platform — kami adalah mitra terpercaya dalam perjalanan properti Anda.</p>
+  <div class="divider-line"></div>
+
+  <!-- GALLERY -->
+  <section id="gallery" style="padding:88px 0">
+    <div class="gallery-header">
+      <div class="sec-eyebrow">Galeri Properti</div>
+      <h2 class="sec-title reveal">Properti Premium<br>Pilihan Kami</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-cell">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80&auto=format&fit=crop" alt="Villa Mewah"/>
+        <div class="g-label">Villa Mewah BSD</div>
       </div>
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
-          <h3>Agen Tersertifikasi AREBI</h3>
-          <p>Semua agen kami telah melalui seleksi ketat, bersertifikat, dan berpengalaman di bidangnya.</p>
-        </div>
-        <div class="why-card reveal" style="transition-delay:.1s">
-          <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg></div>
-          <h3>Verifikasi Dokumen</h3>
-          <p>Setiap listing telah diverifikasi keabsahan sertifikat. Transaksi aman dari sengketa hukum.</p>
-        </div>
-        <div class="why-card reveal" style="transition-delay:.2s">
-          <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
-          <h3>Simulasi KPR Online</h3>
-          <p>Hitung cicilan Anda secara instan. Bermitra dengan 12 bank untuk kemudahan pengajuan.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <h3>Legal &amp; Notarisasi</h3>
-          <p>Tim legal internal membantu proses balik nama, AJB, dan notarisasi dengan biaya transparan.</p>
-        </div>
-        <div class="why-card reveal" style="transition-delay:.1s">
-          <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10L11 14 9 12m-6 6l3-3m12 0l3 3M5 5l14 14"/><circle cx="12" cy="12" r="10"/></svg></div>
-          <h3>Virtual Tour 3D</h3>
-          <p>Lihat interior properti langsung dari rumah dengan virtual tour 360 derajat.</p>
-        </div>
-        <div class="why-card reveal" style="transition-delay:.2s">
-          <div class="why-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-          <h3>After-Sales Support</h3>
-          <p>Dukungan penuh setelah transaksi: serah terima kunci, utilitas, hingga renovasi awal.</p>
-        </div>
+      <div class="g-cell">
+        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80&auto=format&fit=crop" alt="Rumah Modern"/>
+        <div class="g-label">Rumah Modern Depok</div>
+      </div>
+      <div class="g-cell">
+        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80&auto=format&fit=crop" alt="Apartemen"/>
+        <div class="g-label">Apartemen Sudirman</div>
+      </div>
+      <div class="g-cell">
+        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80&auto=format&fit=crop" alt="Perumahan"/>
+        <div class="g-label">Cluster Karawaci</div>
+      </div>
+      <div class="g-cell">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop" alt="Interior"/>
+        <div class="g-label">Interior Modern</div>
       </div>
     </div>
   </section>
 
-  <!-- STATS BANNER -->
-  <section class="stats-banner">
-    <div class="container stats-grid-row">
-      <div class="s-item reveal">
-        <div class="s-num">8.400+</div>
-        <div class="s-label">Properti Terdaftar</div>
-      </div>
-      <div class="s-divider"></div>
-      <div class="s-item reveal" style="transition-delay:.1s">
-        <div class="s-num">3.200+</div>
-        <div class="s-label">Transaksi Sukses</div>
-      </div>
-      <div class="s-divider"></div>
-      <div class="s-item reveal" style="transition-delay:.2s">
-        <div class="s-num">240+</div>
-        <div class="s-label">Agen Tersertifikasi</div>
-      </div>
-      <div class="s-divider"></div>
-      <div class="s-item reveal" style="transition-delay:.3s">
-        <div class="s-num">7 Tahun</div>
-        <div class="s-label">Pengalaman</div>
-      </div>
-    </div>
-  </section>
+  <div class="divider-line"></div>
 
   <!-- TESTIMONI -->
-  <section id="testi" class="testi-sec">
-    <div class="container">
-      <div class="sec-header text-center">
-        <div class="sec-subtitle">Pengalaman Nyata</div>
-        <h2>Dipercaya Ribuan Klien</h2>
-        <p>Dari pembeli, penjual, hingga investor yang telah merasakan layanan kami.</p>
+  <section id="testi">
+    <div class="sec-eyebrow">Pengalaman Nyata</div>
+    <h2 class="sec-title reveal">Dipercaya Ribuan Klien</h2>
+    <p class="sec-sub reveal">Dari pembeli, penjual, hingga investor yang telah merasakan layanan kami.</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="testi-q">"Proses beli rumah pertama saya sangat lancar. Agennya mendampingi dari survei hingga akad kredit dengan sangat profesional dan sabar."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-author"><div class="author-av">R</div><div><div class="author-name">Rizky Aditya</div><div class="author-role">Pembeli Pertama, Depok</div></div></div>
       </div>
-      <div class="testi-grid">
-        <div class="testi-card reveal">
-          <div class="testi-rating">★★★★★</div>
-          <p class="testi-quote">"Proses beli rumah pertama saya sangat lancar. Agennya mendampingi dari survei hingga akad kredit dengan sangat profesional dan sabar."</p>
-          <div class="testi-author">
-            <div class="author-av">R</div>
-            <div>
-              <div class="author-name">Rizky Aditya</div>
-              <div class="author-role">Pembeli Pertama, Depok</div>
-            </div>
-          </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <div class="testi-card reveal" style="transition-delay:.1s">
-          <div class="testi-rating">★★★★★</div>
-          <p class="testi-quote">"Rumah saya terjual dalam 3 minggu setelah listing — harga sesuai valuasi agen. Proses balik nama juga sangat cepat dan tanpa ribet."</p>
-          <div class="testi-author">
-            <div class="author-av">H</div>
-            <div>
-              <div class="author-name">Ibu Hartati</div>
-              <div class="author-role">Penjual, Jakarta Timur</div>
-            </div>
-          </div>
+        <p class="testi-q">"Rumah saya terjual dalam 3 minggu setelah listing — harga sesuai valuasi agen. Proses balik nama juga sangat cepat dan tanpa ribet."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-author"><div class="author-av">H</div><div><div class="author-name">Ibu Hartati</div><div class="author-role">Penjual, Jakarta Timur</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-quote-mark">"</div>
+        <div class="testi-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <div class="testi-card reveal" style="transition-delay:.2s">
-          <div class="testi-rating">★★★★★</div>
-          <p class="testi-quote">"Tim analitik Griya sangat detail dalam perbandingan harga dan proyeksi ROI. Investasi perdana saya di BSD berjalan sangat baik berkat panduan mereka."</p>
-          <div class="testi-author">
-            <div class="author-av">D</div>
-            <div>
-              <div class="author-name">Denny Firmansyah</div>
-              <div class="author-role">Investor, Surabaya</div>
-            </div>
-          </div>
-        </div>
+        <p class="testi-q">"Tim analitik Griya sangat detail dalam perbandingan harga dan proyeksi ROI. Investasi perdana saya di BSD berjalan sangat baik berkat panduan mereka."</p>
+        <div class="testi-divider"></div>
+        <div class="testi-author"><div class="author-av">D</div><div><div class="author-name">Denny Firmansyah</div><div class="author-role">Investor, Surabaya</div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- CTA / KONTAK -->
-  <section id="kontak" class="cta-sec">
-    <div class="container">
-      <div class="cta-box reveal">
-        <div class="cta-content">
-          <h2>Siap Menemukan Properti Impian Anda?</h2>
-          <p>Konsultasi gratis dengan agen kami langsung via WhatsApp. Tanpa biaya, tanpa ikatan.</p>
-          <ul class="cta-checklist">
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Respons cepat dalam 5 menit</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Tanpa biaya konsultasi</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Jadwal survei fleksibel</li>
-          </ul>
+  <!-- CONTACT / CTA -->
+  <section id="kontak" style="padding:0">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <div class="contact-eyebrow">Hubungi Kami Sekarang</div>
+        <h2 class="contact-title">Siap Menemukan<br>Properti Impian<br>Anda?</h2>
+        <p class="contact-desc">Konsultasi gratis dengan agen kami. Tanpa biaya, tanpa ikatan. Kami siap membantu dari pencarian hingga serah terima kunci.</p>
+        <div class="contact-checklist">
+          <div class="contact-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Respons cepat dalam 5 menit</div>
+          <div class="contact-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tanpa biaya konsultasi</div>
+          <div class="contact-check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Jadwal survei fleksibel</div>
         </div>
-        <div class="cta-action">
-          <a href="https://wa.me/628119999100?text=Halo,%20saya%20ingin%20konsultasi%20properti.%20Bisakah%20saya%20mendapat%20informasi%20lebih%20lanjut?" target="_blank" class="cta-wa-btn">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-            Hubungi Agen via WhatsApp
-          </a>
-          <p class="cta-sub">Atau telepon: <strong>0811-9999-100</strong></p>
+        <a href="https://wa.me/628119999100?text=Halo,%20saya%20ingin%20konsultasi%20properti" class="contact-btn-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Hubungi Agen via WhatsApp
+        </a>
+        <a href="mailto:info@griyaproperti.id?subject=Konsultasi%20Properti" class="contact-btn-gm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Kirim Email ke Kami
+        </a>
+      </div>
+      <div class="contact-right">
+        <div class="contact-form-title">Kirim Pesan Langsung</div>
+        <div class="contact-form-sub">Isi formulir di bawah dan agen kami akan segera menghubungi Anda.</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Nama Lengkap</label>
+            <input type="text" class="form-input" placeholder="Nama Anda"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nomor WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="08xx-xxxx-xxxx"/>
+          </div>
         </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Tipe Properti</label>
+            <select class="form-select">
+              <option>Semua Tipe</option>
+              <option>Rumah</option>
+              <option>Apartemen</option>
+              <option>Ruko</option>
+              <option>Kavling</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Keperluan</label>
+            <select class="form-select">
+              <option>Membeli</option>
+              <option>Menyewa</option>
+              <option>Menjual</option>
+              <option>Investasi</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Gmail</label>
+            <input type="email" class="form-input" placeholder="email@gmail.com"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label class="form-label">Pesan</label>
+            <textarea class="form-textarea" placeholder="Ceritakan kebutuhan properti Anda..."></textarea>
+          </div>
+        </div>
+        <button class="form-submit" onclick="handleSubmit()">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Kirim Pesan Sekarang
+        </button>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="footer-logo">Griya<span>Properti</span></div>
-          <p>Platform properti terpercaya dengan agen tersertifikasi untuk proses transaksi yang aman dan transparan di seluruh Indonesia.</p>
-          <div class="footer-contact-items">
-            <div class="fc-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 11.83a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.574 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              0811-9999-100
-            </div>
-            <div class="fc-item">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              Jakarta, Tangerang, Bekasi
-            </div>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Properti</h4>
-          <ul>
-            <li><a href="#">Rumah Dijual</a></li>
-            <li><a href="#">Apartemen Disewa</a></li>
-            <li><a href="#">Ruko Komersial</a></li>
-            <li><a href="#">Tanah Kavling</a></li>
-            <li><a href="#">Gudang &amp; Industri</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Layanan</h4>
-          <ul>
-            <li><a href="#">Simulasi KPR</a></li>
-            <li><a href="#">Penilaian Properti</a></li>
-            <li><a href="#">Virtual Tour 3D</a></li>
-            <li><a href="#">Bantuan Legal</a></li>
-            <li><a href="#">Konsultasi Investasi</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Perusahaan</h4>
-          <ul>
-            <li><a href="#">Tentang Kami</a></li>
-            <li><a href="#">Bergabung Jadi Agen</a></li>
-            <li><a href="#">Blog Properti</a></li>
-            <li><a href="#">Kebijakan Privasi</a></li>
-          </ul>
-        </div>
+    <div class="ft-grid">
+      <div>
+        <div class="ft-logo">Griya<span>Properti</span></div>
+        <p class="ft-desc">Platform properti terpercaya dengan agen tersertifikasi untuk proses transaksi yang aman dan transparan di seluruh Indonesia.</p>
+        <a href="https://wa.me/628119999100" class="ft-contact-row" target="_blank" rel="noopener" style="display:flex;align-items:center">
+          <div class="ft-ci wa"><svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.304-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <span class="ft-cv">0811-9999-100</span>
+        </a>
+        <a href="mailto:info@griyaproperti.id" class="ft-contact-row" style="display:flex;align-items:center">
+          <div class="ft-ci gm"><svg viewBox="0 0 24 24" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+          <span class="ft-cv">info@griyaproperti.id</span>
+        </a>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2025 Griya Properti. Hak Cipta Dilindungi. — DEMO TEMPLATE</span>
-        <span>Syarat Penggunaan</span>
-      </div>
+      <div class="ft-col"><h4>Properti</h4><ul><li><a href="#">Rumah Dijual</a></li><li><a href="#">Apartemen Disewa</a></li><li><a href="#">Ruko Komersial</a></li><li><a href="#">Tanah Kavling</a></li><li><a href="#">Gudang &amp; Industri</a></li></ul></div>
+      <div class="ft-col"><h4>Layanan</h4><ul><li><a href="#">Simulasi KPR</a></li><li><a href="#">Penilaian Properti</a></li><li><a href="#">Virtual Tour 3D</a></li><li><a href="#">Bantuan Legal</a></li><li><a href="#">Konsultasi Investasi</a></li></ul></div>
+      <div class="ft-col"><h4>Perusahaan</h4><ul><li><a href="#">Tentang Kami</a></li><li><a href="#">Bergabung Jadi Agen</a></li><li><a href="#">Blog Properti</a></li><li><a href="#">Kebijakan Privasi</a></li></ul></div>
+    </div>
+    <div class="ft-bottom">
+      <span class="ft-copy">2025 Griya Properti. Hak Cipta Dilindungi.</span>
+      <span class="ft-badge">Demo Template</span>
     </div>
   </footer>
 
-  <script>
-    // Reveal animation
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</div><!-- /main -->
 
-    // Filter tabs
-    function setTab(btn, cat) {
-      document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('.p-card').forEach(card => {
-        const c = card.getAttribute('data-cat');
-        card.style.display = (cat === 'semua' || c === cat) ? '' : 'none';
-      });
-    }
+<script>
+// Sidebar active link
+const sbLinks = document.querySelectorAll('.sidebar .sb-link');
+const secIds = ['hero','properti','why','gallery','testi','kontak'];
+function updateActive(){
+  const sy = window.scrollY + 100;
+  let cur = secIds[0];
+  secIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.offsetTop <= sy) cur = id;
+  });
+  sbLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+}
+window.addEventListener('scroll', updateActive, {passive:true});
+updateActive();
 
-    // Hamburger
-    const hamburger = document.querySelector('.nav-hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    if (hamburger) {
-      hamburger.addEventListener('click', () => {
-        const isOpen = navLinks.style.display === 'flex';
-        navLinks.style.display = isOpen ? 'none' : 'flex';
-        if (!isOpen) {
-          navLinks.style.flexDirection = 'column';
-          navLinks.style.position = 'absolute';
-          navLinks.style.top = '80px';
-          navLinks.style.left = '0';
-          navLinks.style.width = '100%';
-          navLinks.style.background = '#fff';
-          navLinks.style.padding = '16px 24px 24px';
-          navLinks.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)';
-          navLinks.style.zIndex = '999';
-          navLinks.style.borderTop = '1px solid #e2e8f0';
-        }
-      });
-    }
-  </script>
+// Mobile hamburger — toggle sidebar on mobile (reuse desktop sidebar)
+const topHam = document.getElementById('topHam');
+const sidebar = document.getElementById('sidebar');
+const sbOverlay = document.getElementById('sbOverlay');
+
+function openSidebar(){
+  sidebar.style.display = 'flex';
+  sbOverlay.classList.add('open');
+  topHam.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSidebar(){
+  sidebar.style.display = '';
+  sbOverlay.classList.remove('open');
+  topHam.classList.remove('open');
+  document.body.style.overflow = '';
+}
+topHam.addEventListener('click', () => {
+  if (window.innerWidth <= 960) {
+    sbOverlay.classList.contains('open') ? closeSidebar() : openSidebar();
+  }
+});
+sbOverlay.addEventListener('click', closeSidebar);
+
+// On mobile, sidebar needs position fixed & show
+function handleResize(){
+  if (window.innerWidth <= 960){
+    sidebar.style.display = 'none';
+  } else {
+    sidebar.style.display = '';
+  }
+}
+window.addEventListener('resize', handleResize);
+handleResize();
+
+// All sidebar links close sidebar on mobile
+document.querySelectorAll('.sidebar a, .sidebar .sb-link').forEach(a => {
+  a.addEventListener('click', () => { if (window.innerWidth <= 960) closeSidebar(); });
+});
+
+// Filter tabs
+function setTab(btn, cat) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.p-card').forEach(card => {
+    card.style.display = (cat === 'semua' || card.getAttribute('data-cat') === cat) ? '' : 'none';
+  });
+}
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+
+// Form submit handler
+function handleSubmit(){
+  const inputs = document.querySelectorAll('.form-input, .form-textarea');
+  let valid = true;
+  inputs.forEach(i => { if (!i.value.trim()) { i.style.borderColor = '#e53e3e'; valid = false; } else { i.style.borderColor = ''; } });
+  if (valid) alert('Pesan Anda telah dikirim. Tim kami akan menghubungi Anda segera.');
+}
+</script>
 </body>
 </html>
