@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoPrime — Dealer &amp; Service Kendaraan Premium</title>
+  <meta name="description" content="Dealer otomotif terpercaya. Jual beli mobil baru dan bekas, layanan service, sparepart original, dan asuransi kendaraan." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#09090b;--surface:#111113;--surface2:#18181b;--border:#27272a;--red:#dc2626;--red-light:#ef4444;--white:#fafafa;--muted:#71717a;--muted2:#a1a1aa}
+    html{scroll-behavior:smooth}body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}ul{list-style:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(9,9,11,0.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nl{font-size:1.1rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--white)}.nl span{color:var(--red-light)}
+    .nls{display:flex;gap:32px}.nls a{font-size:.8rem;color:var(--muted);transition:color .2s}.nls a:hover{color:var(--white)}
+    .nc{background:var(--red);color:#fff;font-size:.76rem;font-weight:700;padding:10px 22px;border:none;cursor:pointer;border-radius:4px;transition:background .2s}.nc:hover{background:var(--red-light)}
+    .nh{display:none;flex-direction:column;gap:5px;cursor:pointer}.nh span{display:block;width:22px;height:2px;background:var(--white)}
+    .hero{min-height:100vh;padding:100px 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(220,38,38,0.06) 0%,transparent 60%);pointer-events:none}
+    .h-tag{font-size:.65rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red-light);margin-bottom:20px}
+    .hero h1{font-size:clamp(2.4rem,4.5vw,3.5rem);font-weight:800;line-height:1.1;margin-bottom:18px}.hero h1 .hl{color:var(--red-light)}
+    .hero-desc{font-family:'Inter',sans-serif;font-size:.93rem;color:var(--muted2);line-height:1.75;max-width:460px;margin-bottom:32px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .b-red{background:var(--red);color:#fff;font-size:.8rem;font-weight:700;padding:12px 28px;border-radius:4px;transition:all .2s;display:inline-block}.b-red:hover{background:var(--red-light);transform:translateY(-1px)}
+    .b-ghost{background:transparent;color:var(--muted2);font-size:.8rem;font-weight:600;padding:12px 28px;border-radius:4px;border:1px solid var(--border);transition:all .2s;display:inline-block}.b-ghost:hover{border-color:var(--muted2);color:var(--white)}
+    .hero-right{display:flex;flex-direction:column;gap:12px}
+    .car-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+    .car-img{height:110px;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+    .car-body{padding:14px 18px}
+    .car-badge{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 8px;border-radius:3px;margin-bottom:6px}
+    .new{background:rgba(74,222,128,.15);color:#4ade80}.used{background:rgba(251,191,36,.15);color:#fbbf24}
+    .car-name{font-size:.9rem;font-weight:700;margin-bottom:3px}
+    .car-spec{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--muted);margin-bottom:8px}
+    .car-footer{display:flex;justify-content:space-between;align-items:center}
+    .car-price{font-size:1rem;font-weight:800;color:var(--red-light)}.car-cta{font-size:.72rem;color:var(--muted2);border:1px solid var(--border);padding:4px 12px;border-radius:3px}
+    section{padding:88px 80px}.sec-tag{font-size:.62rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--red-light);margin-bottom:12px}
+    .sec-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;margin-bottom:12px;line-height:1.2}
+    .sec-sub{font-family:'Inter',sans-serif;font-size:.9rem;color:var(--muted2);max-width:480px;line-height:1.75;margin-bottom:48px}
+    .divider{height:1px;background:var(--border);margin:0 80px}
+    #kendaraan{background:var(--bg)}
+    .k-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .k-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all .3s}.k-card:hover{border-color:var(--red);transform:translateY(-3px)}
+    .k-img{height:150px;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+    .k-body{padding:18px 20px}
+    .k-badge{display:inline-block;font-size:.6rem;font-weight:700;padding:2px 9px;border-radius:100px;margin-bottom:8px}
+    .k-name{font-size:.95rem;font-weight:700;margin-bottom:4px}
+    .k-spec{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);margin-bottom:12px}
+    .k-footer{display:flex;justify-content:space-between;align-items:center}
+    .k-price{font-size:1.05rem;font-weight:800;color:var(--red-light)}.k-cicil{font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted)}
+    #service{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .sv-card{background:var(--surface);padding:28px 24px}
+    .sv-num{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red-light);margin-bottom:12px}
+    .sv-card h3{font-size:.95rem;font-weight:700;margin-bottom:8px}
+    .sv-card p{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted2);line-height:1.65}
+    #stats{background:var(--red);padding:0}
+    .s-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .s-box{padding:36px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.2)}.s-box:last-child{border-right:none}
+    .s-num{font-size:2rem;font-weight:800;color:#fff}.s-label{font-family:'Inter',sans-serif;font-size:.72rem;color:rgba(255,255,255,.75);margin-top:6px}
+    #testi{background:var(--bg)}
+    .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .t-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px}
+    .t-q{font-family:'Inter',sans-serif;font-size:.84rem;color:var(--muted2);line-height:1.7;font-style:italic;margin-bottom:16px}
+    .t-name{font-size:.84rem;font-weight:700}.t-role{font-size:.72rem;color:var(--muted);margin-top:2px}
+    #cta{background:var(--red);padding:80px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+    #cta h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;max-width:500px;line-height:1.2}
+    .b-dark{background:#000;color:#fff;font-size:.78rem;font-weight:700;padding:14px 32px;border:none;cursor:pointer;transition:all .2s;display:inline-block;white-space:nowrap}.b-dark:hover{background:#111}
+    footer{background:#040406;border-top:1px solid var(--border);padding:50px 80px 26px}
+    .ft{display:flex;justify-content:space-between;gap:48px;margin-bottom:36px}
+    .fl{font-size:1rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}.fl span{color:var(--red-light)}
+    .fd{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);max-width:220px;line-height:1.65}
+    .fc h4{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red-light);margin-bottom:12px}
+    .fc ul{display:flex;flex-direction:column;gap:8px}.fc a{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);transition:color .2s}.fc a:hover{color:var(--white)}
+    .fb{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between}
+    .fc-t{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--muted)}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:1100px){nav{padding:0 32px}.hero,section{padding:72px 40px}.divider{margin:0 40px}#cta{padding:60px 40px}footer{padding:44px 40px 22px}}
+    @media(max-width:820px){nav{padding:0 20px}.nls{display:none}.nh{display:flex}.hero{grid-template-columns:1fr;padding:84px 24px 56px}.hero-right{display:none}section{padding:52px 24px}.divider{margin:0 24px}.k-grid,.sv-grid,.t-grid{grid-template-columns:1fr}.s-grid{grid-template-columns:1fr 1fr}#cta{flex-direction:column;align-items:flex-start;padding:40px 24px}footer{padding:36px 24px 20px}.ft{flex-direction:column;gap:28px}.fb{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nl">Auto<span>Prime</span></div>
+    <ul class="nls"><li><a href="#kendaraan">Kendaraan</a></li><li><a href="#service">Service</a></li><li><a href="#testi">Ulasan</a></li><li><a href="#cta">Test Drive</a></li></ul>
+    <button class="nc" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Test Drive</button>
+    <div class="nh"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="h-tag">[ Dealer &amp; Service Otomotif ]</div>
+      <h1>Kendaraan Impian<br><span class="hl">Kini Lebih Mudah</span></h1>
+      <p class="hero-desc">AutoPrime hadirkan koleksi kendaraan baru dan bekas berkualitas dengan cicilan fleksibel, garansi penuh, dan layanan service berstandar resmi.</p>
+      <div class="hero-btns">
+        <a href="#kendaraan" class="b-red">Lihat Koleksi</a>
+        <a href="#service" class="b-ghost">Layanan Service</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="car-card"><div class="car-img" style="background:linear-gradient(135deg,#1a0000,#3d0000);">[ Toyota Fortuner ]</div><div class="car-body"><span class="car-badge new">BARU</span><div class="car-name">Toyota Fortuner GR Sport</div><div class="car-spec">Diesel 2.8L • AT • 4x4 • 2025</div><div class="car-footer"><span class="car-price">Rp 628 Jt</span><span class="car-cta">Test Drive</span></div></div></div>
+      <div class="car-card"><div class="car-img" style="background:linear-gradient(135deg,#001a0a,#003d18);">[ Honda CR-V ]</div><div class="car-body"><span class="car-badge used">BEKAS RESMI</span><div class="car-name">Honda CR-V Turbo Prestige</div><div class="car-spec">Bensin 1.5T • CVT • 2022 • 28.000 km</div><div class="car-footer"><span class="car-price">Rp 420 Jt</span><span class="car-cta">Tanya Harga</span></div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="kendaraan">
+    <div class="sec-tag">[ Koleksi ]</div>
+    <h2 class="sec-title reveal">Kendaraan Tersedia</h2>
+    <p class="sec-sub reveal">Semua unit terseleksi, bergaransi, dan siap test drive.</p>
+    <div class="k-grid">
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#1a0000,#3d0000);"></div><div class="k-body"><span class="k-badge new" style="background:rgba(74,222,128,.1);color:#4ade80">BARU</span><div class="k-name">Toyota Fortuner GR Sport</div><div class="k-spec">Diesel 2.8L • AT • 4x4 • 2025</div><div class="k-footer"><div><div class="k-price">Rp 628 Jt</div><div class="k-cicil">Cicilan ab. Rp 7,8 Jt/bln</div></div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#001a0a,#003d18);"></div><div class="k-body"><span class="k-badge used" style="background:rgba(251,191,36,.1);color:#fbbf24">BEKAS RESMI</span><div class="k-name">Honda CR-V Turbo Prestige</div><div class="k-spec">1.5T Bensin • CVT • 2022 • 28 Rb km</div><div class="k-footer"><div><div class="k-price">Rp 420 Jt</div><div class="k-cicil">Cicilan ab. Rp 5,2 Jt/bln</div></div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#00101a,#003040);"></div><div class="k-body"><span class="k-badge new" style="background:rgba(74,222,128,.1);color:#4ade80">BARU</span><div class="k-name">Mitsubishi Pajero Sport Dakar</div><div class="k-spec">Diesel 2.4L • AT • 4x4 • 2025</div><div class="k-footer"><div><div class="k-price">Rp 648 Jt</div><div class="k-cicil">Cicilan ab. Rp 8,1 Jt/bln</div></div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#1a1400,#403200);"></div><div class="k-body"><span class="k-badge used" style="background:rgba(251,191,36,.1);color:#fbbf24">BEKAS RESMI</span><div class="k-name">Mazda CX-5 GT Elite</div><div class="k-spec">2.5L NA • AT • 2021 • 35 Rb km</div><div class="k-footer"><div><div class="k-price">Rp 385 Jt</div><div class="k-cicil">Cicilan ab. Rp 4,8 Jt/bln</div></div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#10001a,#2e0050);"></div><div class="k-body"><span class="k-badge new" style="background:rgba(74,222,128,.1);color:#4ade80">BARU</span><div class="k-name">Hyundai Ioniq 5 Long Range</div><div class="k-spec">Electric • AWD • 480 km range • 2025</div><div class="k-footer"><div><div class="k-price">Rp 845 Jt</div><div class="k-cicil">Cicilan ab. Rp 10,5 Jt/bln</div></div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#001a12,#004a30);"></div><div class="k-body"><span class="k-badge used" style="background:rgba(251,191,36,.1);color:#fbbf24">BEKAS RESMI</span><div class="k-name">Toyota Alphard G SC</div><div class="k-spec">3.5L V6 • AT • 2020 • 42 Rb km</div><div class="k-footer"><div><div class="k-price">Rp 780 Jt</div><div class="k-cicil">Cicilan ab. Rp 9,7 Jt/bln</div></div></div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="service">
+    <div class="sec-tag">[ Service Center ]</div>
+    <h2 class="sec-title reveal">Layanan Bengkel &amp; Service</h2>
+    <p class="sec-sub reveal">Berstandar resmi pabrikan, dikerjakan teknisi bersertifikat.</p>
+    <div class="sv-grid">
+      <div class="sv-card reveal"><div class="sv-num">01</div><h3>Service Berkala (PMS)</h3><p>Perawatan rutin sesuai jadwal pabrikan — ganti oli, filter, cek sistem rem, dan 40+ titik inspeksi standar.</p></div>
+      <div class="sv-card reveal"><div class="sv-num">02</div><h3>Servis Mesin &amp; Transmisi</h3><p>Overhaul mesin, tune up, perbaikan transmisi manual dan otomatis oleh teknisi spesialis bersertifikat.</p></div>
+      <div class="sv-card reveal"><div class="sv-num">03</div><h3>Body Repair &amp; Cat</h3><p>Perbaikan bodi tabrakan dengan cat oven waterborne ramah lingkungan. Hasil sempurna tanpa beda warna.</p></div>
+      <div class="sv-card reveal"><div class="sv-num">04</div><h3>AC &amp; Kelistrikan</h3><p>Perbaikan sistem AC, ECU, sensor, wiring, dan sistem kelistrikan modern termasuk kendaraan hybrid/EV.</p></div>
+      <div class="sv-card reveal"><div class="sv-num">05</div><h3>Sparepart Original</h3><p>Stok lengkap spare part original dan aftermarket berkualitas. Garansi keaslian dan kompatibilitas terjamin.</p></div>
+      <div class="sv-card reveal"><div class="sv-num">06</div><h3>Booking &amp; Antar Jemput</h3><p>Reservasi service online, estimasi waktu akurat, dan layanan jemput-antar kendaraan untuk area tertentu.</p></div>
+    </div>
+  </section>
+
+  <section id="stats" style="padding:0">
+    <div class="s-grid">
+      <div class="s-box"><div class="s-num">5.200+</div><div class="s-label">Unit Terjual</div></div>
+      <div class="s-box"><div class="s-num">18.000+</div><div class="s-label">Service Dilayani</div></div>
+      <div class="s-box"><div class="s-num">15 Thn</div><div class="s-label">Pengalaman</div></div>
+      <div class="s-box"><div class="s-num">4.9</div><div class="s-label">Rating Google</div></div>
+    </div>
+  </section>
+
+  <section id="testi">
+    <div class="sec-tag">[ Ulasan ]</div>
+    <h2 class="sec-title reveal">Kata Pelanggan</h2>
+    <p class="sec-sub reveal">Kepercayaan pelanggan yang membuat kami terus berkembang.</p>
+    <div class="t-grid">
+      <div class="t-card reveal"><p class="t-q">"Proses beli Fortuner sangat mudah. Tim salesnya tidak pushy, malah bantu kami simulasi kredit dengan detail. Inden cepat dan unit datang sesuai janji."</p><div class="t-name">Budi Hartono</div><div class="t-role">Pembeli Unit Baru, Bekasi</div></div>
+      <div class="t-card reveal"><p class="t-q">"Servis berkala di sini selalu memuaskan. Transparannya langsung, estimasi biaya diberi sebelum pengerjaan dimulai, dan hasilnya konsisten bagus."</p><div class="t-name">Rina Wulandari</div><div class="t-role">Pelanggan Service Rutin</div></div>
+      <div class="t-card reveal"><p class="t-q">"Beli CR-V bekas resmi di sini. Kondisinya sempurna, dokumen lengkap, dan dapat garansi tambahan 1 tahun. Sangat direkomendasikan untuk yang mau cari mobil bekas berkualitas."</p><div class="t-name">Ahmad Fauzi</div><div class="t-role">Pembeli Unit Bekas, Tangerang</div></div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <h2>Tertarik? Jadwalkan Test Drive Hari Ini</h2>
+    <a href="#" class="b-dark">Booking Test Drive</a>
+  </section>
+
+  <footer>
+    <div class="ft">
+      <div><div class="fl">Auto<span>Prime</span></div><p class="fd">Dealer dan service center otomotif terpercaya dengan standar resmi pabrikan sejak 2010.</p></div>
+      <div class="fc"><h4>Kendaraan</h4><ul><li><a href="#">Unit Baru</a></li><li><a href="#">Unit Bekas Resmi</a></li><li><a href="#">Simulasi Kredit</a></li><li><a href="#">Trade-In</a></li></ul></div>
+      <div class="fc"><h4>Service</h4><ul><li><a href="#">Booking Service</a></li><li><a href="#">Spare Part</a></li><li><a href="#">Asuransi</a></li><li><a href="#">Kontak</a></li></ul></div>
+    </div>
+    <div class="fb"><span class="fc-t">2025 AutoPrime. Hak cipta dilindungi. — DEMO TEMPLATE</span><span class="fc-t">Syarat &amp; Ketentuan</span></div>
+  </footer>
+
+  <script>
+    const rev = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+    rev.forEach(el => obs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});} }));
+  </script>
+</body>
+</html>

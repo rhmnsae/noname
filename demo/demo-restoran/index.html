@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warung Senja — Kuliner Otentik Nusantara</title>
+  <meta name="description" content="Warung Senja menghadirkan cita rasa autentik masakan Nusantara dengan bahan pilihan segar setiap hari." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Warung <span>Senja</span></div>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#story">Kisah Kami</a></li>
+      <li><a href="#testi">Ulasan</a></li>
+      <li><a href="#reservasi">Reservasi</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('reservasi').scrollIntoView({behavior:'smooth'})">Pesan Meja</button>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-eyebrow">[ Kuliner Otentik Nusantara ]</div>
+      <h1>Rasa yang<br><em>Tak Terlupakan</em></h1>
+      <p class="hero-desc">Setiap hidangan dimasak dari bahan segar pilihan, menggunakan resep turun-temurun yang dijaga cita rasanya selama tiga generasi.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-amber">Lihat Menu</a>
+        <a href="#reservasi" class="btn-outline">Reservasi Meja</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-cat">[ Menu Unggulan ]</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Rendang Sapi Padang</div>
+              <div class="menu-item-desc">Daging sapi premium, 40+ rempah</div>
+            </div>
+            <div class="menu-item-price">Rp 65.000</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Soto Betawi Spesial</div>
+              <div class="menu-item-desc">Santan segar, jeroan pilihan</div>
+            </div>
+            <div class="menu-item-price">Rp 48.000</div>
+          </div>
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Nasi Liwet Solo</div>
+              <div class="menu-item-desc">Lauk komplit, sambal goreng</div>
+            </div>
+            <div class="menu-item-price">Rp 52.000</div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-card">
+        <div class="menu-card-header">
+          <span class="menu-card-cat">[ Jam Buka ]</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-item">
+            <div class="menu-item-name">Senin — Jumat</div>
+            <div class="menu-item-price">10.00 — 22.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="menu-item-name">Sabtu — Minggu</div>
+            <div class="menu-item-price">09.00 — 23.00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="sec-eyebrow">[ 01 / Menu ]</div>
+    <h2 class="sec-title reveal">Pilihan Hidangan Kami</h2>
+    <p class="sec-sub reveal">Dari makanan utama hingga minuman penutup — semuanya dibuat dengan cinta dan bahan terbaik.</p>
+    <div class="menu-grid">
+      <div class="menu-dish reveal">
+        <div class="menu-dish-name">Rendang Sapi Padang</div>
+        <div class="menu-dish-desc">Daging sapi pilihan dimasak perlahan bersama lebih dari empat puluh jenis rempah selama delapan jam hingga bumbu meresap sempurna.</div>
+        <div class="menu-dish-footer">
+          <div class="menu-dish-price">Rp 65.000</div>
+          <div class="menu-dish-tag">Signature</div>
+        </div>
+      </div>
+      <div class="menu-dish reveal">
+        <div class="menu-dish-name">Soto Betawi Spesial</div>
+        <div class="menu-dish-desc">Kuah santan segar dengan irisan daging, jeroan pilihan, dan perkedel kentang. Disajikan dengan emping dan acar segar.</div>
+        <div class="menu-dish-footer">
+          <div class="menu-dish-price">Rp 48.000</div>
+          <div class="menu-dish-tag">Populer</div>
+        </div>
+      </div>
+      <div class="menu-dish reveal">
+        <div class="menu-dish-name">Nasi Liwet Solo</div>
+        <div class="menu-dish-desc">Nasi gurih dimasak dengan santan dan serai, disajikan dengan lauk lengkap dan sambal goreng ati khas Solo.</div>
+        <div class="menu-dish-footer">
+          <div class="menu-dish-price">Rp 52.000</div>
+        </div>
+      </div>
+      <div class="menu-dish reveal">
+        <div class="menu-dish-name">Gulai Kambing Muda</div>
+        <div class="menu-dish-desc">Kambing muda pilihan dimasak dengan rempah Sumatera dalam kuah gulai kental yang kaya rasa dan aroma.</div>
+        <div class="menu-dish-footer">
+          <div class="menu-dish-price">Rp 72.000</div>
+          <div class="menu-dish-tag">Weekend</div>
+        </div>
+      </div>
+      <div class="menu-dish reveal">
+        <div class="menu-dish-name">Ikan Pepes Aroma</div>
+        <div class="menu-dish-desc">Ikan segar pilihan dibungkus daun pisang bersama bumbu kencur, tomat hijau, dan cabai rawit, lalu dikukus dan dipanggang.</div>
+        <div class="menu-dish-footer">
+          <div class="menu-dish-price">Rp 55.000</div>
+        </div>
+      </div>
+      <div class="menu-dish reveal">
+        <div class="menu-dish-name">Sayur Asem Betawi</div>
+        <div class="menu-dish-desc">Sayur bening asam segar dengan jagung, labu siam, kacang panjang, dan melinjo — cocok sebagai pelengkap menu utama.</div>
+        <div class="menu-dish-footer">
+          <div class="menu-dish-price">Rp 22.000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STORY -->
+  <section id="story">
+    <div class="story-grid">
+      <div class="story-visual reveal">
+        <div class="story-block">
+          <div class="story-block-label">Berdiri Sejak</div>
+          <div class="story-block-val">1978</div>
+        </div>
+        <div class="story-block">
+          <div class="story-block-label">Generasi</div>
+          <div class="story-block-val">3</div>
+        </div>
+        <div class="story-block wide">
+          <div>
+            <div class="story-block-label">Reviews Bintang Lima</div>
+            <div class="story-block-val">4.200+</div>
+          </div>
+          <div>
+            <div class="story-block-label">Tamu Per Bulan</div>
+            <div class="story-block-val">12.000+</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="sec-eyebrow">[ 02 / Kisah Kami ]</div>
+        <h2 class="sec-title reveal">Tiga Generasi Menjaga<br>Warisan Rasa</h2>
+        <p class="reveal" style="font-size:0.92rem;color:var(--muted);line-height:1.75;margin-bottom:20px;">Warung Senja lahir dari dapur kecil Ibu Sarinah di Solo pada tahun 1978. Dengan berbekal resep turun-temurun dan keikhlasan memasak, warung ini tumbuh menjadi restoran yang dicintai ribuan pelanggan.</p>
+        <p class="sec-quote reveal" style="font-family:'Playfair Display',serif;font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.7;border-left:2px solid var(--amber);padding-left:18px;margin-bottom:16px;">"Masak bukan sekadar pekerjaan. Itu adalah cara kami merawat orang-orang yang kita cintai, meski mereka orang asing."</p>
+        <p style="font-size:0.78rem;color:var(--amber);letter-spacing:1px;">— Sarinah Wulandari, Pendiri</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- RESERVASI -->
+  <section id="reservasi">
+    <div class="reservasi-grid">
+      <div>
+        <div class="sec-eyebrow">[ 03 / Reservasi ]</div>
+        <h2 class="sec-title reveal">Pesan Meja Anda</h2>
+        <p class="sec-sub reveal">Pastikan kursi terbaik untuk pengalaman makan malam yang tak terlupakan.</p>
+        <form onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Nama</label>
+              <input class="form-input" type="text" placeholder="Nama lengkap" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">No. Telepon</label>
+              <input class="form-input" type="tel" placeholder="08xx-xxxx-xxxx" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Tanggal</label>
+              <input class="form-input" type="date" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Waktu</label>
+              <input class="form-input" type="time" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Jumlah Tamu</label>
+            <select class="form-input">
+              <option>1 - 2 orang</option>
+              <option>3 - 5 orang</option>
+              <option>6 - 10 orang</option>
+              <option>10+ orang (Hubungi Kami)</option>
+            </select>
+          </div>
+          <button class="form-submit" type="submit">Konfirmasi Reservasi</button>
+        </form>
+      </div>
+      <div class="reservasi-info">
+        <div class="info-box reveal">
+          <div class="info-box-title">Lokasi</div>
+          <p>Jl. Malioboro No. 47, Yogyakarta<br>Gedung depan, lantai 1</p>
+        </div>
+        <div class="info-box reveal">
+          <div class="info-box-title">Jam Operasional</div>
+          <p>Senin – Jumat: 10.00 – 22.00<br>Sabtu – Minggu: 09.00 – 23.00</p>
+        </div>
+        <div class="info-box reveal">
+          <div class="info-box-title">Reservasi Grup & Private Event</div>
+          <p>Untuk acara keluarga, kantor, atau gathering dengan tamu 10 orang ke atas, hubungi kami langsung untuk paket khusus.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTI -->
+  <section id="testi">
+    <div class="sec-eyebrow">[ 04 / Ulasan ]</div>
+    <h2 class="sec-title reveal">Kata Mereka tentang Kami</h2>
+    <p class="sec-sub reveal">Kepuasan tamu adalah penghargaan tertinggi bagi setiap masak yang kami sajikan.</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Rendangnya juara. Sudah coba di banyak tempat, tapi yang di sini memang beda levelnya. Daging empuk, bumbu meresap sampai dalam."</p>
+        <div class="testi-author">
+          <div class="testi-name">Rina Kusumawati</div>
+          <div class="testi-role">Food Blogger, Jakarta</div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Suasananya bikin betah, pelayanan ramah, dan makanannya konsisten enak dari pertama sampai sekarang sudah lebih dari dua tahun jadi pelanggan."</p>
+        <div class="testi-author">
+          <div class="testi-name">Dimas Prasetyo</div>
+          <div class="testi-role">Pelanggan Setia</div>
+        </div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Kami adakan arisan keluarga 20 orang di sini. Tim dapur sangat akomodatif, menyiapkan hidangan tepat waktu dengan kualitas yang luar biasa."</p>
+        <div class="testi-author">
+          <div class="testi-name">Hartati Soeharto</div>
+          <div class="testi-role">Tamu Event, Surabaya</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">Warung Senja</div>
+        <p>Menjaga cita rasa autentik Nusantara sejak 1978 — selalu segar, selalu dari hati.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Menu</h4>
+        <ul>
+          <li><a href="#">Makanan Utama</a></li>
+          <li><a href="#">Snack & Gorengan</a></li>
+          <li><a href="#">Minuman Tradisional</a></li>
+          <li><a href="#">Dessert</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informasi</h4>
+        <ul>
+          <li><a href="#">Tentang Kami</a></li>
+          <li><a href="#">Galeri Foto</a></li>
+          <li><a href="#">Private Event</a></li>
+          <li><a href="#">Katering</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Kontak</h4>
+        <ul>
+          <li><a href="#">+62 274 555-8888</a></li>
+          <li><a href="#">warungreservasi@senja.id</a></li>
+          <li><a href="#">Jl. Malioboro 47, Yogyakarta</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">2025 Warung Senja. Seluruh hak cipta dilindungi. — DEMO TEMPLATE</span>
+      <span class="footer-copy">Syarat & Ketentuan</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

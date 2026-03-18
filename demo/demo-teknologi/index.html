@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexio Tech — Software House &amp; IT Solutions</title>
+  <meta name="description" content="Software house profesional spesialis pengembangan aplikasi mobile, web, dan sistem enterprise untuk bisnis Anda." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#06060a;--surface:#0d0d14;--surface2:#12121c;--border:#1a1a2e;--border2:#24243a;--cyan:#06b6d4;--cyan-dim:rgba(6,182,212,0.1);--cyan-light:#22d3ee;--white:#e0f7fa;--muted:#64748b;--muted2:#94a3b8}
+    html{scroll-behavior:smooth}body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}ul{list-style:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(6,6,10,0.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nl{font-family:'JetBrains Mono',monospace;font-size:.9rem;font-weight:500;color:var(--white)}.nl span{color:var(--cyan-light)}
+    .nls{display:flex;gap:32px}.nls a{font-size:.76rem;color:var(--muted);transition:color .2s;font-family:'Inter',sans-serif}.nls a:hover{color:var(--white)}
+    .nc{background:var(--cyan);color:#000;font-size:.74rem;font-weight:700;padding:10px 22px;border:none;cursor:pointer;border-radius:4px;transition:background .2s}.nc:hover{background:var(--cyan-light)}
+    .nh{display:none;flex-direction:column;gap:5px;cursor:pointer}.nh span{display:block;width:22px;height:2px;background:var(--white)}
+    /* HERO */
+    .hero{min-height:100vh;padding:100px 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(6,182,212,0.06) 0%,transparent 60%);pointer-events:none}
+    .h-mono{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--cyan-light);margin-bottom:20px;letter-spacing:.5px}
+    .hero h1{font-size:clamp(2.4rem,4.5vw,3.5rem);font-weight:800;line-height:1.1;color:var(--white);margin-bottom:18px}.hero h1 .hl{color:var(--cyan-light)}
+    .hero-desc{font-family:'Inter',sans-serif;font-size:.93rem;color:var(--muted2);line-height:1.75;max-width:480px;margin-bottom:32px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .b-cyan{background:var(--cyan);color:#000;font-size:.78rem;font-weight:700;padding:12px 28px;border-radius:4px;transition:all .2s;display:inline-block}.b-cyan:hover{background:var(--cyan-light);transform:translateY(-1px)}
+    .b-ghost{background:transparent;color:var(--muted2);font-size:.78rem;font-weight:600;padding:12px 28px;border-radius:4px;border:1px solid var(--border2);transition:all .2s;display:inline-block}.b-ghost:hover{border-color:var(--muted2);color:var(--white)}
+    .hero-right{display:flex;flex-direction:column;gap:10px}
+    .code-panel{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px}
+    .code-header{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+    .code-dot{width:10px;height:10px;border-radius:50%}
+    .code-title{font-family:'JetBrains Mono',monospace;font-size:.62rem;color:var(--muted);flex:1;text-align:center}
+    .code-line{font-family:'JetBrains Mono',monospace;font-size:.72rem;line-height:1.8;color:var(--muted2)}
+    .code-line .kw{color:var(--cyan-light)}.code-line .str{color:#86efac}.code-line .fn{color:#c084fc}.code-line .cm{color:#4a5568}
+    /* SECTION */
+    section{padding:88px 80px}.sec-m{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--cyan-light);letter-spacing:.5px;margin-bottom:12px}
+    .sec-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--white);margin-bottom:12px;line-height:1.2}
+    .sec-sub{font-family:'Inter',sans-serif;font-size:.9rem;color:var(--muted2);max-width:480px;line-height:1.75;margin-bottom:48px}
+    .divider{height:1px;background:var(--border);margin:0 80px}
+    /* LAYANAN */
+    #layanan{background:var(--bg)}
+    .l-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .l-card{background:var(--bg);padding:28px 24px}
+    .l-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--cyan-light);margin-bottom:14px}
+    .l-card h3{font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px}
+    .l-card p{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted2);line-height:1.65;margin-bottom:14px}
+    .l-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--cyan);border:1px solid var(--border2);padding:3px 8px;margin-right:5px;margin-bottom:5px;display:inline-block}
+    /* PROYEK */
+    #proyek{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .p-list{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border)}
+    .p-item{background:var(--surface);padding:22px 28px;display:flex;align-items:center;gap:24px;border-bottom:1px solid var(--border);transition:background .2s}.p-item:last-child{border-bottom:none}.p-item:hover{background:var(--surface2)}
+    .p-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);min-width:40px}
+    .p-left{flex:1}.p-name{font-size:.94rem;font-weight:700;color:var(--white)}.p-desc{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted2);margin-top:3px}
+    .p-tags{display:flex;gap:6px;flex-wrap:wrap}
+    .ptag{font-family:'JetBrains Mono',monospace;font-size:.58rem;padding:2px 7px;border:1px solid var(--border2);color:var(--muted)}
+    .p-result{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--cyan-light);white-space:nowrap;text-align:right}
+    /* STATS */
+    #stats{background:var(--bg)}
+    .s-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .s-box{background:var(--bg);padding:36px 24px;text-align:center}
+    .s-num{font-size:2rem;font-weight:800;color:var(--cyan-light)}.s-label{font-family:'Inter',sans-serif;font-size:.74rem;color:var(--muted);margin-top:6px}
+    /* TESTI */
+    #testi{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+    .t-card{background:var(--surface);padding:26px}
+    .t-q{font-family:'Inter',sans-serif;font-size:.84rem;color:var(--muted2);line-height:1.7;font-style:italic;margin-bottom:16px}
+    .t-name{font-size:.84rem;font-weight:700;color:var(--white)}.t-role{font-size:.72rem;color:var(--muted);margin-top:2px}
+    /* CTA */
+    #cta{background:var(--cyan);padding:80px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+    #cta h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#000;max-width:500px;line-height:1.2}
+    .b-dark{background:#000;color:var(--cyan);font-size:.78rem;font-weight:700;padding:14px 32px;border:none;cursor:pointer;transition:all .2s;display:inline-block;white-space:nowrap}.b-dark:hover{background:#111;transform:translateY(-1px)}
+    /* FOOTER */
+    footer{background:#030308;border-top:1px solid var(--border);padding:50px 80px 26px}
+    .ft{display:flex;justify-content:space-between;gap:48px;margin-bottom:36px}
+    .fl{font-family:'JetBrains Mono',monospace;font-size:.95rem;color:var(--white);margin-bottom:8px}.fl span{color:var(--cyan-light)}
+    .fd{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);max-width:220px;line-height:1.65}
+    .fc h4{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--cyan-light);margin-bottom:12px}
+    .fc ul{display:flex;flex-direction:column;gap:8px}.fc a{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);transition:color .2s}.fc a:hover{color:var(--white)}
+    .fb{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between}
+    .fc-t{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--muted)}
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:1100px){nav{padding:0 32px}.hero,section{padding:72px 40px}.divider{margin:0 40px}#cta{padding:60px 40px}footer{padding:44px 40px 22px}}
+    @media(max-width:820px){nav{padding:0 20px}.nls{display:none}.nh{display:flex}.hero{grid-template-columns:1fr;padding:84px 24px 56px}.hero-right{display:none}section{padding:52px 24px}.divider{margin:0 24px}.l-grid,.t-grid{grid-template-columns:1fr}.s-grid{grid-template-columns:1fr 1fr}.p-item{flex-direction:column;align-items:flex-start}#cta{flex-direction:column;align-items:flex-start;padding:40px 24px}footer{padding:36px 24px 20px}.ft{flex-direction:column;gap:28px}.fb{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nl">nexio<span>.tech</span></div>
+    <ul class="nls">
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#proyek">Portofolio</a></li>
+      <li><a href="#testi">Klien</a></li>
+      <li><a href="#cta">Kontak</a></li>
+    </ul>
+    <button class="nc" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Diskusi Proyek</button>
+    <div class="nh"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="h-mono">// NexioTech Software House &amp; IT Solutions</div>
+      <h1>Kami Bangun<br><span class="hl">Produk Digital</span><br>yang Skalabel</h1>
+      <p class="hero-desc">Dari aplikasi mobile hingga sistem enterprise — tim kami mengeksekusi dengan presisi tinggi, timeline yang jelas, dan kualitas kode yang terjaga.</p>
+      <div class="hero-btns">
+        <a href="#proyek" class="b-cyan">Lihat Portofolio</a>
+        <a href="#cta" class="b-ghost">Mulai Diskusi</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="code-panel">
+        <div class="code-header">
+          <div class="code-dot" style="background:#ef4444"></div>
+          <div class="code-dot" style="background:#f59e0b"></div>
+          <div class="code-dot" style="background:#22c55e"></div>
+          <div class="code-title">// project.config.ts</div>
+        </div>
+        <div class="code-line"><span class="kw">const</span> project = {</div>
+        <div class="code-line">&nbsp;&nbsp;client: <span class="str">"Klien Anda"</span>,</div>
+        <div class="code-line">&nbsp;&nbsp;stack: [<span class="str">"React"</span>, <span class="str">"Node"</span>, <span class="str">"AWS"</span>],</div>
+        <div class="code-line">&nbsp;&nbsp;timeline: <span class="str">"12 minggu"</span>,</div>
+        <div class="code-line">&nbsp;&nbsp;status: <span class="kw">true</span>, <span class="cm">// on track</span></div>
+        <div class="code-line">};</div>
+        <div class="code-line">&nbsp;</div>
+        <div class="code-line"><span class="fn">deploy</span>(project);</div>
+        <div class="code-line"><span class="cm">// Success: build complete</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="layanan">
+    <div class="sec-m">// 01. Layanan</div>
+    <h2 class="sec-title reveal">Solusi Digital Kami</h2>
+    <p class="sec-sub reveal">Full-cycle development — dari desain hingga deployment dan maintenance.</p>
+    <div class="l-grid">
+      <div class="l-card reveal"><div class="l-num">// 01</div><h3>Mobile App Development</h3><p>Aplikasi iOS dan Android native serta cross-platform dengan React Native dan Flutter. UI intuitif, performa tinggi.</p><div><span class="l-tag">React Native</span><span class="l-tag">Flutter</span><span class="l-tag">Swift</span></div></div>
+      <div class="l-card reveal"><div class="l-num">// 02</div><h3>Web Application</h3><p>Aplikasi web scalable dari SPA hingga SSR — dashboard, marketplace, SaaS platform, dan enterprise system.</p><div><span class="l-tag">Next.js</span><span class="l-tag">React</span><span class="l-tag">Node.js</span></div></div>
+      <div class="l-card reveal"><div class="l-num">// 03</div><h3>Backend &amp; API</h3><p>Arsitektur microservices, REST API, dan GraphQL yang scalable, aman, dan terdokumentasi lengkap.</p><div><span class="l-tag">Node.js</span><span class="l-tag">Python</span><span class="l-tag">PostgreSQL</span></div></div>
+      <div class="l-card reveal"><div class="l-num">// 04</div><h3>Cloud &amp; DevOps</h3><p>Deployment otomatis, CI/CD pipeline, monitoring real-time, dan infrastruktur cloud yang efisien di AWS/GCP.</p><div><span class="l-tag">AWS</span><span class="l-tag">Docker</span><span class="l-tag">Terraform</span></div></div>
+      <div class="l-card reveal"><div class="l-num">// 05</div><h3>UI/UX Design</h3><p>Desain antarmuka berbasis riset pengguna — wireframe, prototype interaktif, dan design system yang konsisten.</p><div><span class="l-tag">Figma</span><span class="l-tag">Design System</span></div></div>
+      <div class="l-card reveal"><div class="l-num">// 06</div><h3>IT Consultancy</h3><p>Audit arsitektur, technology roadmap, code review, dan pendampingan teknis untuk tim engineering internal Anda.</p><div><span class="l-tag">Konsultasi</span><span class="l-tag">Audit</span></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="proyek">
+    <div class="sec-m">// 02. Portofolio</div>
+    <h2 class="sec-title reveal">Proyek yang Telah Kami Bangun</h2>
+    <p class="sec-sub reveal">Hasil nyata dari berbagai industri.</p>
+    <div class="p-list">
+      <div class="p-item reveal"><span class="p-num">001</span><div class="p-left"><div class="p-name">Aplikasi Logistik Enterprise</div><div class="p-desc">Sistem manajemen pengiriman real-time untuk 500+ armada kendaraan</div></div><div class="p-tags"><span class="ptag">React Native</span><span class="ptag">Node.js</span><span class="ptag">MongoDB</span></div><div class="p-result">-40% Waktu Kirim</div></div>
+      <div class="p-item reveal"><span class="p-num">002</span><div class="p-left"><div class="p-name">Platform E-Commerce B2B</div><div class="p-desc">Marketplace wholesale dengan sistem pembayaran, kredit, dan manajemen stok</div></div><div class="p-tags"><span class="ptag">Next.js</span><span class="ptag">PostgreSQL</span><span class="ptag">Stripe</span></div><div class="p-result">Rp 2M+ GMV/bln</div></div>
+      <div class="p-item reveal"><span class="p-num">003</span><div class="p-left"><div class="p-name">Dashboard Analitik HR</div><div class="p-desc">Sistem monitoring kinerja karyawan dengan AI scoring dan laporan otomatis</div></div><div class="p-tags"><span class="ptag">React</span><span class="ptag">Python</span><span class="ptag">AWS</span></div><div class="p-result">+280% Efisiensi</div></div>
+      <div class="p-item reveal"><span class="p-num">004</span><div class="p-left"><div class="p-name">Super App Keuangan UMKM</div><div class="p-desc">Aplikasi pencatatan keuangan, invoice, dan laporan pajak untuk 10K+ UMKM</div></div><div class="p-tags"><span class="ptag">Flutter</span><span class="ptag">Firebase</span></div><div class="p-result">4.9 Rating App Store</div></div>
+    </div>
+  </section>
+
+  <section id="stats" style="padding:0">
+    <div class="s-grid">
+      <div class="s-box reveal"><div class="s-num">120+</div><div class="s-label">Proyek Selesai</div></div>
+      <div class="s-box reveal"><div class="s-num">8 Thn</div><div class="s-label">Pengalaman</div></div>
+      <div class="s-box reveal"><div class="s-num">98%</div><div class="s-label">Client Retention</div></div>
+      <div class="s-box reveal"><div class="s-num">32</div><div class="s-label">Anggota Tim</div></div>
+    </div>
+  </section>
+
+  <section id="testi">
+    <div class="sec-m">// 03. Klien</div>
+    <h2 class="sec-title reveal">Kata Klien</h2>
+    <p class="sec-sub reveal">Kepercayaan klien adalah standar tertinggi kami.</p>
+    <div class="t-grid">
+      <div class="t-card reveal"><p class="t-q">"Nexio Tech tidak hanya membangun apa yang kami minta — mereka juga memberikan saran teknis yang meningkatkan kualitas produk secara keseluruhan. Kolaborasinya luar biasa."</p><div class="t-name">Farruk Hidayat</div><div class="t-role">CTO, Fintech Startup</div></div>
+      <div class="t-card reveal"><p class="t-q">"Timeline sangat disiplin dan transparan. Setiap sprint ada demo progres — kami selalu tahu di mana posisi proyek. Tidak ada kejutan buruk di akhir."</p><div class="t-name">Sari Dewi</div><div class="t-role">VP Engineering, E-Commerce</div></div>
+      <div class="t-card reveal"><p class="t-q">"Kode yang mereka tulis bersih dan terdokumentasi baik. Tim internal kami bisa langsung melanjutkan development tanpa learning curve yang panjang."</p><div class="t-name">Agus Maulana</div><div class="t-role">Product Manager, Startup SaaS</div></div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <h2>Siap Membangun Produk Digital Anda?</h2>
+    <a href="#" class="b-dark">Mulai Diskusi Proyek</a>
+  </section>
+
+  <footer>
+    <div class="ft">
+      <div><div class="fl">nexio<span>.tech</span></div><p class="fd">Software house &amp; IT consultancy spesialis produk digital untuk bisnis Indonesia yang skalabel.</p></div>
+      <div class="fc"><h4>// Layanan</h4><ul><li><a href="#">Mobile Development</a></li><li><a href="#">Web Application</a></li><li><a href="#">Cloud &amp; DevOps</a></li><li><a href="#">IT Consultancy</a></li></ul></div>
+      <div class="fc"><h4>// Perusahaan</h4><ul><li><a href="#">Tentang Kami</a></li><li><a href="#">Karir</a></li><li><a href="#">Blog Teknis</a></li><li><a href="#">Kontak</a></li></ul></div>
+    </div>
+    <div class="fb"><span class="fc-t">2025 Nexio Tech. Hak cipta dilindungi. — DEMO TEMPLATE</span><span class="fc-t">Kebijakan Privasi</span></div>
+  </footer>
+
+  <script>
+    const rev = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+    rev.forEach(el => obs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});} }));
+  </script>
+</body>
+</html>

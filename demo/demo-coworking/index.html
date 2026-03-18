@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Hub Cowork — Ruang Kerja &amp; Komunitas Profesional</title>
+  <meta name="description" content="Coworking space modern di pusat kota. Hot desk, private office, meeting room, dan komunitas profesional yang tumbuh bersama." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#fafafa;--surface:#f4f4f5;--dark:#18181b;--border:#e4e4e7;--border2:#d4d4d8;--amber:#d97706;--amber-light:#f59e0b;--amber-pale:#fffbeb;--muted:#71717a;--muted2:#a1a1aa;--white:#ffffff}
+    html{scroll-behavior:smooth}body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--dark);line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}ul{list-style:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,250,250,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nl{font-size:1.05rem;font-weight:800;color:var(--dark)}.nl span{color:var(--amber)}
+    .nls{display:flex;gap:32px}.nls a{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);transition:color .2s}.nls a:hover{color:var(--dark)}
+    .nc{background:var(--dark);color:#fff;font-size:.76rem;font-weight:700;padding:10px 22px;border:none;cursor:pointer;border-radius:6px;transition:background .2s}.nc:hover{background:#27272a}
+    .nh{display:none;flex-direction:column;gap:5px;cursor:pointer}.nh span{display:block;width:22px;height:2px;background:var(--dark)}
+    .hero{min-height:100vh;padding:100px 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden;background:var(--amber-pale)}
+    .hero::before{content:'';position:absolute;top:-100px;right:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(217,119,6,.08) 0%,transparent 65%);pointer-events:none}
+    .h-tag{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:20px}
+    .hero h1{font-size:clamp(2.2rem,4.5vw,3.2rem);font-weight:800;line-height:1.12;margin-bottom:18px}.hero h1 .hl{color:var(--amber)}
+    .hero-desc{font-family:'Inter',sans-serif;font-size:.94rem;color:var(--muted);line-height:1.75;max-width:460px;margin-bottom:32px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .b-amber{background:var(--amber);color:#fff;font-size:.8rem;font-weight:700;padding:12px 28px;border-radius:6px;transition:all .2s;display:inline-block}.b-amber:hover{background:var(--amber-light);transform:translateY(-1px)}
+    .b-outline{background:var(--white);color:var(--dark);font-size:.8rem;font-weight:600;padding:12px 28px;border-radius:6px;border:1px solid var(--border2);transition:all .2s;display:inline-block}.b-outline:hover{border-color:var(--amber);color:var(--amber)}
+    .hero-right{display:flex;flex-direction:column;gap:12px}
+    .stat-mini{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .sm-item{text-align:center;padding:12px;background:var(--bg);border-radius:6px}
+    .sm-val{font-size:1.4rem;font-weight:800;color:var(--dark)}.sm-label{font-family:'Inter',sans-serif;font-size:.68rem;color:var(--muted);margin-top:2px}
+    .avail-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px}
+    .avail-title{font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted2);margin-bottom:12px}
+    .avail-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)}.avail-row:last-child{border-bottom:none}
+    .avail-type{font-size:.8rem;color:var(--dark)}.avail-status{font-size:.72rem;font-weight:600;padding:2px 8px;border-radius:100px}
+    .available{background:#f0fdf4;color:#15803d}.partial{background:#fffbeb;color:#92400e}.full{background:#fef2f2;color:#b91c1c}
+    section{padding:88px 80px}.sec-tag{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+    .sec-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;margin-bottom:12px;line-height:1.2}
+    .sec-sub{font-family:'Inter',sans-serif;font-size:.9rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:48px}
+    .divider{height:1px;background:var(--border);margin:0 80px}
+    #space{background:var(--white)}
+    .space-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .sp-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s}.sp-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-2px)}
+    .sp-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2)}
+    .sp-body{padding:18px 20px}
+    .sp-tag{display:inline-block;font-size:.6rem;font-weight:700;background:var(--amber-pale);color:var(--amber);padding:3px 9px;border-radius:100px;margin-bottom:8px}
+    .sp-name{font-size:.94rem;font-weight:700;margin-bottom:5px}
+    .sp-desc{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--muted);margin-bottom:14px;line-height:1.6}
+    .sp-footer{display:flex;justify-content:space-between;align-items:center}
+    .sp-price{font-size:1rem;font-weight:800;color:var(--amber)}.sp-cap{font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted)}
+    #fitur{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .f-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px}
+    .f-num{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:12px}
+    .f-card h3{font-size:.94rem;font-weight:700;margin-bottom:8px}
+    .f-card p{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.65}
+    #paket{background:var(--white)}
+    .pk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .pk-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:24px}
+    .pk-badge{display:inline-block;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:100px;margin-bottom:12px}
+    .pk-name{font-size:1.1rem;font-weight:800;margin-bottom:4px}.pk-desc{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);margin-bottom:16px}
+    .pk-price{font-size:1.6rem;font-weight:800;color:var(--dark);margin-bottom:4px}.pk-per{font-family:'Inter',sans-serif;font-size:.75rem;color:var(--muted);margin-bottom:16px}
+    .pk-feats{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+    .pk-feat{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:6px}.pk-feat::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0}
+    .pk-btn{display:block;text-align:center;font-size:.8rem;font-weight:700;padding:11px;border-radius:6px;border:2px solid var(--dark);color:var(--dark);transition:all .2s}.pk-btn:hover{background:var(--dark);color:#fff}.pk-btn.p{background:var(--amber);color:#fff;border-color:var(--amber)}
+    #testi{background:var(--bg);border-top:1px solid var(--border)}
+    .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .t-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:22px}
+    .t-q{font-family:'Inter',sans-serif;font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:14px}
+    .t-name{font-size:.84rem;font-weight:700}.t-role{font-size:.72rem;color:var(--muted2);margin-top:2px}
+    #cta{background:var(--dark);padding:80px;display:flex;align-items:center;justify-content:space-between;gap:40px}
+    #cta h2{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:800;color:#fff;max-width:500px;line-height:1.2}
+    .b-cta{background:var(--amber);color:#fff;font-size:.8rem;font-weight:700;padding:14px 32px;border-radius:6px;display:inline-block;transition:all .2s;white-space:nowrap}.b-cta:hover{background:var(--amber-light)}
+    footer{background:#0f0f10;padding:50px 80px 26px}
+    .ft{display:flex;justify-content:space-between;gap:48px;margin-bottom:36px}
+    .fl{font-size:1rem;font-weight:800;color:#fff;margin-bottom:8px}.fl span{color:var(--amber-light)}
+    .fd{font-family:'Inter',sans-serif;font-size:.78rem;color:#71717a;max-width:220px;line-height:1.65}
+    .fc h4{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amber-light);margin-bottom:12px}
+    .fc ul{display:flex;flex-direction:column;gap:8px}.fc a{font-family:'Inter',sans-serif;font-size:.78rem;color:#71717a;transition:color .2s}.fc a:hover{color:#fff}
+    .fb{border-top:1px solid #27272a;padding-top:20px;display:flex;justify-content:space-between}
+    .fc-t{font-family:'Inter',sans-serif;font-size:.72rem;color:#52525b}
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:1100px){nav{padding:0 32px}.hero,section{padding:72px 40px}.divider{margin:0 40px}#cta{padding:60px 40px}footer{padding:44px 40px 22px}}
+    @media(max-width:820px){nav{padding:0 20px}.nls{display:none}.nh{display:flex}.hero{grid-template-columns:1fr;padding:84px 24px 56px}.hero-right{display:none}section{padding:52px 24px}.divider{margin:0 24px}.space-grid,.f-grid,.pk-grid,.t-grid{grid-template-columns:1fr}#cta{flex-direction:column;align-items:flex-start;padding:40px 24px}footer{padding:36px 24px 20px}.ft{flex-direction:column;gap:28px}.fb{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nl">The<span>Hub</span> Cowork</div>
+    <ul class="nls"><li><a href="#space">Tipe Ruang</a></li><li><a href="#fitur">Fasilitas</a></li><li><a href="#paket">Paket</a></li><li><a href="#cta">Kunjungi</a></li></ul>
+    <button class="nc" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Daftar Tour</button>
+    <div class="nh"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="h-tag">[ Coworking Space Profesional ]</div>
+      <h1>Ruang untuk <span class="hl">Bekerja</span>,<br>Komunitas<br>untuk Berkembang</h1>
+      <p class="hero-desc">The Hub hadir di jantung kota sebagai ruang kerja yang dirancang untuk produktivitas, kolaborasi, dan pertumbuhan — bagi freelancer, startup, hingga enterprise.</p>
+      <div class="hero-btns">
+        <a href="#paket" class="b-amber">Lihat Paket Harga</a>
+        <a href="#space" class="b-outline">Tur Virtual</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-mini">
+        <div class="sm-item"><div class="sm-val">340</div><div class="sm-label">Seat Total</div></div>
+        <div class="sm-item"><div class="sm-val">12</div><div class="sm-label">Meeting Room</div></div>
+        <div class="sm-item"><div class="sm-val">24/7</div><div class="sm-label">Akses</div></div>
+        <div class="sm-item"><div class="sm-val">800+</div><div class="sm-label">Member Aktif</div></div>
+      </div>
+      <div class="avail-card">
+        <div class="avail-title">Ketersediaan Hari Ini</div>
+        <div class="avail-row"><span class="avail-type">Hot Desk — Open Area</span><span class="avail-status available">Tersedia 28 Seat</span></div>
+        <div class="avail-row"><span class="avail-type">Dedicated Desk</span><span class="avail-status partial">2 Slot Tersisa</span></div>
+        <div class="avail-row"><span class="avail-type">Private Office (4-8 pax)</span><span class="avail-status available">3 Unit Tersedia</span></div>
+        <div class="avail-row"><span class="avail-type">Meeting Room</span><span class="avail-status partial">Tersedia Sesi Sore</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="space">
+    <div class="sec-tag">[ Tipe Ruang ]</div>
+    <h2 class="sec-title reveal">Pilih Ruang yang Pas</h2>
+    <p class="sec-sub reveal">Dari hot desk fleksibel harian hingga private office permanen — semua tersedia untuk kebutuhan Anda.</p>
+    <div class="space-grid">
+      <div class="sp-card reveal"><div class="sp-img" style="background:linear-gradient(135deg,#fffbeb,#fef3c7);">[ Open Area ]</div><div class="sp-body"><span class="sp-tag">Paling Fleksibel</span><div class="sp-name">Hot Desk</div><div class="sp-desc">Tempat duduk bebas di open area yang nyaman dengan meja ergonomis, loker personal, dan akses internet gigabit.</div><div class="sp-footer"><div class="sp-price">Rp 75.000<span style="font-size:.7rem;font-weight:400;color:var(--muted)">/hari</span></div><span class="sp-cap">240 seat tersedia</span></div></div></div>
+      <div class="sp-card reveal"><div class="sp-img" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);">[ Dedicated Area ]</div><div class="sp-body"><span class="sp-tag">Terpopuler</span><div class="sp-name">Dedicated Desk</div><div class="sp-desc">Meja tetap khusus Anda dengan kursi ergonomis premium, akses 24/7, lemari kunci pribadi, dan alamat bisnis resmi.</div><div class="sp-footer"><div class="sp-price">Rp 1.200.000<span style="font-size:.7rem;font-weight:400;color:var(--muted)">/bln</span></div><span class="sp-cap">60 slot, 2 tersisa</span></div></div></div>
+      <div class="sp-card reveal"><div class="sp-img" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);">[ Private Office ]</div><div class="sp-body"><span class="sp-tag">Tim & Startup</span><div class="sp-name">Private Office</div><div class="sp-desc">Ruang tertutup untuk tim 4-12 orang. Interior brandable, akses kartu, CCTV, AC individual, dan resepsionis bersama.</div><div class="sp-footer"><div class="sp-price">Rp 6.500.000<span style="font-size:.7rem;font-weight:400;color:var(--muted)">/bln</span></div><span class="sp-cap">4–12 orang/unit</span></div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="fitur">
+    <div class="sec-tag">[ Fasilitas ]</div>
+    <h2 class="sec-title reveal">Semua yang Anda Butuhkan</h2>
+    <p class="sec-sub reveal">Kami mengurus infrastruktur, Anda fokus pada pekerjaan.</p>
+    <div class="f-grid">
+      <div class="f-card reveal"><div class="f-num">01</div><h3>Internet Gigabit Dedicated</h3><p>Koneksi fiber optik 1 Gbps dedicated dengan backup ISP — tidak akan ada gangguan produktivitas karena internet lambat.</p></div>
+      <div class="f-card reveal"><div class="f-num">02</div><h3>Meeting Room Lengkap</h3><p>12 meeting room berkapasitas 4–20 orang dengan video conferencing, proyektor 4K, dan papan tulis interaktif.</p></div>
+      <div class="f-card reveal"><div class="f-num">03</div><h3>Lounge &amp; Kafe</h3><p>Kafe in-house dengan menu lengkap, pantry mandiri, ruang istirahat, dan rooftop garden untuk break produktif.</p></div>
+      <div class="f-card reveal"><div class="f-num">04</div><h3>Event Space</h3><p>Auditorium 200 pax untuk seminar, workshop, dan peluncuran produk. Tersedia teknis audio-visual profesional on call.</p></div>
+      <div class="f-card reveal"><div class="f-num">05</div><h3>Komunitas Member</h3><p>Jaringan 800+ profesional aktif — pertemuan networking bulanan, mentoring session, dan job board eksklusif member.</p></div>
+      <div class="f-card reveal"><div class="f-num">06</div><h3>Layanan Bisnis</h3><p>Alamat bisnis resmi, penerimaan paket dan surat, resepsionis bersama, dan jasa pencetakan &amp; admin ringan.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="paket">
+    <div class="sec-tag">[ Harga Paket ]</div>
+    <h2 class="sec-title reveal">Paket Membership</h2>
+    <p class="sec-sub reveal">Semua paket sudah termasuk internet, listrik, dan akses fasilitas bersama.</p>
+    <div class="pk-grid">
+      <div class="pk-card reveal">
+        <span class="pk-badge" style="background:var(--amber-pale);color:var(--amber)">Starter</span>
+        <div class="pk-name">Day Pass</div>
+        <div class="pk-desc">Untuk yang butuh ruang sesekali.</div>
+        <div class="pk-price">Rp 75.000</div>
+        <div class="pk-per">per hari</div>
+        <div class="pk-feats"><div class="pk-feat">Hot desk open area</div><div class="pk-feat">Internet gigabit</div><div class="pk-feat">Akses pantry &amp; kafe</div><div class="pk-feat">1 jam meeting room/hari</div></div>
+        <a href="#" class="pk-btn">Beli Day Pass</a>
+      </div>
+      <div class="pk-card reveal" style="border-color:var(--amber)">
+        <span class="pk-badge" style="background:var(--amber);color:#fff">Terpopuler</span>
+        <div class="pk-name">Monthly Hot Desk</div>
+        <div class="pk-desc">Untuk pekerja remote dan freelancer aktif.</div>
+        <div class="pk-price">Rp 850.000</div>
+        <div class="pk-per">per bulan — hemat 62%</div>
+        <div class="pk-feats"><div class="pk-feat">Hot desk unlimited</div><div class="pk-feat">Akses 24/7</div><div class="pk-feat">5 jam meeting room/bln</div><div class="pk-feat">Loker personal</div><div class="pk-feat">Alamat bisnis resmi</div></div>
+        <a href="#" class="pk-btn p">Daftar Sekarang</a>
+      </div>
+      <div class="pk-card reveal">
+        <span class="pk-badge" style="background:var(--surface);color:var(--dark)">Tim</span>
+        <div class="pk-name">Private Office</div>
+        <div class="pk-desc">Untuk tim startup dan divisi perusahaan.</div>
+        <div class="pk-price">Rp 6,5 Jt</div>
+        <div class="pk-per">per bulan — 4–8 orang</div>
+        <div class="pk-feats"><div class="pk-feat">Office pribadi brandable</div><div class="pk-feat">Akses 24/7 kartu</div><div class="pk-feat">20 jam meeting room/bln</div><div class="pk-feat">Resepsionis bersama</div><div class="pk-feat">Akses event space</div></div>
+        <a href="#" class="pk-btn">Hubungi Sales</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testi" style="border-top:1px solid var(--border)">
+    <div class="sec-tag">[ Komunitas ]</div>
+    <h2 class="sec-title reveal">Kata Member Kami</h2>
+    <p class="sec-sub reveal">Komunitas yang mendukung tumbuh bersama.</p>
+    <div class="t-grid">
+      <div class="t-card reveal"><p class="t-q">"The Hub telah menjadi rumah kedua saya. Internet-nya kencang, atmosfer kerja produktif, dan networking dengan sesama member sudah menghasilkan 3 klien baru untuk bisnis saya."</p><div class="t-name">Devi Anggraini</div><div class="t-role">UI/UX Freelancer</div></div>
+      <div class="t-card reveal"><p class="t-q">"Kami pindah dari WFH ke private office di The Hub dan produktivitas tim naik drastis. Fasilitasnya komplit dan tim management-nya sangat responsif."</p><div class="t-name">Rizal Firmansyah</div><div class="t-role">Co-Founder, Startup Fintech</div></div>
+      <div class="t-card reveal"><p class="t-q">"Event-event networking bulanannya berguna banget. Dalam 6 bulan saya berhasil membangun portfolio klien dari nol karena koneksi yang saya temukan di sini."</p><div class="t-name">Anisa Pratiwi</div><div class="t-role">Konsultan Digital Marketing</div></div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <h2>Jadwalkan Tour Gratis ke The Hub</h2>
+    <a href="#" class="b-cta">Daftar Tour Sekarang</a>
+  </section>
+
+  <footer>
+    <div class="ft">
+      <div><div class="fl">The<span>Hub</span> Cowork</div><p class="fd">Coworking space profesional untuk komunitas pekerja kreatif, startup, dan profesional di pusat kota.</p></div>
+      <div class="fc"><h4>Ruang</h4><ul><li><a href="#">Hot Desk</a></li><li><a href="#">Dedicated Desk</a></li><li><a href="#">Private Office</a></li><li><a href="#">Meeting Room</a></li></ul></div>
+      <div class="fc"><h4>Info</h4><ul><li><a href="#">Harga &amp; Paket</a></li><li><a href="#">Fasilitas</a></li><li><a href="#">Event Mendatang</a></li><li><a href="#">Kontak</a></li></ul></div>
+    </div>
+    <div class="fb"><span class="fc-t">2025 The Hub Cowork. Hak cipta dilindungi. — DEMO TEMPLATE</span><span class="fc-t">Kebijakan Privasi</span></div>
+  </footer>
+
+  <script>
+    const rev = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+    rev.forEach(el => obs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});} }));
+  </script>
+</body>
+</html>

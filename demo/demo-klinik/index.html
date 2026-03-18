@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Klinik Medika Prima — Layanan Kesehatan Terpercaya</title>
+  <meta name="description" content="Klinik kesehatan modern dengan dokter spesialis berpengalaman, fasilitas lengkap, dan sistem reservasi online yang mudah." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Medika<span>Prima</span></div>
+    <ul class="nav-links">
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#dokter">Dokter</a></li>
+      <li><a href="#testi">Testimoni</a></li>
+      <li><a href="#cta">Kontak</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Buat Janji</button>
+    <div class="nav-hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-badge">
+        <span class="trust-dot"></span>
+        Klinik Terakreditasi Kemenkes RI
+      </div>
+      <h1>Kesehatan Anda,<br><span>Prioritas Kami</span></h1>
+      <p class="hero-desc">Klinik Medika Prima hadir dengan layanan kesehatan komprehensif — dari konsultasi umum hingga spesialis, ditangani dokter berpengalaman dengan fasilitas medis modern.</p>
+      <div class="hero-btns">
+        <a href="#cta" class="btn-teal">Buat Janji Online</a>
+        <a href="#layanan" class="btn-white">Lihat Layanan</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-item"><span class="trust-dot"></span>Buka 7 hari seminggu</div>
+        <div class="trust-item"><span class="trust-dot"></span>BPJS &amp; Umum</div>
+        <div class="trust-item"><span class="trust-dot"></span>Antrean online</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span class="hero-card-title">Jadwal Dokter Hari Ini</span>
+          <span class="hero-card-badge">Tersedia</span>
+        </div>
+        <div class="doc-item">
+          <div><div class="doc-name">dr. Anita Pratiwi, Sp.PD</div><div class="doc-spec">Penyakit Dalam</div></div>
+          <div class="doc-time">08.00 – 12.00</div>
+        </div>
+        <div class="doc-item">
+          <div><div class="doc-name">dr. Budi Hartono, Sp.A</div><div class="doc-spec">Anak</div></div>
+          <div class="doc-time">10.00 – 14.00</div>
+        </div>
+        <div class="doc-item">
+          <div><div class="doc-name">dr. Citra Lestari</div><div class="doc-spec">Umum &amp; KB</div></div>
+          <div class="doc-time">13.00 – 17.00</div>
+        </div>
+        <div class="doc-item">
+          <div><div class="doc-name">dr. Dian Maharani, Sp.KK</div><div class="doc-spec">Kulit &amp; Kelamin</div></div>
+          <div class="doc-time">15.00 – 20.00</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <span class="hero-card-title">Estimasi Antrian Hari Ini</span>
+          <span class="hero-card-badge">Live</span>
+        </div>
+        <div class="doc-item">
+          <div class="doc-name">Antrian Online Tersedia</div>
+          <div class="doc-time">Daftar Sekarang</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- LAYANAN -->
+  <section id="layanan">
+    <div class="sec-badge">Layanan Kami</div>
+    <h2 class="sec-title reveal">Layanan Medis Lengkap</h2>
+    <p class="sec-sub reveal">Satu klinik, semua kebutuhan kesehatan keluarga Anda.</p>
+    <div class="layanan-grid">
+      <div class="layanan-card reveal">
+        <div class="layanan-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Konsultasi Dokter Umum</h3>
+        <p>Pemeriksaan kondisi umum, penanganan penyakit ringan hinga sedang, dan surat rujukan ke spesialis jika diperlukan.</p>
+        <span class="layanan-link">Buat Janji &rarr;</span>
+      </div>
+      <div class="layanan-card reveal">
+        <div class="layanan-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M12 14c-4.418 0-8 1.79-8 4v2h16v-2c0-2.21-3.582-4-8-4z"/></svg>
+        </div>
+        <h3>Dokter Spesialis</h3>
+        <p>Tersedia spesialis penyakit dalam, anak, kulit, kandungan, dan THT. Konsultasi dengan dokter berpengalaman dan tersertifikasi.</p>
+        <span class="layanan-link">Lihat Jadwal &rarr;</span>
+      </div>
+      <div class="layanan-card reveal">
+        <div class="layanan-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 12H6m3-3v6"/></svg>
+        </div>
+        <h3>Laboratorium Klinik</h3>
+        <p>Pemeriksaan darah lengkap, urine, kolesterol, gula darah, dan 50+ panel kesehatan lainnya. Hasil dalam 2–4 jam.</p>
+        <span class="layanan-link">Pesan Paket &rarr;</span>
+      </div>
+      <div class="layanan-card reveal">
+        <div class="layanan-icon">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3>Vaksinasi &amp; Imunisasi</h3>
+        <p>Program vaksinasi lengkap untuk bayi, anak, dan dewasa. Termasuk vaksin COVID booster, flu, hepatitis, dan meningitis.</p>
+        <span class="layanan-link">Cek Jadwal &rarr;</span>
+      </div>
+      <div class="layanan-card reveal">
+        <div class="layanan-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><circle cx="12" cy="13" r="3"/></svg>
+        </div>
+        <h3>Medical Check-up</h3>
+        <p>Paket pemeriksaan kesehatan menyeluruh untuk kebutuhan kerja, visa, atau pencegahan penyakit kronis sejak dini.</p>
+        <span class="layanan-link">Lihat Paket &rarr;</span>
+      </div>
+      <div class="layanan-card reveal">
+        <div class="layanan-icon">
+          <svg viewBox="0 0 24 24"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+        </div>
+        <h3>Klinik KIA &amp; KB</h3>
+        <p>Layanan kesehatan ibu dan anak — ANC, tumbuh kembang anak, KB konseling, dan imunisasi dasar lengkap.</p>
+        <span class="layanan-link">Konsultasi &rarr;</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- DOKTER -->
+  <section id="dokter">
+    <div class="sec-badge">Tim Medis</div>
+    <h2 class="sec-title reveal">Dokter Kami</h2>
+    <p class="sec-sub reveal">Tim dokter berpengalaman yang berkomitmen memberikan pelayanan terbaik untuk kesehatan Anda.</p>
+    <div class="dokter-grid">
+      <div class="dokter-card reveal">
+        <div class="dokter-img" style="background:linear-gradient(135deg,#f0fdfa,#ccfbf1);">[ Foto Dokter ]</div>
+        <div class="dokter-body">
+          <div class="dokter-name">dr. Anita Pratiwi, Sp.PD</div>
+          <div class="dokter-spec">Spesialis Penyakit Dalam</div>
+          <div class="dokter-info">Lulusan FK UI, pengalaman 14 tahun. Keahlian di bidang diabetes, hipertensi, dan penyakit metabolik.</div>
+          <a href="#cta" class="dokter-btn">Buat Janji</a>
+        </div>
+      </div>
+      <div class="dokter-card reveal">
+        <div class="dokter-img" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);">[ Foto Dokter ]</div>
+        <div class="dokter-body">
+          <div class="dokter-name">dr. Budi Hartono, Sp.A</div>
+          <div class="dokter-spec">Spesialis Anak</div>
+          <div class="dokter-info">Lulusan FK UNPAD, berpengalaman 10 tahun. Spesialisasi tumbuh kembang, alergi, dan nutrisi anak.</div>
+          <a href="#cta" class="dokter-btn">Buat Janji</a>
+        </div>
+      </div>
+      <div class="dokter-card reveal">
+        <div class="dokter-img" style="background:linear-gradient(135deg,#fdf4ff,#f3e8ff);">[ Foto Dokter ]</div>
+        <div class="dokter-body">
+          <div class="dokter-name">dr. Dian Maharani, Sp.KK</div>
+          <div class="dokter-spec">Spesialis Kulit &amp; Kelamin</div>
+          <div class="dokter-info">Lulusan FK UGM, 8 tahun pengalaman. Ahli dermatologi klinis, perawatan acne, dan prosedur estetika medis.</div>
+          <a href="#cta" class="dokter-btn">Buat Janji</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="stats-grid">
+      <div class="stat-box reveal"><div class="stat-num">15.000+</div><div class="stat-label">Pasien Terlayani</div></div>
+      <div class="stat-box reveal"><div class="stat-num">18</div><div class="stat-label">Dokter Aktif</div></div>
+      <div class="stat-box reveal"><div class="stat-num">12</div><div class="stat-label">Tahun Berdiri</div></div>
+      <div class="stat-box reveal"><div class="stat-num">98%</div><div class="stat-label">Kepuasan Pasien</div></div>
+    </div>
+  </section>
+
+  <!-- TESTI -->
+  <section id="testi">
+    <div class="sec-badge">Testimoni</div>
+    <h2 class="sec-title reveal">Kata Pasien Kami</h2>
+    <p class="sec-sub reveal">Kepercayaan pasien adalah penghargaan tertinggi bagi kami.</p>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Pelayanan sangat ramah dan informatif. Dokternya sabar menjelaskan diagnosis dan memberikan solusi yang jelas. Sistemnya juga praktis karena bisa daftar online."</p>
+        <div class="testi-name">Mega Wulandari</div>
+        <div class="testi-role">Pasien, Depok</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Anak saya selalu nangis kalau ke dokter, tapi dr. Budi sangat sabar dan pandai mengambil hati anak kecil. Sekarang anak saya minta sendiri mau ke sini."</p>
+        <div class="testi-name">Hendra Kusuma</div>
+        <div class="testi-role">Orang Tua Pasien, Tangerang</div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Laboratoriumnya cepat dan hasilnya akurat. MCU paket keluarga sangat terjangkau untuk kualitas yang diberikan. Sangat direkomendasikan untuk MCU tahunan."</p>
+        <div class="testi-name">Siti Rahayu</div>
+        <div class="testi-role">Pasien MCU, Jakarta Selatan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="cta-inner">
+      <div>
+        <h2>Jadwalkan Konsultasi Anda Sekarang</h2>
+        <p>Buat janji online mudah dan cepat — pilih dokter, pilih waktu, selesai.</p>
+      </div>
+      <a href="#" class="btn-cta-white">Buat Janji Online</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Medika<span>Prima</span></div>
+        <p class="footer-desc">Klinik kesehatan keluarga yang melayani dengan hati. Terakreditasi Kemenkes RI, buka 7 hari seminggu.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Layanan</h4>
+        <ul>
+          <li><a href="#">Dokter Umum</a></li>
+          <li><a href="#">Spesialis</a></li>
+          <li><a href="#">Laboratorium</a></li>
+          <li><a href="#">Medical Check-up</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Informasi</h4>
+        <ul>
+          <li><a href="#">Tentang Klinik</a></li>
+          <li><a href="#">Tarif Layanan</a></li>
+          <li><a href="#">BPJS & Asuransi</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Lokasi</h4>
+        <ul>
+          <li><a href="#">Jl. Kesehatan No. 24</a></li>
+          <li><a href="#">Depok, Jawa Barat</a></li>
+          <li><a href="#">+62 21 7777-8888</a></li>
+          <li><a href="#">info@medikaprima.id</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy">2025 Klinik Medika Prima. Hak cipta dilindungi. — DEMO TEMPLATE</span>
+      <span class="footer-copy">Kebijakan Privasi</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

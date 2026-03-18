@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akademi Cerdas — Platform Edukasi Online Indonesia</title>
+  <meta name="description" content="Belajar skill baru dari instruktur terbaik. Kursus online bersertifikat di bidang teknologi, bisnis, kreatif, dan lainnya." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--surface:#111118;--surface2:#1a1a24;--border:#1e1e2e;--purple:#8b5cf6;--purple-light:#a78bfa;--purple-dim:rgba(139,92,246,0.12);--white:#f1f0ff;--muted:#9ca3af;--muted2:#6b7280}
+    html{scroll-behavior:smooth}body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}ul{list-style:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-size:1.05rem;font-weight:800;color:var(--white)}.nav-logo span{color:var(--purple-light)}
+    .nav-links{display:flex;gap:32px}.nav-links a{font-size:0.8rem;color:var(--muted);transition:color .2s}.nav-links a:hover{color:var(--white)}
+    .nav-cta{background:var(--purple);color:#fff;font-size:0.76rem;font-weight:700;padding:10px 22px;border:none;cursor:pointer;border-radius:6px;transition:background .2s}.nav-cta:hover{background:#7c3aed}
+    .nav-ham{display:none;flex-direction:column;gap:5px;cursor:pointer}.nav-ham span{display:block;width:22px;height:2px;background:var(--white)}
+    /* HERO */
+    .hero{min-height:100vh;padding:100px 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(139,92,246,0.1) 0%,transparent 65%);pointer-events:none}
+    .hero-tag{font-size:0.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple-light);margin-bottom:20px}
+    .hero h1{font-size:clamp(2.4rem,4.5vw,3.4rem);font-weight:800;line-height:1.1;color:var(--white);margin-bottom:18px}.hero h1 .hl{background:linear-gradient(90deg,var(--purple),var(--purple-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{font-family:'Inter',sans-serif;font-size:.95rem;color:var(--muted);line-height:1.75;max-width:480px;margin-bottom:32px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px}
+    .btn-purple{background:var(--purple);color:#fff;font-size:.8rem;font-weight:700;padding:12px 28px;border-radius:6px;transition:all .2s;display:inline-block}.btn-purple:hover{background:#7c3aed;transform:translateY(-1px)}
+    .btn-ghost{background:transparent;color:var(--muted);font-size:.8rem;font-weight:600;padding:12px 28px;border-radius:6px;border:1px solid var(--border);transition:all .2s;display:inline-block}.btn-ghost:hover{border-color:var(--muted);color:var(--white)}
+    .hero-stats{display:flex;gap:32px}.hero-stat-num{font-size:1.6rem;font-weight:800;color:var(--purple-light)}.hero-stat-label{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--muted);margin-top:2px}
+    .hero-right{display:flex;flex-direction:column;gap:12px}
+    .kursus-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:0;overflow:hidden}
+    .kursus-img{height:90px;display:flex;align-items:center;justify-content:center;font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted2)}
+    .kursus-body{padding:14px 18px}.kursus-cat{font-size:.62rem;font-weight:700;color:var(--purple-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+    .kursus-name{font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:5px}
+    .kursus-info{display:flex;justify-content:space-between;align-items:center}
+    .kursus-rating{font-size:.72rem;color:#facc15}.kursus-price{font-size:.88rem;font-weight:800;color:var(--purple-light)}
+    /* SECTION */
+    section{padding:88px 80px}.sec-tag{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple-light);margin-bottom:12px}
+    .sec-title{font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--white);margin-bottom:12px;line-height:1.2}
+    .sec-sub{font-family:'Inter',sans-serif;font-size:.9rem;color:var(--muted);max-width:480px;line-height:1.75;margin-bottom:48px}
+    .divider{height:1px;background:var(--border);margin:0 80px}
+    /* KURSUS GRID */
+    #kursus{background:var(--bg)}
+    .grid-kursus{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .k-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all .3s}
+    .k-card:hover{border-color:var(--purple);box-shadow:0 8px 24px rgba(139,92,246,.15);transform:translateY(-3px)}
+    .k-img{height:140px;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted2)}
+    .k-body{padding:18px 20px}
+    .k-cat{display:inline-block;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--purple-light);background:var(--purple-dim);padding:3px 9px;border-radius:100px;margin-bottom:10px}
+    .k-name{font-size:.94rem;font-weight:700;color:var(--white);margin-bottom:5px}
+    .k-inst{font-family:'Inter',sans-serif;font-size:.76rem;color:var(--muted);margin-bottom:12px}
+    .k-footer{display:flex;align-items:center;justify-content:space-between}
+    .k-rating{font-size:.74rem;color:#facc15}.k-price{font-size:1rem;font-weight:800;color:var(--purple-light)}
+    /* FITUR */
+    #fitur{background:var(--surface2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .fitur-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+    .f-item{background:var(--surface2);padding:28px 24px}
+    .f-num{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--purple-light);margin-bottom:12px}
+    .f-item h3{font-size:.94rem;font-weight:700;color:var(--white);margin-bottom:8px}
+    .f-item p{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--muted);line-height:1.65}
+    /* STATS */
+    #stats{background:var(--purple)}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .s-box{padding:40px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.2)}.s-box:last-child{border-right:none}
+    .s-num{font-size:2.2rem;font-weight:800;color:#fff}.s-label{font-family:'Inter',sans-serif;font-size:.75rem;color:rgba(255,255,255,.75);margin-top:6px}
+    /* TESTI */
+    #testi{background:var(--bg)}
+    .testi-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .t-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:24px}
+    .t-star{color:#facc15;font-size:.72rem;letter-spacing:2px;margin-bottom:10px}
+    .t-q{font-family:'Inter',sans-serif;font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:16px;font-style:italic}
+    .t-name{font-size:.84rem;font-weight:700;color:var(--white)}.t-role{font-size:.72rem;color:var(--muted2);margin-top:2px}
+    /* CTA */
+    #cta{background:linear-gradient(135deg,#4c1d95,#5b21b6);padding:80px;text-align:center}
+    #cta h2{font-size:clamp(1.8rem,3vw,2.6rem);font-weight:800;color:#fff;margin-bottom:12px}
+    #cta p{font-family:'Inter',sans-serif;font-size:.9rem;color:rgba(255,255,255,.75);margin-bottom:28px}
+    .btn-cta{background:#fff;color:var(--purple);font-size:.8rem;font-weight:700;padding:14px 32px;border-radius:6px;display:inline-block;transition:all .2s}.btn-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+    /* FOOTER */
+    footer{background:#040408;padding:52px 80px 28px;border-top:1px solid var(--border)}
+    .ft{display:flex;justify-content:space-between;gap:48px;margin-bottom:36px}
+    .fl{font-size:1rem;font-weight:800;color:var(--white);margin-bottom:8px}.fl span{color:var(--purple-light)}
+    .fd{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);max-width:230px;line-height:1.65}
+    .fc h4{font-size:.62rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--purple-light);margin-bottom:12px}
+    .fc ul{display:flex;flex-direction:column;gap:8px}.fc a{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--muted);transition:color .2s}.fc a:hover{color:var(--white)}
+    .fb{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between}
+    .fc-t{font-family:'Inter',sans-serif;font-size:.72rem;color:var(--muted2)}
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:1100px){nav{padding:0 32px}.hero,section{padding:72px 40px}.divider{margin:0 40px}#cta{padding:60px 40px}footer{padding:44px 40px 22px}}
+    @media(max-width:820px){nav{padding:0 20px}.nav-links{display:none}.nav-ham{display:flex}.hero{grid-template-columns:1fr;padding:84px 24px 56px}.hero-right{display:none}section{padding:52px 24px}.divider{margin:0 24px}.grid-kursus,.fitur-grid,.testi-g{grid-template-columns:1fr}.stats-grid{grid-template-columns:1fr 1fr}#cta{padding:40px 24px}footer{padding:36px 24px 20px}.ft{flex-direction:column;gap:28px}.fb{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-logo">Akademi<span>Cerdas</span></div>
+    <ul class="nav-links">
+      <li><a href="#kursus">Kursus</a></li>
+      <li><a href="#fitur">Fitur</a></li>
+      <li><a href="#testi">Ulasan</a></li>
+      <li><a href="#cta">Mulai Gratis</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Daftar Gratis</button>
+    <div class="nav-ham"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="hero-tag">[ Platform Edukasi Online ]</div>
+      <h1>Investasi Terbaik<br>adalah <span class="hl">Ilmu</span></h1>
+      <p class="hero-desc">Ratusan kursus online dari instruktur praktisi terbaik Indonesia. Belajar sesuai jadwal Anda, dapat sertifikat, dan langsung siap kerja.</p>
+      <div class="hero-btns">
+        <a href="#kursus" class="btn-purple">Mulai Belajar</a>
+        <a href="#fitur" class="btn-ghost">Lihat Fitur</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">80K+</div><div class="hero-stat-label">Pelajar Aktif</div></div>
+        <div><div class="hero-stat-num">350+</div><div class="hero-stat-label">Kursus Tersedia</div></div>
+        <div><div class="hero-stat-num">4.8</div><div class="hero-stat-label">Rating Rata-rata</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="kursus-card">
+        <div class="kursus-img" style="background:linear-gradient(135deg,#1e1b4b,#312e81);">[ Cover Kursus ]</div>
+        <div class="kursus-body">
+          <div class="kursus-cat">Web Development</div>
+          <div class="kursus-name">React &amp; Next.js: Dari Nol ke Deploy</div>
+          <div class="kursus-info"><span class="kursus-rating">★★★★★ 4.9 (2.1K)</span><span class="kursus-price">Rp 299.000</span></div>
+        </div>
+      </div>
+      <div class="kursus-card">
+        <div class="kursus-img" style="background:linear-gradient(135deg,#1e3a1e,#14532d);">[ Cover Kursus ]</div>
+        <div class="kursus-body">
+          <div class="kursus-cat">Data Science</div>
+          <div class="kursus-name">Python untuk Analisis Data Bisnis</div>
+          <div class="kursus-info"><span class="kursus-rating">★★★★★ 4.8 (1.4K)</span><span class="kursus-price">Rp 249.000</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="kursus">
+    <div class="sec-tag">[ Kursus ]</div>
+    <h2 class="sec-title reveal">Kursus Terpopuler</h2>
+    <p class="sec-sub reveal">Dipilih berdasarkan rating dan relevansi pasar kerja saat ini.</p>
+    <div class="grid-kursus">
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#1e1b4b,#312e81);"></div><div class="k-body"><span class="k-cat">Frontend Dev</span><div class="k-name">React &amp; Next.js Masterclass</div><div class="k-inst">oleh Ahmad Fauzi, Senior Dev Tokopedia</div><div class="k-footer"><span class="k-rating">★★★★★ 4.9 (2.1K)</span><div class="k-price">Rp 299K</div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#1e3a1e,#14532d);"></div><div class="k-body"><span class="k-cat">Data Science</span><div class="k-name">Python untuk Data Bisnis</div><div class="k-inst">oleh Dewi Rahayu, Data Scientist GOJEK</div><div class="k-footer"><span class="k-rating">★★★★★ 4.8 (1.4K)</span><div class="k-price">Rp 249K</div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#1e1426,#3b1a5c);"></div><div class="k-body"><span class="k-cat">UI/UX Design</span><div class="k-name">Figma: Design System Profesional</div><div class="k-inst">oleh Sari Permata, Product Designer Grab</div><div class="k-footer"><span class="k-rating">★★★★☆ 4.7 (980)</span><div class="k-price">Rp 199K</div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#1a1200,#3d2d00);"></div><div class="k-body"><span class="k-cat">Digital Marketing</span><div class="k-name">Growth Hacking &amp; Performance Ads</div><div class="k-inst">oleh Budi Santoso, CMO Startup</div><div class="k-footer"><span class="k-rating">★★★★★ 4.9 (710)</span><div class="k-price">Rp 349K</div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#1a0010,#3d0025);"></div><div class="k-body"><span class="k-cat">Bisnis &amp; Startup</span><div class="k-name">Membangun Startup dari Nol</div><div class="k-inst">oleh Raka Wirawan, Founder &amp; CEO</div><div class="k-footer"><span class="k-rating">★★★★☆ 4.7 (1.2K)</span><div class="k-price">Rp 399K</div></div></div></div>
+      <div class="k-card reveal"><div class="k-img" style="background:linear-gradient(135deg,#001a1a,#003d3d);"></div><div class="k-body"><span class="k-cat">Cloud &amp; DevOps</span><div class="k-name">AWS untuk Developer Indonesia</div><div class="k-inst">oleh Nanda Putra, AWS Certified Architect</div><div class="k-footer"><span class="k-rating">★★★★★ 4.8 (540)</span><div class="k-price">Rp 299K</div></div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="fitur">
+    <div class="sec-tag">[ Fitur Platform ]</div>
+    <h2 class="sec-title reveal">Kenapa Akademi Cerdas?</h2>
+    <p class="sec-sub reveal">Dirancang khusus untuk pelajar Indonesia yang serius membangun karir.</p>
+    <div class="fitur-grid">
+      <div class="f-item reveal"><div class="f-num">// 01</div><h3>Instruktur Praktisi</h3><p>Bukan teori semata — semua instruktur adalah praktisi aktif di industri terkemuka Indonesia.</p></div>
+      <div class="f-item reveal"><div class="f-num">// 02</div><h3>Sertifikat Diakui</h3><p>Sertifikat penyelesaian diakui oleh 200+ perusahaan mitra kami. Tambahkan langsung ke profil LinkedIn.</p></div>
+      <div class="f-item reveal"><div class="f-num">// 03</div><h3>Akses Seumur Hidup</h3><p>Bayar sekali, akses selamanya — termasuk pembaruan materi saat industri berkembang.</p></div>
+      <div class="f-item reveal"><div class="f-num">// 04</div><h3>Belajar Offline</h3><p>Unduh materi dan tonton tanpa koneksi internet. Belajar di mana saja, kapan saja.</p></div>
+      <div class="f-item reveal"><div class="f-num">// 05</div><h3>Komunitas Aktif</h3><p>Forum diskusi, study group, dan sesi Q&amp;A live dengan instruktur setiap bulan.</p></div>
+      <div class="f-item reveal"><div class="f-num">// 06</div><h3>Job Board Eksklusif</h3><p>Akses lowongan eksklusif dari perusahaan mitra yang khusus mencari alumni Akademi Cerdas.</p></div>
+    </div>
+  </section>
+
+  <section id="stats" style="padding:0">
+    <div class="stats-grid">
+      <div class="s-box"><div class="s-num">80K+</div><div class="s-label">Pelajar Aktif</div></div>
+      <div class="s-box"><div class="s-num">350+</div><div class="s-label">Kursus Tersedia</div></div>
+      <div class="s-box"><div class="s-num">200+</div><div class="s-label">Perusahaan Mitra</div></div>
+      <div class="s-box"><div class="s-num">4.8</div><div class="s-label">Rating Rata-rata</div></div>
+    </div>
+  </section>
+
+  <section id="testi">
+    <div class="sec-tag">[ Testimoni ]</div>
+    <h2 class="sec-title reveal">Kata Alumni Kami</h2>
+    <p class="sec-sub reveal">Nyata. Terukur. Mengubah karir.</p>
+    <div class="testi-g">
+      <div class="t-card reveal"><div class="t-star">★★★★★</div><p class="t-q">"Setelah kursus React di sini, saya dapat kerja di startup fintech dalam 3 bulan. Materi sangat aplikatif dan instrukturnya responsif menjawab pertanyaan."</p><div class="t-name">Rizky Pratama</div><div class="t-role">Frontend Developer, Jakarta</div></div>
+      <div class="t-card reveal"><div class="t-star">★★★★★</div><p class="t-q">"Kursus data science-nya sangat komprehensif. Dari Python dasar sampai machine learning tersedia semua. Sertifikatnya juga diakui di tempat kerja baru saya."</p><div class="t-name">Anisa Dewi</div><div class="t-role">Data Analyst, Bandung</div></div>
+      <div class="t-card reveal"><div class="t-star">★★★★★</div><p class="t-q">"Worth the money, bahkan lebih. Instruktur share real experience bukan hanya teori. Community-nya sangat supportif untuk belajar bersama."</p><div class="t-name">Doni Wahyudi</div><div class="t-role">UI/UX Designer, Surabaya</div></div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <h2>Mulai Perjalanan Belajar Anda Hari Ini</h2>
+    <p>Daftar gratis. Akses 10 kursus pilihan tanpa perlu kartu kredit.</p>
+    <a href="#" class="btn-cta">Daftar Gratis Sekarang</a>
+  </section>
+
+  <footer>
+    <div class="ft">
+      <div><div class="fl">Akademi<span>Cerdas</span></div><p class="fd">Platform edukasi online Indonesia untuk membangun skill yang relevan dan memenangkan karir impian.</p></div>
+      <div class="fc"><h4>Kategori</h4><ul><li><a href="#">Web &amp; Mobile Dev</a></li><li><a href="#">Data Science</a></li><li><a href="#">Design</a></li><li><a href="#">Bisnis &amp; Marketing</a></li></ul></div>
+      <div class="fc"><h4>Platform</h4><ul><li><a href="#">Tentang Kami</a></li><li><a href="#">Jadi Instruktur</a></li><li><a href="#">Program Beasiswa</a></li><li><a href="#">Blog</a></li></ul></div>
+    </div>
+    <div class="fb"><span class="fc-t">2025 Akademi Cerdas. Hak cipta dilindungi. — DEMO TEMPLATE</span><span class="fc-t">Kebijakan Privasi</span></div>
+  </footer>
+
+  <script>
+    const rev = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+    rev.forEach(el => obs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});} }));
+  </script>
+</body>
+</html>

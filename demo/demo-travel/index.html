@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nusantara Journey — Paket Wisata &amp; Travel Premium</title>
+  <meta name="description" content="Agen perjalanan premium Indonesia. Paket wisata domestik dan internasional, honeymoon, corporate, dan solo travel." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#050810;--surface:#0a0f1e;--border:#15213a;--orange:#f97316;--orange-light:#fb923c;--sky:#0ea5e9;--white:#f0f8ff;--muted:#64748b;--muted2:#94a3b8}
+    html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}ul{list-style:none}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,8,16,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 48px;height:64px;display:flex;align-items:center;justify-content:space-between}
+    .nl{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white)}.nl span{color:var(--orange)}
+    .nls{display:flex;gap:32px}.nls a{font-size:.8rem;color:var(--muted);transition:color .2s}.nls a:hover{color:var(--white)}
+    .nc{background:var(--orange);color:#fff;font-size:.76rem;font-weight:700;padding:10px 22px;border:none;cursor:pointer;border-radius:100px;transition:background .2s}.nc:hover{background:var(--orange-light)}
+    .nh{display:none;flex-direction:column;gap:5px;cursor:pointer}.nh span{display:block;width:22px;height:2px;background:var(--white)}
+    /* HERO */
+    .hero{min-height:100vh;padding:100px 80px 80px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(14,165,233,0.06) 0%,transparent 60%);pointer-events:none}
+    .h-tag{font-size:.68rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,3.6rem);font-weight:700;line-height:1.1;color:var(--white);margin-bottom:18px}
+    .hero h1 em{font-style:italic;color:var(--orange)}
+    .hero-desc{font-size:.94rem;color:var(--muted2);line-height:1.75;max-width:460px;margin-bottom:32px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .b-org{background:var(--orange);color:#fff;font-size:.8rem;font-weight:700;padding:12px 28px;border-radius:100px;transition:all .2s;display:inline-block}.b-org:hover{background:var(--orange-light);transform:translateY(-1px)}
+    .b-ghost{background:transparent;color:var(--muted2);font-size:.8rem;font-weight:500;padding:12px 28px;border-radius:100px;border:1px solid var(--border);transition:all .2s;display:inline-block}.b-ghost:hover{border-color:var(--muted2);color:var(--white)}
+    .hero-right{display:flex;flex-direction:column;gap:12px}
+    .dest-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+    .dest-img{height:100px;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+    .dest-body{padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+    .dest-name{font-family:'Playfair Display',serif;font-size:.92rem;color:var(--white)}
+    .dest-info{font-size:.72rem;color:var(--muted);margin-top:2px}
+    .dest-price{font-size:1rem;font-weight:700;color:var(--orange)}
+    /* SECTION */
+    section{padding:88px 80px}.sec-tag{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+    .sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.2}
+    .sec-sub{font-size:.9rem;color:var(--muted2);max-width:480px;line-height:1.75;margin-bottom:48px}
+    .divider{height:1px;background:var(--border);margin:0 80px}
+    /* DESTINASI */
+    #destinasi{background:var(--bg)}
+    .d-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .d-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:all .3s}.d-card:hover{border-color:var(--orange);transform:translateY(-3px)}
+    .d-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);position:relative}
+    .d-tag{position:absolute;top:10px;left:10px;background:var(--orange);color:#fff;font-size:.6rem;font-weight:700;padding:3px 9px;border-radius:100px}
+    .d-body{padding:18px 20px}
+    .d-loc{font-size:.68rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
+    .d-name{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:5px}
+    .d-desc{font-size:.8rem;color:var(--muted2);line-height:1.6;margin-bottom:14px}
+    .d-footer{display:flex;align-items:center;justify-content:space-between}
+    .d-price{font-size:1rem;font-weight:800;color:var(--orange)}.d-dur{font-size:.72rem;color:var(--muted)}
+    /* WHY */
+    #why{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+    .w-card{background:var(--surface);padding:28px 24px}
+    .w-num{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+    .w-card h3{font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:8px}
+    .w-card p{font-size:.82rem;color:var(--muted2);line-height:1.65}
+    /* STATS */
+    #stats{background:var(--orange);padding:0}
+    .s-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+    .s-box{padding:40px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.25)}.s-box:last-child{border-right:none}
+    .s-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:#fff}.s-label{font-size:.72rem;color:rgba(255,255,255,.78);margin-top:6px}
+    /* TESTI */
+    #testi{background:var(--bg)}
+    .t-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .t-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:24px}
+    .t-star{color:var(--orange);font-size:.72rem;letter-spacing:2px;margin-bottom:10px}
+    .t-q{font-family:'Playfair Display',serif;font-style:italic;font-size:.9rem;color:var(--muted2);line-height:1.7;margin-bottom:16px}
+    .t-name{font-size:.84rem;font-weight:700;color:var(--white)}.t-role{font-size:.72rem;color:var(--muted);margin-top:2px}
+    /* CTA */
+    #cta{background:linear-gradient(135deg,#0a0f1e,#15213a);padding:80px;display:flex;align-items:center;justify-content:space-between;gap:40px;border-top:1px solid var(--border)}
+    #cta h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--white);max-width:500px;line-height:1.2}
+    .b-cta{background:var(--orange);color:#fff;font-size:.8rem;font-weight:700;padding:14px 32px;border-radius:100px;display:inline-block;transition:all .2s;white-space:nowrap}.b-cta:hover{background:var(--orange-light);transform:translateY(-1px)}
+    /* FOOTER */
+    footer{background:#02050e;border-top:1px solid var(--border);padding:50px 80px 26px}
+    .ft{display:flex;justify-content:space-between;gap:48px;margin-bottom:36px}
+    .fl{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);margin-bottom:8px}.fl span{color:var(--orange)}
+    .fd{font-size:.78rem;color:var(--muted);max-width:230px;line-height:1.65}
+    .fc h4{font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+    .fc ul{display:flex;flex-direction:column;gap:8px}.fc a{font-size:.78rem;color:var(--muted);transition:color .2s}.fc a:hover{color:var(--white)}
+    .fb{border-top:1px solid var(--border);padding-top:20px;display:flex;justify-content:space-between}
+    .fc-t{font-size:.72rem;color:var(--muted)}
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:1100px){nav{padding:0 32px}.hero,section{padding:72px 40px}.divider{margin:0 40px}#cta{padding:60px 40px}footer{padding:44px 40px 22px}}
+    @media(max-width:820px){nav{padding:0 20px}.nls{display:none}.nh{display:flex}.hero{grid-template-columns:1fr;padding:84px 24px 56px}.hero-right{display:none}section{padding:52px 24px}.divider{margin:0 24px}.d-grid,.why-grid,.t-grid{grid-template-columns:1fr}.s-grid{grid-template-columns:1fr 1fr}#cta{flex-direction:column;align-items:flex-start;padding:40px 24px}footer{padding:36px 24px 20px}.ft{flex-direction:column;gap:28px}.fb{flex-direction:column;gap:8px}}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nl">Nusantara<span>Journey</span></div>
+    <ul class="nls"><li><a href="#destinasi">Destinasi</a></li><li><a href="#why">Layanan</a></li><li><a href="#testi">Ulasan</a></li><li><a href="#cta">Hubungi Kami</a></li></ul>
+    <button class="nc" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Konsultasi Gratis</button>
+    <div class="nh"><span></span><span></span><span></span></div>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <div class="h-tag">[ Travel Agency Premium ]</div>
+      <h1>Jelajahi Dunia<br>dengan <em>Cermat</em></h1>
+      <p class="hero-desc">Kami merancang perjalanan yang bukan sekadar liburan — tapi pengalaman yang tak terlupakan. Dari Sabang hingga Merauke, dan ke seluruh penjuru dunia.</p>
+      <div class="hero-btns">
+        <a href="#destinasi" class="b-org">Lihat Paket Wisata</a>
+        <a href="#why" class="b-ghost">Mengapa Kami</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="dest-card"><div class="dest-img" style="background:linear-gradient(135deg,#0c1a0c,#1a3d1a);">[ Raja Ampat, Papua ]</div><div class="dest-body"><div><div class="dest-name">Raja Ampat Explorer</div><div class="dest-info">7 Hari 6 Malam · Diving &amp; Snorkeling</div></div><div class="dest-price">Rp 8,5 Jt</div></div></div>
+      <div class="dest-card"><div class="dest-img" style="background:linear-gradient(135deg,#1a0c00,#3d2000);">[ Bali, Indonesia ]</div><div class="dest-body"><div><div class="dest-name">Bali Honeymoon Pack</div><div class="dest-info">5 Hari 4 Malam · Couple Package</div></div><div class="dest-price">Rp 6,2 Jt</div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="destinasi">
+    <div class="sec-tag">[ Paket Wisata ]</div>
+    <h2 class="sec-title reveal">Destinasi Pilihan</h2>
+    <p class="sec-sub reveal">Dari wisata alam eksotis Indonesia hingga city tour mancanegara — semuanya dirancang kurasi.</p>
+    <div class="d-grid">
+      <div class="d-card reveal"><div class="d-img" style="background:linear-gradient(135deg,#0c1a0c,#1a4a1a);"><div class="d-tag">Terlaris</div></div><div class="d-body"><div class="d-loc">Papua Barat</div><div class="d-name">Raja Ampat 7D6N Explorer</div><div class="d-desc">Snorkeling di kedalaman laut terkaya dunia, island hopping, dan sunset di Wayag.</div><div class="d-footer"><div class="d-price">Rp 8,5 Jt</div><span class="d-dur">7 Hari</span></div></div></div>
+      <div class="d-card reveal"><div class="d-img" style="background:linear-gradient(135deg,#1a0c00,#4a2800);"><div class="d-tag">Honeymoon</div></div><div class="d-body"><div class="d-loc">Bali</div><div class="d-name">Romantic Bali Package</div><div class="d-desc">Villa private pool, spa couple, dinner tepi tebing Uluwatu, dan sunrise Kintamani.</div><div class="d-footer"><div class="d-price">Rp 6,2 Jt</div><span class="d-dur">5 Hari</span></div></div></div>
+      <div class="d-card reveal"><div class="d-img" style="background:linear-gradient(135deg,#000a2e,#001a6e);"><div class="d-tag">Internasional</div></div><div class="d-body"><div class="d-loc">Turki, Eropa</div><div class="d-name">Istanbul &amp; Cappadocia</div><div class="d-desc">Balon udara di Cappadocia, Grand Bazaar, dan Hagia Sophia — perjalanan lintas peradaban.</div><div class="d-footer"><div class="d-price">Rp 28 Jt</div><span class="d-dur">10 Hari</span></div></div></div>
+      <div class="d-card reveal"><div class="d-img" style="background:linear-gradient(135deg,#1a0020,#4a0050);"></div><div class="d-body"><div class="d-loc">Korea Selatan</div><div class="d-name">Seoul &amp; Jeju Island</div><div class="d-desc">Gyeongbokgung Palace, Myeongdong shopping, Jeju volcanic coast, K-food tour.</div><div class="d-footer"><div class="d-price">Rp 18,5 Jt</div><span class="d-dur">8 Hari</span></div></div></div>
+      <div class="d-card reveal"><div class="d-img" style="background:linear-gradient(135deg,#001a1a,#004a4a);"></div><div class="d-body"><div class="d-loc">Labuan Bajo</div><div class="d-name">Komodo Island Cruise</div><div class="d-desc">Sailing phinisi 3 hari, snorkeling manta ray, Komodo National Park, dan Pink Beach.</div><div class="d-footer"><div class="d-price">Rp 7,8 Jt</div><span class="d-dur">3 Hari</span></div></div></div>
+      <div class="d-card reveal"><div class="d-img" style="background:linear-gradient(135deg,#1a1800,#4a4500);"></div><div class="d-body"><div class="d-loc">Jepang</div><div class="d-name">Tokyo &amp; Kyoto Cherry Blossom</div><div class="d-desc">Musim sakura, Arashiyama, Shibuya crossing, Fushimi Inari, dan Fuji-san view.</div><div class="d-footer"><div class="d-price">Rp 32 Jt</div><span class="d-dur">12 Hari</span></div></div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="why">
+    <div class="sec-tag">[ Keunggulan ]</div>
+    <h2 class="sec-title reveal">Mengapa Nusantara Journey?</h2>
+    <p class="sec-sub reveal">Lebih dari agen perjalanan — kami adalah kurator pengalaman.</p>
+    <div class="why-grid">
+      <div class="w-card reveal"><div class="w-num">01</div><h3>Fully Customizable</h3><p>Setiap paket dapat disesuaikan — jadwal, akomodasi, aktivitas, dan anggaran — sesuai preferensi Anda.</p></div>
+      <div class="w-card reveal"><div class="w-num">02</div><h3>24/7 On-Trip Support</h3><p>Guide lokal berpengalaman dan tim emergency aktif selama perjalanan. Anda tidak pernah sendirian.</p></div>
+      <div class="w-card reveal"><div class="w-num">03</div><h3>Harga Transparan</h3><p>Tidak ada biaya tersembunyi. Semua detail biaya tercantum jelas di kontrak perjalanan Anda.</p></div>
+      <div class="w-card reveal"><div class="w-num">04</div><h3>Akomodasi Terseleksi</h3><p>Hanya hotel dan villa dengan standar keamanan dan kebersihan tinggi yang kami rekomendasikan.</p></div>
+      <div class="w-card reveal"><div class="w-num">05</div><h3>Program Corporate</h3><p>Paket khusus untuk team building, incentive trip, dan company outing yang terorganisir profesional.</p></div>
+      <div class="w-card reveal"><div class="w-num">06</div><h3>Easy Installment</h3><p>Cicil paket perjalanan Anda tanpa bunga hingga 12 bulan melalui kartu kredit mitra kami.</p></div>
+    </div>
+  </section>
+
+  <section id="stats" style="padding:0">
+    <div class="s-grid">
+      <div class="s-box"><div class="s-num">12K+</div><div class="s-label">Wisatawan Terlayani</div></div>
+      <div class="s-box"><div class="s-num">80+</div><div class="s-label">Destinasi Tersedia</div></div>
+      <div class="s-box"><div class="s-num">97%</div><div class="s-label">Kepuasan Pelanggan</div></div>
+      <div class="s-box"><div class="s-num">9 Thn</div><div class="s-label">Pengalaman</div></div>
+    </div>
+  </section>
+
+  <section id="testi">
+    <div class="sec-tag">[ Ulasan ]</div>
+    <h2 class="sec-title reveal">Pengalaman Wisatawan</h2>
+    <p class="sec-sub reveal">Dikurasi dari ribuan ulasan nyata wisatawan kami.</p>
+    <div class="t-grid">
+      <div class="t-card reveal"><div class="t-star">★★★★★</div><p class="t-q">"Raja Ampat bersama Nusantara Journey sungguh beyond expectation. Guide-nya profesional, itinerari-nya padat tapi tidak melelahkan. Wajib balik lagi tahun depan."</p><div class="t-name">Hendra &amp; Keluarga</div><div class="t-role">Wisata Keluarga, Surabaya</div></div>
+      <div class="t-card reveal"><div class="t-star">★★★★★</div><p class="t-q">"Honeymoon package Bali kami sempurna dari awal hingga akhir. Surprise romantic dinner-nya membuat istri saya menangis haru. Tim-nya sangat attentive terhadap detail."</p><div class="t-name">Reza &amp; Putri</div><div class="t-role">Pasangan Honeymoon, Bandung</div></div>
+      <div class="t-card reveal"><div class="t-star">★★★★★</div><p class="t-q">"Corporate trip ke Bali untuk 45 orang berjalan sangat smooth. Team building activity-nya seru, akomodasi bintang 5, dan semua sesuai jadwal yang dijanjikan."</p><div class="t-name">Budi Santosa</div><div class="t-role">HR Director, Jakarta</div></div>
+    </div>
+  </section>
+
+  <section id="cta">
+    <div><h2>Rencanakan Perjalanan Impian Anda</h2><p style="font-size:.9rem;color:var(--muted2);margin-top:10px">Konsultasi gratis — tanpa biaya, tanpa ikatan.</p></div>
+    <a href="#" class="b-cta">Konsultasi Gratis Sekarang</a>
+  </section>
+
+  <footer>
+    <div class="ft">
+      <div><div class="fl">Nusantara<span>Journey</span></div><p class="fd">Agen perjalanan premium yang merancang pengalaman wisata berkesan sejak 2016.</p></div>
+      <div class="fc"><h4>Destinasi</h4><ul><li><a href="#">Wisata Domestik</a></li><li><a href="#">Wisata Internasional</a></li><li><a href="#">Honeymoon</a></li><li><a href="#">Corporate Trip</a></li></ul></div>
+      <div class="fc"><h4>Info</h4><ul><li><a href="#">Tentang Kami</a></li><li><a href="#">Cara Pemesanan</a></li><li><a href="#">Kebijakan Refund</a></li><li><a href="#">Kontak</a></li></ul></div>
+    </div>
+    <div class="fb"><span class="fc-t">2025 Nusantara Journey. Hak cipta dilindungi. — DEMO TEMPLATE</span><span class="fc-t">Syarat &amp; Ketentuan</span></div>
+  </footer>
+
+  <script>
+    const rev = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), {threshold:.1});
+    rev.forEach(el => obs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const el = document.querySelector(a.getAttribute('href')); if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});} }));
+  </script>
+</body>
+</html>
