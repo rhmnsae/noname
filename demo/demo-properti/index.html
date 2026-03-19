@@ -27,7 +27,8 @@
   --wa-dk:#128c4b;
   --border:rgba(26,22,18,0.09);
   --border2:rgba(26,22,18,0.15);
-  --sh:0 2px 16px rgba(26,22,18,0.06);
+  --sh-premium:0 10px 30px rgba(26,22,18,0.08), 0 1px 4px rgba(26,22,18,0.04);
+  --sh-btn:0 4px 14px rgba(184,150,90,0.3);
   --sh-lg:0 8px 40px rgba(26,22,18,0.1);
   --sb-w:260px;
   --nav-h:68px;
@@ -154,7 +155,7 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 .sb-contact-btn.wa .sb-contact-icon{background:#25d366}
 .sb-contact-btn.gm .sb-contact-icon{background:#ea4335}
 .sb-contact-icon svg{width:15px;height:15px}
-.sb-contact-info{}
+.sb-contact-info{display:block}
 .sb-contact-lbl{font-size:0.58rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;opacity:0.6;display:block;margin-bottom:1px}
 .sb-contact-val{font-size:0.78rem;font-weight:600}
 
@@ -358,45 +359,71 @@ button{font-family:inherit;cursor:pointer;border:none;outline:none}
 
 /* ===================== SEARCH BAR ===================== */
 .search-wrap{
-  background:var(--white);
-  border-bottom:1px solid var(--border);
+  background:var(--cream);
   padding:0 64px;
+  position:relative;
+  z-index:10;
 }
 .search-inner{
   display:flex;align-items:center;gap:0;
-  border:1.5px solid var(--border2);
-  border-radius:6px;
-  overflow:hidden;
-  margin:20px 0;
+  background:var(--white);
+  border:1px solid var(--border);
+  border-radius:12px;
+  box-shadow:var(--sh-premium);
+  margin:-44px 0 44px;
+  padding:8px;
+  transition:all 0.3s cubic-bezier(0.165,0.84,0.44,1);
+}
+.search-inner:hover{
+  box-shadow:0 15px 45px rgba(26,22,18,0.12);
+  transform:translateY(-2px);
+}
+.search-input-group{
+  flex:1;
+  display:flex;align-items:center;
+  padding-left:15px;
 }
 .search-field{
-  flex:1;padding:13px 18px;
+  width:100%;padding:14px 12px;
   font-family:'Jost',sans-serif;
-  font-size:0.88rem;font-weight:400;
+  font-size:0.92rem;font-weight:400;
   border:none;outline:none;
   background:transparent;color:var(--text);
 }
 .search-field::placeholder{color:var(--text4)}
-.search-sep{width:1px;height:36px;background:var(--border2);flex-shrink:0}
+.search-sep{width:1px;height:32px;background:var(--border);flex-shrink:0;opacity:0.6}
+.search-select-group{
+  display:flex;align-items:center;
+  padding:0 8px;
+}
 .search-select{
-  padding:13px 18px;
+  padding:14px 18px;
   font-family:'Jost',sans-serif;
-  font-size:0.88rem;font-weight:400;
+  font-size:0.9rem;font-weight:500;
   border:none;outline:none;background:transparent;
   color:var(--text2);cursor:pointer;
+  transition:color 0.2s;
+  appearance:none;
 }
+.search-select:hover{color:var(--gold)}
 .search-btn{
-  padding:0 24px;height:100%;
+  padding:0 32px;height:54px;
   background:var(--gold);color:#fff;
   font-family:'Jost',sans-serif;
-  font-size:0.78rem;font-weight:600;
-  letter-spacing:0.08em;text-transform:uppercase;
-  display:flex;align-items:center;gap:8px;
-  transition:background 0.2s;
+  font-size:0.8rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  display:flex;align-items:center;gap:10px;
+  border-radius:8px;
+  transition:all 0.3s;
   white-space:nowrap;
+  box-shadow:var(--sh-btn);
 }
-.search-btn:hover{background:#a0803c}
-.search-btn svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+.search-btn:hover{
+  background:#a0803c;
+  box-shadow:0 6px 20px rgba(160,128,60,0.4);
+  transform:translateY(-1px);
+}
+.search-btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.5}
 
 /* ===================== SECTION BASE ===================== */
 section{padding:88px 64px}
@@ -822,18 +849,30 @@ footer{
 
 /* ===================== RESPONSIVE ===================== */
 @media(max-width:1100px){
-  section{padding:72px 48px}
-  .hero-left{padding:64px 48px}
-  .topbar{padding:0 48px}
-  .search-wrap{padding:0 48px}
-  .gallery-header{padding:0 48px 36px}
-  .contact-left,.contact-right{padding:64px 48px}
-  footer{padding:48px 48px 24px}
-  .divider-line{margin:0 48px}
+  section{padding:72px 32px}
+  .hero-left{padding:64px 32px}
+  .topbar{padding:0 32px}
+  .search-wrap{padding:0 32px}
+  .gallery-header{padding:0 32px 36px}
+  .contact-left,.contact-right{padding:64px 32px}
+  footer{padding:48px 32px 24px}
+  .divider-line{margin:0 32px}
 }
 @media(max-width:960px){
   :root{--sb-w:0px}
-  .sidebar{display:none}
+  .sidebar{
+    display:none;
+    width:280px;
+    z-index:1000;
+    border-right:none;
+    box-shadow:20px 0 50px rgba(0,0,0,0.15);
+    transform:translateX(-100%);
+    transition:transform 0.4s cubic-bezier(0.165,0.84,0.44,1);
+  }
+  .sidebar.open{
+    display:flex;
+    transform:translateX(0);
+  }
   .topnav{display:flex}
   .main{margin-left:0;padding-top:var(--nav-h)}
   .topbar{display:none}
@@ -841,14 +880,13 @@ footer{
   .hero-left{padding:56px 24px 48px;order:1}
   .hero-left::after{display:none}
   .hero-right{
-    order:0;height:300px;
+    order:0;height:240px;
     grid-template-columns:1fr 1fr;
     grid-template-rows:1fr 1fr;
   }
   .hero-photo.large{grid-row:1;grid-column:1/3}
   section{padding:60px 24px}
   .search-wrap{padding:0 24px}
-  .topbar{display:none}
   .prop-grid{grid-template-columns:1fr 1fr}
   .why-grid{grid-template-columns:1fr 1fr}
   .testi-grid{grid-template-columns:1fr}
@@ -869,21 +907,31 @@ footer{
   .ft-bottom{flex-direction:column;text-align:center}
 }
 @media(max-width:600px){
-  .hero-right{height:220px}
+  .hero h1{font-size:2.2rem;margin-bottom:16px}
+  .hero-desc{font-size:0.88rem;margin-bottom:28px}
+  .hero-btns{flex-direction:column;gap:10px}
+  .btn-gold,.btn-wa,.btn-outline{width:100%;justify-content:center}
+  .hero-right{height:180px}
+  .search-wrap{padding:0 15px}
+  .search-inner{flex-direction:column;align-items:stretch;margin:20px 0;gap:8px;padding:8px;border-radius:10px}
+  .search-sep{display:none}
+  .search-input-group{padding-left:10px}
+  .search-select-group svg{margin-right:8px}
+  .search-btn{width:100%;justify-content:center;height:50px}
   .prop-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
   .form-group.full{grid-column:1}
   .ft-grid{grid-template-columns:1fr}
-  .hero h1{font-size:2.2rem}
-  .hero-btns{flex-direction:column}
-  .btn-gold,.btn-wa,.btn-outline{justify-content:center}
   .gallery-grid{
     grid-template-columns:1fr;
     grid-template-rows:180px 140px 140px 140px 140px;
   }
   .g-cell:first-child{grid-column:1;grid-row:1}
   .topnav-wa{display:none}
+  .stats-grid{grid-template-columns:1fr}
+  .stat-box{padding:24px 20px}
+  section{padding:50px 20px}
 }
 </style>
 </head>
@@ -1045,23 +1093,32 @@ footer{
   <!-- SEARCH BAR -->
   <div class="search-wrap">
     <div class="search-inner">
-      <input class="search-field" type="text" placeholder="Cari lokasi, nama proyek, atau tipe properti..."/>
+      <div class="search-input-group">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:2;opacity:0.7;flex-shrink:0"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <input class="search-field" type="text" placeholder="Cari lokasi, nama proyek, atau tipe properti..."/>
+      </div>
       <div class="search-sep"></div>
-      <select class="search-select">
-        <option>Semua Tipe</option>
-        <option>Rumah</option>
-        <option>Apartemen</option>
-        <option>Ruko</option>
-        <option>Kavling</option>
-      </select>
+      <div class="search-select-group">
+        <select class="search-select">
+          <option>Semua Tipe</option>
+          <option>Rumah</option>
+          <option>Apartemen</option>
+          <option>Ruko</option>
+          <option>Kavling</option>
+        </select>
+        <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:var(--text3);fill:none;stroke-width:3;margin-left:-18px;margin-right:12px;pointer-events:none"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
       <div class="search-sep"></div>
-      <select class="search-select">
-        <option>Semua Harga</option>
-        <option>Di bawah 500 Jt</option>
-        <option>500 Jt - 1 M</option>
-        <option>1 M - 3 M</option>
-        <option>Di atas 3 M</option>
-      </select>
+      <div class="search-select-group">
+        <select class="search-select">
+          <option>Semua Harga</option>
+          <option>Di bawah 500 Jt</option>
+          <option>500 Jt - 1 M</option>
+          <option>1 M - 3 M</option>
+          <option>Di atas 3 M</option>
+        </select>
+        <svg viewBox="0 0 24 24" style="width:12px;height:12px;stroke:var(--text3);fill:none;stroke-width:3;margin-left:-18px;margin-right:12px;pointer-events:none"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
       <button class="search-btn">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         Cari Sekarang
@@ -1465,29 +1522,36 @@ const sbOverlay = document.getElementById('sbOverlay');
 
 function openSidebar(){
   sidebar.style.display = 'flex';
+  setTimeout(() => sidebar.classList.add('open'), 1);
   sbOverlay.classList.add('open');
   topHam.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeSidebar(){
-  sidebar.style.display = '';
+  sidebar.classList.remove('open');
+  setTimeout(() => { if(!sidebar.classList.contains('open')) sidebar.style.display = ''; }, 400);
   sbOverlay.classList.remove('open');
   topHam.classList.remove('open');
   document.body.style.overflow = '';
 }
 topHam.addEventListener('click', () => {
   if (window.innerWidth <= 960) {
-    sbOverlay.classList.contains('open') ? closeSidebar() : openSidebar();
+    sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
   }
 });
 sbOverlay.addEventListener('click', closeSidebar);
 
 // On mobile, sidebar needs position fixed & show
 function handleResize(){
-  if (window.innerWidth <= 960){
-    sidebar.style.display = 'none';
-  } else {
+  if (window.innerWidth > 960) {
     sidebar.style.display = '';
+    sidebar.classList.remove('open');
+    sbOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    if (!sidebar.classList.contains('open')) {
+      sidebar.style.display = 'none';
+    }
   }
 }
 window.addEventListener('resize', handleResize);

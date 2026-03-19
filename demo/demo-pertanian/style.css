@@ -832,7 +832,7 @@ footer { background: var(--earth); padding: 72px 0 0; }
   .footer-bottom-inner { flex-direction: column; text-align: center; gap: 8px; }
   .footer-socials { flex-wrap: wrap; }
 
-  .sidebar { width: 100%; max-width: 100%; }
+  .sidebar { width: 70%; max-width: 320px; }
 
   .float-wa { bottom: 20px; right: 20px; width: 52px; height: 52px; }
 }
