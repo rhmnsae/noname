@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://landingku.com/sitemap.xml

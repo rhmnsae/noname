@@ -483,6 +483,7 @@ nav.scrolled { box-shadow: var(--sh-md); }
 .sec-header h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 16px; }
 .sec-header p { font-size: 0.96rem; color: var(--muted); line-height: 1.75; }
 .sec-header-light h2 { color: var(--cream); }
+.sec-header-light p { color: rgba(250,246,238,.7); }
 
 /* ===================== TECH GRID ===================== */
 .tech-grid {
@@ -759,6 +760,12 @@ footer { background: var(--earth); padding: 72px 0 0; }
   color: rgba(250,246,238,.3);
   flex-wrap: wrap;
   gap: 10px;
+}
+.footer-demo-tag {
+  opacity: 0.5;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 /* ===================== FLOATING WA ===================== */
