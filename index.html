@@ -18,12 +18,15 @@
     <div class="container nav-inner">
       <a href="#hero" class="nav-logo">LandingKu</a>
       <ul class="nav-links">
-        <li><a href="#layanan">Layanan</a></li>
-        <li><a href="#harga">Harga</a></li>
-        <li><a href="#demo">Demo</a></li>
-        <li><a href="#proses">Proses</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#kontak" class="btn btn-primary nav-cta">Pesan</a></li>
+        <li><a href="#layanan" data-t="nav_services">Layanan</a></li>
+        <li><a href="#harga" data-t="nav_pricing">Harga</a></li>
+        <li><a href="#demo" data-t="nav_demo">Demo</a></li>
+        <li><a href="#proses" data-t="nav_process">Proses</a></li>
+        <li><a href="#faq" data-t="nav_faq">FAQ</a></li>
+        <li class="lang-switcher">
+          <button id="lang-toggle" class="btn-lang">ID | EN</button>
+        </li>
+        <li><a href="#kontak" class="btn btn-primary nav-cta" data-t="nav_cta">Pesan</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -34,12 +37,15 @@
   <!-- MOBILE NAV -->
   <div class="mobile-nav" id="mobile-nav">
     <button class="mobile-close" id="mobile-close">&times;</button>
-    <a href="#layanan" class="mobile-link">Layanan</a>
-    <a href="#harga" class="mobile-link">Harga</a>
-    <a href="#demo" class="mobile-link">Demo</a>
-    <a href="#proses" class="mobile-link">Proses</a>
-    <a href="#faq" class="mobile-link">FAQ</a>
-    <a href="#kontak" class="btn btn-primary" style="margin-top:20px; text-align:center;">Pesan</a>
+    <a href="#layanan" class="mobile-link" data-t="nav_services">Layanan</a>
+    <a href="#harga" class="mobile-link" data-t="nav_pricing">Harga</a>
+    <a href="#demo" class="mobile-link" data-t="nav_demo">Demo</a>
+    <a href="#proses" class="mobile-link" data-t="nav_process">Proses</a>
+    <a href="#faq" class="mobile-link" data-t="nav_faq">FAQ</a>
+    <div style="padding: 10px 20px;">
+      <button id="lang-toggle-mobile" class="btn-lang" style="width:100%; justify-content:center;">ID | EN</button>
+    </div>
+    <a href="#kontak" class="btn btn-primary" style="margin-top:10px; text-align:center;" data-t="nav_cta">Pesan</a>
   </div>
 
   <!-- TITLE MARQUEE -->
@@ -74,15 +80,15 @@
         <h1 class="hero-title">
           WEBSITE <br />
           <span class="hl-yellow" id="typing-text">PROFESIONAL</span><br />
-          TAMPIL BEDA.
+          <span data-t="hero_title_suffix">TAMPIL BEDA.</span>
         </h1>
-        <p class="hero-sub">
+        <p class="hero-sub" data-t="hero_sub">
           Kami merancang landing page yang cepat, responsif, dan rapi. Dibangun dengan kode murni tanpa pembengkakan
           plugin. Garansi selamanya, selesai dalam hitungan hari.
         </p>
         <div class="hero-actions">
-          <a href="#kontak" class="btn btn-primary">Mulai Proyek</a>
-          <a href="#demo" class="btn btn-outline">Lihat Portfolio</a>
+          <a href="#kontak" class="btn btn-primary" data-t="hero_cta_start">Mulai Proyek</a>
+          <a href="#demo" class="btn btn-outline" data-t="hero_cta_portfolio">Lihat Portfolio</a>
         </div>
       </div>
     </div>
@@ -91,40 +97,47 @@
   <!-- KEUNGGULAN -->
   <section id="keunggulan">
     <div class="container text-center">
-      <div class="sec-label">[ SEC-01 // KEUNGGULAN ]</div>
-      <h2 class="sec-title">DIBANGUN UNTUK <span class="hl-yellow">PERFORMA</span></h2>
-      <p class="sec-sub">Struktur kode bersih dan arsitektur desain yang presisi di setiap piksel.</p>
+      <div class="sec-label" data-t="sec_01_label">[ SEC-01 // KEUNGGULAN ]</div>
+      <h2 class="sec-title" data-t="sec_01_title">DIBANGUN UNTUK <span class="hl-yellow">PERFORMA</span></h2>
+      <p class="sec-sub" data-t="sec_01_sub">Struktur kode bersih dan arsitektur desain yang presisi di setiap piksel.
+      </p>
 
       <div class="features-grid">
         <div class="wf-box feature-box reveal">
           <div class="feature-num">01</div>
-          <h3>SUPER CEPAT</h3>
-          <p>Kode native HTML, CSS, JS membuat pemuatan halaman instan tanpa hambatan rendering.</p>
+          <h3 data-t="feature_01_title">SUPER CEPAT</h3>
+          <p data-t="feature_01_desc">Kode native HTML, CSS, JS membuat pemuatan halaman instan tanpa hambatan
+            rendering.</p>
         </div>
         <div class="wf-box feature-box reveal" style="transition-delay:0.1s">
           <div class="feature-num">02</div>
-          <h3>RESPONSIF</h3>
-          <p>Tampilan adaptif sempurna. Tata letak akan selalu konsisten di layar komputer maupun ponsel.</p>
+          <h3 data-t="feature_02_title">RESPONSIF</h3>
+          <p data-t="feature_02_desc">Tampilan adaptif sempurna. Tata letak akan selalu konsisten di layar komputer
+            maupun ponsel.</p>
         </div>
         <div class="wf-box feature-box reveal" style="transition-delay:0.2s">
           <div class="feature-num">03</div>
-          <h3>KODE BERSIH</h3>
-          <p>Tanpa WordPress atau CMS berat. Tidak ada plugin sampah, tidak ada kerentanan database.</p>
+          <h3 data-t="feature_03_title">KODE BERSIH</h3>
+          <p data-t="feature_03_desc">Tanpa WordPress atau CMS berat. Tidak ada plugin sampah, tidak ada kerentanan
+            database.</p>
         </div>
         <div class="wf-box feature-box reveal" style="transition-delay:0.3s">
           <div class="feature-num">04</div>
-          <h3>GARANSI</h3>
-          <p>Dukungan teknis purna jual. Jika terjadi anomali pada kode kami, perbaikan gratis tanpa batas waktu.</p>
+          <h3 data-t="feature_04_title">GARANSI</h3>
+          <p data-t="feature_04_desc">Dukungan teknis purna jual. Jika terjadi anomali pada kode kami, perbaikan gratis
+            tanpa batas waktu.</p>
         </div>
         <div class="wf-box feature-box reveal" style="transition-delay:0.4s">
           <div class="feature-num">05</div>
-          <h3>SISTEMATIS</h3>
-          <p>Setiap penawaran, proses kerja, dan struktur harga diuraikan secara logis tanpa biaya tersembunyi.</p>
+          <h3 data-t="feature_05_title">SISTEMATIS</h3>
+          <p data-t="feature_05_desc">Setiap penawaran, proses kerja, dan struktur harga diuraikan secara logis tanpa
+            biaya tersembunyi.</p>
         </div>
         <div class="wf-box feature-box reveal" style="transition-delay:0.5s">
           <div class="feature-num">06</div>
-          <h3>TEPAT WAKTU</h3>
-          <p>Batas pengerjaan 1 hingga 7 hari kerja. Anda akan menerima pembaruan setiap fase pengembangan selesai.</p>
+          <h3 data-t="feature_06_title">TEPAT WAKTU</h3>
+          <p data-t="feature_06_desc">Batas pengerjaan 1 hingga 7 hari kerja. Anda akan menerima pembaruan setiap fase
+            pengembangan selesai.</p>
         </div>
       </div>
     </div>
@@ -133,71 +146,73 @@
   <!-- LAYANAN -->
   <section id="layanan" style="background:var(--border); color:var(--bg);">
     <div class="container text-center">
-      <div class="sec-label" style="background:var(--bg); color:var(--text); border-color:var(--bg);">[ SEC-02 // PAKET
-        ]</div>
-      <h2 class="sec-title" style="color:var(--bg);">PILIHAN <span class="hl-yellow"
+      <div class="sec-label" style="background:var(--bg); color:var(--text); border-color:var(--bg);"
+        data-t="sec_02_label">[ SEC-02 // PAKET ]</div>
+      <h2 class="sec-title" style="color:var(--bg);" data-t="sec_02_title">PILIHAN <span class="hl-yellow"
           style="color:var(--text); border-color:var(--text);">LAYANAN</span></h2>
-      <p class="sec-sub" style="color:#aaa;">Skalabilitas teknis menyesuaikan dimensi proyek Anda.</p>
+      <p class="sec-sub" style="color:#aaa;" data-t="sec_02_sub">Skalabilitas teknis menyesuaikan dimensi proyek Anda.
+      </p>
 
       <div class="pricing-grid">
         <!-- Paket Dasar -->
         <div class="wf-box price-card reveal" style="background:var(--bg); color:var(--text);">
-          <div class="price-tag">PAKET A - DASAR</div>
-          <h3 class="price-title">Template</h3>
+          <div class="price-tag" data-t="price_a_tag">PAKET A - DASAR</div>
+          <h3 class="price-title" data-t="price_a_title">Template</h3>
           <div
             style="font-family:'Space Grotesk',monospace;font-size:0.95rem;font-weight:600;color:#ef4444;text-decoration:line-through;margin-bottom:2px;letter-spacing:0.02em;">
             250K+</div>
           <div class="price-amount">99K+</div>
-          <div class="price-note">Harga awal (IDR) / Bisa disesuaikan</div>
+          <div class="price-note" data-t="price_note_idr">Harga awal (IDR) / Bisa disesuaikan</div>
           <ul class="price-features">
-            <li>Modifikasi dasar dengan tingkat kompleksitas rendah</li>
-            <li>Desain responsif penuh</li>
-            <li>Revisi minor 1 kali</li>
-            <li>Format Single-Page</li>
-            <li>SLA 1-3 hari kerja</li>
+            <li data-t="price_a_f1">Modifikasi dasar dengan tingkat kompleksitas rendah</li>
+            <li data-t="price_a_f2">Desain responsif penuh</li>
+            <li data-t="price_a_f3">Revisi minor 1 kali</li>
+            <li data-t="price_a_f4">Format Single-Page</li>
+            <li data-t="price_a_f5">SLA 1-3 hari kerja</li>
           </ul>
-          <a href="#kontak" class="btn btn-outline">Ambil Paket A</a>
+          <a href="#kontak" class="btn btn-outline" data-t="price_a_cta">Ambil Paket A</a>
         </div>
 
         <!-- Paket Standar -->
         <div class="wf-box price-card featured reveal" style="transition-delay:0.1s; position:relative;">
           <div
-            style="position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:var(--text); color:var(--accent); font-family:'Space Grotesk',monospace; font-size:0.8rem; font-weight:700; padding:4px 16px; border:2px solid var(--border); box-shadow:4px 4px 0 var(--border); white-space:nowrap; z-index:10;">
+            style="position:absolute; top:-16px; left:50%; transform:translateX(-50%); background:var(--text); color:var(--accent); font-family:'Space Grotesk',monospace; font-size:0.8rem; font-weight:700; padding:4px 16px; border:2px solid var(--border); box-shadow:4px 4px 0 var(--border); white-space:nowrap; z-index:10;"
+            data-t="price_featured_label">
             [ REKOMENDASI ]</div>
-          <div class="price-tag" style="color: #000;">PAKET B - STANDAR</div>
-          <h3 class="price-title">Semi Custom</h3>
+          <div class="price-tag" style="color: #000;" data-t="price_b_tag">PAKET B - STANDAR</div>
+          <h3 class="price-title" data-t="price_b_title">Semi Custom</h3>
           <div
             style="font-family:'Space Grotesk',monospace;font-size:0.95rem;font-weight:600;color:#dc2626;text-decoration:line-through;margin-bottom:2px;letter-spacing:0.02em;">
             450K+</div>
           <div class="price-amount">250K+</div>
-          <div class="price-note">Berdasarkan tingkat kompleksitas layout</div>
+          <div class="price-note" data-t="price_b_note">Berdasarkan tingkat kompleksitas layout</div>
           <ul class="price-features">
-            <li>Kustomisasi identitas visual merek</li>
-            <li>Integrasi animasi dinamis</li>
-            <li>Revisi 1-3 kali</li>
-            <li>Struktur tata letak 1-3 halaman</li>
-            <li>SLA 3-5 hari kerja</li>
+            <li data-t="price_b_f1">Kustomisasi identitas visual merek</li>
+            <li data-t="price_b_f2">Integrasi animasi dinamis</li>
+            <li data-t="price_b_f3">Revisi 1-2 kali</li>
+            <li data-t="price_b_f4">Struktur tata letak 1-3 halaman</li>
+            <li data-t="price_b_f5">SLA 3-5 hari kerja</li>
           </ul>
-          <a href="#kontak" class="btn btn-dark">Ambil Paket B</a>
+          <a href="#kontak" class="btn btn-dark" data-t="price_b_cta">Ambil Paket B</a>
         </div>
 
         <!-- Paket Premium -->
         <div class="wf-box price-card reveal" style="background:var(--bg); color:var(--text); transition-delay:0.2s">
-          <div class="price-tag">PAKET C - PREMIUM</div>
-          <h3 class="price-title">Full Custom</h3>
+          <div class="price-tag" data-t="price_c_tag">PAKET C - PREMIUM</div>
+          <h3 class="price-title" data-t="price_c_title">Full Custom</h3>
           <div
             style="font-family:'Space Grotesk',monospace;font-size:0.95rem;font-weight:600;color:#ef4444;text-decoration:line-through;margin-bottom:2px;letter-spacing:0.02em;">
             900K+</div>
-          <div class="price-amount">550K+</div>
-          <div class="price-note">Desain spesifik arsitektur dari nol</div>
+          <div class="price-amount">650K+</div>
+          <div class="price-note" data-t="price_c_note">Desain spesifik arsitektur dari nol</div>
           <ul class="price-features">
-            <li>Rancang bangun tanpa batasan template</li>
-            <li>Kompleksitas interaksi tingkat lanjut</li>
-            <li>Revisi 1-5 kali</li>
-            <li>Struktur tata letak 1-7 halaman</li>
-            <li>SLA 5-7 hari kerja</li>
+            <li data-t="price_c_f1">Rancang bangun tanpa batasan template</li>
+            <li data-t="price_c_f2">Kompleksitas interaksi tingkat lanjut</li>
+            <li data-t="price_c_f3">Revisi 1-3 kali</li>
+            <li data-t="price_c_f4">Struktur tata letak 1-7 halaman</li>
+            <li data-t="price_c_f5">SLA 5-7 hari kerja</li>
           </ul>
-          <a href="#kontak" class="btn btn-outline">Ambil Paket C</a>
+          <a href="#kontak" class="btn btn-outline" data-t="price_c_cta">Ambil Paket C</a>
         </div>
       </div>
     </div>
@@ -207,23 +222,28 @@
   <section id="harga">
     <div class="container">
       <div class="text-center">
-        <div class="sec-label">[ SEC-03 // STRUKTUR BIAYA ]</div>
-        <h2 class="sec-title">MATRIKS <span class="hl-yellow">HARGA</span></h2>
+        <div class="sec-label" data-t="sec_pricing_label">[ SEC-03 // STRUKTUR BIAYA ]</div>
+        <h2 class="sec-title" data-t="sec_pricing_title">MATRIKS <span class="hl-yellow">HARGA</span></h2>
       </div>
 
       <div class="wf-box reveal" style="margin-top:40px; padding:0;">
         <div style="padding:24px 32px; border-bottom:2px solid var(--border); background:var(--bg-grid);">
-          <h3 style="font-size:1.2rem; text-transform:uppercase;">Biaya Modul Tambahan</h3>
+          <h3 style="font-size:1.2rem; text-transform:uppercase;" data-t="pricing_additional_title">Biaya Modul Tambahan
+          </h3>
         </div>
         <div style="padding:32px; display:grid; grid-template-columns:1fr 1fr; gap:32px;">
           <div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; margin-bottom:8px;">[ REVISI ]</h4>
-            <p style="color:var(--text-muted); font-size:0.95rem;">Perubahan di luar lingkup awal atau setelah batas
-              persetujuan: <strong>+ IDR 20.000 / revisi</strong></p>
+            <h4 style="font-family:'Space Grotesk',sans-serif; margin-bottom:8px;" data-t="pricing_revisi_title">[
+              REVISI ]</h4>
+            <p style="color:var(--text-muted); font-size:0.95rem;" data-t="pricing_revisi_desc">Perubahan di luar
+              lingkup awal atau setelah batas
+              persetujuan: <strong>+ IDR 30.000 / revisi</strong></p>
           </div>
           <div>
-            <h4 style="font-family:'Space Grotesk',sans-serif; margin-bottom:8px;">[ HALAMAN TAMBAHAN ]</h4>
-            <p style="color:var(--text-muted); font-size:0.95rem;">Ekspansi struktur per satu halaman (statis):
+            <h4 style="font-family:'Space Grotesk',sans-serif; margin-bottom:8px;" data-t="pricing_halaman_title">[
+              HALAMAN TAMBAHAN ]</h4>
+            <p style="color:var(--text-muted); font-size:0.95rem;" data-t="pricing_halaman_desc">Ekspansi struktur per
+              satu halaman (statis):
               <strong>+ IDR 50.000 / halaman</strong>
             </p>
           </div>
@@ -233,36 +253,40 @@
       <!-- Tabel Hosting -->
       <div class="wf-box reveal" style="margin-top:40px; padding:0; overflow:hidden;">
         <div style="padding:24px 32px; border-bottom:2px solid var(--border); background:var(--accent);">
-          <h3 style="font-size:1.2rem; text-transform:uppercase;">Infrastruktur Hosting & Domain</h3>
+          <h3 style="font-size:1.2rem; text-transform:uppercase;" data-t="pricing_hosting_title">Infrastruktur Hosting &
+            Domain</h3>
         </div>
         <div class="comparison-table-wrapper"
           style="width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-bottom-left-radius: inherit; border-bottom-right-radius: inherit;">
           <table style="width:100%; min-width:600px; border-collapse:collapse; text-align:left;">
             <thead style="border-bottom:2px solid var(--border);">
               <tr>
-                <th style="padding:16px 32px; font-family:'Space Grotesk',sans-serif;">KOMPONEN</th>
+                <th style="padding:16px 32px; font-family:'Space Grotesk',sans-serif;" data-t="pricing_table_component">
+                  KOMPONEN</th>
                 <th
-                  style="padding:16px 32px; font-family:'Space Grotesk',sans-serif; border-left:2px solid var(--border);">
+                  style="padding:16px 32px; font-family:'Space Grotesk',sans-serif; border-left:2px solid var(--border);"
+                  data-t="pricing_table_random">
                   DOMAIN RANDOM</th>
                 <th
-                  style="padding:16px 32px; font-family:'Space Grotesk',sans-serif; border-left:2px solid var(--border);">
+                  style="padding:16px 32px; font-family:'Space Grotesk',sans-serif; border-left:2px solid var(--border);"
+                  data-t="pricing_table_custom">
                   DOMAIN CUSTOM (.com, .id, .net)</th>
               </tr>
             </thead>
             <tbody>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:16px 32px; font-weight:600;">Biaya Setup Awal</td>
+                <td style="padding:16px 32px; font-weight:600;" data-t="pricing_table_setup">Biaya Setup Awal</td>
                 <td style="padding:16px 32px; border-left:2px solid var(--border);">IDR 80.000</td>
                 <td style="padding:16px 32px; border-left:2px solid var(--border); font-weight:700;">IDR 350.000</td>
               </tr>
               <tr style="border-bottom:1px solid var(--border);">
-                <td style="padding:16px 32px; font-weight:600;">Biaya Tahunan</td>
+                <td style="padding:16px 32px; font-weight:600;" data-t="pricing_table_annual">Biaya Tahunan</td>
                 <td style="padding:16px 32px; border-left:2px solid var(--border);">IDR 200.000 / thn</td>
                 <td style="padding:16px 32px; border-left:2px solid var(--border); font-weight:700;">IDR 440.000 / thn
                 </td>
               </tr>
               <tr>
-                <td style="padding:16px 32px; font-weight:600;">Contoh</td>
+                <td style="padding:16px 32px; font-weight:600;" data-t="pricing_table_example">Contoh</td>
                 <td
                   style="padding:16px 32px; border-left:2px solid var(--border); color:var(--text-muted); font-family:monospace;">
                   merek.vercel.app</td>
@@ -281,14 +305,17 @@
   <!-- DEMO -->
   <section id="demo" style="background:var(--border); color:var(--bg);">
     <div class="container text-center">
-      <div class="sec-label" style="background:var(--bg); color:var(--text); border-color:var(--bg);">[ SEC-04 // CONTOH
+      <div class="sec-label" style="background:var(--bg); color:var(--text); border-color:var(--bg);"
+        data-t="sec_03_label">[ SEC-04 // CONTOH
         TEMA ]</div>
-      <h2 class="sec-title" style="color:var(--bg);">TEMA <span class="hl-yellow"
+      <h2 class="sec-title" style="color:var(--bg);" data-t="sec_03_title">TEMA <span class="hl-yellow"
           style="color:var(--text); border-color:var(--text);">WEBSITE</span></h2>
-      <p style="color:#aaa; margin-bottom:0;">15+ Contoh Tema Landing Page Siap Pakai Untuk berbagai industri bisnis. Klik untuk melihat demo langsung.</p>
-      <p style="color:#aaa; margin-bottom:0;">Tema akan terus kami update secara berkala dengan desain terbaru.</p>
+      <p style="color:#aaa; margin-bottom:0;" data-t="sec_03_sub_1">15+ Contoh Tema Landing Page Siap Pakai Untuk
+        berbagai industri bisnis. Klik untuk melihat demo langsung.</p>
+      <p style="color:#aaa; margin-bottom:0;" data-t="sec_03_sub_2">Tema akan terus kami update secara berkala dengan
+        desain terbaru.</p>
 
-      <div class="demo-grid">
+      <div class="demo-grid" style="margin-top:60px;">
 
         <!-- T01: B2B / KORPORAT -->
         <div class="wf-box demo-card reveal" style="background:var(--bg); color:var(--text);"
@@ -354,10 +381,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_01_label">
               [ TEMPLATE 01 ]</div>
-            <h3>B2B / KORPORAT</h3>
-            <p>Landing page profesional untuk perusahaan dan bisnis B2B. Tampilan tegas, kepercayaan merek tinggi.</p>
+            <h3 data-t="demo_01_title">B2B / KORPORAT</h3>
+            <p data-t="demo_01_desc">Landing page profesional untuk perusahaan dan bisnis B2B. Tampilan tegas,
+              kepercayaan merek tinggi.</p>
           </div>
         </div>
 
@@ -418,11 +447,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_02_label">
               [ TEMPLATE 02 ]</div>
-            <h3>F&amp;B / KULINER</h3>
-            <p>Landing page restoran atau kedai makanan. Tampilkan menu, sistem reservasi meja, dan layanan delivery.
-            </p>
+            <h3 data-t="demo_02_title">F&amp;B / KULINER</h3>
+            <p data-t="demo_02_desc">Landing page restoran atau kedai makanan. Tampilkan menu, dan sistem reservasi
+              meja.
           </div>
         </div>
 
@@ -488,10 +518,11 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_03_label">
               [ TEMPLATE 03 ]</div>
-            <h3>RITEL / FASHION</h3>
-            <p>Landing page toko fashion minimalis editorial.</p>
+            <h3 data-t="demo_03_title">RITEL / FASHION</h3>
+            <p data-t="demo_03_desc">Landing page toko fashion minimalis editorial.</p>
           </div>
         </div>
 
@@ -557,10 +588,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_04_label">
               [ TEMPLATE 04 ]</div>
-            <h3>KONSULTAN / FREELANCE</h3>
-            <p>Landing page personal brand untuk freelancer & konsultan. Portofolio, keahlian, dan form kontak.</p>
+            <h3 data-t="demo_04_title">KONSULTAN / FREELANCE</h3>
+            <p data-t="demo_04_desc">Landing page personal brand untuk freelancer & konsultan. Portofolio, keahlian, dan
+              form kontak.</p>
           </div>
         </div>
 
@@ -627,10 +660,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_05_label">
               [ TEMPLATE 05 ]</div>
-            <h3>ACARA / FESTIVAL</h3>
-            <p>Landing page acara & festival dengan countdown timer, penjualan tiket, dan lineup artis/pembicara.</p>
+            <h3 data-t="demo_05_title">ACARA / FESTIVAL</h3>
+            <p data-t="demo_05_desc">Landing page acara & festival dengan countdown timer, penjualan tiket, dan lineup
+              artis/pembicara.</p>
           </div>
         </div>
 
@@ -694,10 +729,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_06_label">
               [ TEMA 06 ]</div>
-            <h3>KLINIK / KESEHATAN</h3>
-            <p>Landing page klinik &amp; layanan medis. Profil dokter, jadwal praktik, dan sistem reservasi pasien
+            <h3 data-t="demo_06_title">KLINIK / KESEHATAN</h3>
+            <p data-t="demo_06_desc">Landing page klinik &amp; layanan medis. Profil dokter, jadwal praktik, dan sistem
+              reservasi pasien
               online.</p>
           </div>
         </div>
@@ -760,10 +797,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_07_label">
               [ TEMA 07 ]</div>
-            <h3>PROPERTI / REAL ESTATE</h3>
-            <p>Landing page properti premium. Listing rumah &amp; apartemen, filter pencarian lokasi, harga, dan tipe
+            <h3 data-t="demo_07_title">PROPERTI / REAL ESTATE</h3>
+            <p data-t="demo_07_desc">Landing page properti premium. Listing rumah &amp; apartemen, filter pencarian
+              lokasi, harga, dan tipe
               hunian.</p>
           </div>
         </div>
@@ -826,10 +865,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_08_label">
               [ TEMA 08 ]</div>
-            <h3>COWORKING SPACE</h3>
-            <p>Landing page ruang kerja bersama. Tipe ruang, paket membership, dan fasilitas profesional untuk
+            <h3 data-t="demo_08_title">COWORKING SPACE</h3>
+            <p data-t="demo_08_desc">Landing page ruang kerja bersama. Tipe ruang, paket membership, dan fasilitas
+              profesional untuk
               freelancer &amp; tim.</p>
           </div>
         </div>
@@ -892,11 +933,11 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_09_label">
               [ TEMPLATE 09 ]</div>
-            <h3>TEKNOLOGI / STARTUP</h3>
-            <p>Landing page produk SaaS & startup teknologi. Dark futuristik dengan metrik performa dan tombol trial
-              gratis.</p>
+            <h3 data-t="demo_09_title">TEKNOLOGI / STARTUP</h3>
+            <p data-t="demo_09_desc">Landing page produk SaaS & startup teknologi Dark futuristik.</p>
           </div>
         </div>
 
@@ -957,10 +998,11 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_10_label">
               [ TEMA 10 ]</div>
-            <h3>PENDIDIKAN / KURSUS</h3>
-            <p>Landing page platform belajar online. Katalog kursus, profil mentor, sertifikasi, dan pendaftaran gratis.
+            <h3 data-t="demo_10_title">PENDIDIKAN / KURSUS</h3>
+            <p data-t="demo_10_desc">Landing page platform belajar online. Katalog kursus, dan pendaftaran gratis.
             </p>
           </div>
         </div>
@@ -1023,10 +1065,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_11_label">
               [ TEMA 11 ]</div>
-            <h3>PERTANIAN / AGRITECH</h3>
-            <p>Landing page platform pertanian modern. Teknologi IoT, pasar digital, dan konsultasi agronomi untuk
+            <h3 data-t="demo_11_title">PERTANIAN / AGRITECH</h3>
+            <p data-t="demo_11_desc">Landing page platform pertanian modern. Teknologi IoT, pasar digital, dan
+              konsultasi agronomi untuk
               petani.</p>
           </div>
         </div>
@@ -1088,10 +1132,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_12_label">
               [ TEMPLATE 12 ]</div>
-            <h3>OTOMOTIF / BENGKEL</h3>
-            <p>Landing page bengkel & servis kendaraan. Daftar layanan, estimasi biaya, booking online, dan testimoni.
+            <h3 data-t="demo_12_title">OTOMOTIF / BENGKEL</h3>
+            <p data-t="demo_12_desc">Landing page bengkel & servis kendaraan. Daftar layanan, estimasi biaya, booking
+              online, dan testimoni.
             </p>
           </div>
         </div>
@@ -1155,10 +1201,12 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_13_label">
               [ TEMA 13 ]</div>
-            <h3>TRAVEL / PARIWISATA</h3>
-            <p>Landing page agen travel &amp; wisata. Paket destinasi, galeri, harga, dan formulir pemesanan perjalanan.
+            <h3 data-t="demo_13_title">TRAVEL / PARIWISATA</h3>
+            <p data-t="demo_13_desc">Landing page agen travel &amp; wisata. Paket destinasi, galeri, harga, dan formulir
+              pemesanan perjalanan.
             </p>
           </div>
         </div>
@@ -1221,11 +1269,11 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_14_label">
               [ TEMA 14 ]</div>
-            <h3>KEUANGAN / FINTECH</h3>
-            <p>Landing page aplikasi keuangan &amp; fintech. Fitur tabungan, investasi, laporan keuangan, dan keamanan
-              data.</p>
+            <h3 data-t="demo_14_title">KEUANGAN / FINTECH</h3>
+            <p data-t="demo_14_desc">Landing page aplikasi keuangan &amp; fintech.</p>
           </div>
         </div>
 
@@ -1288,11 +1336,220 @@
           </div>
           <div class="demo-info">
             <div
-              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;">
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_15_label">
               [ TEMA 15 ]</div>
-            <h3>BARBERSHOP / SALON</h3>
-            <p>Landing page barbershop premium. Daftar layanan, profil barber, galeri hasil potongan, dan sistem booking
+            <h3 data-t="demo_15_title">BARBERSHOP / SALON</h3>
+            <p data-t="demo_15_desc">Landing page barbershop premium. Daftar layanan, profil barber, galeri hasil
+              potongan, dan sistem booking
               online.</p>
+          </div>
+        </div>
+
+        <!-- NEW: BAKERY / KUE BOLU -->
+        <div class="wf-box demo-card reveal" style="background:var(--bg); color:var(--text);"
+          onclick="window.open('demo/demo-bakery/','_blank')">
+          <div class="demo-preview" style="background:#faf7f2;">
+            <div class="demo-mock-wire"
+              style="background:transparent;border:none;width:90%;height:90%;padding:0;gap:0;">
+              <div style="padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-family:serif;font-size:0.5rem;color:#8b5a2b;font-weight:600;">Oven &amp; Crumbs</div>
+                <div
+                  style="background:#8b5a2b;height:12px;width:30px;border-radius:15px;display:flex;align-items:center;justify-content:center;">
+                  <div style="font-family:sans-serif;font-size:0.25rem;color:#fff;">SHOP</div>
+                </div>
+              </div>
+              <div
+                style="padding:10px;flex:1;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+                <div style="font-size:0.6rem;color:#4a3f35;font-family:sans-serif;font-weight:700;">FRESHLY BAKED</div>
+                <div style="background:#d4a373;height:8px;width:40px;margin-top:2px;"></div>
+              </div>
+            </div>
+            <div class="demo-preview-overlay">
+              <a href="demo/demo-bakery/" target="_blank" class="btn btn-dark"
+                onclick="event.stopPropagation()">JALANKAN DEMO</a>
+            </div>
+          </div>
+          <div class="demo-info">
+            <div
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_16_label">[ TEMA 16 ]</div>
+            <h3 data-t="demo_16_title">ARTISAN BAKERY</h3>
+            <p data-t="demo_16_desc">Landing page hangat bernuansa cokelat klasik untuk toko roti, kue bolu, atau pastry
+              kekinian.</p>
+          </div>
+        </div>
+
+        <!-- NEW: DESSERT CAFE -->
+        <div class="wf-box demo-card reveal" style="background:var(--bg); color:var(--text); transition-delay:0.1s"
+          onclick="window.open('demo/demo-dessert/','_blank')">
+          <div class="demo-preview" style="background:#ffeef2;">
+            <div class="demo-mock-wire"
+              style="background:transparent;border:none;width:90%;height:90%;padding:0;gap:0;">
+              <div style="padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-family:sans-serif;font-size:0.5rem;color:#ff8b94;font-weight:700;">Sugar High <span
+                    style="background:#a8e6cf;color:#4a4e69;border-radius:10px;padding:2px 4px;font-size:0.3rem;">Cafe</span>
+                </div>
+              </div>
+              <div
+                style="padding:10px;flex:1;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+                <div style="font-size:0.6rem;color:#4a4e69;font-weight:700;text-align:center;">SWEET<br>TREATS</div>
+                <div style="background:#dcd6f7;height:30px;width:30px;border-radius:50%;margin-top:2px;"></div>
+              </div>
+            </div>
+            <div class="demo-preview-overlay">
+              <a href="demo/demo-dessert/" target="_blank" class="btn btn-dark"
+                onclick="event.stopPropagation()">JALANKAN DEMO</a>
+            </div>
+          </div>
+          <div class="demo-info">
+            <div
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_17_label">[ TEMA 17 ]</div>
+            <h3 data-t="demo_17_title">DESSERT &amp; GELATO</h3>
+            <p data-t="demo_17_desc">Landing page playful pastel modern untuk dessert cafe, toko gelato, atau modern
+              sweets shop.</p>
+          </div>
+        </div>
+
+        <!-- NEW: CUSTOM CAKE -->
+        <div class="wf-box demo-card reveal" style="background:var(--bg); color:var(--text); transition-delay:0.2s"
+          onclick="window.open('demo/demo-cake/','_blank')">
+          <div class="demo-preview" style="background:#fdfbf7;">
+            <div class="demo-mock-wire"
+              style="background:transparent;border:none;width:90%;height:90%;padding:0;gap:0;">
+              <div style="padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-family:serif;font-size:0.5rem;color:#111;">L'Amour</div>
+                <div
+                  style="border:1px solid #c5a880;height:12px;width:30px;display:flex;align-items:center;justify-content:center;">
+                  <div style="font-family:sans-serif;font-size:0.25rem;color:#c5a880;">BOOK</div>
+                </div>
+              </div>
+              <div
+                style="padding:10px;flex:1;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+                <div style="font-size:0.55rem;color:#333;font-family:serif;text-align:center;letter-spacing:1px;">
+                  BESPOKE<br>CAKERY</div>
+              </div>
+            </div>
+            <div class="demo-preview-overlay">
+              <a href="demo/demo-cake/" target="_blank" class="btn btn-dark" onclick="event.stopPropagation()">JALANKAN
+                DEMO</a>
+            </div>
+          </div>
+          <div class="demo-info">
+            <div
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_18_label">[ TEMA 18 ]</div>
+            <h3 data-t="demo_18_title">CUSTOM CAKE</h3>
+            <p data-t="demo_18_desc">Landing page elegan dan minimalis premium untuk pembuat kue pengantin dan custom
+              cake mewah.</p>
+          </div>
+        </div>
+
+        <!-- NEW: SUSHI -->
+        <div class="wf-box demo-card reveal" style="background:var(--bg); color:var(--text);"
+          onclick="window.open('demo/demo-sushi/','_blank')">
+          <div class="demo-preview" style="background:#0a0a0a;">
+            <div class="demo-mock-wire"
+              style="background:transparent;border:none;width:90%;height:90%;padding:0;gap:0;">
+              <div
+                style="border-bottom:1px solid #262626;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-family:serif;font-size:0.5rem;color:#d4af37;letter-spacing:1px;">KIKU.</div>
+                <div
+                  style="background:transparent;border:1px solid #d4af37;height:14px;width:30px;display:flex;align-items:center;justify-content:center;">
+                  <div style="font-family:sans-serif;font-size:0.3rem;color:#d4af37;">RSV</div>
+                </div>
+              </div>
+              <div
+                style="padding:10px;flex:1;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+                <div style="font-size:0.6rem;color:#fff;font-family:serif;letter-spacing:2px;">THE ART OF SUSHI</div>
+                <div style="background:#c92a2a;height:12px;width:40px;margin-top:5px;"></div>
+              </div>
+            </div>
+            <div class="demo-preview-overlay">
+              <a href="demo/demo-sushi/" target="_blank" class="btn btn-dark" onclick="event.stopPropagation()">JALANKAN
+                DEMO</a>
+            </div>
+          </div>
+          <div class="demo-info">
+            <div
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_19_label">[ TEMA 19 ]</div>
+            <h3 data-t="demo_19_title">PREMIUM SUSHI</h3>
+            <p data-t="demo_19_desc">Landing page elegan bernuansa deep-dark &amp; gold, untuk restoran sushi autentik
+              atau fine dining.</p>
+          </div>
+        </div>
+
+        <!-- NEW: RAMEN -->
+        <div class="wf-box demo-card reveal" style="background:var(--bg); color:var(--text); transition-delay:0.1s"
+          onclick="window.open('demo/demo-ramen/','_blank')">
+          <div class="demo-preview" style="background:#12100e;">
+            <div class="demo-mock-wire"
+              style="background:transparent;border:none;width:90%;height:90%;padding:0;gap:0;">
+              <div
+                style="border-bottom:2px solid #d32f2f;padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-family:sans-serif;font-size:0.5rem;color:#fff;font-weight:900;">RYUU <span
+                    style="color:#d32f2f;">RAMEN</span></div>
+                <div
+                  style="background:#d32f2f;height:14px;width:30px;display:flex;align-items:center;justify-content:center;">
+                  <div style="font-family:sans-serif;font-size:0.3rem;color:#fff;">ORDER</div>
+                </div>
+              </div>
+              <div
+                style="padding:10px;flex:1;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+                <div style="font-size:0.8rem;color:#fff;font-weight:900;letter-spacing:1px;">NOODLES</div>
+                <div style="background:#f57c00;height:12px;width:50px;margin-top:2px;"></div>
+              </div>
+            </div>
+            <div class="demo-preview-overlay">
+              <a href="demo/demo-ramen/" target="_blank" class="btn btn-dark" onclick="event.stopPropagation()">JALANKAN
+                DEMO</a>
+            </div>
+          </div>
+          <div class="demo-info">
+            <div
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_20_label">[ TEMA 20 ]</div>
+            <h3 data-t="demo_20_title">TOKYO RAMEN</h3>
+            <p data-t="demo_20_desc">Landing page bold &amp; street-style untuk kedai ramen autentik dengan menu
+              signature bowls.</p>
+          </div>
+        </div>
+
+        <!-- NEW: GRILL -->
+        <div class="wf-box demo-card reveal" style="background:var(--bg); color:var(--text); transition-delay:0.2s"
+          onclick="window.open('demo/demo-grill/','_blank')">
+          <div class="demo-preview" style="background:#0d0d0d;">
+            <div class="demo-mock-wire"
+              style="background:transparent;border:none;width:90%;height:90%;padding:0;gap:0;">
+              <div style="padding:6px 10px;display:flex;justify-content:space-between;align-items:center;">
+                <div style="font-family:sans-serif;font-size:0.5rem;color:#fff;font-weight:800;">EMBER&amp;IRON</div>
+                <div
+                  style="background:#ff4500;height:14px;width:30px;display:flex;align-items:center;justify-content:center;">
+                  <div style="font-family:sans-serif;font-size:0.3rem;color:#fff;">BOOK</div>
+                </div>
+              </div>
+              <div
+                style="padding:10px;flex:1;display:flex;flex-direction:column;gap:5px;align-items:center;justify-content:center;">
+                <div style="font-size:0.8rem;color:#fff;font-weight:800;letter-spacing:1px;text-align:center;">
+                  MASTER<br>THE MEAT</div>
+                <div style="background:linear-gradient(45deg, #ff4500, #ff8c00);height:12px;width:50px;margin-top:5px;">
+                </div>
+              </div>
+            </div>
+            <div class="demo-preview-overlay">
+              <a href="demo/demo-grill/" target="_blank" class="btn btn-dark" onclick="event.stopPropagation()">JALANKAN
+                DEMO</a>
+            </div>
+          </div>
+          <div class="demo-info">
+            <div
+              style="font-family:monospace;font-size:0.7rem;color:var(--text-muted);margin-bottom:6px;letter-spacing:1px;"
+              data-t="demo_21_label">[ TEMA 21 ]</div>
+            <h3 data-t="demo_21_title">PREMIUM GRILL</h3>
+            <p data-t="demo_21_desc">Landing page berkarakter smoky &amp; rustic, cocok untuk premium steakhouse
+              berkonsep open-fire.</p>
           </div>
         </div>
       </div>
@@ -1303,11 +1560,11 @@
   <section id="portofolio"
     style="background:var(--accent); border-top:2px solid var(--border); border-bottom:2px solid var(--border);">
     <div class="container text-center">
-      <div class="sec-label" style="color:var(--text);">[ SEC-04.5 // KARYA ]</div>
-      <h2 class="sec-title" style="color:var(--text);">PROYEK <span
+      <div class="sec-label" style="color:var(--text);" data-t="sec_portfolio_label">[ SEC-04.5 // KARYA ]</div>
+      <h2 class="sec-title" style="color:var(--text);" data-t="sec_portfolio_title">PROYEK <span
           style="background:var(--bg); color:var(--text); padding:0 8px; border:2px solid var(--border);">SELESAI</span>
       </h2>
-      <p style="max-width:600px; margin:0 auto 40px; color:var(--text); font-weight:500;">
+      <p style="max-width:600px; margin:0 auto 40px; color:var(--text); font-weight:500;" data-t="sec_portfolio_sub">
         Kompilasi arsip yang disusun secara sistematis, berisi berbagai studi kasus dan proyek yang telah kami kerjakan
         sebagai gambaran pengalaman dan kualitas kerja kami.
       </p>
@@ -1340,8 +1597,9 @@
             </div>
           </div>
           <div class="demo-info">
-            <h3 style="font-size:1.1rem;">JASA JOKI WEBSITE</h3>
-            <p style="font-size:0.85rem;">Landing page jasa joki pembuatan website. Desain modern, clean, dan
+            <h3 style="font-size:1.1rem;" data-t="port_01_title">JASA JOKI WEBSITE</h3>
+            <p style="font-size:0.85rem;" data-t="port_01_desc">Landing page jasa joki pembuatan website. Desain modern,
+              clean, dan
               high-converting untuk menarik klien baru.</p>
           </div>
         </div>
@@ -1376,8 +1634,9 @@
             </div>
           </div>
           <div class="demo-info">
-            <h3 style="font-size:1.1rem;">SENTIMETER ANALISIS SENTIMEN</h3>
-            <p style="font-size:0.85rem;">Alat analisis sentimen gratis untuk X/Twitter dengan visualisasi data yang
+            <h3 style="font-size:1.1rem;" data-t="port_02_title">SENTIMETER ANALISIS SENTIMEN</h3>
+            <p style="font-size:0.85rem;" data-t="port_02_desc">Alat analisis sentimen gratis untuk X/Twitter dengan
+              visualisasi data yang
               interaktif dan mudah dipahami.</p>
           </div>
         </div>
@@ -1403,8 +1662,9 @@
             </div>
           </div>
           <div class="demo-info">
-            <h3 style="font-size:1.1rem;">XSCRAPER CRAWLING X/TWITTER</h3>
-            <p style="font-size:0.85rem;">Alat berbasis web untuk menghasilkan kode crawling data X/Twitter yang dapat
+            <h3 style="font-size:1.1rem;" data-t="port_03_title">XSCRAPER CRAWLING X/TWITTER</h3>
+            <p style="font-size:0.85rem;" data-t="port_03_desc">Alat berbasis web untuk menghasilkan kode crawling data
+              X/Twitter yang dapat
               dijalankan di Google Colab, dengan fitur ekspor tweet berdasarkan keyword atau profil ke format CSV.</p>
           </div>
         </div>
@@ -1436,8 +1696,9 @@
             </div>
           </div>
           <div class="demo-info">
-            <h3 style="font-size:1.1rem;">ANILIST SCHEDULE</h3>
-            <p style="font-size:0.85rem;">Website jadwal tayang anime menggunakan AniList API. Update real-time,
+            <h3 style="font-size:1.1rem;" data-t="port_04_title">ANILIST SCHEDULE</h3>
+            <p style="font-size:0.85rem;" data-t="port_04_desc">Website jadwal tayang anime menggunakan AniList API.
+              Update real-time,
               tampilan bersih, dan mudah digunakan.</p>
           </div>
         </div>
@@ -1448,7 +1709,8 @@
           <div class="demo-preview">
             <div class="demo-mock-wire"
               style="background:#1a1a2e; padding:16px; text-align:left; overflow:hidden; display:flex; flex-direction:column; gap:8px;">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:0.75rem;color:#e94560;font-weight:700;">OPREK HP SERVICE</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:0.75rem;color:#e94560;font-weight:700;">OPREK
+                HP SERVICE</div>
               <div style="display:flex;gap:8px;align-items:center;">
                 <div
                   style="width:28px;height:48px;background:#16213e;border:2px solid #e94560;border-radius:4px;display:flex;align-items:center;justify-content:center;">
@@ -1471,8 +1733,9 @@
             </div>
           </div>
           <div class="demo-info">
-            <h3 style="font-size:1.1rem;">OPREK HP JASA SERVICE HP</h3>
-            <p style="font-size:0.85rem;">Landing page layanan software handphone seperti unlock bootloader, TWRP, root,
+            <h3 style="font-size:1.1rem;" data-t="port_05_title">OPREK HP JASA SERVICE HP</h3>
+            <p style="font-size:0.85rem;" data-t="port_05_desc">Landing page layanan software handphone seperti unlock
+              bootloader, TWRP, root,
               custom ROM, dan bypass iPhone, lengkap dengan informasi layanan, harga, dan kontak teknisi.</p>
           </div>
         </div>
@@ -1483,7 +1746,8 @@
           <div class="demo-preview">
             <div class="demo-mock-wire"
               style="background:#f0fdf4; padding:16px; text-align:left; overflow:hidden; display:flex; flex-direction:column; gap:6px;">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;color:#16a34a;font-weight:700;">PROGRAM MBG RW 016</div>
+              <div style="font-family:'Space Grotesk',sans-serif;font-size:0.65rem;color:#16a34a;font-weight:700;">
+                PROGRAM MBG RW 016</div>
               <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;margin-top:2px;">
                 <div
                   style="background:#bbf7d0;border:1px solid #16a34a;padding:4px;text-align:center;border-radius:2px;">
@@ -1508,8 +1772,9 @@
             </div>
           </div>
           <div class="demo-info">
-            <h3 style="font-size:1.1rem;">PENDATAAN MBG RW 016</h3>
-            <p style="font-size:0.85rem;">Sistem pendataan penerima program Makanan Bergizi Gratis untuk ibu hamil, ibu
+            <h3 style="font-size:1.1rem;" data-t="port_06_title">PENDATAAN MBG RW 016</h3>
+            <p style="font-size:0.85rem;" data-t="port_06_desc">Sistem pendataan penerima program Makanan Bergizi Gratis
+              untuk ibu hamil, ibu
               menyusui, dan balita di RW 016.</p>
           </div>
         </div>
@@ -1522,49 +1787,49 @@
   <section id="proses">
     <div class="container">
       <div class="text-center">
-        <div class="sec-label">[ SEC-05 // ALUR KERJA ]</div>
-        <h2 class="sec-title">TAHAP <span class="hl-yellow">EKSEKUSI</span></h2>
+        <div class="sec-label" data-t="sec_05_label">[ SEC-05 // ALUR KERJA ]</div>
+        <h2 class="sec-title" data-t="sec_05_title">TAHAP <span class="hl-yellow">EKSEKUSI</span></h2>
       </div>
 
       <div class="process-list">
         <div class="wf-box process-item reveal">
-          <div class="process-step">01</div>
+          <div class="process-step" style="background: var(--accent);">01</div>
           <div class="process-content">
-            <h3 style="font-family:'Space Grotesk',sans-serif; margin-bottom:4px;">Diskusi Kebutuhan</h3>
-            <p>Sampaikan tujuan website, referensi desain, referensi warna, atau fitur yang Anda inginkan melalui pesan
-              WhatsApp.</p>
+            <h3 data-t="proc_01_title">Diskusi Kebutuhan</h3>
+            <p data-t="proc_01_desc">Sampaikan tujuan website, referensi desain, referensi warna, atau fitur yang Anda
+              inginkan melalui pesan WhatsApp.</p>
+          </div>
+        </div>
+        <div class="wf-box process-item reveal" style="transition-delay:0.1s">
+          <div class="process-step" style="background: var(--bg);">02</div>
+          <div class="process-content">
+            <h3 data-t="proc_02_title">Kesepakatan & Uang Muka</h3>
+            <p data-t="proc_02_desc">Kami menghitung total biaya berdasarkan tingkat kerumitan. Jika setuju, pembayaran
+              DP (Uang Muka) sebesar 50% dibayarkan di awal, lalu pengerjaan segera dimulai.</p>
+          </div>
+        </div>
+        <div class="wf-box process-item reveal" style="transition-delay:0.2s">
+          <div class="process-step" style="background: var(--bg);">03</div>
+          <div class="process-content">
+            <h3 data-t="proc_03_title">Proses Pembuatan</h3>
+            <p data-t="proc_03_desc">Kami menulis kode desain (HTML, CSS, JS murni). Website dibangun agar berpenampilan
+              modern, rapih, responsif di handphone maupun laptop, dan sangat cepat diakses.</p>
+          </div>
+        </div>
+        <div class="wf-box process-item reveal" style="transition-delay:0.3s">
+          <div class="process-step" style="background: var(--bg);">04</div>
+          <div class="process-content">
+            <h3 data-t="proc_04_title">Review & Revisi</h3>
+            <p data-t="proc_04_desc">Kami memberikan link percobaan agar Anda bisa mengecek hasilnya secara langsung.
+              Anda bebas meminta revisi jika ada bagian yang belum sesuai kemauan Anda.</p>
           </div>
         </div>
         <div class="wf-box process-item reveal">
-          <div class="process-step" style="background:transparent;">02</div>
+          <div class="process-step" style="background: var(--text); color: var(--bg);">05</div>
           <div class="process-content">
-            <h3 style="font-family:'Space Grotesk',sans-serif; margin-bottom:4px;">Kesepakatan &amp; Uang Muka</h3>
-            <p>Kami menghitung total biaya berdasarkan tingkat kerumitan. Jika setuju, pembayaran <strong>DP (Uang Muka)
-                sebesar 50%</strong> dibayarkan di awal, lalu pengerjaan segera dimulai.</p>
-          </div>
-        </div>
-        <div class="wf-box process-item reveal">
-          <div class="process-step" style="background:transparent;">03</div>
-          <div class="process-content">
-            <h3 style="font-family:'Space Grotesk',sans-serif; margin-bottom:4px;">Proses Pembuatan</h3>
-            <p>Kami menulis kode desain (HTML, CSS, JS murni). Website dibangun agar berpenampilan modern, rapih,
-              responsif di handphone maupun laptop, dan sangat cepat diakses.</p>
-          </div>
-        </div>
-        <div class="wf-box process-item reveal">
-          <div class="process-step" style="background:transparent;">04</div>
-          <div class="process-content">
-            <h3 style="font-family:'Space Grotesk',sans-serif; margin-bottom:4px;">Review &amp; Revisi</h3>
-            <p>Kami memberikan link percobaan agar Anda bisa mengecek hasilnya secara langsung. Anda bebas meminta
-              revisi jika ada bagian yang belum sesuai kemauan Anda.</p>
-          </div>
-        </div>
-        <div class="wf-box process-item reveal">
-          <div class="process-step" style="background:var(--border); color:var(--bg);">05</div>
-          <div class="process-content">
-            <h3 style="font-family:'Space Grotesk',sans-serif; margin-bottom:4px;">Pelunasan &amp; Penyerahan</h3>
-            <p>Setelah website fix 100%, Anda melakukan pelunasan sisa 50%. Kami akan mengunggah website ke
-              hosting/domain Anda dan memberikan hak penuh atas seluruh file *source code*-nya.</p>
+            <h3 data-t="proc_05_title">Pelunasan & Penyerahan</h3>
+            <p data-t="proc_05_desc">Setelah website fix 100%, Anda melakukan pelunasan sisa 50%. Kami akan mengunggah
+              website ke hosting/domain Anda dan memberikan hak penuh atas seluruh file *source code*-nya.</p>
           </div>
         </div>
       </div>
@@ -1575,49 +1840,48 @@
   <section id="faq"
     style="background:var(--bg-grid); border-top:2px solid var(--border); border-bottom:4px solid var(--border);">
     <div class="container text-center">
-      <div class="sec-label">[ SEC-06 // Q&amp;A ]</div>
-      <h2 class="sec-title">PERTANYAAN <span class="hl-yellow">TEKNIS</span></h2>
+      <div class="sec-label" data-t="sec_06_label">[ SEC-06 // Q&amp;A ]</div>
+      <h2 class="sec-title" data-t="sec_06_title">PERTANYAAN <span class="hl-yellow">TEKNIS</span></h2>
 
       <div class="faq-wrap">
 
         <div class="faq-item">
-          <button class="faq-q">Sistem Template vs Custom? <span class="faq-icon"></span></button>
+          <button class="faq-q" data-t="faq_01_q">Sistem Template vs Custom <span class="faq-icon"></span></button>
           <div class="faq-a">
-            <div class="faq-a-inner">
-              Sistem template menggunakan kerangka dasar terprogram untuk mengurangi waktu eksekusi. Sistem custom
-              membangun struktur model dokumen HTML (DOM) dan pohon objek gaya (CSSOM) secara absolut dari nol,
-              mengizinkan arsitektur spesifik.
+            <div class="faq-a-inner" data-t="faq_01_a">
+              Template itu pakai desain yang sudah jadi, jadi prosesnya lebih cepat.<br>Custom itu dibuat dari nol
+              sesuai kebutuhan kamu, jadi tampilannya lebih unik dan fleksibel.
             </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Penggunaan WordPress? <span class="faq-icon"></span></button>
+          <button class="faq-q" data-t="faq_02_q">Apakah pakai WordPress? <span class="faq-icon"></span></button>
           <div class="faq-a">
-            <div class="faq-a-inner">
-              Negatif. Operasi tidak melibatkan basis data WordPress atau sistem template PHP yang berat. Kami
-              mengekspor halaman statis murni via HTML5, CSS3, dan Vanilla JavaScript. Kecepatan parsing dijamin
-              maksimal.
+            <div class="faq-a-inner" data-t="faq_02_a">
+              Website kami dibuat tanpa WordPress, melainkan langsung menggunakan HTML, CSS, dan JavaScript sehingga
+              lebih ringan, cepat, mudah dikelola, dan lebih aman dari risiko serangan hack karena tidak bergantung pada
+              plugin atau database.
             </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Protokol Garansi? <span class="faq-icon"></span></button>
+          <button class="faq-q" data-t="faq_03_q">Garansi bagaimana? <span class="faq-icon"></span></button>
           <div class="faq-a">
-            <div class="faq-a-inner">
-              Cacat logika rendering atau elemen desain yang rusak karena modifikasi struktur inisial akan diperbaiki
-              tanpa biaya. Penambahan modul pasca-perilisan mengikuti tarif revisi baku (IDR 20K).
+            <div class="faq-a-inner" data-t="faq_03_a">
+              Kalau ada tampilan yang error atau rusak dari awal, akan kami perbaiki gratis.<br>Kalau mau tambah fitur
+              atau revisi setelah jadi, ada biaya mulai dari Rp30.000.
             </div>
           </div>
         </div>
 
         <div class="faq-item">
-          <button class="faq-q">Serah Terima Kode Sumber? <span class="faq-icon"></span></button>
+          <button class="faq-q" data-t="faq_04_q">Apakah dapat file source code? <span class="faq-icon"></span></button>
           <div class="faq-a">
-            <div class="faq-a-inner">
-              Termasuk. Hak cipta modul dipindahkan seluruhnya ke entitas pengguna. Direktori aset (.html, .css, .js)
-              dapat diunduh tanpa kompresi obfuscation.
+            <div class="faq-a-inner" data-t="faq_04_a">
+              Ya, dapat full.<br>Semua file website (HTML, CSS, JS) bisa kamu download dan pakai sepenuhnya tanpa
+              batasan.
             </div>
           </div>
         </div>
@@ -1630,16 +1894,17 @@
   <section id="kontak">
     <div class="container">
       <div class="wf-box reveal" style="padding:60px 40px; text-align:center;">
-        <div class="sec-label">[ SEC-07 // INISIASI ]</div>
-        <h2 class="sec-title" style="margin-bottom:24px;">INISIASI <span class="hl-yellow">PROYEK MASUK</span></h2>
-        <p
-          style="margin-bottom:40px; font-size:1.1rem; color:var(--text-muted); max-width:600px; margin-left:auto; margin-right:auto;">
+        <div class="sec-label" data-t="sec_07_label">[ SEC-07 // INISIASI ]</div>
+        <h2 class="sec-title" style="margin-bottom:24px;" data-t="sec_07_title">INISIASI <span class="hl-yellow">PROYEK
+            MASUK</span></h2>
+        <p style="margin-bottom:40px; font-size:1.1rem; color:var(--text-muted); max-width:600px; margin-left:auto; margin-right:auto;"
+          data-t="sec_07_sub">
           Rute komunikasi langsung menuju eksekutor. Sampaikan topologi kebutuhan sistem yang ingin dibangun.
         </p>
         <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
           <a href="https://wa.me/62xxxxxxxxxx?text=Permintaan%20Koneksi:%20Konstruksi%20Landing%20Page" target="_blank"
-            class="btn btn-primary" style="font-size:1.1rem;">[->] KONEKSI WHATSAPP</a>
-          <a href="#harga" class="btn btn-outline" style="font-size:1.1rem;">[+] RUTE BIAYA</a>
+            class="btn btn-primary" style="font-size:1.1rem;" data-t="contact_wa">[->] KONEKSI WHATSAPP</a>
+          <a href="#harga" class="btn btn-outline" style="font-size:1.1rem;" data-t="contact_price">[+] RUTE BIAYA</a>
         </div>
       </div>
     </div>
@@ -1651,23 +1916,46 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>LANDINGKU</h3>
-          <p>Akselerasi visual komersial melalui arsitektur frontend mekanis dan presisi.</p>
+          <p data-t="footer_desc">Akselerasi visual komersial melalui arsitektur frontend mekanis dan presisi.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/" target="_blank" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r=".5" fill="currentColor" />
+              </svg>
+            </a>
+            <a href="https://tiktok.com/" target="_blank" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v7.2c0 1.96.28 4.08-1.07 5.56-1.08 1.16-2.6 1.66-4.14 1.57-1.84-.09-3.7-.84-4.73-2.38-1.5-2.19-1.3-5.26.46-7.22 1.4-1.57 3.55-2.07 5.56-1.53.11.03.22.06.33.09v3.91c-1.16-.4-2.48-.46-3.64-.06-.91.31-1.6 1.05-1.87 1.96-.28.94-.14 1.99.36 2.82.78 1.25 2.5 1.59 3.76.88.94-.52 1.49-1.5 1.58-2.58V.02h.11z" />
+              </svg>
+            </a>
+          </div>
         </div>
         <div class="footer-col">
-          <h4>INDEX</h4>
+          <h4 data-t="footer_index_title">INDEX</h4>
           <ul>
-            <li><a href="#layanan">Daftar Layanan</a></li>
-            <li><a href="#harga">Skema Harga</a></li>
-            <li><a href="#demo">Repositori Sistem</a></li>
-            <li><a href="#proses">Logika Proses</a></li>
+            <li><a href="#layanan" data-t="nav_services">Daftar Layanan</a></li>
+            <li><a href="#harga" data-t="nav_pricing">Skema Harga</a></li>
+            <li><a href="#demo" data-t="nav_demo">Repositori Sistem</a></li>
+            <li><a href="#proses" data-t="nav_process">Logika Proses</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>LEGAL / HUB</h4>
+          <h4 data-t="footer_legal_title">LEGAL / HUB</h4>
           <ul>
-            <li><a href="#faq">Basis Pengetahuan</a></li>
-            <li><a href="#kontak">Enkripsi Kontak</a></li>
-            <li><a href="#">Privasi</a></li>
+            <li><a href="#faq" data-t="nav_faq">Basis Pengetahuan</a></li>
+            <li><a href="#kontak" data-t="footer_contact_link">Enkripsi Kontak</a></li>
+            <li><a href="#" data-t="footer_privacy">Privasi</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 data-t="footer_loc_title">LOKASI</h4>
+          <ul>
+            <li style="display:flex;align-items:flex-start;gap:8px;line-height:1.6;color:var(--text-muted);">
+              <span data-t="footer_loc_addr">Manggahang, Baleendah<br>Kab. Bandung, Jawa Barat<br>40375</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -1680,7 +1968,7 @@
 
   <!-- FLOATING WA -->
   <a href="https://wa.me/6283842707945?text=Halo%20LandingKu,%20saya%20tertarik%20dengan%20layanan%20Anda."
-    target="_blank" class="floating-wa">
+    target="_blank" class="floating-wa" data-t="floating_wa">
     HUBUNGI KAMI
   </a>
 

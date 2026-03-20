@@ -38,8 +38,104 @@ a, button, .btn, .wf-box, .demo-card, .faq-q, .mobile-link, .hamburger {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* ===================================
+   CUSTOM SCROLLBAR — WIREFRAME STYLE
+   Kotak hitam, isi kuning, tegas & bold
+   =================================== */
+
+/* Track (latar belakang scrollbar) */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #ffffff;
+}
+
+/* Track inner - garis grid wireframe */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 10px,
+    rgba(0, 0, 0, 0.05) 10px,
+    rgba(0, 0, 0, 0.05) 11px
+  );
+}
+
+/* Thumb (handle scroll) — kotak wireframe kuning */
+::-webkit-scrollbar-thumb {
+  background: #FDE047;  /* kuning accent */
+  border: none;
+  border-radius: 0;     /* boxy / no rounded — wireframe style */
+  box-shadow: none;
+  min-height: 48px;
+}
+
+/* Thumb hover — sedikit lebih gelap */
+::-webkit-scrollbar-thumb:hover {
+  background: #EAB308;
+  box-shadow: none;
+}
+
+/* Thumb active / click */
+::-webkit-scrollbar-thumb:active {
+  background: #050505;
+  box-shadow: none;
+}
+
+/* Corner (pojok kanan bawah) */
+::-webkit-scrollbar-corner {
+  background: #ffffff;
+}
+
+/* Language Switcher */
+.btn-lang {
+  background: var(--bg);
+  color: var(--text);
+  border: 2px solid var(--border);
+  padding: 4px 12px;
+  font-family: 'Space Grotesk', monospace;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-lang:hover {
+  background: var(--accent);
+  box-shadow: 4px 4px 0 var(--border);
+  transform: translate(-2px, -2px);
+}
+
+.btn-lang:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .lang-switcher {
+    display: none; /* Hidden on desktop nav for mobile */
+  }
+}
+
+/* Firefox support */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #FDE047 #ffffff;
   scroll-padding-top: var(--nav-height);
 }
+
+
 
 body {
   font-family: 'Inter', sans-serif;
@@ -826,14 +922,58 @@ footer {
 }
 
 /* =========================================
+   SOCIAL MEDIA ICONS
+   ========================================= */
+.footer-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.footer-socials a {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  transition: all 0.2s;
+  box-shadow: 2px 2px 0 var(--border);
+}
+
+.footer-socials a:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 5px 5px 0 var(--border);
+  background: var(--accent);
+}
+
+.footer-socials svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* =========================================
    RESPONSIVE
    ========================================= */
 @media (max-width: 1024px) {
   /* iPad / Tablet */
-  .hero-title { font-size: 3.5rem; }
+  .hero-title { font-size: 4.5rem; }
+  .hero-badge { font-size: 0.9rem; padding: 10px 20px; }
+  .sec-title { font-size: 3rem; }
   .nav-links { gap: 20px; }
   section { padding: 90px 0; }
-  .features-grid, .demo-grid, .price-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .features-grid, .price-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+  .demo-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 48px; 
+    max-width: 960px; 
+    margin: 60px auto 0; 
+  }
+  .demo-preview { height: 260px; }
+  .demo-info { padding: 32px; }
+  .demo-info h3 { font-size: 1.5rem; }
   .process-step { font-size: 1.5rem; width: 60px; }
 }
 
@@ -846,9 +986,10 @@ footer {
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .hero-content { text-align: left; }
   .hero-content .sec-label { justify-content: flex-start; }
-  .hero-title { font-size: 3.4rem; letter-spacing: -2px; text-align: left; }
-  .hero-desc { margin: 0; text-align: left; font-size: 1.1rem; }
-  .hero-cta { justify-content: flex-start; }
+  .hero-title { font-size: 4rem; letter-spacing: -2px; text-align: left; }
+  .hero-desc { margin: 0; text-align: left; font-size: 1.2rem; }
+  .hero-badge { font-size: 0.95rem; padding: 12px 24px; }
+  .hero-cta { justify-content: flex-start; gap: 20px; }
   
   .features-grid, .demo-grid, .price-grid { grid-template-columns: 1fr; gap: 24px; }
   
@@ -877,9 +1018,10 @@ footer {
   /* Mobile Portrait (iPhone, etc) */
   .container { padding: 0 16px; }
   section { padding: 60px 0; }
-  .hero-title { font-size: 3rem; letter-spacing: -2px; line-height: 1; }
-  .hero-sub { font-size: 1.05rem; }
-  .sec-title { font-size: 2.4rem; margin-bottom: 30px; }
+  .hero-title { font-size: 3.6rem; letter-spacing: -2px; line-height: 1; }
+  .hero-sub { font-size: 1.2rem; line-height: 1.5; }
+  .hero-badge { font-size: 1rem; padding: 12px 20px; width: 100%; justify-content: center; }
+  .sec-title { font-size: 2.8rem; margin-bottom: 30px; }
   .features-grid, .demo-grid, .price-grid { gap: 16px; }
   .price-card { padding: 24px 16px; }
   .price-amount { font-size: 3rem; }

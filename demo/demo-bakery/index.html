@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oven & Crumbs | Artisan Bakery</title>
+  <meta name="description" content="Artisan sponge cakes and pastries crafted with love, daily.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #1a1410;
+      --warm: #2c1f10;
+      --gold: #b8864e;
+      --gold-lt: #d4a86a;
+      --cream: #f5ede0;
+      --cream-dk: #ede0cc;
+      --parchment: #faf5ed;
+      --muted: #7a6a55;
+      --line: rgba(184, 134, 78, .22);
+      --sidebar-w: 260px;
+      --sidebar-w-collapsed: 0px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===================== GRAIN OVERLAY ===================== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .5;
+    }
+
+    /* ===================== SIDEBAR ===================== */
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: var(--sidebar-w);
+      height: 100vh;
+      background: var(--warm);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      padding: 48px 0 36px;
+      transition: transform .5s cubic-bezier(.77, 0, .18, 1);
+      border-right: 1px solid rgba(184, 134, 78, .15);
+    }
+
+    .sidebar-brand {
+      padding: 0 36px 44px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .sidebar-brand .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+
+    .sidebar-brand .tagline {
+      margin-top: 6px;
+      font-size: .72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-weight: 300;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 36px 0;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 36px;
+      font-size: .82rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: rgba(245, 237, 224, .55);
+      transition: color .3s, background .3s, padding-left .3s;
+      position: relative;
+    }
+
+    .sidebar-nav a .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0;
+      transition: opacity .3s;
+      flex-shrink: 0;
+    }
+
+    .sidebar-nav a:hover,
+    .sidebar-nav a.active {
+      color: var(--cream);
+      background: rgba(184, 134, 78, .08);
+      padding-left: 42px;
+    }
+
+    .sidebar-nav a:hover .dot,
+    .sidebar-nav a.active .dot {
+      opacity: 1;
+    }
+
+    .sidebar-contact {
+      padding: 28px 36px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .sidebar-contact .label {
+      font-size: .65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: 18px;
+      font-weight: 400;
+    }
+
+    .sidebar-contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+      color: rgba(245, 237, 224, .6);
+      font-size: .8rem;
+      transition: color .3s;
+      font-weight: 300;
+    }
+
+    .sidebar-contact-link:hover {
+      color: var(--gold-lt);
+    }
+
+    .sidebar-contact-link .icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color .3s, background .3s;
+    }
+
+    .sidebar-contact-link:hover .icon {
+      border-color: var(--gold);
+      background: rgba(184, 134, 78, .12);
+    }
+
+    .sidebar-contact-link .icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* ===================== HAMBURGER ===================== */
+    .ham-btn {
+      display: none;
+      position: fixed;
+      top: 9px;
+      left: 20px;
+      z-index: 600;
+      width: 46px;
+      height: 46px;
+      background: var(--warm);
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background .3s;
+    }
+
+    .ham-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--cream);
+      transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s, background .3s;
+    }
+
+    .ham-btn.open span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .ham-btn.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .ham-btn.open span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      z-index: 400;
+      opacity: 0;
+      transition: opacity .35s;
+    }
+
+    .overlay.show {
+      opacity: 1;
+    }
+
+    /* ===================== MAIN WRAP ===================== */
+    .main-wrap {
+      margin-left: var(--sidebar-w);
+      min-height: 100vh;
+      transition: margin-left .45s cubic-bezier(.77, 0, .18, 1);
+    }
+
+    /* ===================== TOP BAR (mobile) ===================== */
+    .topbar {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--warm);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--cream);
+      letter-spacing: 1px;
+    }
+
+    /* ===================== HERO ===================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      animation: heroZoom 14s ease-out forwards;
+    }
+
+    @keyframes heroZoom {
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .hero-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+          rgba(26, 20, 16, .7) 0%,
+          rgba(26, 20, 16, .4) 50%,
+          rgba(26, 20, 16, .1) 100%),
+        linear-gradient(to top,
+          rgba(26, 20, 16, .85) 0%,
+          transparent 55%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 7% 9%;
+      max-width: 740px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp .9s .3s forwards;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-eyebrow span {
+      font-size: .72rem;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      font-weight: 300;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp .9s .5s forwards;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold-lt);
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: rgba(245, 237, 224, .7);
+      font-weight: 300;
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp .9s .7s forwards;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+      animation: fadeUp .9s .9s forwards;
+    }
+
+    .btn-ghost {
+      padding: 14px 36px;
+      border: 1px solid rgba(245, 237, 224, .4);
+      color: var(--cream);
+      font-size: .8rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: background .3s, border-color .3s;
+      font-family: 'Jost', sans-serif;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(245, 237, 224, .08);
+      border-color: var(--gold);
+    }
+
+    .btn-solid-gold {
+      padding: 14px 36px;
+      background: var(--gold);
+      color: var(--warm);
+      font-size: .8rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: background .3s, transform .2s;
+      font-family: 'Jost', sans-serif;
+    }
+
+    .btn-solid-gold:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+    }
+
+    /* scroll hint */
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      right: 7%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeIn 1s 1.4s forwards;
+    }
+
+    .scroll-hint span {
+      font-size: .6rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(245, 237, 224, .5);
+      writing-mode: vertical-lr;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollLine 2s 1.6s infinite;
+    }
+
+    @keyframes scrollLine {
+      0% {
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+      }
+
+      51% {
+        transform: scaleY(1);
+        transform-origin: bottom;
+      }
+
+      100% {
+        transform: scaleY(0);
+        transform-origin: bottom;
+      }
+    }
+
+    /* ===================== GENERIC SECTION ===================== */
+    .sec {
+      padding: 110px 7%;
+    }
+
+    .sec-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .sec-label::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .sec-label span {
+      font-size: .68rem;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+
+    .sec-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 3.6rem);
+      font-weight: 300;
+      color: var(--warm);
+      line-height: 1.15;
+    }
+
+    .sec-heading em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ===================== MARQUEE STRIP ===================== */
+    .marquee-strip {
+      overflow: hidden;
+      background: var(--warm);
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 28px;
+      padding: 0 28px;
+      font-size: .7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(245, 237, 224, .5);
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    .marquee-item .sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: .6;
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ===================== ABOUT ===================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img-wrap img {
+      height: 600px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .about-img-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px 20px 20px -20px;
+      border: 1px solid var(--gold);
+      opacity: .3;
+      z-index: -1;
+      transition: opacity .5s;
+    }
+
+    .about-img-wrap:hover::before {
+      opacity: .6;
+    }
+
+    .about-text .sec-heading {
+      margin-bottom: 30px;
+    }
+
+    .about-body {
+      color: var(--muted);
+      font-size: .98rem;
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 40px;
+      margin-top: 44px;
+      padding-top: 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    .stat-item .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-item .unit {
+      font-size: .65rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      font-weight: 400;
+    }
+
+    /* ===================== FEATURED MOSAIC ===================== */
+    .mosaic {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: repeat(2, 300px);
+      gap: 16px;
+    }
+
+    .mosaic-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .mosaic-item:nth-child(1) {
+      grid-column: 1 / 7;
+      grid-row: 1 / 3;
+    }
+
+    .mosaic-item:nth-child(2) {
+      grid-column: 7 / 10;
+      grid-row: 1 / 2;
+    }
+
+    .mosaic-item:nth-child(3) {
+      grid-column: 10 / 13;
+      grid-row: 1 / 2;
+    }
+
+    .mosaic-item:nth-child(4) {
+      grid-column: 7 / 10;
+      grid-row: 2 / 3;
+    }
+
+    .mosaic-item:nth-child(5) {
+      grid-column: 10 / 13;
+      grid-row: 2 / 3;
+    }
+
+    .mosaic-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .mosaic-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .mosaic-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(26, 20, 16, .6) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    .mosaic-item:hover::after {
+      opacity: 1;
+    }
+
+    /* ===================== PRODUCTS ===================== */
+    .products-sec {
+      background: var(--cream-dk);
+    }
+
+    .prod-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+    }
+
+    .prod-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .prod-card {
+      background: var(--parchment);
+      border: 1px solid rgba(184, 134, 78, .15);
+      overflow: hidden;
+      transition: transform .4s cubic-bezier(.25, .46, .45, .94), box-shadow .4s;
+      position: relative;
+    }
+
+    .prod-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 60px rgba(44, 31, 16, .12);
+    }
+
+    .prod-img-wrap {
+      overflow: hidden;
+      height: 280px;
+      position: relative;
+    }
+
+    .prod-img-wrap img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .prod-card:hover .prod-img-wrap img {
+      transform: scale(1.08);
+    }
+
+    .prod-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: var(--gold);
+      color: var(--warm);
+      font-size: .6rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 6px 14px;
+    }
+
+    .prod-body {
+      padding: 28px;
+    }
+
+    .prod-cat {
+      font-size: .62rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .prod-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--warm);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .prod-desc {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 22px;
+    }
+
+    .prod-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .prod-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--warm);
+    }
+
+    .prod-price sup {
+      font-size: .8rem;
+      vertical-align: super;
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+
+    .prod-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      transition: background .3s, color .3s;
+      cursor: pointer;
+    }
+
+    .prod-btn:hover {
+      background: var(--gold);
+      color: var(--warm);
+    }
+
+    .prod-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ===================== FEATURE BANNER ===================== */
+    .feature-banner {
+      position: relative;
+      height: 520px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .feature-banner img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .feature-banner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 20, 16, .6);
+    }
+
+    .feature-banner-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 7%;
+      max-width: 700px;
+    }
+
+    .feature-banner-content .sec-heading {
+      color: var(--cream);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .feature-banner-content .sec-heading em {
+      color: var(--gold-lt);
+    }
+
+    .feature-banner-content .sec-label {
+      margin-bottom: 28px;
+    }
+
+    .feature-banner p {
+      color: rgba(245, 237, 224, .7);
+      font-size: .98rem;
+      line-height: 1.85;
+      font-weight: 300;
+      margin: 24px 0 36px;
+    }
+
+    /* ===================== PROCESS ===================== */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+
+    .step {
+      position: relative;
+    }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      font-weight: 300;
+      color: rgba(184, 134, 78, .15);
+      line-height: 1;
+      margin-bottom: 20px;
+      transition: color .4s;
+    }
+
+    .step:hover .step-num {
+      color: rgba(184, 134, 78, .35);
+    }
+
+    .step-divider {
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .step h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--warm);
+      margin-bottom: 12px;
+    }
+
+    .step p {
+      font-size: .85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .step::after {
+      content: '';
+      position: absolute;
+      right: -20px;
+      top: 15%;
+      height: 40%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--line), transparent);
+    }
+
+    .step:last-child::after {
+      display: none;
+    }
+
+    /* ===================== TESTIMONIALS ===================== */
+    .testi-sec {
+      background: var(--warm);
+      padding: 110px 7%;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .testi-card {
+      padding: 36px;
+      border: 1px solid rgba(184, 134, 78, .2);
+      position: relative;
+      transition: border-color .3s;
+    }
+
+    .testi-card:hover {
+      border-color: rgba(184, 134, 78, .5);
+    }
+
+    .testi-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 20px;
+      opacity: .6;
+    }
+
+    .testi-text {
+      font-size: .9rem;
+      color: rgba(245, 237, 224, .65);
+      line-height: 1.85;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 28px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .testi-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(184, 134, 78, .3);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .testi-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testi-name {
+      font-size: .8rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--cream);
+      font-weight: 400;
+    }
+
+    .testi-role {
+      font-size: .72rem;
+      color: var(--gold-lt);
+      font-weight: 300;
+      margin-top: 3px;
+    }
+
+    /* ===================== GALLERY STRIP ===================== */
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      height: 320px;
+    }
+
+    .gallery-cell {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s cubic-bezier(.25, .46, .45, .94), filter .6s;
+      filter: saturate(.7);
+    }
+
+    .gallery-cell:hover img {
+      transform: scale(1.1);
+      filter: saturate(1);
+    }
+
+    /* ===================== CONTACT / FOOTER ===================== */
+    .contact-sec {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 540px;
+    }
+
+    .contact-left {
+      background: var(--warm);
+      padding: 90px 7%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .contact-left .sec-heading {
+      color: var(--cream);
+      margin-bottom: 36px;
+    }
+
+    .contact-left .sec-heading em {
+      color: var(--gold-lt);
+    }
+
+    .contact-left .sec-label {
+      margin-bottom: 24px;
+    }
+
+    .contact-info-list {
+      list-style: none;
+    }
+
+    .contact-info-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+      color: rgba(245, 237, 224, .65);
+      font-size: .9rem;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .contact-info-list .ci-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(184, 134, 78, .3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-info-list .ci-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--gold-lt);
+    }
+
+    .contact-channel-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .ch-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 22px;
+      border: 1px solid rgba(184, 134, 78, .3);
+      color: rgba(245, 237, 224, .7);
+      font-size: .75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: border-color .3s, color .3s, background .3s;
+    }
+
+    .ch-btn:hover {
+      border-color: var(--gold);
+      color: var(--cream);
+      background: rgba(184, 134, 78, .08);
+    }
+
+    .ch-btn svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .contact-right {
+      background: var(--cream-dk);
+      padding: 90px 7%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-row {
+      margin-bottom: 22px;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: .65rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--line);
+      padding: 10px 0;
+      font-size: .95rem;
+      color: var(--warm);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      outline: none;
+      transition: border-color .3s;
+      resize: none;
+      appearance: none;
+    }
+
+    .form-row input:focus,
+    .form-row textarea:focus,
+    .form-row select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-row textarea {
+      min-height: 90px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    /* ===================== FOOTER BOTTOM ===================== */
+    .footer-btm {
+      background: var(--ink);
+      padding: 28px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-btm .copy {
+      font-size: .72rem;
+      letter-spacing: 1.5px;
+      color: rgba(245, 237, 224, .35);
+      font-weight: 300;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 14px;
+    }
+
+    .footer-social a {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245, 237, 224, .12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(245, 237, 224, .4);
+      transition: color .3s, border-color .3s;
+    }
+
+    .footer-social a:hover {
+      color: var(--gold-lt);
+      border-color: var(--gold);
+    }
+
+    .footer-social a svg {
+      width: 13px;
+      height: 13px;
+      fill: currentColor;
+    }
+
+    /* ===================== SCROLL REVEAL ===================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity .85s cubic-bezier(.25, .46, .45, .94), transform .85s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: .1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: .2s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: .3s;
+    }
+
+    .reveal-delay-4 {
+      transition-delay: .4s;
+    }
+
+    /* ===================== UTILITY ANIMATIONS ===================== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* ===================== ACTIVE NAV INDICATOR ===================== */
+    .sidebar-nav a.active {
+      color: var(--cream);
+      background: rgba(184, 134, 78, .1);
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1100px) {
+      .prod-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .step::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --sidebar-w: 220px;
+      }
+
+      .sidebar {
+        transform: translateX(-100%);
+        padding: 40px 0 30px;
+      }
+      .sidebar-brand {
+        padding: 0 24px 30px;
+      }
+      .sidebar-nav a {
+        padding: 12px 24px;
+      }
+      .sidebar-contact {
+        padding: 24px 24px 0;
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-nav a {
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: color .3s, background .3s, padding-left .3s, opacity .5s, transform .5s;
+      }
+      .sidebar.open .sidebar-nav a {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .sidebar-nav a:nth-child(1) { transition-delay: .1s; }
+      .sidebar-nav a:nth-child(2) { transition-delay: .15s; }
+      .sidebar-nav a:nth-child(3) { transition-delay: .2s; }
+      .sidebar-nav a:nth-child(4) { transition-delay: .25s; }
+      .sidebar-nav a:nth-child(5) { transition-delay: .3s; }
+      .sidebar-nav a:nth-child(6) { transition-delay: .35s; }
+
+      .ham-btn {
+        display: flex;
+      }
+      .ham-btn.open {
+        left: 164px;
+      }
+      .ham-btn.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .main-wrap {
+        margin-left: 0;
+        padding-top: 64px;
+      }
+
+      .topbar {
+        display: flex;
+      }
+
+      .overlay {
+        display: block;
+        pointer-events: none;
+      }
+
+      .overlay.show {
+        pointer-events: auto;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-img-wrap img {
+        height: 380px;
+      }
+
+      .contact-sec {
+        grid-template-columns: 1fr;
+      }
+
+      .mosaic {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+
+      .mosaic-item:nth-child(1) {
+        grid-column: 1 / 3;
+        grid-row: auto;
+      }
+
+      .mosaic-item:nth-child(2),
+      .mosaic-item:nth-child(3),
+      .mosaic-item:nth-child(4),
+      .mosaic-item:nth-child(5) {
+        grid-column: auto;
+        grid-row: auto;
+        height: 200px;
+      }
+
+      .gallery-strip {
+        grid-template-columns: repeat(3, 1fr);
+        height: 220px;
+      }
+
+      .gallery-cell:nth-child(4),
+      .gallery-cell:nth-child(5) {
+        display: none;
+      }
+
+      .prod-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sec {
+        padding: 72px 6%;
+      }
+
+      .prod-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .about-stats {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .gallery-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-cell:nth-child(3) {
+        display: none;
+      }
+
+      .contact-channel-row {
+        flex-direction: column;
+      }
+
+      .mosaic-item:nth-child(3),
+      .mosaic-item:nth-child(5) {
+        display: none;
+      }
+
+      .footer-btm {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== OVERLAY ===================== -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ===================== HAMBURGER ===================== -->
+  <button class="ham-btn" id="hamBtn" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- ===================== TOPBAR (mobile) ===================== -->
+  <header class="topbar">
+    <div class="wordmark">Oven &amp; Crumbs</div>
+  </header>
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="wordmark">Oven &amp; Crumbs</div>
+      <div class="tagline">Artisan Bakery</div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#hero" class="active"><span class="dot"></span>Home</a>
+      <a href="#about"><span class="dot"></span>Our Story</a>
+      <a href="#gallery"><span class="dot"></span>Gallery</a>
+      <a href="#menu"><span class="dot"></span>Baked Goods</a>
+      <a href="#process"><span class="dot"></span>Our Process</a>
+      <a href="#contact"><span class="dot"></span>Contact &amp; Order</a>
+    </nav>
+
+    <div class="sidebar-contact">
+      <p class="label">Reach Us</p>
+
+      <a href="https://wa.me/6282112341234" target="_blank" class="sidebar-contact-link">
+        <span class="icon">
+          <!-- WhatsApp SVG -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            <path
+              d="M12 0C5.373 0 0 5.373 0 12c0 2.119.553 4.107 1.519 5.84L.057 23.494a.5.5 0 0 0 .612.612l5.648-1.462A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.847 0-3.575-.484-5.073-1.332l-.362-.215-3.753.973.994-3.648-.234-.376A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+          </svg>
+        </span>
+        +62 821-1234-1234
+      </a>
+
+      <a href="mailto:hello@ovenandcrumbs.id" class="sidebar-contact-link">
+        <span class="icon">
+          <!-- Gmail / Mail SVG -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20 4H4C2.897 4 2 4.897 2 6v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 5.333-8-5.333V6h16zM4 18V9.044l7.386 4.924a1 1 0 0 0 1.228 0L20 9.044V18H4z" />
+          </svg>
+        </span>
+        hello@ovenandcrumbs.id
+      </a>
+    </div>
+  </aside>
+
+  <!-- ===================== MAIN ===================== -->
+  <div class="main-wrap" id="mainWrap">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-media">
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=2072&auto=format&fit=crop"
+          alt="Artisan bread and pastries fresh from the oven">
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <span>Freshly Baked Daily</span>
+        </div>
+        <h1>Crafted with <em>Warmth</em> &amp; Patience.</h1>
+        <p class="hero-desc">Discover our signature Kue Bolu, artisan pastries, and breads — each made from premium
+          local ingredients and time-honored recipes passed through generations.</p>
+        <div class="hero-cta">
+          <a href="#menu" class="btn-solid-gold">Explore the Menu</a>
+          <a href="#about" class="btn-ghost">Our Story</a>
+        </div>
+      </div>
+
+      <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-strip">
+      <div class="marquee-track">
+        <!-- doubled for seamless loop -->
+        <span class="marquee-item">Classic Kue Bolu <span class="sep"></span></span>
+        <span class="marquee-item">Belgian Choco Chiffon <span class="sep"></span></span>
+        <span class="marquee-item">Pandan Cheese Roll <span class="sep"></span></span>
+        <span class="marquee-item">Custom Wedding Cake <span class="sep"></span></span>
+        <span class="marquee-item">Sourdough Artisan Bread <span class="sep"></span></span>
+        <span class="marquee-item">Hampers &amp; Gift Box <span class="sep"></span></span>
+        <span class="marquee-item">Classic Kue Bolu <span class="sep"></span></span>
+        <span class="marquee-item">Belgian Choco Chiffon <span class="sep"></span></span>
+        <span class="marquee-item">Pandan Cheese Roll <span class="sep"></span></span>
+        <span class="marquee-item">Custom Wedding Cake <span class="sep"></span></span>
+        <span class="marquee-item">Sourdough Artisan Bread <span class="sep"></span></span>
+        <span class="marquee-item">Hampers &amp; Gift Box <span class="sep"></span></span>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <section class="sec" id="about">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal">
+          <img src="https://images.unsplash.com/photo-1587241321921-91a834d6d191?q=80&w=2070&auto=format&fit=crop"
+            alt="Baker at work, hand-crafting dough">
+        </div>
+        <div class="about-text">
+          <div class="sec-label reveal"><span>Our Story</span></div>
+          <h2 class="sec-heading reveal reveal-delay-1">The Secret Ingredient<br>is <em>Time</em>.</h2>
+          <p class="about-body reveal reveal-delay-2">We believe that the finest cakes are never rushed. From sourcing
+            free-range eggs at the local market to allowing our signature sponge to rest overnight — every decision at
+            Oven &amp; Crumbs is intentional and deliberate.</p>
+          <p class="about-body reveal reveal-delay-2">Born in a small home kitchen in Bandung in 1998, we have grown
+            into a beloved artisan bakery without ever abandoning the soul of that original kitchen: honesty, quality,
+            and the kind of warmth that only handmade food can carry.</p>
+          <div class="about-stats reveal reveal-delay-3">
+            <div class="stat-item">
+              <div class="num">26+</div>
+              <div class="unit">Years of Baking</div>
+            </div>
+            <div class="stat-item">
+              <div class="num">80+</div>
+              <div class="unit">Signature Recipes</div>
+            </div>
+            <div class="stat-item">
+              <div class="num">12K</div>
+              <div class="unit">Happy Customers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY MOSAIC -->
+    <section class="sec" id="gallery" style="padding-top:0;">
+      <div class="sec-label reveal"><span>Gallery</span></div>
+      <h2 class="sec-heading reveal reveal-delay-1" style="margin-bottom:40px;">Every Bite Tells a <em>Story</em>.</h2>
+      <div class="mosaic reveal reveal-delay-2">
+        <div class="mosaic-item">
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2699&auto=format&fit=crop"
+            alt="Layered celebration cake">
+        </div>
+        <div class="mosaic-item">
+          <img
+            src="https://images.unsplash.com/photo-1627545195487-d088963ecdfb?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=rakesh-sitnoor-vsBF9EqxRno-unsplash.jpg"
+            alt="Vanilla sponge sliced">
+        </div>
+        <div class="mosaic-item">
+          <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?q=80&w=2003&auto=format&fit=crop"
+            alt="Dark chocolate chiffon cake">
+        </div>
+        <div class="mosaic-item">
+          <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=2073&auto=format&fit=crop"
+            alt="Bread loaves arranged">
+        </div>
+        <div class="mosaic-item">
+          <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?q=80&w=1965&auto=format&fit=crop"
+            alt="Pastries and coffee pairing">
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="sec products-sec" id="menu">
+      <div class="prod-header">
+        <div>
+          <div class="sec-label reveal"><span>Signature Bakes</span></div>
+          <h2 class="sec-heading reveal reveal-delay-1">Our Most <em>Loved</em> Creations.</h2>
+        </div>
+        <a href="#contact" class="btn-solid-gold reveal" style="height:fit-content; white-space:nowrap;">Pre-Order
+          Now</a>
+      </div>
+
+      <div class="prod-grid">
+        <div class="prod-card reveal">
+          <div class="prod-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1604531825889-88dc0c7e37db?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=nathan-walker-pq0TD55ZihQ-unsplash.jpg"
+              alt="Classic Vanilla Bolu">
+            <div class="prod-badge">Best Seller</div>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat">Kue Bolu</div>
+            <h3 class="prod-name">Classic Vanilla Bolu</h3>
+            <p class="prod-desc">Incredibly soft, cloud-like sponge cake made with real Madagascar vanilla bean and
+              free-range eggs.</p>
+            <div class="prod-footer">
+              <div class="prod-price"><sup>Rp</sup> 85.000</div>
+              <div class="prod-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prod-card reveal reveal-delay-1">
+          <div class="prod-img-wrap">
+            <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?q=80&w=2003&auto=format&fit=crop"
+              alt="Belgian Choco Chiffon">
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat">Chiffon</div>
+            <h3 class="prod-name">Belgian Choco Chiffon</h3>
+            <p class="prod-desc">Light and airy chocolate chiffon loaded with premium 72% dark chocolate chips and a
+              velvet cocoa glaze.</p>
+            <div class="prod-footer">
+              <div class="prod-price"><sup>Rp</sup> 110.000</div>
+              <div class="prod-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prod-card reveal reveal-delay-2">
+          <div class="prod-img-wrap">
+            <img src="https://images.unsplash.com/photo-1519869325930-281384150729?q=80&w=2066&auto=format&fit=crop"
+              alt="Pandan Cheese Roll">
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat">Swiss Roll</div>
+            <h3 class="prod-name">Pandan Cheese Roll</h3>
+            <p class="prod-desc">Fragrant pandan sponge rolled with savory-sweet buttercream and aged cheddar — a true
+              local classic.</p>
+            <div class="prod-footer">
+              <div class="prod-price"><sup>Rp</sup> 95.000</div>
+              <div class="prod-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prod-card reveal">
+          <div class="prod-img-wrap">
+            <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=2073&auto=format&fit=crop"
+              alt="Country Sourdough">
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat">Artisan Bread</div>
+            <h3 class="prod-name">Country Sourdough</h3>
+            <p class="prod-desc">Long-fermented country sourdough with a crackling crust and an open, chewy crumb. Baked
+              at dawn.</p>
+            <div class="prod-footer">
+              <div class="prod-price"><sup>Rp</sup> 75.000</div>
+              <div class="prod-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prod-card reveal reveal-delay-1">
+          <div class="prod-img-wrap">
+            <img src="https://images.unsplash.com/photo-1481391319762-47dff72954d9?q=80&w=1965&auto=format&fit=crop"
+              alt="Croissant au Beurre">
+            <div class="prod-badge">New</div>
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat">Viennoiserie</div>
+            <h3 class="prod-name">Croissant au Beurre</h3>
+            <p class="prod-desc">Three-day laminated dough, 27 layers of pure butter. Shatters on first bite, melts in
+              the middle.</p>
+            <div class="prod-footer">
+              <div class="prod-price"><sup>Rp</sup> 38.000</div>
+              <div class="prod-btn">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="prod-card reveal reveal-delay-2">
+          <div class="prod-img-wrap">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2699&auto=format&fit=crop"
+              alt="Custom Celebration Cake">
+          </div>
+          <div class="prod-body">
+            <div class="prod-cat">Custom Order</div>
+            <h3 class="prod-name">Celebration Cake</h3>
+            <p class="prod-desc">Fully bespoke cakes for weddings, birthdays, and special occasions. Designed just for
+              your moment.</p>
+            <div class="prod-footer">
+              <div class="prod-price"
+                style="font-size:1.1rem; font-family:'Jost',sans-serif; font-weight:300; color:var(--muted);">Price on
+                Request</div>
+              <a href="https://wa.me/6282112341234" target="_blank" class="prod-btn" style="text-decoration:none;">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURE BANNER -->
+    <div class="feature-banner">
+      <img src="https://images.unsplash.com/photo-1556745753-b2904692b3cd?q=80&w=2073&auto=format&fit=crop"
+        alt="Baker decorating a cake in the kitchen">
+      <div class="feature-banner-content">
+        <div class="sec-label reveal"><span>Custom Orders</span></div>
+        <h2 class="sec-heading reveal reveal-delay-1">Need Something <em>Special?</em></h2>
+        <p class="reveal reveal-delay-2">From intimate birthday cakes to grand wedding tiers and corporate hampers — we
+          craft every custom order with the same care we give to our daily bakes. Get in touch at least 5 days in
+          advance.</p>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;" class="reveal reveal-delay-3">
+          <a href="https://wa.me/6282112341234" target="_blank" class="btn-solid-gold">Order via WhatsApp</a>
+          <a href="mailto:hello@ovenandcrumbs.id" class="btn-ghost"
+            style="border-color:rgba(245,237,224,.4);color:var(--cream);">Send an Email</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <section class="sec" id="process">
+      <div class="sec-label reveal"><span>How We Bake</span></div>
+      <h2 class="sec-heading reveal reveal-delay-1">From Source to <em>Shelf</em>.</h2>
+      <div class="process-steps">
+        <div class="step reveal">
+          <div class="step-num">01</div>
+          <div class="step-divider"></div>
+          <h4>Sourcing</h4>
+          <p>We work directly with local farmers for fresh eggs, pure butter, and seasonal produce. No compromises on
+            provenance.</p>
+        </div>
+        <div class="step reveal reveal-delay-1">
+          <div class="step-num">02</div>
+          <div class="step-divider"></div>
+          <h4>Preparation</h4>
+          <p>Each recipe is prepared by hand. Doughs are mixed, laminated, or folded according to their own logic —
+            never rushed by machine.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-num">03</div>
+          <div class="step-divider"></div>
+          <h4>Baking</h4>
+          <p>Our deck ovens are fired from 04:00 every morning. Temperature, humidity, and timing are all monitored by
+            the baker — not a timer.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-num">04</div>
+          <div class="step-divider"></div>
+          <h4>Delivery</h4>
+          <p>Same-day delivery within Bandung. Pre-orders are packed with care in our signature kraft boxes and
+            dispatched before noon.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testi-sec">
+      <div class="sec-label reveal" style="--line:rgba(184,134,78,.3);">
+        <span style="color:var(--gold-lt);">What People Say</span>
+      </div>
+      <h2 class="sec-heading reveal reveal-delay-1" style="color:var(--cream);">Words from Our <em>Regulars</em>.</h2>
+
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">The pandan cheese roll is genuinely the best thing I have eaten this year. The balance
+            between savory and sweet is flawless — I order two boxes every Saturday.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
+                alt="Sari Dewi">
+            </div>
+            <div>
+              <div class="testi-name">Sari Dewi</div>
+              <div class="testi-role">Regular Customer, Bandung</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-1">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">We ordered a custom three-tier cake for our wedding reception. It was not only stunning
+            to look at but tasted extraordinary. Every guest asked about the bakery.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+                alt="Rizky and Aliya">
+            </div>
+            <div>
+              <div class="testi-name">Rizky Pratama</div>
+              <div class="testi-role">Wedding Client</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card reveal reveal-delay-2">
+          <div class="testi-quote">"</div>
+          <p class="testi-text">Their sourdough has ruined every other bread for me. The crust, the crumb, the sourness
+            — it is everything I want from an artisan loaf. I pick one up every Tuesday.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop"
+                alt="Bima S">
+            </div>
+            <div>
+              <div class="testi-name">Bima Santoso</div>
+              <div class="testi-role">Food Writer, Jakarta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY STRIP -->
+    <div class="gallery-strip">
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?q=80&w=1920&auto=format&fit=crop"
+          alt="Baker hands shaping dough">
+      </div>
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=1920&auto=format&fit=crop"
+          alt="Bakery display counter">
+      </div>
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1920&auto=format&fit=crop"
+          alt="Coffee and croissant pairing">
+      </div>
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1666811089798-f86b15ff2409?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=noelle-rebekah-j5WNWOE8KsI-unsplash.jpg"
+          alt="Fresh baguettes from the oven">
+      </div>
+      <div class="gallery-cell">
+        <img src="https://images.unsplash.com/photo-1666811089953-f948eb26502e?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&dl=noelle-rebekah-n-cPX3K5Ljc-unsplash.jpg"
+          alt="Cake decorating in progress">
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section class="contact-sec" id="contact">
+      <div class="contact-left">
+        <div class="sec-label" style="--line:rgba(184,134,78,.3);"><span style="color:var(--gold-lt);">Get in
+            Touch</span></div>
+        <h2 class="sec-heading">Let Us Bake for <em>You</em>.</h2>
+
+        <ul class="contact-info-list" style="margin-top:12px;">
+          <li>
+            <span class="ci-icon"><svg viewBox="0 0 24 24">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+              </svg></span>
+            <div>Jl. Melati Kuning No. 12<br>Bandung, 40115, Jawa Barat</div>
+          </li>
+          <li>
+            <span class="ci-icon"><svg viewBox="0 0 24 24">
+                <path
+                  d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" />
+              </svg></span>
+            <div>(022) 123-BAKE<br>Mon–Sat 07:00–19:00 | Sun 08:00–15:00</div>
+          </li>
+        </ul>
+
+        <div class="contact-channel-row">
+          <a href="https://wa.me/6282112341234" target="_blank" class="ch-btn">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.119.553 4.107 1.519 5.84L.057 23.494a.5.5 0 0 0 .612.612l5.648-1.462A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.847 0-3.575-.484-5.073-1.332l-.362-.215-3.753.973.994-3.648-.234-.376A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+            </svg>
+            WhatsApp
+          </a>
+          <a href="mailto:hello@ovenandcrumbs.id" class="ch-btn">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M20 4H4C2.897 4 2 4.897 2 6v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 5.333-8-5.333V6h16zM4 18V9.044l7.386 4.924a1 1 0 0 0 1.228 0L20 9.044V18H4z" />
+            </svg>
+            Email Us
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-right">
+        <div class="sec-label" style="margin-bottom:28px;"><span>Pre-Order Form</span></div>
+        <form onsubmit="return false;">
+          <div class="form-grid">
+            <div class="form-row">
+              <label>Full Name</label>
+              <input type="text" placeholder="Budi Santoso">
+            </div>
+            <div class="form-row">
+              <label>Phone / WhatsApp</label>
+              <input type="tel" placeholder="+62 812 0000 0000">
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Email Address</label>
+            <input type="email" placeholder="you@email.com">
+          </div>
+          <div class="form-row">
+            <label>Order Type</label>
+            <select>
+              <option value="">Select a category</option>
+              <option>Kue Bolu / Sponge Cake</option>
+              <option>Artisan Bread</option>
+              <option>Custom Celebration Cake</option>
+              <option>Hampers &amp; Gift Box</option>
+              <option>Corporate / Bulk Order</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label>Message or Special Request</label>
+            <textarea placeholder="Tell us about your order — flavour, size, date needed..."></textarea>
+          </div>
+          <button type="submit" class="btn-solid-gold" style="width:100%;padding:16px;font-size:.8rem;">Send Pre-Order
+            Request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- FOOTER BOTTOM -->
+    <footer class="footer-btm">
+      <div class="copy">2026 Oven &amp; Crumbs Bakery, Bandung. All rights reserved.</div>
+      <div class="footer-social">
+        <!-- Instagram -->
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+        </a>
+        <!-- TikTok -->
+        <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+          </svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/6282112341234" target="_blank" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.119.553 4.107 1.519 5.84L.057 23.494a.5.5 0 0 0 .612.612l5.648-1.462A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.847 0-3.575-.484-5.073-1.332l-.362-.215-3.753.973.994-3.648-.234-.376A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+  </div><!-- /main-wrap -->
+
+  <script>
+    /* ---- Sidebar toggle ---- */
+    const sidebar = document.getElementById('sidebar');
+    const hamBtn = document.getElementById('hamBtn');
+    const overlay = document.getElementById('overlay');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      hamBtn.classList.add('open');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      hamBtn.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    hamBtn.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    /* ---- Active nav link on scroll ---- */
+    const sections = document.querySelectorAll('section[id], div[id="gallery"]');
+    const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+    function setActiveLink() {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY + window.innerHeight * 0.35 >= sec.offsetTop) {
+          current = sec.getAttribute('id');
+        }
+      });
+      navLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
+    /* ---- Scroll reveal ---- */
+    const revealEls = document.querySelectorAll('.reveal');
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => io.observe(el));
+
+    window.addEventListener('scroll', setActiveLink, { passive: true });
+
+    /* ---- Close sidebar on nav link click (mobile) ---- */
+    navLinks.forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth < 900) closeSidebar();
+      });
+    });
+  </script>
+
+</body>
+
+</html>
