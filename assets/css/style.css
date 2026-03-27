@@ -2,9 +2,7 @@
    NEO-BRUTALISM / WIREFRAME THEME
    BLACK, WHITE, YELLOW
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
-
+   
 :root {
   /* Wireframe Colors */
   --bg: #ffffff;
@@ -16,7 +14,9 @@
   --border: #050505; /* Solid Black */
   
   /* Layout */
-  --nav-height: 70px;
+  --nav-height-base: 70px;
+  --nav-safe-area: env(safe-area-inset-top);
+  --nav-height: calc(var(--nav-height-base) + var(--nav-safe-area));
   --max-w: 1200px;
   --box-shadow: 6px 6px 0px var(--border);
   --box-shadow-hover: 10px 10px 0px var(--border);
@@ -278,11 +278,22 @@ section {
   position: fixed;
   top: 0; left: 0; right: 0;
   height: var(--nav-height);
+  padding-top: var(--nav-safe-area);
   background: var(--bg);
   border-bottom: 2px solid var(--border);
   z-index: 1000;
   display: flex;
   align-items: center;
+}
+
+/* Menutup area di atas navbar (safe-area / status bar) agar tetap putih */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--nav-safe-area));
+  left: 0; right: 0;
+  height: var(--nav-safe-area);
+  background: var(--bg);
 }
 
 .nav-inner {
@@ -357,18 +368,20 @@ section {
 
 .mobile-nav {
   position: fixed;
-  top: 0; right: -100%;
+  top: 0; bottom: 0; right: -100%;
   width: 80%; max-width: 320px;
-  height: 100vh;
+  height: 100%;
   background: var(--bg);
   border-left: 2px solid var(--border);
   z-index: 1001;
-  padding: 80px 40px;
+  padding: 80px 40px 120px 40px;
   display: flex;
   flex-direction: column;
   gap: 24px;
   transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: -10px 0 0 rgba(0,0,0,0.1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .mobile-nav.active { right: 0; }
 .mobile-close {
@@ -476,7 +489,7 @@ section {
    MARQUEE
    ========================================= */
 .marquee-container {
-  width: 100vw;
+  width: 100%;
   background: var(--text);
   color: var(--bg);
   padding: 16px 0;
@@ -484,8 +497,6 @@ section {
   border-top: 2px solid var(--border);
   border-bottom: 2px solid var(--border);
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   white-space: nowrap;
 }
